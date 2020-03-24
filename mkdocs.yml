@@ -1,0 +1,4 @@
+site_name: djangorestframework-jsonschema
+site_description: builds models and serializers from jsonschema
+repo_url: https://github.com/gecBurton/django-rest-framework-jsonschema
+site_dir: html

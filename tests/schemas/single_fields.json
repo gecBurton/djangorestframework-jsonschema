@@ -1,0 +1,141 @@
+{
+  "properties": {
+    "basic": {
+      "type": "string"
+    },
+    "length": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 3
+    },
+    "regular_expressions": {
+      "type": "string",
+      "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+    },
+    "format_date-time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "format_time": {
+      "type": "string",
+      "format": "time"
+    },
+    "format_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "format_email": {
+      "type": "string",
+      "format": "email"
+    },
+    "format_idn-email": {
+      "type": "string",
+      "format": "idn-email"
+    },
+    "format_hostname": {
+      "type": "string",
+      "format": "hostname"
+    },
+    "format_idn-hostname": {
+      "type": "string",
+      "format": "idn-hostname"
+    },
+    "format_ipv4": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "format_ipv6": {
+      "type": "string",
+      "format": "ipv6"
+    },
+    "format_uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "format_uri-reference": {
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "format_iri": {
+      "type": "string",
+      "format": "iri"
+    },
+    "format_iri-reference": {
+      "type": "string",
+      "format": "iri-reference"
+    },
+    "format_uri-template": {
+      "type": "string",
+      "format": "uri-template"
+    },
+    "format_json-pointer": {
+      "type": "string",
+      "format": "json-pointer"
+    },
+    "format_relative-json-pointer": {
+      "type": "string",
+      "format": "relative-json-pointer"
+    },
+    "format_regex": {
+      "type": "string",
+      "format": "regex"
+    },
+    "format-uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "integer": {
+      "type": "integer"
+    },
+    "integer-minimum-maximum": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 5
+    },
+    "boolean": {
+      "type": "boolean"
+    },
+    "enum": {
+      "enum": [
+        "A",
+        "b",
+        "C"
+      ]
+    },
+    "enum-null": {
+      "enum": [
+        "A",
+        "b",
+        "C",
+        "null"
+      ]
+    },
+    "boolean-null": {
+      "type": [
+        "null",
+        "boolean"
+      ]
+    },
+    "type-fail-empty": {
+      "type": [
+      ]
+    },
+    "type-fail-too-many": {
+      "type": [
+        "null",
+        "boolean",
+        "int"
+      ]
+    },
+    "type-fail-no-null": {
+      "type": [
+        "boolean",
+        "int"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  }
+}
