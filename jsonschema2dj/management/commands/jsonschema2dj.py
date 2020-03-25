@@ -51,8 +51,12 @@ class Command(BaseCommand):
     help: str = """blah blah blah
 """
 
+    def add_arguments(self, parser):
+        parser.add_argument('app', type=str, help="vnsknvcsl")
+
     def handle(self, *args, **kwargs) -> None:
-        base_dir = ""
+
+        base_dir = kwargs["app"]
 
         with open(f"{base_dir}/schema.json") as f:
             schema = load(f)
