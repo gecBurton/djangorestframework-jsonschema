@@ -61,9 +61,9 @@ Example
 -------
 
 
-An exaple project is included here: /example_project/example_app/schema.json
+An [exaple project](/example_project/) is included 
 
-Create a /example_project/example_app/schema.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
+Create a schema [i.e.](/example_project/example_app/schema.json) file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
 
 .. code:: bash
     
