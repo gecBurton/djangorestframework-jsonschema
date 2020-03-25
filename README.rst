@@ -25,36 +25,57 @@ As this project is not on pypi the set up is a little more complicated.
 3. python setup.py sdist
 
 this project is now built as a package and can be installed via requirements.txt
-```django==3.0.2
-djangorestframework==3.11.0
-drf-writable-nested==0.5.4
-../django-rest-framework-jsonschema/dist/djangorestframework-jsonschema-0.1.0.tar.gz
-```
+
+.. code-block:: txt
+
+    django==3.0.2
+    djangorestframework==3.11.0
+    drf-writable-nested==0.5.4
+    ../django-rest-framework-jsonschema/dist/djangorestframework-jsonschema-0.1.0.tar.gz
+
+
 
 Dont forget to include it in the INSTALLED_APPS of your project, it should come after "rest_framework" which must also be included, but before anything specific to your project.
 
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "rest_framework",
-    "jsonschema2dj",
-    "example_app.apps.ExampleAppConfig",
-]
+.. code-block:: python
 
-Install using ``pip install -r requirements.txt``\ …
+    INSTALLED_APPS = [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+        "rest_framework",
+        "jsonschema2dj",
+        "example_app.apps.ExampleAppConfig",
+    ]
+
+Install using ``pip``\ …
 
 .. code:: bash
 
-    $ pip install djangorestframework-jsonschema
+    $ pip  install -r requirements.txt
 
 Example
 -------
 
-TODO: Write example.
+!. create a scheam.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
+
+.. code:: bash
+    
+    python manage.py jsonschema2dj example_app
+
+And your models.py, seriliazers.py, views.py and urls.py will be generated.
+
+Dont forget that you still have to run
+
+.. code:: bash
+    python manage.py makemigrations
+    python manage.py migrate
+    
+as normal.
+
 
 Testing
 -------
