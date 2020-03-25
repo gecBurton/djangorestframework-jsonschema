@@ -1,0 +1,41 @@
+ {
+  "definitions": {
+    "phone": {
+            "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        }, "number": {"type":  "integer", "minimum":  0}}
+            },
+    "person": {
+      "required": [
+        "age",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sex": {
+          "enum": [
+            "male",
+            "female"
+          ]
+        }, "tel": {"type":  "object", "$ref": "#/definitions/phone" }
+      }
+    }
+  },
+  "properties": {
+    "person": {
+      "$ref": "#/definitions/person"
+    }
+  }
+}

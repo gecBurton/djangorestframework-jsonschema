@@ -83,7 +83,7 @@ class Command(BaseCommand):
                 )
 
             for field_name, (model, null, many) in relations.items():
-                rels_strs.append(f"    {field_name} = models.ForeignKey({model}Model, null={null}, many={many}, on_delete=models.CASCADE)")
+                rels_strs.append(f"    {field_name} = models.ForeignKey({model}Model, null={null}, on_delete=models.CASCADE)")
                 serializer_strs.append(f"    {field_name} = {model}Serializer()")
 
             models.append(MODEL_TEMPLATE.format(name=model_name, fields="\n".join(field_strs), relations="\n".join(rels_strs)))
