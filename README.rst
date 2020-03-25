@@ -67,11 +67,12 @@ Create a scheam.json file in the root of you projects application (where the mod
     
     python manage.py jsonschema2dj example_app
 
-And your models.py, seriliazers.py, views.py and urls.py will be generated.
+And models.py, seriliazers.py, views.py and urls.py will be generated.
 
 Dont forget that you still have to run
 
 .. code:: bash
+
     python manage.py makemigrations
     python manage.py migrate
     
