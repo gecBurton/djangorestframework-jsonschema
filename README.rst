@@ -41,9 +41,6 @@ Install using ``pip``\ …
 
     $ pip  install -r requirements.txt
 
-Example
--------
-
 This app needs to included it in the INSTALLED_APPS of your project, it should come after "rest_framework" which must also be included, but before anything specific to your project.
 
 .. code-block:: python
@@ -60,8 +57,13 @@ This app needs to included it in the INSTALLED_APPS of your project, it should c
         "example_app.apps.ExampleAppConfig",
     ]
 
+Example
+-------
 
-Create a scheam.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
+
+An exaple project is included here: /example_project/example_app/schema.json
+
+Create a /example_project/example_app/schema.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
 
 .. code:: bash
     
