@@ -20,11 +20,11 @@ Installation
 
 As this project is not on pypi the set up is a little more complicated.
 
-1. checkout this repo
-2. cd djangorestframework-jsonschema
-3. python setup.py sdist
+1. checkout this repo: ``git clone git@github.com:gecBurton/djangorestframework-jsonschema.git``
+2. change directory: ``cd djangorestframework-jsonschema``
+3. build package: ``python setup.py sdist``
 
-this project is now built as a package and can be installed via requirements.txt
+The package can be installed via requirements.txt
 
 .. code-block:: txt
 
