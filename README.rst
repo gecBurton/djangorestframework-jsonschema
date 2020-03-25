@@ -6,7 +6,7 @@ djangorestframework-jsonschema
 Overview
 --------
 
-builds models and serializers from jsonschema
+Build models and serializers from jsonschema.
 
 Requirements
 ------------
