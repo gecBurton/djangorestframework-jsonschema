@@ -63,7 +63,7 @@ Example
 
 An [exaple project](https://github.com/gecBurton/djangorestframework-jsonschema/tree/master/example_project) is included 
 
-Create a schema [i.e.](https://github.com/gecBurton/djangorestframework-jsonschema/tree/master/example_project/example_app/schema.json) file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
+Create a schema _ie: https://github.com/gecBurton/djangorestframework-jsonschema/tree/master/example_project/example_app/schema.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
 
 .. code:: bash
     
