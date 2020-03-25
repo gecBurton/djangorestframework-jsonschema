@@ -35,7 +35,16 @@ this project is now built as a package and can be installed via requirements.txt
 
 
 
-Dont forget to include it in the INSTALLED_APPS of your project, it should come after "rest_framework" which must also be included, but before anything specific to your project.
+Install using ``pip``\ …
+
+.. code:: bash
+
+    $ pip  install -r requirements.txt
+
+Example
+-------
+
+This app needs to included it in the INSTALLED_APPS of your project, it should come after "rest_framework" which must also be included, but before anything specific to your project.
 
 .. code-block:: python
 
@@ -51,16 +60,8 @@ Dont forget to include it in the INSTALLED_APPS of your project, it should come 
         "example_app.apps.ExampleAppConfig",
     ]
 
-Install using ``pip``\ …
 
-.. code:: bash
-
-    $ pip  install -r requirements.txt
-
-Example
--------
-
-!. create a scheam.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
+Create a scheam.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
 
 .. code:: bash
     
