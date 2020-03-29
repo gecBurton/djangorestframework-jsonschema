@@ -42,7 +42,7 @@ results = {
     "integer-minimum-maximum": (
         "IntegerField",
         {
-            "validators": [("MinValueValidator", 3), ("MaxValueValidator", 5)],
+            "validators": [("MinValueValidator", 3), ("MaxValueValidator", 5), ("MultipleOfValidator", 30)],
             "null": False,
         },
     ),
