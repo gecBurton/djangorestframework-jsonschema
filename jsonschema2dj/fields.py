@@ -2,15 +2,20 @@
 """
 
 
-def build_value_validators(sch):
+def build_value_validators(sch, null):
     """common to integers and strings"""
+    options = dict(null=null)
     validators = []
     if "minimum" in sch:
         validators.append(("MinValueValidator", sch["minimum"]))
     if "maximum" in sch:
         validators.append(("MaxValueValidator", sch["maximum"]))
-    if "multipleOf" in sch:
-        validators.append(("MultipleOfValidator", sch["multipleOf"]))
+    multiple_of = sch.get("multipleOf")
+    options.update(multiple_of=multiple_of)
+    if multiple_of:
+        validators.append(("MultipleOfValidator", multiple_of))
+    # if "multipleOf" in sch:
+    #     validators.append(("MultipleOfValidator", sch["multipleOf"]))
     return validators
 
 
