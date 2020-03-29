@@ -9,6 +9,8 @@ def build_value_validators(sch):
         validators.append(("MinValueValidator", sch["minimum"]))
     if "maximum" in sch:
         validators.append(("MaxValueValidator", sch["maximum"]))
+    if "multipleOf" in sch:
+        validators.append(("MultipleOfValidator", sch["multipleOf"]))
     return validators
 
 
