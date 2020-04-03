@@ -2,7 +2,7 @@ from json import load
 from django.core.management.base import BaseCommand
 from django.core.management.color import no_style
 
-from jsonschema2dj.models import build_model
+from jsonschema2dj.models import build_model, build_dependency_order
 
 MODEL_TEMPLATE = """
 class {name}Model(models.Model):
@@ -62,7 +62,9 @@ class Command(BaseCommand):
             schema = load(f)
 
         models, serializers, views = [], [], []
-        for model_name, model_schema in schema["definitions"].items():
+
+        for model_name in build_dependency_order(schema):
+            model_schema = schema["dependancies"][model_name]
             _, fields, relations = build_model(model_name, model_schema)
             field_strs = []
             rels_strs = []
