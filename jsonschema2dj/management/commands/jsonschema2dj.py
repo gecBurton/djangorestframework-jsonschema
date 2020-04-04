@@ -1,27 +1,8 @@
 from json import load
 from django.core.management.base import BaseCommand
-from django.core.management.color import no_style
 
-from jsonschema2dj.models import build_model, build_dependency_order, Model
+from jsonschema2dj.models import build_dependency_order, Model
 
-MODEL_TEMPLATE = """
-class {name}Model(models.Model):
-
-{fields}
-{relations}
-
-"""
-
-FIELD_TEMPLATE = "    {name} = models.{field_type}({options})"
-
-
-SERIALIZER_TEMPLATE = """
-class {name}Serializer(WritableNestedModelSerializer):
-{serializers}
-    class Meta:
-        model = models.{name}Model
-        fields = '__all__'
-"""
 
 VIEW_TEMPLATE = """
 class {view_name}ViewSet(viewsets.ModelViewSet):
@@ -52,7 +33,7 @@ class Command(BaseCommand):
 """
 
     def add_arguments(self, parser):
-        parser.add_argument('app', type=str, help="vnsknvcsl")
+        parser.add_argument("app", type=str, help="vnsknvcsl")
 
     def handle(self, *args, **kwargs) -> None:
 
@@ -66,34 +47,14 @@ class Command(BaseCommand):
         for model_name in build_dependency_order(schema):
             model_schema = schema["definitions"][model_name]
             model = Model(model_name, model_schema)
-            field_strs = []
-            rels_strs = []
-            serializer_strs = []
-            for field_name, (field_type, field_attrs) in model.fields.items():
-                validators = field_attrs.get("validators")
-                if validators:
-                    field_attrs["validators"] = (
-                        "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
-                    )
-                field_attrs_dict = ", ".join(
-                    f"{k}={v}".format(k, v) for k, v in field_attrs.items()
-                )
-                field_strs.append(
-                    FIELD_TEMPLATE.format(
-                        name=field_name, field_type=field_type, options=field_attrs_dict
-                    )
-                )
+            models.append(model.model_repr())
+            serializers.append(model.serializer_repr())
 
-            for field_name, (model, null, many) in model.relations.items():
-                rels_strs.append(f"    {field_name} = models.ForeignKey({model}Model, null={null}, on_delete=models.CASCADE)")
-                serializer_strs.append(f"    {field_name} = {model}Serializer()")
-
-            models.append(MODEL_TEMPLATE.format(name=model_name, fields="\n".join(field_strs), relations="\n".join(rels_strs)))
-            serializers.append(SERIALIZER_TEMPLATE.format(name=model_name, serializers="\n".join(serializer_strs)))
-
-        for view_name, model in schema['properties'].items():
-            model_name = model["$ref"].split('/')[-1]
-            views.append(VIEW_TEMPLATE.format(view_name=view_name, model_name=model_name))
+        for view_name, model in schema["properties"].items():
+            model_name = model["$ref"].split("/")[-1]
+            views.append(
+                VIEW_TEMPLATE.format(view_name=view_name, model_name=model_name)
+            )
 
         with open(f"{base_dir}/models.py", "w") as f:
             f.write(

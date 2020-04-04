@@ -17,13 +17,12 @@ def build_choices(sch, _type="string"):
     if _type == "string":
         names = [value.lower().replace(" ", "_") for value in sch["enum"]]
         return dict(
-            max_length=max(map(len, sch["enum"])),
-            choices=list(zip(names, sch["enum"])),
+            max_length=max(map(len, sch["enum"])), choices=list(zip(names, sch["enum"]))
         )
 
     if _type == "integer":
         names = list(map(str, sch["enum"]))
-        return dict(choices=list(zip(names, sch["enum"])),)
+        return dict(choices=list(zip(names, sch["enum"])))
 
     raise NotImplementedError("only integer or string enums are supported")
 
@@ -79,7 +78,12 @@ def rationalize_type(sch, null):
     _type = sch.get("type")
     if _type:
         if isinstance(_type, list):
-            if len(sch["type"]) == 0 or len(_type) > 2 or len(_type) == 2 and "null" not in _type:
+            if (
+                len(sch["type"]) == 0
+                or len(_type) > 2
+                or len(_type) == 2
+                and "null" not in _type
+            ):
                 raise ValueError(
                     "if type is a list it should either contain 1 element, or 2 where one is null"
                 )
@@ -138,11 +142,11 @@ def build_field(name, sch, null=False):
 def build_relations(name, sch, null=False):
     field_type = sch.get("type")
     if field_type == "object":
-        model = sch["$ref"].split('/')[-1]
+        model = sch["$ref"].split("/")[-1]
         return model, null, False
 
     if field_type == "array":
-        model = sch["array"][0]["$ref"].split('/')[-1]
+        model = sch["array"][0]["$ref"].split("/")[-1]
         return model, null, True
 
     raise NotImplementedError(f"no code written for type: {field_type}")
