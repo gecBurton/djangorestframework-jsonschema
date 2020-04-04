@@ -7,7 +7,7 @@ from jsonschema2dj.templates import (
     build_serializers,
     build_views,
     build_urls,
-)
+    build_admin)
 
 
 class Command(BaseCommand):
@@ -34,6 +34,9 @@ class Command(BaseCommand):
 
         with open(f"{base_dir}/serializers.py", "w") as f:
             f.write(build_serializers(models=models))
+
+        with open(f"{base_dir}/admin.py", "w") as f:
+            f.write(build_admin(models=models))
 
         with open(f"{base_dir}/views.py", "w") as f:
             f.write(build_views(views=views))

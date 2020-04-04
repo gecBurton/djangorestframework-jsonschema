@@ -2,7 +2,7 @@ from json import load
 import pytest
 
 from jsonschema2dj.models import Model, build_dependency_order
-from jsonschema2dj.templates import build_models, build_serializers, build_views, build_urls
+from jsonschema2dj.templates import build_models, build_serializers, build_views, build_urls, build_admin
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
@@ -165,15 +165,72 @@ class ASerializer(WritableNestedModelSerializer):
 
 """
 
-@pytest.mark.parametrize("schema,result,serializer", [(basic_model, result_1, serializer_1), (simple_tree, result_2, serializer_2)])
-def test_build_models(schema, result, serializer):
-    model = [
+admin_1 = """
+from django.contrib import admin
+from . import models
+
+
+@admin.register(models.personModel)
+class personAdmin(admin.ModelAdmin):
+    list_filter = (
+
+        "sex",
+
+    )
+"""
+
+admin_2 = """
+from django.contrib import admin
+from . import models
+
+
+@admin.register(models.FModel)
+class FAdmin(admin.ModelAdmin):
+    list_filter = (
+
+    )
+
+@admin.register(models.DModel)
+class DAdmin(admin.ModelAdmin):
+    list_filter = (
+
+    )
+
+@admin.register(models.CModel)
+class CAdmin(admin.ModelAdmin):
+    list_filter = (
+
+    )
+
+@admin.register(models.EModel)
+class EAdmin(admin.ModelAdmin):
+    list_filter = (
+
+    )
+
+@admin.register(models.BModel)
+class BAdmin(admin.ModelAdmin):
+    list_filter = (
+
+    )
+
+@admin.register(models.AModel)
+class AAdmin(admin.ModelAdmin):
+    list_filter = (
+
+    )
+"""
+
+@pytest.mark.parametrize("schema,model,serializer,admin", [(basic_model, result_1, serializer_1, admin_1), (simple_tree, result_2, serializer_2, admin_2)])
+def test_build_models(schema, model, serializer, admin):
+    models = [
             Model(model_name, schema["definitions"][model_name])
             for model_name in build_dependency_order(schema)
         ]
 
-    assert build_models(model) == result
-    assert build_serializers(model) == serializer
+    assert build_models(models) == model
+    assert build_serializers(models) == serializer
+    assert build_admin(models) == admin
 
 view = """
 from rest_framework import viewsets

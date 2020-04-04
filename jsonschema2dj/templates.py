@@ -69,6 +69,20 @@ urlpatterns = [
 ]
 """
 
+ADMIN_TEMPLATE = """
+from django.contrib import admin
+from . import models
+
+{% for model in models %}
+@admin.register(models.{{model.name}}Model)
+class {{model.name}}Admin(admin.ModelAdmin):
+    list_filter = (
+{% for enum in model.enums %}
+        "{{enum}}",
+{% endfor %}
+    )
+{% endfor %}
+"""
 
 def build_models(models: List[Model]) -> str:
     return Template(MODEL_TEMPLATE).render(models=models)
@@ -78,9 +92,15 @@ def build_serializers(models: List[Model]) -> str:
     return Template(SERIALIZER_TEMPLATE).render(models=models)
 
 
+def build_admin(models: List[Model]) -> str:
+    return Template(ADMIN_TEMPLATE).render(models=models)
+
+
 def build_views(views: List[Model]) -> str:
     return Template(VIEW_TEMPLATE).render(views=views)
 
 
 def build_urls(views: List[Model]) -> str:
     return Template(URL_TEMPLATE).render(views=views)
+
+

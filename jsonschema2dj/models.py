@@ -25,6 +25,7 @@ class Model:
             for field_name, field_sch in properties.items()
             if field_sch.get("type") in ("object", "array")
         }
+        self.enums = [field for field, (*_, options) in self.fields.items() if "choices" in options]
 
     @property
     def fields_str(self):

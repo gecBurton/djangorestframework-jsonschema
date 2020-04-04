@@ -29,6 +29,7 @@ results = {
                 },
             ),
         },
+        ["sex"]
     )
 }
 
@@ -37,9 +38,10 @@ results = {
 def test_build_model_pass(name, result):
     schema = basic_model["definitions"][name]
     model = Model(name, schema)
-    name, fields = result
+    name, fields, enums = result
     assert model.name == name
     assert model.fields == fields
+    assert model.enums == enums
 
 
 def test_build_dependency_order():
