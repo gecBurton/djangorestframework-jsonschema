@@ -61,7 +61,7 @@ from . import views
 router = routers.DefaultRouter()
 
 {% for view_name, model_name in views %}
-    router.register({{view_name}}, {{model_name}})
+router.register({{view_name}}, {{model_name}})
 {% endfor %}
 
 urlpatterns = [
