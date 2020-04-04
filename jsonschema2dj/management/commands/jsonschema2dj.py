@@ -64,7 +64,7 @@ class Command(BaseCommand):
         models, serializers, views = [], [], []
 
         for model_name in build_dependency_order(schema):
-            model_schema = schema["dependancies"][model_name]
+            model_schema = schema["definitions"][model_name]
             _, fields, relations = build_model(model_name, model_schema)
             field_strs = []
             rels_strs = []
