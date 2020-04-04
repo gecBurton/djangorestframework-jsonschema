@@ -131,7 +131,7 @@ def build_field(name, sch, null=False):
 
     if field_type == "number":
         validators = build_value_validators(sch)
-        return "DecimalField", dict(null=null, validators=validators)
+        return "DecimalField", dict(null=null, validators=validators, max_digits=10, decimal_places=5)
 
     if field_type == "boolean":
         return "BooleanField", dict(null=null)
