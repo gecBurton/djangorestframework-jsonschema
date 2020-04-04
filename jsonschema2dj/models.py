@@ -36,7 +36,7 @@ class Model:
                     "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
                 )
             field_attrs_dict = ", ".join(
-                f"{k}={v}".format(k, v) for k, v in field_attrs.items()
+                f"{k}={v}" for k, v in field_attrs.items()
             )
             field_repr[field_name] = (field_type, field_attrs_dict)
         return field_repr

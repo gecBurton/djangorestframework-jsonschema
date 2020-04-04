@@ -48,7 +48,7 @@ def build_string_field(sch, null):
 
     pattern = sch.get("pattern")
     if pattern:
-        validators.append(("RegexValidator", pattern))
+        validators.append(("RegexValidator", f'r"{pattern}"'))
 
     if validators:
         options.update(validators=validators)
