@@ -29,7 +29,7 @@ results = {
                 },
             ),
         },
-        ["sex"]
+        ["sex"],
     )
 }
 
@@ -45,4 +45,4 @@ def test_build_model_pass(name, result):
 
 
 def test_build_dependency_order():
-    assert build_dependency_order(simple_tree) == ['F', 'D', 'C', 'E', 'B', 'A']
+    assert build_dependency_order(simple_tree) == ["F", "D", "C", "E", "B", "A"]

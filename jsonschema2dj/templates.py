@@ -84,6 +84,7 @@ class {{model.name}}Admin(admin.ModelAdmin):
 {% endfor %}
 """
 
+
 def build_models(models: List[Model]) -> str:
     return Template(MODEL_TEMPLATE).render(models=models)
 
@@ -102,5 +103,3 @@ def build_views(views: List[Model]) -> str:
 
 def build_urls(views: List[Model]) -> str:
     return Template(URL_TEMPLATE).render(views=views)
-
-

@@ -2,7 +2,13 @@ from json import load
 import pytest
 
 from jsonschema2dj.models import Model, build_dependency_order
-from jsonschema2dj.templates import build_models, build_serializers, build_views, build_urls, build_admin
+from jsonschema2dj.templates import (
+    build_models,
+    build_serializers,
+    build_views,
+    build_urls,
+    build_admin,
+)
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
@@ -221,16 +227,24 @@ class AAdmin(admin.ModelAdmin):
     )
 """
 
-@pytest.mark.parametrize("schema,model,serializer,admin", [(basic_model, result_1, serializer_1, admin_1), (simple_tree, result_2, serializer_2, admin_2)])
+
+@pytest.mark.parametrize(
+    "schema,model,serializer,admin",
+    [
+        (basic_model, result_1, serializer_1, admin_1),
+        (simple_tree, result_2, serializer_2, admin_2),
+    ],
+)
 def test_build_models(schema, model, serializer, admin):
     models = [
-            Model(model_name, schema["definitions"][model_name])
-            for model_name in build_dependency_order(schema)
-        ]
+        Model(model_name, schema["definitions"][model_name])
+        for model_name in build_dependency_order(schema)
+    ]
 
     assert build_models(models) == model
     assert build_serializers(models) == serializer
     assert build_admin(models) == admin
+
 
 view = """
 from rest_framework import viewsets
@@ -259,7 +273,10 @@ urlpatterns = [
     path("", include(router.urls)),
 ]"""
 
+
 def test_views_urls():
-    views = [(a, b["$ref"].split("/")[-1]) for a, b in basic_model["properties"].items()]
+    views = [
+        (a, b["$ref"].split("/")[-1]) for a, b in basic_model["properties"].items()
+    ]
     assert build_views(views) == view
     assert build_urls(views) == urls

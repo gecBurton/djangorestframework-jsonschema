@@ -19,13 +19,15 @@ class Model:
             if field_sch.get("type") not in ("object", "array")
         }
         self.relations = {
-            field_name: build_relations(
-                field_sch, field_name not in required
-            )
+            field_name: build_relations(field_sch, field_name not in required)
             for field_name, field_sch in properties.items()
             if field_sch.get("type") in ("object", "array")
         }
-        self.enums = [field for field, (*_, options) in self.fields.items() if "choices" in options]
+        self.enums = [
+            field
+            for field, (*_, options) in self.fields.items()
+            if "choices" in options
+        ]
 
     @property
     def fields_str(self):
@@ -36,9 +38,7 @@ class Model:
                 field_attrs["validators"] = (
                     "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
                 )
-            field_attrs_dict = ", ".join(
-                f"{k}={v}" for k, v in field_attrs.items()
-            )
+            field_attrs_dict = ", ".join(f"{k}={v}" for k, v in field_attrs.items())
             field_repr[field_name] = (field_type, field_attrs_dict)
         return field_repr
 

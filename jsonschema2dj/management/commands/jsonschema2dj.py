@@ -7,7 +7,8 @@ from jsonschema2dj.templates import (
     build_serializers,
     build_views,
     build_urls,
-    build_admin)
+    build_admin,
+)
 
 
 class Command(BaseCommand):

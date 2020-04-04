@@ -18,7 +18,9 @@ results = {
         "CharField",
         {
             "max_length": 255,
-            "validators": [("RegexValidator", 'r"^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"')],
+            "validators": [
+                ("RegexValidator", 'r"^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"')
+            ],
             "null": False,
         },
     ),
