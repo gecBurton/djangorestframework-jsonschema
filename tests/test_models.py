@@ -2,7 +2,7 @@ from json import load
 
 import pytest
 
-from jsonschema2dj.models import build_model, build_dependency_order
+from jsonschema2dj.models import build_dependency_order, Model
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
@@ -36,7 +36,10 @@ results = {
 @pytest.mark.parametrize("name,result", results.items())
 def test_build_model_pass(name, result):
     schema = basic_model["definitions"][name]
-    assert build_model(name, schema), {} == result
+    model = Model(name, schema)
+    name, fields = result
+    assert model.name == name
+    assert model.fields == fields
 
 
 def test_build_dependency_order():

@@ -2,7 +2,7 @@ from json import load
 from django.core.management.base import BaseCommand
 from django.core.management.color import no_style
 
-from jsonschema2dj.models import build_model, build_dependency_order
+from jsonschema2dj.models import build_model, build_dependency_order, Model
 
 MODEL_TEMPLATE = """
 class {name}Model(models.Model):
@@ -65,11 +65,11 @@ class Command(BaseCommand):
 
         for model_name in build_dependency_order(schema):
             model_schema = schema["definitions"][model_name]
-            _, fields, relations = build_model(model_name, model_schema)
+            model = Model(model_name, model_schema)
             field_strs = []
             rels_strs = []
             serializer_strs = []
-            for field_name, (field_type, field_attrs) in fields.items():
+            for field_name, (field_type, field_attrs) in model.fields.items():
                 validators = field_attrs.get("validators")
                 if validators:
                     field_attrs["validators"] = (
@@ -84,7 +84,7 @@ class Command(BaseCommand):
                     )
                 )
 
-            for field_name, (model, null, many) in relations.items():
+            for field_name, (model, null, many) in model.relations.items():
                 rels_strs.append(f"    {field_name} = models.ForeignKey({model}Model, null={null}, on_delete=models.CASCADE)")
                 serializer_strs.append(f"    {field_name} = {model}Serializer()")
 
