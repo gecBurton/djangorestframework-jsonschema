@@ -20,7 +20,7 @@ class Model:
         }
         self.relations = {
             field_name: build_relations(
-                field_name, field_sch, field_name not in required
+                field_sch, field_name not in required
             )
             for field_name, field_sch in properties.items()
             if field_sch.get("type") in ("object", "array")

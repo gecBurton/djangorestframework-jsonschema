@@ -10,7 +10,7 @@ from . import serializers, models
 
 {% for view_name, model_name in views %}
 class {{view_name}}ViewSet(viewsets.ModelViewSet):
-    queryset = models.;{{model_name}}Model.objects.all()
+    queryset = models.{{model_name}}Model.objects.all()
     serializer_class = serializers.{{model_name}}Serializer
 
 {% endfor %}
@@ -18,7 +18,7 @@ class {{view_name}}ViewSet(viewsets.ModelViewSet):
 
 SERIALIZER_TEMPLATE = """
 from . import models
-from drf_writable_nested.serializers import WritableNestedModelSerialize
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 {% for model in models %}
@@ -46,7 +46,7 @@ class {{model.name}}Model(models.Model):
 {% endfor %}
 
 {% for name, (type, null, many) in model.relations.items() %}
-    {{name}} = models.ForeignKey({{model.name}}Model, null={{null}}, on_delete=models.CASCADE)
+    {{name}} = models.ForeignKey({{type}}Model, null={{null}}, on_delete=models.CASCADE)
 {% endfor %}
 
 {% endfor %}
@@ -61,7 +61,7 @@ from . import views
 router = routers.DefaultRouter()
 
 {% for view_name, model_name in views %}
-router.register({{view_name}}, {{model_name}})
+router.register("{{view_name}}", views.{{model_name}}ViewSet)
 {% endfor %}
 
 urlpatterns = [

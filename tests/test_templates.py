@@ -34,7 +34,7 @@ class personModel(models.Model):
 
 serializer_1 = """
 from . import models
-from drf_writable_nested.serializers import WritableNestedModelSerialize
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 
@@ -69,7 +69,7 @@ class CModel(models.Model):
 
 
 
-    d = models.ForeignKey(CModel, null=True, on_delete=models.CASCADE)
+    d = models.ForeignKey(DModel, null=True, on_delete=models.CASCADE)
 
 
 
@@ -77,7 +77,7 @@ class EModel(models.Model):
 
 
 
-    f = models.ForeignKey(EModel, null=True, on_delete=models.CASCADE)
+    f = models.ForeignKey(FModel, null=True, on_delete=models.CASCADE)
 
 
 
@@ -85,9 +85,9 @@ class BModel(models.Model):
 
 
 
-    c = models.ForeignKey(BModel, null=True, on_delete=models.CASCADE)
+    c = models.ForeignKey(CModel, null=True, on_delete=models.CASCADE)
 
-    e = models.ForeignKey(BModel, null=True, on_delete=models.CASCADE)
+    e = models.ForeignKey(EModel, null=True, on_delete=models.CASCADE)
 
 
 
@@ -95,14 +95,14 @@ class AModel(models.Model):
 
 
 
-    b = models.ForeignKey(AModel, null=True, on_delete=models.CASCADE)
+    b = models.ForeignKey(BModel, null=True, on_delete=models.CASCADE)
 
 
 """
 
 serializer_2 = """
 from . import models
-from drf_writable_nested.serializers import WritableNestedModelSerialize
+from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 
 
@@ -171,7 +171,7 @@ from . import serializers, models
 
 
 class personViewSet(viewsets.ModelViewSet):
-    queryset = models.;personModel.objects.all()
+    queryset = models.personModel.objects.all()
     serializer_class = serializers.personSerializer
 
 """
@@ -185,7 +185,7 @@ from . import views
 router = routers.DefaultRouter()
 
 
-router.register(person, person)
+router.register("person", views.personViewSet)
 
 
 urlpatterns = [

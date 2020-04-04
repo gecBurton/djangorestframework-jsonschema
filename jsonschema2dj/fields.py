@@ -139,7 +139,7 @@ def build_field(name, sch, null=False):
     raise NotImplementedError(f"no code written for type: {field_type}")
 
 
-def build_relations(name, sch, null=False):
+def build_relations(sch, null=False):
     field_type = sch.get("type")
     if field_type == "object":
         model = sch["$ref"].split("/")[-1]
