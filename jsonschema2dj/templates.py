@@ -23,8 +23,8 @@ from drf_writable_nested.serializers import WritableNestedModelSerializer
 
 {% for model in models %}
 class {{model.name}}Serializer(WritableNestedModelSerializer):
-{% for serializer in model.serializers %}
-    {{serializer.name}} = {{serializer.model}}Serializer()
+{% for name, (model, null, many) in model.relations.items() %}
+    {{name}} = {{model}}Serializer(allow_null={{null}}, many={{many}})
 {% endfor %}
 
     class Meta:

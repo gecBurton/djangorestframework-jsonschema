@@ -124,6 +124,8 @@ class DSerializer(WritableNestedModelSerializer):
 
 class CSerializer(WritableNestedModelSerializer):
 
+    d = DSerializer(allow_null=True, many=False)
+
 
     class Meta:
         model = models.CModel
@@ -131,6 +133,8 @@ class CSerializer(WritableNestedModelSerializer):
 
 
 class ESerializer(WritableNestedModelSerializer):
+
+    f = FSerializer(allow_null=True, many=False)
 
 
     class Meta:
@@ -140,6 +144,10 @@ class ESerializer(WritableNestedModelSerializer):
 
 class BSerializer(WritableNestedModelSerializer):
 
+    c = CSerializer(allow_null=True, many=False)
+
+    e = ESerializer(allow_null=True, many=False)
+
 
     class Meta:
         model = models.BModel
@@ -147,6 +155,8 @@ class BSerializer(WritableNestedModelSerializer):
 
 
 class ASerializer(WritableNestedModelSerializer):
+
+    b = BSerializer(allow_null=True, many=False)
 
 
     class Meta:
