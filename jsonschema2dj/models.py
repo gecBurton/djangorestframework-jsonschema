@@ -1,22 +1,10 @@
+from typing import List
+
 from .fields import build_field, build_relations
 
-FIELD_TEMPLATE = "    {name} = models.{field_type}({options})"
-RELATION_TEMPLATE = "    {field_name} = models.ForeignKey({model}Model, null={null}, on_delete=models.CASCADE)"
-FIELD_SERIALIZER_TEMPLATE = "    {field_name} = {model}Serializer()"
-MODEL_TEMPLATE = """
-class {name}Model(models.Model):
 
-{fields}
-{relations}
-
-"""
-SERIALIZER_TEMPLATE = """
-class {name}Serializer(WritableNestedModelSerializer):
-{serializers}
-    class Meta:
-        model = models.{name}Model
-        fields = '__all__'
-"""
+def to_str(field_type, field_options):
+    return field_type, ", ".join(f"{k}={v}" for k, v in field_options.items())
 
 
 class Model:
@@ -38,8 +26,9 @@ class Model:
             if field_sch.get("type") in ("object", "array")
         }
 
-    def _get_field_repr(self):
-        field_repr = []
+    @property
+    def fields_str(self):
+        field_repr = {}
         for field_name, (field_type, field_attrs) in self.fields.items():
             validators = field_attrs.get("validators")
             if validators:
@@ -49,39 +38,11 @@ class Model:
             field_attrs_dict = ", ".join(
                 f"{k}={v}".format(k, v) for k, v in field_attrs.items()
             )
-            field_repr.append(
-                FIELD_TEMPLATE.format(
-                    name=field_name, field_type=field_type, options=field_attrs_dict
-                )
-            )
+            field_repr[field_name] = (field_type, field_attrs_dict)
         return field_repr
 
-    def _get_relation_repr(self):
-        return [
-            RELATION_TEMPLATE.format(field_name=field_name, model=model, null=null)
-            for field_name, (model, null, many) in self.relations.items()
-        ]
 
-    def _get_serializer_repr(self):
-        return [
-            FIELD_SERIALIZER_TEMPLATE.format(field_name=field_name, model=model)
-            for field_name, (model, null, many) in self.relations.items()
-        ]
-
-    def model_repr(self):
-        return MODEL_TEMPLATE.format(
-            name=self.name,
-            fields="\n".join(self._get_field_repr()),
-            relations="\n".join(self._get_relation_repr()),
-        )
-
-    def serializer_repr(self):
-        return SERIALIZER_TEMPLATE.format(
-            name=self.name, serializers="\n".join(self._get_serializer_repr())
-        )
-
-
-def build_dependency_order(schema):
+def build_dependency_order(schema) -> List[str]:
     dependency_order = []
 
     def _get_dependencies(model_name):
