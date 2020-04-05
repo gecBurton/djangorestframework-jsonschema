@@ -149,7 +149,7 @@ def build_relations(sch, null=False):
         return model, null, False
 
     if field_type == "array":
-        model = sch["array"][0]["$ref"].split("/")[-1]
+        model = sch["items"]["$ref"].split("/")[-1]
         return model, null, True
 
     raise NotImplementedError(f"no code written for type: {field_type}")
