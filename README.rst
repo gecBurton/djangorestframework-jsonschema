@@ -6,7 +6,7 @@ djangorestframework-jsonschema
 Overview
 --------
 
-Build models and serializers from jsonschema.
+Build simple Django-Rest-Framework projects configured from jsonschema .
 
 Requirements
 ------------
@@ -107,6 +107,53 @@ globally, and then simply run:
 
 Documentation
 -------------
+
+Cardinality
+###########
+
+Cardinality is inferred from the use of `$ref`
+
+many-to-one relationship between Patient(s) and Medication
+
+.. code-block:: json
+
+    {
+      "definitions": {
+        "Patient": {
+          "properties": {
+            "medication": {
+              "type": "object",
+              "$ref": "#/definitions/Medication"
+            }
+          }
+        },
+        "Medication": {
+      }
+    }
+
+many-to-many relationship between Patient(s) and Doctor(s)
+
+.. code-block:: json
+
+    {
+      "definitions": {
+        "Patient": {
+          "properties": {
+            "type": "array",
+            "items": {
+              "doctor": {
+                "type": "object",
+                "$ref": "#/definitions/Doctor"
+              }
+            }
+          }
+        },
+        "Doctor": {
+        }
+      }
+    }
+
+There is no specification for one-to-one relationships at this time.
 
 To build the documentation, you’ll need to install ``mkdocs``.
 
