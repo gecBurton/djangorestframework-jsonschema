@@ -44,9 +44,9 @@ class {{model.name}}(models.Model):
 
 {% for name, (type, null, many) in model.relations.items() %}
 {% if many is sameas true %}
-    {{name}} = models.ManyToManyField({{type}}Model)
+    {{name}} = models.ManyToManyField({{type}})
 {% else %}
-    {{name}} = models.ForeignKey({{type}}Model, null={{null}}, on_delete=models.CASCADE)
+    {{name}} = models.ForeignKey({{type}}, null={{null}}, on_delete=models.CASCADE)
 {% endif %}
 {% endfor %}
 

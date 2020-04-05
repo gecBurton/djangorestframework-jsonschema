@@ -75,7 +75,7 @@ class C(models.Model):
 
 
 
-    d = models.ForeignKey(DModel, null=True, on_delete=models.CASCADE)
+    d = models.ForeignKey(D, null=True, on_delete=models.CASCADE)
 
 
 
@@ -85,7 +85,7 @@ class E(models.Model):
 
 
 
-    f = models.ForeignKey(FModel, null=True, on_delete=models.CASCADE)
+    f = models.ForeignKey(F, null=True, on_delete=models.CASCADE)
 
 
 
@@ -95,11 +95,11 @@ class B(models.Model):
 
 
 
-    c = models.ForeignKey(CModel, null=True, on_delete=models.CASCADE)
+    c = models.ForeignKey(C, null=True, on_delete=models.CASCADE)
 
 
 
-    e = models.ForeignKey(EModel, null=True, on_delete=models.CASCADE)
+    e = models.ForeignKey(E, null=True, on_delete=models.CASCADE)
 
 
 
@@ -109,7 +109,7 @@ class A(models.Model):
 
 
 
-    b = models.ForeignKey(BModel, null=True, on_delete=models.CASCADE)
+    b = models.ForeignKey(B, null=True, on_delete=models.CASCADE)
 
 
 
