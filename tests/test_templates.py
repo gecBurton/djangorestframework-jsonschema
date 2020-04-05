@@ -23,7 +23,7 @@ from django.core import validators
 from django.db import models
 
 
-class personModel(models.Model):
+class person(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
 
@@ -44,10 +44,10 @@ from rest_framework.serializers import ModelSerializer
 
 
 
-class personSerializer(ModelSerializer):
+class person(ModelSerializer):
 
     class Meta:
-        model = models.personModel
+        model = models.person
         fields = '__all__'
 
 """
@@ -58,19 +58,19 @@ from django.core import validators
 from django.db import models
 
 
-class FModel(models.Model):
+class F(models.Model):
 
 
 
 
 
-class DModel(models.Model):
+class D(models.Model):
 
 
 
 
 
-class CModel(models.Model):
+class C(models.Model):
 
 
 
@@ -80,7 +80,7 @@ class CModel(models.Model):
 
 
 
-class EModel(models.Model):
+class E(models.Model):
 
 
 
@@ -90,7 +90,7 @@ class EModel(models.Model):
 
 
 
-class BModel(models.Model):
+class B(models.Model):
 
 
 
@@ -104,7 +104,7 @@ class BModel(models.Model):
 
 
 
-class AModel(models.Model):
+class A(models.Model):
 
 
 
@@ -121,45 +121,45 @@ from rest_framework.serializers import ModelSerializer
 
 
 
-class FSerializer(ModelSerializer):
+class F(ModelSerializer):
 
     class Meta:
-        model = models.FModel
+        model = models.F
         fields = '__all__'
 
 
-class DSerializer(ModelSerializer):
+class D(ModelSerializer):
 
     class Meta:
-        model = models.DModel
+        model = models.D
         fields = '__all__'
 
 
-class CSerializer(ModelSerializer):
+class C(ModelSerializer):
 
     class Meta:
-        model = models.CModel
+        model = models.C
         fields = '__all__'
 
 
-class ESerializer(ModelSerializer):
+class E(ModelSerializer):
 
     class Meta:
-        model = models.EModel
+        model = models.E
         fields = '__all__'
 
 
-class BSerializer(ModelSerializer):
+class B(ModelSerializer):
 
     class Meta:
-        model = models.BModel
+        model = models.B
         fields = '__all__'
 
 
-class ASerializer(ModelSerializer):
+class A(ModelSerializer):
 
     class Meta:
-        model = models.AModel
+        model = models.A
         fields = '__all__'
 
 """
@@ -169,7 +169,7 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.personModel)
+@admin.register(models.person)
 class personAdmin(admin.ModelAdmin):
     list_filter = (
 
@@ -183,37 +183,37 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.FModel)
+@admin.register(models.F)
 class FAdmin(admin.ModelAdmin):
     list_filter = (
 
     )
 
-@admin.register(models.DModel)
+@admin.register(models.D)
 class DAdmin(admin.ModelAdmin):
     list_filter = (
 
     )
 
-@admin.register(models.CModel)
+@admin.register(models.C)
 class CAdmin(admin.ModelAdmin):
     list_filter = (
 
     )
 
-@admin.register(models.EModel)
+@admin.register(models.E)
 class EAdmin(admin.ModelAdmin):
     list_filter = (
 
     )
 
-@admin.register(models.BModel)
+@admin.register(models.B)
 class BAdmin(admin.ModelAdmin):
     list_filter = (
 
     )
 
-@admin.register(models.AModel)
+@admin.register(models.A)
 class AAdmin(admin.ModelAdmin):
     list_filter = (
 
@@ -225,7 +225,7 @@ from rest_framework import viewsets
 from . import serializers, models
 
 
-class personViewSet(viewsets.ModelViewSet):
+class person(viewsets.ModelViewSet):
     queryset = models.personModel.objects.all()
     serializer_class = serializers.personSerializer
 
@@ -240,7 +240,7 @@ from . import views
 router = routers.DefaultRouter()
 
 
-router.register("person", views.personViewSet)
+router.register("person", views.person)
 
 
 urlpatterns = [
@@ -256,17 +256,17 @@ from . import views
 router = routers.DefaultRouter()
 
 
-router.register("F", views.FViewSet)
+router.register("F", views.F)
 
-router.register("D", views.DViewSet)
+router.register("D", views.D)
 
-router.register("C", views.CViewSet)
+router.register("C", views.C)
 
-router.register("E", views.EViewSet)
+router.register("E", views.E)
 
-router.register("B", views.BViewSet)
+router.register("B", views.B)
 
-router.register("A", views.AViewSet)
+router.register("A", views.A)
 
 
 urlpatterns = [
@@ -278,32 +278,32 @@ from rest_framework import viewsets
 from . import serializers, models
 
 
-class FViewSet(viewsets.ModelViewSet):
+class F(viewsets.ModelViewSet):
     queryset = models.FModel.objects.all()
     serializer_class = serializers.FSerializer
 
 
-class DViewSet(viewsets.ModelViewSet):
+class D(viewsets.ModelViewSet):
     queryset = models.DModel.objects.all()
     serializer_class = serializers.DSerializer
 
 
-class CViewSet(viewsets.ModelViewSet):
+class C(viewsets.ModelViewSet):
     queryset = models.CModel.objects.all()
     serializer_class = serializers.CSerializer
 
 
-class EViewSet(viewsets.ModelViewSet):
+class E(viewsets.ModelViewSet):
     queryset = models.EModel.objects.all()
     serializer_class = serializers.ESerializer
 
 
-class BViewSet(viewsets.ModelViewSet):
+class B(viewsets.ModelViewSet):
     queryset = models.BModel.objects.all()
     serializer_class = serializers.BSerializer
 
 
-class AViewSet(viewsets.ModelViewSet):
+class A(viewsets.ModelViewSet):
     queryset = models.AModel.objects.all()
     serializer_class = serializers.ASerializer
 

@@ -9,7 +9,7 @@ from rest_framework import viewsets
 from . import serializers, models
 
 {% for model in models %}
-class {{model.name}}ViewSet(viewsets.ModelViewSet):
+class {{model.name}}(viewsets.ModelViewSet):
     queryset = models.{{model.name}}Model.objects.all()
     serializer_class = serializers.{{model.name}}Serializer
 
@@ -22,10 +22,10 @@ from rest_framework.serializers import ModelSerializer
 
 
 {% for model in models %}
-class {{model.name}}Serializer(ModelSerializer):
+class {{model.name}}(ModelSerializer):
 
     class Meta:
-        model = models.{{model.name}}Model
+        model = models.{{model.name}}
         fields = '__all__'
 
 {% endfor %}
@@ -37,7 +37,7 @@ from django.core import validators
 from django.db import models
 
 {% for model in models %}
-class {{model.name}}Model(models.Model):
+class {{model.name}}(models.Model):
 {% for name, (type, options) in model.fields_str.items() %}
     {{name}} = models.{{type}}({{options}})
 {% endfor %}
@@ -62,7 +62,7 @@ from . import views
 router = routers.DefaultRouter()
 
 {% for model in models %}
-router.register("{{model.name}}", views.{{model.name}}ViewSet)
+router.register("{{model.name}}", views.{{model.name}})
 {% endfor %}
 
 urlpatterns = [
@@ -75,7 +75,7 @@ from django.contrib import admin
 from . import models
 
 {% for model in models %}
-@admin.register(models.{{model.name}}Model)
+@admin.register(models.{{model.name}})
 class {{model.name}}Admin(admin.ModelAdmin):
     list_filter = (
 {% for enum in model.enums %}
