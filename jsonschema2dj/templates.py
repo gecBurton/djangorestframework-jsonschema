@@ -10,8 +10,8 @@ from . import serializers, models
 
 {% for model in models %}
 class {{model.name}}(viewsets.ModelViewSet):
-    queryset = models.{{model.name}}Model.objects.all()
-    serializer_class = serializers.{{model.name}}Serializer
+    queryset = models.{{model.name}}.objects.all()
+    serializer_class = serializers.{{model.name}}
 
 {% endfor %}
 """

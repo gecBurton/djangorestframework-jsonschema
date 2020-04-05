@@ -226,8 +226,8 @@ from . import serializers, models
 
 
 class person(viewsets.ModelViewSet):
-    queryset = models.personModel.objects.all()
-    serializer_class = serializers.personSerializer
+    queryset = models.person.objects.all()
+    serializer_class = serializers.person
 
 """
 
@@ -279,33 +279,33 @@ from . import serializers, models
 
 
 class F(viewsets.ModelViewSet):
-    queryset = models.FModel.objects.all()
-    serializer_class = serializers.FSerializer
+    queryset = models.F.objects.all()
+    serializer_class = serializers.F
 
 
 class D(viewsets.ModelViewSet):
-    queryset = models.DModel.objects.all()
-    serializer_class = serializers.DSerializer
+    queryset = models.D.objects.all()
+    serializer_class = serializers.D
 
 
 class C(viewsets.ModelViewSet):
-    queryset = models.CModel.objects.all()
-    serializer_class = serializers.CSerializer
+    queryset = models.C.objects.all()
+    serializer_class = serializers.C
 
 
 class E(viewsets.ModelViewSet):
-    queryset = models.EModel.objects.all()
-    serializer_class = serializers.ESerializer
+    queryset = models.E.objects.all()
+    serializer_class = serializers.E
 
 
 class B(viewsets.ModelViewSet):
-    queryset = models.BModel.objects.all()
-    serializer_class = serializers.BSerializer
+    queryset = models.B.objects.all()
+    serializer_class = serializers.B
 
 
 class A(viewsets.ModelViewSet):
-    queryset = models.AModel.objects.all()
-    serializer_class = serializers.ASerializer
+    queryset = models.A.objects.all()
+    serializer_class = serializers.A
 
 """
 
