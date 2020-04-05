@@ -28,7 +28,7 @@ class Command(BaseCommand):
             Model(model_name, schema["definitions"][model_name])
             for model_name in build_dependency_order(schema)
         ]
-        views = [(a, b["$ref"].split("/")[-1]) for a, b in schema["properties"].items()]
+        #views = [(a, b["$ref"].split("/")[-1]) for a, b in schema["properties"].items()]
 
         with open(f"{base_dir}/models.py", "w") as f:
             f.write(build_models(models=models))
@@ -40,7 +40,7 @@ class Command(BaseCommand):
             f.write(build_admin(models=models))
 
         with open(f"{base_dir}/views.py", "w") as f:
-            f.write(build_views(views=views))
+            f.write(build_views(models=models))
 
         with open(f"{base_dir}/urls.py", "w") as f:
-            f.write(build_urls(views=views))
+            f.write(build_urls(models=models))

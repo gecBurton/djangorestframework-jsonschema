@@ -46,7 +46,6 @@ from rest_framework.serializers import ModelSerializer
 
 class personSerializer(ModelSerializer):
 
-
     class Meta:
         model = models.personModel
         fields = '__all__'
@@ -124,14 +123,12 @@ from rest_framework.serializers import ModelSerializer
 
 class FSerializer(ModelSerializer):
 
-
     class Meta:
         model = models.FModel
         fields = '__all__'
 
 
 class DSerializer(ModelSerializer):
-
 
     class Meta:
         model = models.DModel
@@ -140,18 +137,12 @@ class DSerializer(ModelSerializer):
 
 class CSerializer(ModelSerializer):
 
-    d = DSerializer(allow_null=True, many=False)
-
-
     class Meta:
         model = models.CModel
         fields = '__all__'
 
 
 class ESerializer(ModelSerializer):
-
-    f = FSerializer(allow_null=True, many=False)
-
 
     class Meta:
         model = models.EModel
@@ -160,20 +151,12 @@ class ESerializer(ModelSerializer):
 
 class BSerializer(ModelSerializer):
 
-    c = CSerializer(allow_null=True, many=False)
-
-    e = ESerializer(allow_null=True, many=False)
-
-
     class Meta:
         model = models.BModel
         fields = '__all__'
 
 
 class ASerializer(ModelSerializer):
-
-    b = BSerializer(allow_null=True, many=False)
-
 
     class Meta:
         model = models.AModel
@@ -237,26 +220,7 @@ class AAdmin(admin.ModelAdmin):
     )
 """
 
-
-@pytest.mark.parametrize(
-    "schema,model,serializer,admin",
-    [
-        (basic_model, result_1, serializer_1, admin_1),
-        (simple_tree, result_2, serializer_2, admin_2),
-    ],
-)
-def test_build_models(schema, model, serializer, admin):
-    models = [
-        Model(model_name, schema["definitions"][model_name])
-        for model_name in build_dependency_order(schema)
-    ]
-
-    assert build_models(models) == model
-    assert build_serializers(models) == serializer
-    assert build_admin(models) == admin
-
-
-view = """
+view_1 = """
 from rest_framework import viewsets
 from . import serializers, models
 
@@ -267,7 +231,7 @@ class personViewSet(viewsets.ModelViewSet):
 
 """
 
-urls = """
+urls_1 = """
 from django.urls import path, include
 from rest_framework import routers
 
@@ -283,10 +247,85 @@ urlpatterns = [
     path("", include(router.urls)),
 ]"""
 
+urls_2 = """
+from django.urls import path, include
+from rest_framework import routers
 
-def test_views_urls():
-    views = [
-        (a, b["$ref"].split("/")[-1]) for a, b in basic_model["properties"].items()
+from . import views
+
+router = routers.DefaultRouter()
+
+
+router.register("F", views.FViewSet)
+
+router.register("D", views.DViewSet)
+
+router.register("C", views.CViewSet)
+
+router.register("E", views.EViewSet)
+
+router.register("B", views.BViewSet)
+
+router.register("A", views.AViewSet)
+
+
+urlpatterns = [
+    path("", include(router.urls)),
+]"""
+
+view_2 = """
+from rest_framework import viewsets
+from . import serializers, models
+
+
+class FViewSet(viewsets.ModelViewSet):
+    queryset = models.FModel.objects.all()
+    serializer_class = serializers.FSerializer
+
+
+class DViewSet(viewsets.ModelViewSet):
+    queryset = models.DModel.objects.all()
+    serializer_class = serializers.DSerializer
+
+
+class CViewSet(viewsets.ModelViewSet):
+    queryset = models.CModel.objects.all()
+    serializer_class = serializers.CSerializer
+
+
+class EViewSet(viewsets.ModelViewSet):
+    queryset = models.EModel.objects.all()
+    serializer_class = serializers.ESerializer
+
+
+class BViewSet(viewsets.ModelViewSet):
+    queryset = models.BModel.objects.all()
+    serializer_class = serializers.BSerializer
+
+
+class AViewSet(viewsets.ModelViewSet):
+    queryset = models.AModel.objects.all()
+    serializer_class = serializers.ASerializer
+
+"""
+
+@pytest.mark.parametrize(
+    "schema,model,serializer,admin,url,view",
+    [
+        (basic_model, result_1, serializer_1, admin_1, urls_1, view_1),
+        (simple_tree, result_2, serializer_2, admin_2, urls_2, view_2),
+    ],
+)
+def test_build_models(schema, model, serializer, admin, url, view):
+    models = [
+        Model(model_name, schema["definitions"][model_name])
+        for model_name in build_dependency_order(schema)
     ]
-    assert build_views(views) == view
-    assert build_urls(views) == urls
+
+    assert build_models(models) == model
+    assert build_serializers(models) == serializer
+    assert build_admin(models) == admin
+    assert build_urls(models) == url
+    assert build_views(models) == view
+
+

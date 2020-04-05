@@ -8,10 +8,10 @@ VIEW_TEMPLATE = """
 from rest_framework import viewsets
 from . import serializers, models
 
-{% for view_name, model_name in views %}
-class {{view_name}}ViewSet(viewsets.ModelViewSet):
-    queryset = models.{{model_name}}Model.objects.all()
-    serializer_class = serializers.{{model_name}}Serializer
+{% for model in models %}
+class {{model.name}}ViewSet(viewsets.ModelViewSet):
+    queryset = models.{{model.name}}Model.objects.all()
+    serializer_class = serializers.{{model.name}}Serializer
 
 {% endfor %}
 """
@@ -23,9 +23,6 @@ from rest_framework.serializers import ModelSerializer
 
 {% for model in models %}
 class {{model.name}}Serializer(ModelSerializer):
-{% for name, (model, null, many) in model.relations.items() %}
-    {{name}} = {{model}}Serializer(allow_null={{null}}, many={{many}})
-{% endfor %}
 
     class Meta:
         model = models.{{model.name}}Model
@@ -64,8 +61,8 @@ from . import views
 
 router = routers.DefaultRouter()
 
-{% for view_name, model_name in views %}
-router.register("{{view_name}}", views.{{model_name}}ViewSet)
+{% for model in models %}
+router.register("{{model.name}}", views.{{model.name}}ViewSet)
 {% endfor %}
 
 urlpatterns = [
@@ -101,9 +98,9 @@ def build_admin(models: List[Model]) -> str:
     return Template(ADMIN_TEMPLATE).render(models=models)
 
 
-def build_views(views: List[Model]) -> str:
-    return Template(VIEW_TEMPLATE).render(views=views)
+def build_views(models: List[Model]) -> str:
+    return Template(VIEW_TEMPLATE).render(models=models)
 
 
-def build_urls(views: List[Model]) -> str:
-    return Template(URL_TEMPLATE).render(views=views)
+def build_urls(models: List[Model]) -> str:
+    return Template(URL_TEMPLATE).render(models=models)

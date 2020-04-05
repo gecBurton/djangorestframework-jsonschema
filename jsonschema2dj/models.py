@@ -11,8 +11,9 @@ def is_relation(sch):
     """helper method to determine whether a field is pointing to another model"""
     if set(sch.keys()) =={"$ref",}:
         return True
-    if set(sch.keys()) =={"$ref", "items"}:
-        return is_relation(sch["items"])
+    if set(sch.keys()) =={"type", "items",}:
+        if sch["type"] == "array":
+            return is_relation(sch["items"])
     return False
 
 
@@ -59,10 +60,11 @@ def build_dependency_order(schema) -> List[str]:
         model = schema["definitions"][model_name]
         for field_name, field in model.get("properties", {}).items():
             if is_relation(field):
-                _model_name = field["$ref"].split("/")[-1]
-                if _model_name not in dependency_order:
-                    dependency_order.append(_model_name)
-                    _get_dependencies(_model_name)
+                if "$ref" in field:
+                    _model_name = field["$ref"].split("/")[-1]
+                    if _model_name not in dependency_order:
+                        dependency_order.append(_model_name)
+                        _get_dependencies(_model_name)
 
     for name in schema["definitions"]:
         _get_dependencies(name)
