@@ -18,11 +18,11 @@ class {{view_name}}ViewSet(viewsets.ModelViewSet):
 
 SERIALIZER_TEMPLATE = """
 from . import models
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 
 {% for model in models %}
-class {{model.name}}Serializer(WritableNestedModelSerializer):
+class {{model.name}}Serializer(ModelSerializer):
 {% for name, (model, null, many) in model.relations.items() %}
     {{name}} = {{model}}Serializer(allow_null={{null}}, many={{many}})
 {% endfor %}

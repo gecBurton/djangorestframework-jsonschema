@@ -40,11 +40,11 @@ class personModel(models.Model):
 
 serializer_1 = """
 from . import models
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 
 
-class personSerializer(WritableNestedModelSerializer):
+class personSerializer(ModelSerializer):
 
 
     class Meta:
@@ -108,11 +108,11 @@ class AModel(models.Model):
 
 serializer_2 = """
 from . import models
-from drf_writable_nested.serializers import WritableNestedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 
 
-class FSerializer(WritableNestedModelSerializer):
+class FSerializer(ModelSerializer):
 
 
     class Meta:
@@ -120,7 +120,7 @@ class FSerializer(WritableNestedModelSerializer):
         fields = '__all__'
 
 
-class DSerializer(WritableNestedModelSerializer):
+class DSerializer(ModelSerializer):
 
 
     class Meta:
@@ -128,7 +128,7 @@ class DSerializer(WritableNestedModelSerializer):
         fields = '__all__'
 
 
-class CSerializer(WritableNestedModelSerializer):
+class CSerializer(ModelSerializer):
 
     d = DSerializer(allow_null=True, many=False)
 
@@ -138,7 +138,7 @@ class CSerializer(WritableNestedModelSerializer):
         fields = '__all__'
 
 
-class ESerializer(WritableNestedModelSerializer):
+class ESerializer(ModelSerializer):
 
     f = FSerializer(allow_null=True, many=False)
 
@@ -148,7 +148,7 @@ class ESerializer(WritableNestedModelSerializer):
         fields = '__all__'
 
 
-class BSerializer(WritableNestedModelSerializer):
+class BSerializer(ModelSerializer):
 
     c = CSerializer(allow_null=True, many=False)
 
@@ -160,7 +160,7 @@ class BSerializer(WritableNestedModelSerializer):
         fields = '__all__'
 
 
-class ASerializer(WritableNestedModelSerializer):
+class ASerializer(ModelSerializer):
 
     b = BSerializer(allow_null=True, many=False)
 
