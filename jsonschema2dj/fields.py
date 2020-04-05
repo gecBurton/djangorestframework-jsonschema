@@ -143,13 +143,12 @@ def build_field(name, sch, null=False):
 
 
 def build_relations(sch, null=False):
-    field_type = sch.get("type")
-    if field_type == "object":
+    if set(sch.keys()) == {"$ref",}:
         model = sch["$ref"].split("/")[-1]
         return model, null, False
 
-    if field_type == "array":
+    if sch.get("items"):
         model = sch["items"]["$ref"].split("/")[-1]
         return model, null, True
 
-    raise NotImplementedError(f"no code written for type: {field_type}")
+    raise NotImplementedError(f"no code written for type: {sch}")

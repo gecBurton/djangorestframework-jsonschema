@@ -10,7 +10,6 @@
           ]
         },
         "address": {
-          "type": "object",
           "$ref": "#/definitions/Address"
         }
       }
@@ -23,12 +22,10 @@
         "patient": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/Patient"
           }
         },
         "hospital": {
-          "type": "object",
           "$ref": "#/definitions/Hospital"
         }
       }
@@ -42,7 +39,6 @@
         "doctor": {
           "type": "array",
           "items": {
-            "type": "object",
             "$ref": "#/definitions/Doctor"
           }
         }
@@ -55,7 +51,6 @@
           "pattern": "^[a-z]{1,2}\\d[a-z\\d]?\\s*\\d[a-z]{2}$"
         },
         "hospital": {
-          "type": "object",
           "$ref": "#/definitions/Hospital"
         }
       }

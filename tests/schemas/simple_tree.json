@@ -6,7 +6,7 @@
     },
     "E": {
       "properties": {
-        "f": {"type": "object", "$ref": "#/definitions/F"}
+        "f": {"$ref": "#/definitions/F"}
       }
     },
     "D": {
@@ -15,18 +15,18 @@
     },
     "C": {
       "properties": {
-        "d": {"type": "object", "$ref": "#/definitions/D"}
+        "d": {"$ref": "#/definitions/D"}
       }
     },
     "B": {
       "properties": {
-        "c":{"type": "object", "$ref": "#/definitions/C"},
-        "e":{"type": "object", "$ref": "#/definitions/E"}
+        "c":{"$ref": "#/definitions/C"},
+        "e":{"$ref": "#/definitions/E"}
       }
     },
     "A": {
       "properties": {
-        "b":{"type": "object", "$ref": "#/definitions/B"}
+        "b":{"$ref": "#/definitions/B"}
       }
     }
   }

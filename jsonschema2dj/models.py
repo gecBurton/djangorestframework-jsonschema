@@ -7,6 +7,15 @@ def to_str(field_type, field_options):
     return field_type, ", ".join(f"{k}={v}" for k, v in field_options.items())
 
 
+def is_relation(sch):
+    """helper method to determine whether a field is pointing to another model"""
+    if set(sch.keys()) =={"$ref",}:
+        return True
+    if set(sch.keys()) =={"$ref", "items"}:
+        return is_relation(sch["items"])
+    return False
+
+
 class Model:
     def __init__(self, name, sch):
         """build the django-like model from jsonschema"""
@@ -16,12 +25,12 @@ class Model:
         self.fields = {
             field_name: build_field(field_name, field_sch, field_name not in required)
             for field_name, field_sch in properties.items()
-            if field_sch.get("type") not in ("object", "array")
+            if not is_relation(field_sch)
         }
         self.relations = {
             field_name: build_relations(field_sch, field_name not in required)
             for field_name, field_sch in properties.items()
-            if field_sch.get("type") in ("object", "array")
+            if is_relation(field_sch)
         }
         self.enums = [
             field
@@ -49,7 +58,7 @@ def build_dependency_order(schema) -> List[str]:
     def _get_dependencies(model_name):
         model = schema["definitions"][model_name]
         for field_name, field in model.get("properties", {}).items():
-            if field.get("type") == "object" and "$ref" in field:
+            if is_relation(field):
                 _model_name = field["$ref"].split("/")[-1]
                 if _model_name not in dependency_order:
                     dependency_order.append(_model_name)
