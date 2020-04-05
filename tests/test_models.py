@@ -44,5 +44,24 @@ def test_build_model_pass(name, result):
     assert model.enums == enums
 
 
+results = [
+    ("A",{}, [], {'b': ('B', True, False)}),
+    ("B",{}, [], {'c': ('C', True, False), 'e': ('E', True, False)}),
+    ("C",{}, [], {'d': ('D', True, False)}),
+    ("D",{}, [], {}),
+    ("E",{}, [], {'f': ('F', True, False)}),
+    ("F",{}, [], {})
+]
+
+@pytest.mark.parametrize("name,fields,enums,relations", results)
+def test_build_model_tree_pass(name, fields, enums, relations):
+    schema = simple_tree["definitions"][name]
+    model = Model(name, schema)
+    assert model.name == name
+    assert model.fields == fields
+    assert model.enums == enums
+    assert model.relations == relations
+
+
 def test_build_dependency_order():
     assert build_dependency_order(simple_tree) == ["F", "D", "C", "E", "B", "A"]
