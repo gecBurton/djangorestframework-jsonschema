@@ -12,6 +12,7 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from . import serializers, models, filters
 
 {% for model in models %}
+
 class {{model.name}}(viewsets.ModelViewSet):
     queryset = models.{{model.name}}.objects.all()
     serializer_class = serializers.{{model.name}}
@@ -128,12 +129,12 @@ def build_admin(models: List[Model]) -> str:
 
 
 def build_views(models: List[Model]) -> str:
-    return Template(VIEW_TEMPLATE).render(models=models)
+    return Template(VIEW_TEMPLATE, trim_blocks=True).render(models=models)
 
 
 def build_urls(models: List[Model]) -> str:
-    return Template(URL_TEMPLATE).render(models=models)
+    return Template(URL_TEMPLATE, trim_blocks=True).render(models=models)
 
 
 def build_filters(models: List[Model]) -> str:
-    return Template(FILTER_TEMPLATE).render(models=models)
+    return Template(FILTER_TEMPLATE, trim_blocks=True).render(models=models)

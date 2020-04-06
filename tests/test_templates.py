@@ -204,9 +204,7 @@ from . import views
 
 router = routers.DefaultRouter()
 
-
 router.register("person", views.person)
-
 
 urlpatterns = [
     path("", include(router.urls)),
@@ -220,19 +218,12 @@ from . import views
 
 router = routers.DefaultRouter()
 
-
 router.register("F", views.F)
-
 router.register("D", views.D)
-
 router.register("C", views.C)
-
 router.register("E", views.E)
-
 router.register("B", views.B)
-
 router.register("A", views.A)
-
 
 urlpatterns = [
     path("", include(router.urls)),
