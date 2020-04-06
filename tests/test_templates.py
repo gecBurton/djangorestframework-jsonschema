@@ -8,7 +8,7 @@ from jsonschema2dj.templates import (
     build_views,
     build_urls,
     build_admin,
-)
+    build_filters)
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
@@ -286,14 +286,63 @@ class A(viewsets.ModelViewSet):
 
 """
 
+filter_1 = """
+from django_filters import rest_framework as filters
+from . import models
+
+class person(filters.FilterSet):
+    class Meta:
+        model = models.person
+        fields = {
+            "age": ["exact", "gte", "lte"],
+            "sex": ["exact", "in"],
+            }
+"""
+
+filter_2 = """
+from django_filters import rest_framework as filters
+from . import models
+
+class F(filters.FilterSet):
+    class Meta:
+        model = models.F
+        fields = {
+            }
+class D(filters.FilterSet):
+    class Meta:
+        model = models.D
+        fields = {
+            }
+class C(filters.FilterSet):
+    class Meta:
+        model = models.C
+        fields = {
+            }
+class E(filters.FilterSet):
+    class Meta:
+        model = models.E
+        fields = {
+            }
+class B(filters.FilterSet):
+    class Meta:
+        model = models.B
+        fields = {
+            }
+class A(filters.FilterSet):
+    class Meta:
+        model = models.A
+        fields = {
+            }
+"""
+
 @pytest.mark.parametrize(
-    "schema,model,serializer,admin,url,view",
+    "schema,model,serializer,admin,url,view,filter",
     [
-        (basic_model, result_1, serializer_1, admin_1, urls_1, view_1),
-        (simple_tree, result_2, serializer_2, admin_2, urls_2, view_2),
+        (basic_model, result_1, serializer_1, admin_1, urls_1, view_1,filter_1),
+        (simple_tree, result_2, serializer_2, admin_2, urls_2, view_2,filter_2),
     ],
 )
-def test_build_models(schema, model, serializer, admin, url, view):
+def test_build_models(schema, model, serializer, admin, url, view, filter):
     models = [
         Model(model_name, schema["definitions"][model_name])
         for model_name in build_dependency_order(schema)
@@ -304,5 +353,7 @@ def test_build_models(schema, model, serializer, admin, url, view):
     assert build_admin(models) == admin
     assert build_urls(models) == url
     assert build_views(models) == view
+    print(build_filters(models))
+    assert build_filters(models) == filter
 
 

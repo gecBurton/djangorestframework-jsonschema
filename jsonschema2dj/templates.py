@@ -104,13 +104,13 @@ class {{model.name}}(filters.FilterSet):
     class Meta:
         model = models.{{model.name}}
         fields = {
-            {% for name, (type, options) in model.fields.items() %}
-            {% if type in ("IntegerField", "DecimalField") %}
+{% for name, (type, options) in model.fields.items() %}
+{% if type in ("IntegerField", "DecimalField") %}
             "{{name}}": ["exact", "gte", "lte"],
-            {% elif "choices" in options.keys() %}
+{% elif "choices" in options.keys() %}
             "{{name}}": ["exact", "in"],
-            {% endif %}
-            {% endfor %}
+{% endif %}
+{% endfor %}
             }
 {% endfor %}
 
