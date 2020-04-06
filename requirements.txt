@@ -1,6 +1,7 @@
 # Minimum Django and REST framework version
 Django>=1.6
 djangorestframework>=2.4.3
+django-filter==0.15.3
 jinja2==2.11.1
 
 # Test requirements

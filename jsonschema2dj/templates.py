@@ -6,12 +6,18 @@ from jsonschema2dj.models import Model
 
 VIEW_TEMPLATE = """
 from rest_framework import viewsets
-from . import serializers, models
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter, SearchFilter
+
+from . import serializers, models, filters
 
 {% for model in models %}
 class {{model.name}}(viewsets.ModelViewSet):
     queryset = models.{{model.name}}.objects.all()
     serializer_class = serializers.{{model.name}}
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filterset_class = filters.{{model.name}}
+    ordering_fields = "__all__"
 
 {% endfor %}
 """
@@ -85,6 +91,26 @@ class {{model.name}}Admin(admin.ModelAdmin):
 {% endfor %}
 """
 
+FILTER_TEMPLATE = """
+from django_filters import rest_framework as filters
+from . import models
+
+{% for model in models%}
+class {{model.name}}(filters.FilterSet):
+    class Meta:
+        model = models.{{model.name}}
+        fields = {
+            {% for name, (type, options) in model.fields.items() %}
+            {% if type in ("IntegerField", "DecimalField") %}
+            "{{name}}": ["exact", "gte", "lte"],
+            {% elif "choices" in options.keys() %}
+            "{{name}}": ["exact", "in"],
+            {% endif %}
+            {% endfor %}
+            }
+{% endfor %}
+
+"""
 
 def build_models(models: List[Model]) -> str:
     return Template(MODEL_TEMPLATE).render(models=models)
@@ -104,3 +130,7 @@ def build_views(models: List[Model]) -> str:
 
 def build_urls(models: List[Model]) -> str:
     return Template(URL_TEMPLATE).render(models=models)
+
+
+def build_filters(models: List[Model]) -> str:
+    return Template(FILTER_TEMPLATE).render(models=models)

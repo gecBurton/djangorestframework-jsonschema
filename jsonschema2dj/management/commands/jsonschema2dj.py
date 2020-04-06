@@ -8,7 +8,7 @@ from jsonschema2dj.templates import (
     build_views,
     build_urls,
     build_admin,
-)
+    build_filters)
 
 
 class Command(BaseCommand):
@@ -28,7 +28,6 @@ class Command(BaseCommand):
             Model(model_name, schema["definitions"][model_name])
             for model_name in build_dependency_order(schema)
         ]
-        #views = [(a, b["$ref"].split("/")[-1]) for a, b in schema["properties"].items()]
 
         with open(f"{base_dir}/models.py", "w") as f:
             f.write(build_models(models=models))
@@ -44,3 +43,6 @@ class Command(BaseCommand):
 
         with open(f"{base_dir}/urls.py", "w") as f:
             f.write(build_urls(models=models))
+
+        with open(f"{base_dir}/filters.py", "w") as f:
+            f.write(build_filters(models=models))
