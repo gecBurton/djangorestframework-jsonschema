@@ -24,16 +24,10 @@ from django.db import models
 
 
 class person(models.Model):
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-
     name = models.CharField(null=False, max_length=255)
-
     age = models.IntegerField(null=False, validators=[validators.MinValueValidator(0)])
-
     sex = models.CharField(null=True, max_length=6, choices=[('male', 'male'), ('female', 'female')])
-
-
 
 
 """
@@ -62,56 +56,29 @@ class F(models.Model):
 
 
 
-
-
 class D(models.Model):
-
-
 
 
 
 class C(models.Model):
 
-
-
-
     d = models.ForeignKey(D, null=True, on_delete=models.CASCADE)
-
-
 
 
 class E(models.Model):
 
-
-
-
     f = models.ForeignKey(F, null=True, on_delete=models.CASCADE)
-
-
 
 
 class B(models.Model):
 
-
-
-
     c = models.ForeignKey(C, null=True, on_delete=models.CASCADE)
-
-
-
     e = models.ForeignKey(E, null=True, on_delete=models.CASCADE)
-
-
 
 
 class A(models.Model):
 
-
-
-
     b = models.ForeignKey(B, null=True, on_delete=models.CASCADE)
-
-
 
 """
 

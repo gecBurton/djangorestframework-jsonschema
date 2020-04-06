@@ -43,6 +43,7 @@ from django.core import validators
 from django.db import models
 
 {% for model in models %}
+
 class {{model.name}}(models.Model):
 {% for name, (type, options) in model.fields_str.items() %}
     {{name}} = models.{{type}}({{options}})
@@ -113,7 +114,7 @@ class {{model.name}}(filters.FilterSet):
 """
 
 def build_models(models: List[Model]) -> str:
-    return Template(MODEL_TEMPLATE).render(models=models)
+    return Template(MODEL_TEMPLATE, trim_blocks=True).render(models=models)
 
 
 def build_serializers(models: List[Model]) -> str:
