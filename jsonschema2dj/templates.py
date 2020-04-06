@@ -19,6 +19,12 @@ class {{model.name}}(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.{{model.name}}
     ordering_fields = "__all__"
+    search_fields = [
+{% for field in model.search_fields %}
+        "${{field}}",
+{% endfor %}
+    ]
+
 
 {% endfor %}
 """

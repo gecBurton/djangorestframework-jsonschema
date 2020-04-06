@@ -52,6 +52,15 @@ class Model:
             field_repr[field_name] = (field_type, field_attrs_dict)
         return field_repr
 
+    @property
+    def search_fields(self):
+        fields = []
+        for field_name, (field_type, field_attrs) in self.fields.items():
+            if field_type == "CharField" and "choices" not in field_attrs:
+                fields.append(field_name)
+        return fields
+
+
 
 def build_dependency_order(schema) -> List[str]:
     dependency_order = []

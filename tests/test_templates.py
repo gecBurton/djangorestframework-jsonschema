@@ -193,6 +193,10 @@ class person(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.person
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
+
 
 """
 
@@ -243,6 +247,9 @@ class F(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.F
     ordering_fields = "__all__"
+    search_fields = [
+    ]
+
 
 
 class D(viewsets.ModelViewSet):
@@ -251,6 +258,9 @@ class D(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.D
     ordering_fields = "__all__"
+    search_fields = [
+    ]
+
 
 
 class C(viewsets.ModelViewSet):
@@ -259,6 +269,9 @@ class C(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.C
     ordering_fields = "__all__"
+    search_fields = [
+    ]
+
 
 
 class E(viewsets.ModelViewSet):
@@ -267,6 +280,9 @@ class E(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.E
     ordering_fields = "__all__"
+    search_fields = [
+    ]
+
 
 
 class B(viewsets.ModelViewSet):
@@ -275,6 +291,9 @@ class B(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.B
     ordering_fields = "__all__"
+    search_fields = [
+    ]
+
 
 
 class A(viewsets.ModelViewSet):
@@ -283,6 +302,9 @@ class A(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.A
     ordering_fields = "__all__"
+    search_fields = [
+    ]
+
 
 """
 
@@ -353,7 +375,6 @@ def test_build_models(schema, model, serializer, admin, url, view, filter):
     assert build_admin(models) == admin
     assert build_urls(models) == url
     assert build_views(models) == view
-    print(build_filters(models))
     assert build_filters(models) == filter
 
 
