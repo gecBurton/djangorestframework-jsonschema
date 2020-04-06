@@ -28,6 +28,7 @@ from rest_framework.serializers import ModelSerializer
 
 
 {% for model in models %}
+
 class {{model.name}}(ModelSerializer):
 
     class Meta:
@@ -118,7 +119,7 @@ def build_models(models: List[Model]) -> str:
 
 
 def build_serializers(models: List[Model]) -> str:
-    return Template(SERIALIZER_TEMPLATE).render(models=models)
+    return Template(SERIALIZER_TEMPLATE, trim_blocks=True).render(models=models)
 
 
 def build_admin(models: List[Model]) -> str:
