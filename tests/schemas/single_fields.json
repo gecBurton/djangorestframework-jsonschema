@@ -1,4 +1,37 @@
 {
+  "required": [
+    "basic",
+    "length",
+    "regular_expressions",
+    "format_date-time",
+    "format_time",
+    "format_date",
+    "format_email",
+    "format_idn-email",
+    "format_hostname",
+    "format_idn-hostname",
+    "format_ipv4",
+    "format_ipv6",
+    "format_uri",
+    "format_uri-reference",
+    "format_iri",
+    "format_iri-reference",
+    "format_uri-template",
+    "format_json-pointer",
+    "format_relative-json-pointer",
+    "format_regex",
+    "format-uuid",
+    "integer",
+    "integer-minimum-maximum",
+    "boolean",
+    "enum",
+    "enum-null",
+    "boolean-null",
+    "type-fail-empty",
+    "type-fail-too-many",
+    "type-fail-no-null",
+    "id"
+  ],
   "properties": {
     "basic": {
       "type": "string"

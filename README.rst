@@ -107,6 +107,11 @@ globally, and then simply run:
 
 Documentation
 -------------
+Primary Key
+###########
+
+Is given by the first field in the ``required`` of the model schema.
+
 
 Cardinality
 ###########

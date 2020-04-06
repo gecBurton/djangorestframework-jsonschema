@@ -27,9 +27,9 @@ def build_choices(sch, _type="string"):
     raise NotImplementedError("only integer or string enums are supported")
 
 
-def build_string_field(sch, null):
+def build_string_field(sch, null, primary_key):
     "the string case is complex enough to have its own function"
-    options = dict(null=null)
+    options = dict(null=null, primary_key=primary_key)
     validators = []
 
     max_length = sch.get("maxLength", 255)
@@ -68,7 +68,7 @@ def build_string_field(sch, null):
         "uuid": "UUIDField",
     }
     try:
-        return formats[_format], dict(null=options["null"])
+        return formats[_format], dict(null=options["null"],primary_key=primary_key)
     except KeyError:
         raise NotImplementedError(f"no code written to handle format: {_format}")
 
@@ -112,32 +112,35 @@ def rationalize_type(sch, null):
     raise ValueError(f"either the type must be specified or it must be an enum")
 
 
-def build_field(name, sch, null=False):
+def build_field(name, sch, required):
     """this is the entry point for the module"""
+    null = name not in required
+
+    primary_key= (name == required[0]) if required else False
 
     field_type, sch, null = rationalize_type(sch, null)
 
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             raise ValueError("field with name id must be a UUID")
-        return "UUIDField", dict(primary_key=True, default="uuid.uuid4")
+        return "UUIDField", dict(default="uuid.uuid4",primary_key=primary_key)
 
     if field_type == "string":
-        return build_string_field(sch, null)
+        return build_string_field(sch, null, primary_key)
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return "IntegerField", dict(null=null, validators=validators)
+        return "IntegerField", dict(null=null, validators=validators,primary_key=primary_key)
 
     if field_type == "number":
         validators = build_value_validators(sch)
         return (
             "DecimalField",
-            dict(null=null, validators=validators, max_digits=10, decimal_places=5),
+            dict(null=null, validators=validators, max_digits=10, decimal_places=5,primary_key=primary_key),
         )
 
     if field_type == "boolean":
-        return "BooleanField", dict(null=null)
+        return "BooleanField", dict(null=null,primary_key=primary_key)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 

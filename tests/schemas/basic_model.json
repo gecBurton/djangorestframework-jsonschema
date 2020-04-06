@@ -2,6 +2,7 @@
   "definitions": {
     "person": {
       "required": [
+        "id",
         "age",
         "name"
       ],

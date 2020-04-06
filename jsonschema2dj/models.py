@@ -24,7 +24,7 @@ class Model:
         properties = sch.get("properties", {})
         required = sch.get("required", [])
         self.fields = {
-            field_name: build_field(field_name, field_sch, field_name not in required)
+            field_name: build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
             if not is_relation(field_sch)
         }
