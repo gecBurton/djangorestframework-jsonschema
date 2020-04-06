@@ -83,6 +83,7 @@ from django.contrib import admin
 from . import models
 
 {% for model in models %}
+
 @admin.register(models.{{model.name}})
 class {{model.name}}Admin(admin.ModelAdmin):
     list_filter = (
@@ -123,7 +124,7 @@ def build_serializers(models: List[Model]) -> str:
 
 
 def build_admin(models: List[Model]) -> str:
-    return Template(ADMIN_TEMPLATE).render(models=models)
+    return Template(ADMIN_TEMPLATE, trim_blocks=True).render(models=models)
 
 
 def build_views(models: List[Model]) -> str:
