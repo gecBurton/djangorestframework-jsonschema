@@ -122,7 +122,6 @@ many-to-one relationship between Patient(s) and Medication
         "Patient": {
           "properties": {
             "medication": {
-              "type": "object",
               "$ref": "#/definitions/Medication"
             }
           }
@@ -142,7 +141,6 @@ many-to-many relationship between Patient(s) and Doctor(s)
             "type": "array",
             "items": {
               "doctor": {
-                "type": "object",
                 "$ref": "#/definitions/Doctor"
               }
             }
