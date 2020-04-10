@@ -12,17 +12,16 @@ def build_value_validators(sch):
     return validators
 
 
-def build_choices(sch, _type="string"):
+def build_choices(enums, _type="string"):
     "helper function for enums to choices"
     if _type == "string":
-        names = [value.lower().replace(" ", "_") for value in sch["enum"]]
+        names = [value.lower().replace(" ", "_") for value in enums]
         return dict(
-            max_length=max(map(len, sch["enum"])), choices=list(zip(names, sch["enum"]))
+            max_length=max(map(len, enums)), choices=list(zip(names, enums))
         )
 
     if _type == "integer":
-        names = list(map(str, sch["enum"]))
-        return dict(choices=list(zip(names, sch["enum"])))
+        return dict(choices=list(zip(map(str, enums), enums)))
 
     raise NotImplementedError("only integer or string enums are supported")
 
@@ -43,41 +42,40 @@ def build_string_field(sch, null, primary_key):
     if (min_length and max_length <= min_length) or max_length > 255:
         return "TextField", options
 
-    if "enum" in sch:
-        options.update(build_choices(sch))
+    if enums := sch.get("enum"):
+        options.update(build_choices(enums))
 
-    pattern = sch.get("pattern")
-    if pattern:
+    if pattern:=sch.get("pattern"):
         validators.append(("RegexValidator", f'r"{pattern}"'))
 
     if validators:
         options.update(validators=validators)
 
-    _format = sch.get("format")
-    if _format is None:
-        return "CharField", options
+    if _format := sch.get("format"):
 
-    formats = {
-        "date-time": "DateTimeField",
-        "date": "DateField",
-        "time": "TimeField",
-        "email": "EmailField",
-        "idn-email": "EmailField",
-        "ipv4": "GenericIPAddressField",
-        "ipv6": "GenericIPAddressField",
-        "uuid": "UUIDField",
-    }
-    try:
-        return formats[_format], dict(null=options["null"],primary_key=primary_key)
-    except KeyError:
-        raise NotImplementedError(f"no code written to handle format: {_format}")
+        formats = {
+            "date-time": "DateTimeField",
+            "date": "DateField",
+            "time": "TimeField",
+            "email": "EmailField",
+            "idn-email": "EmailField",
+            "ipv4": "GenericIPAddressField",
+            "ipv6": "GenericIPAddressField",
+            "uuid": "UUIDField",
+        }
+        try:
+            return formats[_format], dict(null=options["null"],primary_key=primary_key)
+        except KeyError:
+            raise NotImplementedError(f"no code written to handle format: {_format}")
+
+    return "CharField", options
+
 
 
 def rationalize_type(sch):
     """the type is problematic especially with regards to enums and null"""
     null = False
-    _type = sch.get("type")
-    if _type:
+    if _type := sch.get("type"):
         if isinstance(_type, list):
             if (
                 len(sch["type"]) == 0
@@ -95,14 +93,14 @@ def rationalize_type(sch):
                 _type = next(x for x in _type if x != "null")
         return _type, sch, null
 
-    if "enum" in sch:
-        if "null" in sch["enum"]:
-            sch["enum"].remove("null")
+    if enums:= sch.get("enum"):
+        if "null" in enums:
+            enums.remove("null")
             null = True
 
-        if all(isinstance(enum, int) for enum in sch["enum"]):
+        if all(isinstance(enum, int) for enum in enums):
             _type = "integer"
-        elif all(isinstance(enum, str) for enum in sch["enum"]):
+        elif all(isinstance(enum, str) for enum in enums):
             _type = "string"
         else:
             raise ValueError(

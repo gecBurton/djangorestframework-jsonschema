@@ -43,8 +43,7 @@ class Model:
     def fields_str(self):
         field_repr = {}
         for field_name, (field_type, field_attrs) in self.fields.items():
-            validators = field_attrs.get("validators")
-            if validators:
+            if validators := field_attrs.get("validators"):
                 field_attrs["validators"] = (
                     "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
                 )
@@ -69,8 +68,8 @@ def build_dependency_order(schema) -> List[str]:
         model = schema["definitions"][model_name]
         for field_name, field in model.get("properties", {}).items():
             if is_relation(field):
-                if "$ref" in field:
-                    _model_name = field["$ref"].split("/")[-1]
+                if ref := field.get("$ref"):
+                    _model_name = ref.split("/")[-1]
                     if _model_name not in dependency_order:
                         dependency_order.append(_model_name)
                         _get_dependencies(_model_name)
@@ -87,19 +86,17 @@ def build_dependency_order(schema) -> List[str]:
 
 def build_model_view(schema):
     relationships = {}
+
     for model_name, model in schema["definitions"].items():
-        print(model_name, model["properties"])
+        single, many = [], []
 
-        single = []
-        many = []
+        for property in model["properties"].values():
+            if ref := property.get("$ref"):
+                single.append(ref.split('/')[-1])
 
-        for related_model in model["properties"].values():
-            if "$ref" in related_model:
-                single.append(related_model["$ref"].split('/')[-1])
-
-            elif related_model.get("type") == "array":
-                if set(related_model.get("items")) == {"$ref",}:
-                    many.append(related_model["items"]["$ref"].split('/')[-1])
+            elif items := property.get("items"):
+                if ref := items.get("$ref"):
+                    many.append(ref.split('/')[-1])
 
         relationships[model_name] = single, many
 
