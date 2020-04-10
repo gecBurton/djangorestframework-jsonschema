@@ -2,13 +2,19 @@ from json import load
 
 import pytest
 
-from jsonschema2dj.models import build_dependency_order, Model
+from jsonschema2dj.models import build_dependency_order, Model, build_model_view, build_relationships
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
 
 with open("tests/schemas/simple_tree.json") as f:
     simple_tree = load(f)
+
+with open("tests/schemas/explicit_cardinalities.json") as f:
+    explicit_cardinalities = load(f)
+
+with open("tests/schemas/implicit_cardinalities.json") as f:
+    implicit_cardinalities = load(f)
 
 results = {
     "person": (
@@ -66,3 +72,30 @@ def test_build_model_tree_pass(name, fields, enums, relations):
 
 def test_build_dependency_order():
     assert build_dependency_order(simple_tree) == ["F", "D", "C", "E", "B", "A"]
+
+
+def test_build_model_view_explicit():
+    x = build_model_view(explicit_cardinalities)
+    assert x == {'A': (['B'], []),
+                 'B': (['A', 'C'], []),
+                 'C': (['D'], ['B']),
+                 'D': ([], ['C', 'E']),
+                 'E': ([], ['D'])}
+
+    y = build_relationships(x)
+    assert y == ({('A', 'B')}, {'B': 'C', 'C': 'D'}, {('D', 'E')})
+
+
+def test_build_model_view_implicit():
+    x = build_model_view(implicit_cardinalities)
+    assert x == {'A': (['B'], []),
+                 'B': (['A', 'C'], []),
+                 'C': (['D'], []),
+                 'D': ([], ['E']),
+                 'E': ([], [])}
+
+
+    y = build_relationships(x)
+    assert y == ({('A', 'B')}, {'B': 'C', 'C': 'D'}, {('D', 'E')})
+
+

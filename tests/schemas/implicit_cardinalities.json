@@ -1,0 +1,42 @@
+{
+  "definitions": {
+    "A": {
+      "properties": {
+        "b": {
+          "$ref": "#/definitions/B"
+        }
+      }
+    },
+    "B": {
+      "properties": {
+        "a": {
+          "$ref": "#/definitions/A"
+        },
+        "c": {
+          "$ref": "#/definitions/C"
+        }
+      }
+    },
+    "C": {
+      "properties": {
+        "d": {
+          "$ref": "#/definitions/D"
+        }
+      }
+    },
+    "D": {
+      "properties": {
+        "e": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/E"
+          }
+        }
+      }
+    },
+    "E": {
+      "properties": {
+      }
+    }
+  }
+}

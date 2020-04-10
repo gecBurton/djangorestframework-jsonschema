@@ -83,3 +83,51 @@ def build_dependency_order(schema) -> List[str]:
             dependency_order.append(name)
 
     return dependency_order
+
+
+def build_model_view(schema):
+    relationships = {}
+    for model_name, model in schema["definitions"].items():
+        print(model_name, model["properties"])
+
+        single = []
+        many = []
+
+        for related_model in model["properties"].values():
+            if "$ref" in related_model:
+                single.append(related_model["$ref"].split('/')[-1])
+
+            elif related_model.get("type") == "array":
+                if set(related_model.get("items")) == {"$ref",}:
+                    many.append(related_model["items"]["$ref"].split('/')[-1])
+
+        relationships[model_name] = single, many
+
+    return relationships
+
+def build_relationships(relationships):
+    one_to_one = []
+    many_to_one = {}
+    many_to_many = []
+
+    for model, (singles, manys) in relationships.items():
+        for single in singles:
+            related_singles, _ = relationships.get(single)
+            if model in related_singles:
+                one_to_one.append([model, single])
+            else:
+                many_to_one[model] = single
+
+        for many in manys:
+            related_singles, _ = relationships.get(many)
+            if model in related_singles:
+                many_to_one[many]  = model
+            else:
+                many_to_many.append([many, model])
+
+    one_to_one = {tuple(sorted(x)) for x in one_to_one}
+    many_to_many = {tuple(sorted(x)) for x in many_to_many}
+    return one_to_one, many_to_one, many_to_many
+
+
+
