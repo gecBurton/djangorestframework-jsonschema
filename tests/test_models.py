@@ -2,7 +2,8 @@ from json import load
 
 import pytest
 
-from jsonschema2dj.models import build_dependency_order, Model, build_model_view, build_relationships
+from jsonschema2dj.models import build_dependency_order, Model, build_model_view, build_relationships, sort_asymmetric, \
+    sort_all
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
@@ -15,6 +16,10 @@ with open("tests/schemas/explicit_cardinalities.json") as f:
 
 with open("tests/schemas/implicit_cardinalities.json") as f:
     implicit_cardinalities = load(f)
+
+with open("tests/schemas/simple_tree.json") as f:
+    simple_tree = load(f)
+
 
 results = {
     "person": (
@@ -83,7 +88,9 @@ def test_build_model_view_explicit():
                  'E': ([], ['D'])}
 
     y = build_relationships(x)
-    assert y == ({('A', 'B')}, {'B': 'C', 'C': 'D'}, {('D', 'E')})
+    assert y == ({('A', 'B')}, {'B': {'C'}, 'C': {'D'}}, {('D', 'E')})
+    assert sort_asymmetric(y[1]) == ['D', 'C', 'B']
+    assert sort_all(*y) == ['A', 'B', 'D', 'C', 'E']
 
 
 def test_build_model_view_implicit():
@@ -96,6 +103,25 @@ def test_build_model_view_implicit():
 
 
     y = build_relationships(x)
-    assert y == ({('A', 'B')}, {'B': 'C', 'C': 'D'}, {('D', 'E')})
+    assert y == ({('A', 'B')}, {'B': {'C'}, 'C': {'D'}}, {('D', 'E')})
+    assert sort_asymmetric(y[1]) == ['D', 'C', 'B']
 
+    assert sort_all(*y) == ['A', 'B', 'D', 'C', 'E']
+
+
+def test_build_():
+    x = build_model_view(simple_tree)
+    assert x == {'A': (['B'], []),
+                 'B': (['C', 'E'], []),
+                 'C': (['D'], []),
+                 'D': ([], []),
+                 'E': (['F'], []),
+                 'F': ([], [])}
+
+    y = build_relationships(x)
+    assert y == (set(), {'A': {'B'}, 'B': {'E', 'C'}, 'C': {'D'}, 'E': {'F'}}, set())
+
+    assert sort_asymmetric(y[1]) == ['D', 'F', 'E', 'C', 'B', 'A']
+
+    assert sort_all(*y) == ['D', 'F', 'E', 'C', 'B', 'A']
 
