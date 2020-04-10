@@ -73,8 +73,9 @@ def build_string_field(sch, null, primary_key):
         raise NotImplementedError(f"no code written to handle format: {_format}")
 
 
-def rationalize_type(sch, null):
+def rationalize_type(sch):
     """the type is problematic especially with regards to enums and null"""
+    null = False
     _type = sch.get("type")
     if _type:
         if isinstance(_type, list):
@@ -114,11 +115,10 @@ def rationalize_type(sch, null):
 
 def build_field(name, sch, required):
     """this is the entry point for the module"""
-    null = name not in required
 
     primary_key= (name == required[0]) if required else False
 
-    field_type, sch, null = rationalize_type(sch, null)
+    field_type, sch, null = rationalize_type(sch)
 
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":

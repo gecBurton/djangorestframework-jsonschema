@@ -21,7 +21,8 @@
         "sex": {
           "enum": [
             "male",
-            "female"
+            "female",
+            "null"
           ]
         }
       }
