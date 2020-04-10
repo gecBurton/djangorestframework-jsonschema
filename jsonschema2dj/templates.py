@@ -122,6 +122,7 @@ class {{model.name}}(filters.FilterSet):
 
 """
 
+
 def build_models(models: List[Model]) -> str:
     return Template(MODEL_TEMPLATE, trim_blocks=True).render(models=models)
 

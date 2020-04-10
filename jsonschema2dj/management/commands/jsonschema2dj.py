@@ -8,7 +8,8 @@ from jsonschema2dj.templates import (
     build_views,
     build_urls,
     build_admin,
-    build_filters)
+    build_filters,
+)
 
 
 class Command(BaseCommand):

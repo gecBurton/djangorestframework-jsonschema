@@ -8,7 +8,8 @@ from jsonschema2dj.templates import (
     build_views,
     build_urls,
     build_admin,
-    build_filters)
+    build_filters,
+)
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
@@ -357,11 +358,12 @@ class A(filters.FilterSet):
             }
 """
 
+
 @pytest.mark.parametrize(
     "schema,model,serializer,admin,url,view,filter",
     [
-        (basic_model, result_1, serializer_1, admin_1, urls_1, view_1,filter_1),
-        (simple_tree, result_2, serializer_2, admin_2, urls_2, view_2,filter_2),
+        (basic_model, result_1, serializer_1, admin_1, urls_1, view_1, filter_1),
+        (simple_tree, result_2, serializer_2, admin_2, urls_2, view_2, filter_2),
     ],
 )
 def test_build_models(schema, model, serializer, admin, url, view, filter):
@@ -376,5 +378,3 @@ def test_build_models(schema, model, serializer, admin, url, view, filter):
     assert build_urls(models) == url
     assert build_views(models) == view
     assert build_filters(models) == filter
-
-

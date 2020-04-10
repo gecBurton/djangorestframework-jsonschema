@@ -2,8 +2,14 @@ from json import load
 
 import pytest
 
-from jsonschema2dj.models import build_dependency_order, Model, build_model_view, build_relationships, sort_asymmetric, \
-    sort_all
+from jsonschema2dj.models import (
+    build_dependency_order,
+    Model,
+    build_model_view,
+    build_relationships,
+    sort_asymmetric,
+    sort_all,
+)
 
 with open("tests/schemas/basic_model.json") as f:
     basic_model = load(f)
@@ -27,17 +33,24 @@ results = {
         {
             "age": (
                 "IntegerField",
-                {"null": False, 'primary_key': False, "validators": [("MinValueValidator", 0)]},
+                {
+                    "null": False,
+                    "primary_key": False,
+                    "validators": [("MinValueValidator", 0)],
+                },
             ),
             "id": ("UUIDField", {"primary_key": True, "default": "uuid.uuid4"}),
-            "name": ("CharField", {"max_length": 255, "null": False, 'primary_key': False}),
+            "name": (
+                "CharField",
+                {"max_length": 255, "null": False, "primary_key": False},
+            ),
             "sex": (
                 "CharField",
                 {
                     "choices": [("male", "male"), ("female", "female")],
                     "max_length": 6,
                     "null": True,
-                    'primary_key': False
+                    "primary_key": False,
                 },
             ),
         },
@@ -57,13 +70,14 @@ def test_build_model_pass(name, result):
 
 
 results = [
-    ("A",{}, [], {'b': ('B', True, False)}),
-    ("B",{}, [], {'c': ('C', True, False), 'e': ('E', True, False)}),
-    ("C",{}, [], {'d': ('D', True, False)}),
-    ("D",{}, [], {}),
-    ("E",{}, [], {'f': ('F', True, False)}),
-    ("F",{}, [], {})
+    ("A", {}, [], {"b": ("B", True, False)}),
+    ("B", {}, [], {"c": ("C", True, False), "e": ("E", True, False)}),
+    ("C", {}, [], {"d": ("D", True, False)}),
+    ("D", {}, [], {}),
+    ("E", {}, [], {"f": ("F", True, False)}),
+    ("F", {}, [], {}),
 ]
+
 
 @pytest.mark.parametrize("name,fields,enums,relations", results)
 def test_build_model_tree_pass(name, fields, enums, relations):
@@ -81,47 +95,51 @@ def test_build_dependency_order():
 
 def test_build_model_view_explicit():
     x = build_model_view(explicit_cardinalities)
-    assert x == {'A': (['B'], []),
-                 'B': (['A', 'C'], []),
-                 'C': (['D'], ['B']),
-                 'D': ([], ['C', 'E']),
-                 'E': ([], ['D'])}
+    assert x == {
+        "A": (["B"], []),
+        "B": (["A", "C"], []),
+        "C": (["D"], ["B"]),
+        "D": ([], ["C", "E"]),
+        "E": ([], ["D"]),
+    }
 
     y = build_relationships(x)
-    assert y == ({('A', 'B')}, {'B': {'C'}, 'C': {'D'}}, {('D', 'E')})
-    assert sort_asymmetric(y[1]) == ['D', 'C', 'B']
-    assert sort_all(*y) == ['A', 'B', 'D', 'C', 'E']
+    assert y == ({("A", "B")}, {"B": {"C"}, "C": {"D"}}, {("D", "E")})
+    assert sort_asymmetric(y[1]) == ["D", "C", "B"]
+    assert sort_all(*y) == ["A", "B", "D", "C", "E"]
 
 
 def test_build_model_view_implicit():
     x = build_model_view(implicit_cardinalities)
-    assert x == {'A': (['B'], []),
-                 'B': (['A', 'C'], []),
-                 'C': (['D'], []),
-                 'D': ([], ['E']),
-                 'E': ([], [])}
-
+    assert x == {
+        "A": (["B"], []),
+        "B": (["A", "C"], []),
+        "C": (["D"], []),
+        "D": ([], ["E"]),
+        "E": ([], []),
+    }
 
     y = build_relationships(x)
-    assert y == ({('A', 'B')}, {'B': {'C'}, 'C': {'D'}}, {('D', 'E')})
-    assert sort_asymmetric(y[1]) == ['D', 'C', 'B']
+    assert y == ({("A", "B")}, {"B": {"C"}, "C": {"D"}}, {("D", "E")})
+    assert sort_asymmetric(y[1]) == ["D", "C", "B"]
 
-    assert sort_all(*y) == ['A', 'B', 'D', 'C', 'E']
+    assert sort_all(*y) == ["A", "B", "D", "C", "E"]
 
 
 def test_build_():
     x = build_model_view(simple_tree)
-    assert x == {'A': (['B'], []),
-                 'B': (['C', 'E'], []),
-                 'C': (['D'], []),
-                 'D': ([], []),
-                 'E': (['F'], []),
-                 'F': ([], [])}
+    assert x == {
+        "A": (["B"], []),
+        "B": (["C", "E"], []),
+        "C": (["D"], []),
+        "D": ([], []),
+        "E": (["F"], []),
+        "F": ([], []),
+    }
 
     y = build_relationships(x)
-    assert y == (set(), {'A': {'B'}, 'B': {'E', 'C'}, 'C': {'D'}, 'E': {'F'}}, set())
+    assert y == (set(), {"A": {"B"}, "B": {"E", "C"}, "C": {"D"}, "E": {"F"}}, set())
 
-    assert sort_asymmetric(y[1]) == ['D', 'F', 'E', 'C', 'B', 'A']
+    assert sort_asymmetric(y[1]) == ["D", "F", "E", "C", "B", "A"]
 
-    assert sort_all(*y) == ['D', 'F', 'E', 'C', 'B', 'A']
-
+    assert sort_all(*y) == ["D", "F", "E", "C", "B", "A"]
