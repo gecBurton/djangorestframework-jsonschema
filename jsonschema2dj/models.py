@@ -10,9 +10,14 @@ def to_str(field_type, field_options):
 
 def is_relation(sch):
     """helper method to determine whether a field is pointing to another model"""
-    if set(sch.keys()) =={"$ref",}:
+    if set(sch.keys()) == {
+        "$ref",
+    }:
         return True
-    if set(sch.keys()) =={"type", "items",}:
+    if set(sch.keys()) == {
+        "type",
+        "items",
+    }:
         if sch["type"] == "array":
             return is_relation(sch["items"])
     return False
@@ -61,7 +66,6 @@ class Model:
         return fields
 
 
-
 def build_dependency_order(schema) -> List[str]:
     dependency_order = []
 
@@ -93,15 +97,16 @@ def build_model_view(schema):
 
         for property in model["properties"].values():
             if ref := property.get("$ref"):
-                single.append(ref.split('/')[-1])
+                single.append(ref.split("/")[-1])
 
             elif items := property.get("items"):
                 if ref := items.get("$ref"):
-                    many.append(ref.split('/')[-1])
+                    many.append(ref.split("/")[-1])
 
         relationships[model_name] = single, many
 
     return relationships
+
 
 def build_relationships(relationships):
     one_to_one = []
@@ -132,12 +137,22 @@ def sort_asymmetric(one_to_many):
     _one_to_many = dict(one_to_many)
     order = []
     while _one_to_many:
-        order.extend(sorted(sum(map(list, _one_to_many.values()), []) - _one_to_many.keys() - set(order)))
+        order.extend(
+            sorted(
+                sum(map(list, _one_to_many.values()), [])
+                - _one_to_many.keys()
+                - set(order)
+            )
+        )
         for k, v in _one_to_many.items():
             if v.issubset(order):
                 if k not in order:
                     order.append(k)
-        _one_to_many = {k: v for k, v in _one_to_many.items() if not (k in order and v.issubset(order))}
+        _one_to_many = {
+            k: v
+            for k, v in _one_to_many.items()
+            if not (k in order and v.issubset(order))
+        }
     return order
 
 

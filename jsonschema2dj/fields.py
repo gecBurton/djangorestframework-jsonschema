@@ -16,9 +16,7 @@ def build_choices(enums, _type="string"):
     "helper function for enums to choices"
     if _type == "string":
         names = [value.lower().replace(" ", "_") for value in enums]
-        return dict(
-            max_length=max(map(len, enums)), choices=list(zip(names, enums))
-        )
+        return dict(max_length=max(map(len, enums)), choices=list(zip(names, enums)))
 
     if _type == "integer":
         return dict(choices=list(zip(map(str, enums), enums)))
@@ -45,7 +43,7 @@ def build_string_field(sch, null, primary_key):
     if enums := sch.get("enum"):
         options.update(build_choices(enums))
 
-    if pattern:=sch.get("pattern"):
+    if pattern := sch.get("pattern"):
         validators.append(("RegexValidator", f'r"{pattern}"'))
 
     if validators:
@@ -64,12 +62,11 @@ def build_string_field(sch, null, primary_key):
             "uuid": "UUIDField",
         }
         try:
-            return formats[_format], dict(null=options["null"],primary_key=primary_key)
+            return formats[_format], dict(null=options["null"], primary_key=primary_key)
         except KeyError:
             raise NotImplementedError(f"no code written to handle format: {_format}")
 
     return "CharField", options
-
 
 
 def rationalize_type(sch):
@@ -93,7 +90,7 @@ def rationalize_type(sch):
                 _type = next(x for x in _type if x != "null")
         return _type, sch, null
 
-    if enums:= sch.get("enum"):
+    if enums := sch.get("enum"):
         if "null" in enums:
             enums.remove("null")
             null = True
@@ -114,37 +111,48 @@ def rationalize_type(sch):
 def build_field(name, sch, required):
     """this is the entry point for the module"""
 
-    primary_key= (name == required[0]) if required else False
+    primary_key = (name == required[0]) if required else False
 
     field_type, sch, null = rationalize_type(sch)
 
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             raise ValueError("field with name id must be a UUID")
-        return "UUIDField", dict(default="uuid.uuid4",primary_key=primary_key)
+        return "UUIDField", dict(default="uuid.uuid4", primary_key=primary_key)
 
     if field_type == "string":
         return build_string_field(sch, null, primary_key)
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return "IntegerField", dict(null=null, validators=validators,primary_key=primary_key)
+        return (
+            "IntegerField",
+            dict(null=null, validators=validators, primary_key=primary_key),
+        )
 
     if field_type == "number":
         validators = build_value_validators(sch)
         return (
             "DecimalField",
-            dict(null=null, validators=validators, max_digits=10, decimal_places=5,primary_key=primary_key),
+            dict(
+                null=null,
+                validators=validators,
+                max_digits=10,
+                decimal_places=5,
+                primary_key=primary_key,
+            ),
         )
 
     if field_type == "boolean":
-        return "BooleanField", dict(null=null,primary_key=primary_key)
+        return "BooleanField", dict(null=null, primary_key=primary_key)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 
 
 def build_relations(sch, null=False):
-    if set(sch.keys()) == {"$ref",}:
+    if set(sch.keys()) == {
+        "$ref",
+    }:
         model = sch["$ref"].split("/")[-1]
         return model, null, False
 
