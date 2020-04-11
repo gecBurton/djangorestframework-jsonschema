@@ -1,4 +1,3 @@
-from collections import defaultdict
 from typing import List
 
 from .fields import build_field, build_relations
@@ -93,86 +92,41 @@ def build_model_view(schema):
     relationships = {}
 
     for model_name, model in schema["definitions"].items():
-        single, many = [], []
+        single, many = {}, {}
 
-        for property in model["properties"].values():
-            if ref := property.get("$ref"):
-                single.append(ref.split("/")[-1])
+        for name, _property in model["properties"].items():
+            if ref := _property.get("$ref"):
+                single[ref.split("/")[-1]] = name
 
-            elif items := property.get("items"):
+            elif items := _property.get("items"):
                 if ref := items.get("$ref"):
-                    many.append(ref.split("/")[-1])
+                    many[ref.split("/")[-1]] = name
 
         relationships[model_name] = single, many
 
     return relationships
 
 
+
+
 def build_relationships(relationships):
-    one_to_one = []
-    many_to_one = defaultdict(set)
-    many_to_many = []
+    models = dict()
 
     for model, (singles, manys) in relationships.items():
-        for single in singles:
-            related_singles, _ = relationships.get(single)
-            if model in related_singles:
-                one_to_one.append([model, single])
+        models[model] = {"o2o": {}, "o2m": {}, "m2m": {}}
+        for single, single_name in singles.items():
+            related_single, related_many = relationships[single]
+            if model in related_single:
+                models[model]["o2o"][single_name] = single
             else:
-                many_to_one[model].add(single)
+                models[model]["o2m"][single_name] = single
 
-        for many in manys:
-            related_singles, _ = relationships.get(many)
-            if model in related_singles:
-                many_to_one[many].add(model)
+
+        for many, many_name in manys.items():
+            related_single, related_many = relationships[many]
+            if model in related_single:
+                models[many]["o2m"][related_single[model]] = model
             else:
-                many_to_many.append([many, model])
+                models[model]["m2m"][many_name] = many
 
-    one_to_one = {tuple(sorted(x)) for x in one_to_one}
-    many_to_many = {tuple(sorted(x)) for x in many_to_many}
-    return one_to_one, dict(many_to_one), many_to_many
-
-
-def sort_asymmetric(one_to_many):
-    _one_to_many = dict(one_to_many)
-    order = []
-    while _one_to_many:
-        order.extend(
-            sorted(
-                sum(map(list, _one_to_many.values()), [])
-                - _one_to_many.keys()
-                - set(order)
-            )
-        )
-        for k, v in _one_to_many.items():
-            if v.issubset(order):
-                if k not in order:
-                    order.append(k)
-        _one_to_many = {
-            k: v
-            for k, v in _one_to_many.items()
-            if not (k in order and v.issubset(order))
-        }
-    return order
-
-
-def sort_symmetric(one_to_one):
-    order = []
-    for a, b in map(sorted, one_to_one):
-        if a not in order:
-            order.append(a)
-        if b not in order:
-            order.append(b)
-    return order
-
-
-def sort_all(one_to_one, one_to_many, many_to_many):
-    one_to_one = sort_symmetric(one_to_one)
-    one_to_many = sort_asymmetric(one_to_many)
-    many_to_many = sort_symmetric(many_to_many)
-    order = []
-
-    for x in one_to_one + one_to_many + many_to_many:
-        if x not in order:
-            order.append(x)
-    return order
+    return models

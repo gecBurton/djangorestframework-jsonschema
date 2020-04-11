@@ -1,3 +1,4 @@
+from collections import defaultdict
 from json import load
 
 import pytest
@@ -7,8 +8,6 @@ from jsonschema2dj.models import (
     Model,
     build_model_view,
     build_relationships,
-    sort_asymmetric,
-    sort_all,
 )
 
 with open("tests/schemas/basic_model.json") as f:
@@ -94,52 +93,61 @@ def test_build_dependency_order():
 
 
 def test_build_model_view_explicit():
-    x = build_model_view(explicit_cardinalities)
-    assert x == {
-        "A": (["B"], []),
-        "B": (["A", "C"], []),
-        "C": (["D"], ["B"]),
-        "D": ([], ["C", "E"]),
-        "E": ([], ["D"]),
-    }
+    model_view = build_model_view(explicit_cardinalities)
+    assert model_view == {'A': ({'B': 'b'}, {}),
+                          'B': ({'A': 'a', 'C': 'c'}, {}),
+                          'C': ({'D': 'd'}, {'B': 'b'}),
+                          'D': ({}, {'C': 'c', 'E': 'e'}),
+                          'E': ({}, {'D': 'd'})}
 
-    y = build_relationships(x)
-    assert y == ({("A", "B")}, {"B": {"C"}, "C": {"D"}}, {("D", "E")})
-    assert sort_asymmetric(y[1]) == ["D", "C", "B"]
-    assert sort_all(*y) == ["A", "B", "D", "C", "E"]
+    x= build_relationships(model_view)
+    assert x =={'A': {'m2m': {}, 'o2m': {}, 'o2o': {'b': 'B'}},
+                'B': {'m2m': {}, 'o2m': {'c': 'C'}, 'o2o': {'a': 'A'}},
+                'C': {'m2m': {}, 'o2m': {'d': 'D'}, 'o2o': {}},
+                'D': {'m2m': {'e': 'E'}, 'o2m': {}, 'o2o': {}},
+                'E': {'m2m': {'d': 'D'}, 'o2m': {}, 'o2o': {}}}
 
 
 def test_build_model_view_implicit():
-    x = build_model_view(implicit_cardinalities)
-    assert x == {
-        "A": (["B"], []),
-        "B": (["A", "C"], []),
-        "C": (["D"], []),
-        "D": ([], ["E"]),
-        "E": ([], []),
-    }
+    model_view = build_model_view(implicit_cardinalities)
+    assert model_view == {'A': ({'B': 'b'}, {}),
+                          'B': ({'A': 'a', 'C': 'c'}, {}),
+                          'C': ({'D': 'd'}, {}),
+                          'D': ({}, {'E': 'e'}),
+                          'E': ({}, {})}
 
-    y = build_relationships(x)
-    assert y == ({("A", "B")}, {"B": {"C"}, "C": {"D"}}, {("D", "E")})
-    assert sort_asymmetric(y[1]) == ["D", "C", "B"]
-
-    assert sort_all(*y) == ["A", "B", "D", "C", "E"]
+    x= build_relationships(model_view)
+    assert x =={'A': {'m2m': {}, 'o2m': {}, 'o2o': {'b': 'B'}},
+                'B': {'m2m': {}, 'o2m': {'c': 'C'}, 'o2o': {'a': 'A'}},
+                'C': {'m2m': {}, 'o2m': {'d': 'D'}, 'o2o': {}},
+                'D': {'m2m': {'e': 'E'}, 'o2m': {}, 'o2o': {}},
+                'E': {'m2m': {}, 'o2m': {}, 'o2o': {}}}
 
 
 def test_build_():
-    x = build_model_view(simple_tree)
-    assert x == {
-        "A": (["B"], []),
-        "B": (["C", "E"], []),
-        "C": (["D"], []),
-        "D": ([], []),
-        "E": (["F"], []),
-        "F": ([], []),
-    }
+    model_view = build_model_view(simple_tree)
+    assert model_view == {'A': ({'B': 'b'}, {}),
+                          'B': ({'C': 'c', 'E': 'e'}, {}),
+                          'C': ({'D': 'd'}, {}),
+                          'D': ({}, {}),
+                          'E': ({'F': 'f'}, {}),
+                          'F': ({}, {})}
 
-    y = build_relationships(x)
-    assert y == (set(), {"A": {"B"}, "B": {"E", "C"}, "C": {"D"}, "E": {"F"}}, set())
+    x= build_relationships(model_view)
+    assert x == {'A': {'m2m': {}, 'o2m': {'b': 'B'}, 'o2o': {}},
+                 'B': {'m2m': {}, 'o2m': {'c': 'C', 'e': 'E'}, 'o2o': {}},
+                 'C': {'m2m': {}, 'o2m': {'d': 'D'}, 'o2o': {}},
+                 'D': {'m2m': {}, 'o2m': {}, 'o2o': {}},
+                 'E': {'m2m': {}, 'o2m': {'f': 'F'}, 'o2o': {}},
+                 'F': {'m2m': {}, 'o2m': {}, 'o2o': {}}}
 
-    assert sort_asymmetric(y[1]) == ["D", "F", "E", "C", "B", "A"]
 
-    assert sort_all(*y) == ["D", "F", "E", "C", "B", "A"]
+
+
+
+
+
+
+
+
+
