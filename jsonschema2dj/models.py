@@ -33,11 +33,7 @@ class Model:
             for field_name, field_sch in properties.items()
             if not is_relation(field_sch)
         }
-        self.relations = {
-            field_name: build_relations(field_sch, field_name not in required)
-            for field_name, field_sch in properties.items()
-            if is_relation(field_sch)
-        }
+
         self.enums = [
             field
             for field, (*_, options) in self.fields.items()
@@ -68,28 +64,6 @@ class Model:
                 fields.append(field_name)
         return fields
 
-
-def build_dependency_order(schema) -> List[str]:
-    dependency_order = []
-
-    def _get_dependencies(model_name):
-        model = schema["definitions"][model_name]
-        for field_name, field in model.get("properties", {}).items():
-            if is_relation(field):
-                if ref := field.get("$ref"):
-                    _model_name = ref.split("/")[-1]
-                    if _model_name not in dependency_order:
-                        dependency_order.append(_model_name)
-                        _get_dependencies(_model_name)
-
-    for name in schema["definitions"]:
-        _get_dependencies(name)
-
-    for name in schema["definitions"]:
-        if name not in dependency_order:
-            dependency_order.append(name)
-
-    return dependency_order
 
 
 def build_model_view(schema):

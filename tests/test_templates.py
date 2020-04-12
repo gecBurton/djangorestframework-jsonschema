@@ -1,7 +1,7 @@
 from json import load
 import pytest
 
-from jsonschema2dj.models import Model, build_dependency_order, build_relationships, build_relationships2
+from jsonschema2dj.models import Model, build_relationships2
 from jsonschema2dj.templates import (
     build_models,
     build_serializers,

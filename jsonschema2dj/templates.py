@@ -31,12 +31,12 @@ class {{model.name}}(viewsets.ModelViewSet):
 
 SERIALIZER_TEMPLATE = """
 from . import models
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import HyperlinkedModelSerializer
 
 
 {% for model in models %}
 
-class {{model.name}}(ModelSerializer):
+class {{model.name}}(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.{{model.name}}
