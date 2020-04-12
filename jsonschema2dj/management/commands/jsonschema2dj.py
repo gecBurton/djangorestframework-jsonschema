@@ -26,8 +26,8 @@ class Command(BaseCommand):
             schema = load(f)
 
         models = [
-            Model(model_name, schema["definitions"][model_name])
-            for model_name in build_dependency_order(schema)
+            Model(model_name, schema["definitions"][model_name], **kwargs)
+            for model_name, kwargs in build_dependency_order(schema).items()
         ]
 
         with open(f"{base_dir}/models.py", "w") as f:

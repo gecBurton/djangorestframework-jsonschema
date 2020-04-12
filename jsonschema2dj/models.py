@@ -23,7 +23,7 @@ def is_relation(sch):
 
 
 class Model:
-    def __init__(self, name, sch):
+    def __init__(self, name, sch, **kwargs):
         """build the django-like model from jsonschema"""
         self.name = name
         properties = sch.get("properties", {})
@@ -43,6 +43,10 @@ class Model:
             for field, (*_, options) in self.fields.items()
             if "choices" in options
         ]
+
+        self.o2o = kwargs.get("o2o", {})
+        self.o2m = kwargs.get("o2m", {})
+        self.m2m = kwargs.get("m2m", {})
 
     @property
     def fields_str(self):
@@ -130,3 +134,8 @@ def build_relationships(relationships):
                 models[model]["m2m"][many_name] = many
 
     return models
+
+
+def build_relationships2(schema):
+    mv = build_model_view(schema)
+    return build_relationships(mv)

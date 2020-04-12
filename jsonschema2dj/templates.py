@@ -57,12 +57,14 @@ class {{model.name}}(models.Model):
     {{name}} = models.{{type}}({{options}})
 {% endfor %}
 
-{% for name, (type, null, many) in model.relations.items() %}
-{% if many is sameas true %}
-    {{name}} = models.ManyToManyField({{type}})
-{% else %}
-    {{name}} = models.ForeignKey({{type}}, null={{null}}, on_delete=models.CASCADE)
-{% endif %}
+{% for name, model in model.o2o.items() %}
+    {{name}} = models.OneToOneField({{model}}, null=True, on_delete=models.CASCADE)
+{% endfor %}
+{% for name, model in model.o2m.items() %}
+    {{name}} = models.ForeignKey({{model}}, null=True, on_delete=models.CASCADE)
+{% endfor %}
+{% for name, model in model.m2m.items() %}
+    {{name}} = models.ManyToManyField({{model}})
 {% endfor %}
 
 {% endfor %}
@@ -118,6 +120,8 @@ class {{model.name}}(filters.FilterSet):
 {% endif %}
 {% endfor %}
             }
+
+
 {% endfor %}
 
 """

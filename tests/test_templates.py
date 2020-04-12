@@ -1,7 +1,7 @@
 from json import load
 import pytest
 
-from jsonschema2dj.models import Model, build_dependency_order
+from jsonschema2dj.models import Model, build_dependency_order, build_relationships, build_relationships2
 from jsonschema2dj.templates import (
     build_models,
     build_serializers,
@@ -57,6 +57,11 @@ class F(models.Model):
 
 
 
+class E(models.Model):
+
+    f = models.ForeignKey(F, null=True, on_delete=models.CASCADE)
+
+
 class D(models.Model):
 
 
@@ -64,11 +69,6 @@ class D(models.Model):
 class C(models.Model):
 
     d = models.ForeignKey(D, null=True, on_delete=models.CASCADE)
-
-
-class E(models.Model):
-
-    f = models.ForeignKey(F, null=True, on_delete=models.CASCADE)
 
 
 class B(models.Model):
@@ -96,6 +96,13 @@ class F(ModelSerializer):
         fields = '__all__'
 
 
+class E(ModelSerializer):
+
+    class Meta:
+        model = models.E
+        fields = '__all__'
+
+
 class D(ModelSerializer):
 
     class Meta:
@@ -107,13 +114,6 @@ class C(ModelSerializer):
 
     class Meta:
         model = models.C
-        fields = '__all__'
-
-
-class E(ModelSerializer):
-
-    class Meta:
-        model = models.E
         fields = '__all__'
 
 
@@ -154,6 +154,11 @@ class FAdmin(admin.ModelAdmin):
     list_filter = (
     )
 
+@admin.register(models.E)
+class EAdmin(admin.ModelAdmin):
+    list_filter = (
+    )
+
 @admin.register(models.D)
 class DAdmin(admin.ModelAdmin):
     list_filter = (
@@ -161,11 +166,6 @@ class DAdmin(admin.ModelAdmin):
 
 @admin.register(models.C)
 class CAdmin(admin.ModelAdmin):
-    list_filter = (
-    )
-
-@admin.register(models.E)
-class EAdmin(admin.ModelAdmin):
     list_filter = (
     )
 
@@ -224,9 +224,9 @@ from . import views
 router = routers.DefaultRouter()
 
 router.register("F", views.F)
+router.register("E", views.E)
 router.register("D", views.D)
 router.register("C", views.C)
-router.register("E", views.E)
 router.register("B", views.B)
 router.register("A", views.A)
 
@@ -253,6 +253,17 @@ class F(viewsets.ModelViewSet):
 
 
 
+class E(viewsets.ModelViewSet):
+    queryset = models.E.objects.all()
+    serializer_class = serializers.E
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filterset_class = filters.E
+    ordering_fields = "__all__"
+    search_fields = [
+    ]
+
+
+
 class D(viewsets.ModelViewSet):
     queryset = models.D.objects.all()
     serializer_class = serializers.D
@@ -269,17 +280,6 @@ class C(viewsets.ModelViewSet):
     serializer_class = serializers.C
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.C
-    ordering_fields = "__all__"
-    search_fields = [
-    ]
-
-
-
-class E(viewsets.ModelViewSet):
-    queryset = models.E.objects.all()
-    serializer_class = serializers.E
-    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
-    filterset_class = filters.E
     ordering_fields = "__all__"
     search_fields = [
     ]
@@ -320,6 +320,8 @@ class person(filters.FilterSet):
             "age": ["exact", "gte", "lte"],
             "sex": ["exact", "in"],
             }
+
+
 """
 
 filter_2 = """
@@ -331,31 +333,43 @@ class F(filters.FilterSet):
         model = models.F
         fields = {
             }
-class D(filters.FilterSet):
-    class Meta:
-        model = models.D
-        fields = {
-            }
-class C(filters.FilterSet):
-    class Meta:
-        model = models.C
-        fields = {
-            }
+
+
 class E(filters.FilterSet):
     class Meta:
         model = models.E
         fields = {
             }
+
+
+class D(filters.FilterSet):
+    class Meta:
+        model = models.D
+        fields = {
+            }
+
+
+class C(filters.FilterSet):
+    class Meta:
+        model = models.C
+        fields = {
+            }
+
+
 class B(filters.FilterSet):
     class Meta:
         model = models.B
         fields = {
             }
+
+
 class A(filters.FilterSet):
     class Meta:
         model = models.A
         fields = {
             }
+
+
 """
 
 
@@ -368,8 +382,8 @@ class A(filters.FilterSet):
 )
 def test_build_models(schema, model, serializer, admin, url, view, filter):
     models = [
-        Model(model_name, schema["definitions"][model_name])
-        for model_name in build_dependency_order(schema)
+        Model(model_name, schema["definitions"][model_name], **kwargs)
+        for model_name, kwargs in build_relationships2(schema).items()
     ]
 
     assert build_models(models) == model
