@@ -58,13 +58,13 @@ class {{model.name}}(models.Model):
 {% endfor %}
 
 {% for name, model in model.o2o.items() %}
-    {{name}} = models.OneToOneField({{model}}, null=True, on_delete=models.CASCADE)
+    {{name}} = models.OneToOneField("{{model}}", null=True, on_delete=models.CASCADE)
 {% endfor %}
 {% for name, model in model.o2m.items() %}
-    {{name}} = models.ForeignKey({{model}}, null=True, on_delete=models.CASCADE)
+    {{name}} = models.ForeignKey("{{model}}", null=True, on_delete=models.CASCADE)
 {% endfor %}
 {% for name, model in model.m2m.items() %}
-    {{name}} = models.ManyToManyField({{model}})
+    {{name}} = models.ManyToManyField("{{model}}")
 {% endfor %}
 
 {% endfor %}
