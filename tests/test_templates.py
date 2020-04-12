@@ -35,11 +35,11 @@ class person(models.Model):
 
 serializer_1 = """
 from . import models
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import HyperlinkedModelSerializer
 
 
 
-class person(ModelSerializer):
+class person(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.person
@@ -85,46 +85,46 @@ class A(models.Model):
 
 serializer_2 = """
 from . import models
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import HyperlinkedModelSerializer
 
 
 
-class F(ModelSerializer):
+class F(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.F
         fields = '__all__'
 
 
-class E(ModelSerializer):
+class E(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.E
         fields = '__all__'
 
 
-class D(ModelSerializer):
+class D(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.D
         fields = '__all__'
 
 
-class C(ModelSerializer):
+class C(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.C
         fields = '__all__'
 
 
-class B(ModelSerializer):
+class B(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.B
         fields = '__all__'
 
 
-class A(ModelSerializer):
+class A(HyperlinkedModelSerializer):
 
     class Meta:
         model = models.A
