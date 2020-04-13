@@ -22,6 +22,10 @@ result_1 = """
 import uuid
 from django.core import validators
 from django.db import models
+try:
+    from extra_fields import JSONSchemaField
+except ImportError:
+    pass
 
 
 class person(models.Model):
@@ -51,6 +55,10 @@ result_2 = """
 import uuid
 from django.core import validators
 from django.db import models
+try:
+    from extra_fields import JSONSchemaField
+except ImportError:
+    pass
 
 
 class F(models.Model):

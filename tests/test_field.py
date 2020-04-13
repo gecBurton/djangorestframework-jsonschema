@@ -74,6 +74,14 @@ results = {
         "UUIDField",
         {"primary_key": True, "default": "uuid.uuid4", "primary_key": False},
     ),
+    "json-schema": ('JSONSchemaField',
+                    {'null': False,
+                     'primary_key': False,
+                     'schema': {'properties': {'a': {'type': 'boolean'},
+                                               'b': {'type': 'integer'},
+                                               'c': {'type': 'boolean'}},
+                                'required': ['a', 'b'],
+                                'type': 'object'}})
 }
 
 

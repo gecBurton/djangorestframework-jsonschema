@@ -49,6 +49,10 @@ MODEL_TEMPLATE = """
 import uuid
 from django.core import validators
 from django.db import models
+try:
+    from extra_fields import JSONSchemaField
+except ImportError:
+    pass
 
 {% for model in models %}
 
