@@ -147,9 +147,7 @@ from . import models
 
 @admin.register(models.person)
 class personAdmin(admin.ModelAdmin):
-    list_filter = (
-        "sex",
-    )
+    list_filter = ("sex", )
 """
 
 admin_2 = """
@@ -159,33 +157,27 @@ from . import models
 
 @admin.register(models.F)
 class FAdmin(admin.ModelAdmin):
-    list_filter = (
-    )
+    list_filter = ()
 
 @admin.register(models.E)
 class EAdmin(admin.ModelAdmin):
-    list_filter = (
-    )
+    list_filter = ()
 
 @admin.register(models.D)
 class DAdmin(admin.ModelAdmin):
-    list_filter = (
-    )
+    list_filter = ()
 
 @admin.register(models.C)
 class CAdmin(admin.ModelAdmin):
-    list_filter = (
-    )
+    list_filter = ()
 
 @admin.register(models.B)
 class BAdmin(admin.ModelAdmin):
-    list_filter = (
-    )
+    list_filter = ()
 
 @admin.register(models.A)
 class AAdmin(admin.ModelAdmin):
-    list_filter = (
-    )
+    list_filter = ()
 """
 
 view_1 = """
@@ -202,9 +194,7 @@ class person(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.person
     ordering_fields = "__all__"
-    search_fields = [
-        "$name",
-    ]
+    search_fields = ["$name", ]
 
 
 """
@@ -256,8 +246,7 @@ class F(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.F
     ordering_fields = "__all__"
-    search_fields = [
-    ]
+    search_fields = []
 
 
 
@@ -267,8 +256,7 @@ class E(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.E
     ordering_fields = "__all__"
-    search_fields = [
-    ]
+    search_fields = []
 
 
 
@@ -278,8 +266,7 @@ class D(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.D
     ordering_fields = "__all__"
-    search_fields = [
-    ]
+    search_fields = []
 
 
 
@@ -289,8 +276,7 @@ class C(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.C
     ordering_fields = "__all__"
-    search_fields = [
-    ]
+    search_fields = []
 
 
 
@@ -300,8 +286,7 @@ class B(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.B
     ordering_fields = "__all__"
-    search_fields = [
-    ]
+    search_fields = []
 
 
 
@@ -311,8 +296,7 @@ class A(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.A
     ordering_fields = "__all__"
-    search_fields = [
-    ]
+    search_fields = []
 
 
 """

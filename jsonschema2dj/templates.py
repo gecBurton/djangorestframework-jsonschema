@@ -19,11 +19,7 @@ class {{model.name}}(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.{{model.name}}
     ordering_fields = "__all__"
-    search_fields = [
-{% for field in model.search_fields %}
-        "${{field}}",
-{% endfor %}
-    ]
+    search_fields = [{% for field in model.search_fields %}"${{field}}", {% endfor %}]
 
 
 {% endfor %}
@@ -93,11 +89,7 @@ from . import models
 
 @admin.register(models.{{model.name}})
 class {{model.name}}Admin(admin.ModelAdmin):
-    list_filter = (
-{% for enum in model.enum_fields %}
-        "{{enum}}",
-{% endfor %}
-    )
+    list_filter = ({% for enum in model.enum_fields %}"{{enum}}", {% endfor %})
 {% endfor %}
 """
 
