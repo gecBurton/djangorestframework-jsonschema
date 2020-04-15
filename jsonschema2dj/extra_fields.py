@@ -14,5 +14,5 @@ class ValidatedJSONField(JSONField):
         data = json.loads(value)
         validator = Draft7Validator(self.schema)
         if errors := list(validator.iter_errors(data)):
-            raise exceptions.ValidationError(errors, code='invalid')
+            raise exceptions.ValidationError(errors, code="invalid")
         return value

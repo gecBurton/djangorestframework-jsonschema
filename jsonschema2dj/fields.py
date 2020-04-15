@@ -2,7 +2,6 @@
 """
 
 
-
 def build_value_validators(sch):
     """common to integers and strings"""
     validators = []

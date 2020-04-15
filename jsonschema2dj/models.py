@@ -33,17 +33,15 @@ class Model:
             for field_name, field_sch in properties.items()
             if not is_relation(field_sch)
         }
+        self.relations = relations
 
-        self.enums = [
+    @property
+    def enum_fields(self):
+        return [
             field
             for field, (*_, options) in self.fields.items()
             if "choices" in options
         ]
-
-        self.relations = relations
-
-
-
 
     @property
     def search_fields(self):
@@ -52,7 +50,6 @@ class Model:
             if field_type == "CharField" and "choices" not in field_attrs:
                 fields.append(field_name)
         return fields
-
 
 
 def build_model_view(schema):
@@ -74,8 +71,6 @@ def build_model_view(schema):
     return relationships
 
 
-
-
 def build_relationships(schema):
     models = dict()
     relationships = build_model_view(schema)
@@ -85,19 +80,31 @@ def build_relationships(schema):
         for single, single_name in singles.items():
             related_single, related_many = relationships[single]
             if model in related_single:
-                models[model][single_name] = "OneToOneField", single, dict(null=True, on_delete="models.CASCADE")
+                models[model][single_name] = (
+                    "OneToOneField",
+                    single,
+                    dict(null=True, on_delete="models.CASCADE"),
+                )
             else:
-                models[model][single_name] = "ForeignKey", single, dict(null=True, on_delete="models.CASCADE")
-
+                models[model][single_name] = (
+                    "ForeignKey",
+                    single,
+                    dict(null=True, on_delete="models.CASCADE"),
+                )
 
         for many, many_name in manys.items():
             related_single, related_many = relationships[many]
             if model in related_single:
-                models[many][related_single[model]] = "ForeignKey", model, dict(null=True, on_delete="models.CASCADE")
+                models[many][related_single[model]] = (
+                    "ForeignKey",
+                    model,
+                    dict(null=True, on_delete="models.CASCADE"),
+                )
             else:
-                models[model][many_name] = "ManyToManyField", many, dict(null=True, on_delete="models.CASCADE")
+                models[model][many_name] = (
+                    "ManyToManyField",
+                    many,
+                    dict(null=True, on_delete="models.CASCADE"),
+                )
 
     return models
-
-
-

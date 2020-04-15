@@ -94,7 +94,7 @@ from . import models
 @admin.register(models.{{model.name}})
 class {{model.name}}Admin(admin.ModelAdmin):
     list_filter = (
-{% for enum in model.enums %}
+{% for enum in model.enum_fields %}
         "{{enum}}",
 {% endfor %}
     )
