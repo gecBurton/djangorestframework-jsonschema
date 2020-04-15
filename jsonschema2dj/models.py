@@ -87,8 +87,9 @@ def build_model_view(schema):
 
 
 
-def build_relationships(relationships):
+def build_relationships(schema):
     models = dict()
+    relationships = build_model_view(schema)
 
     for model, (singles, manys) in relationships.items():
         models[model] = {"o2o": {}, "o2m": {}, "m2m": {}}
@@ -110,6 +111,4 @@ def build_relationships(relationships):
     return models
 
 
-def build_relationships2(schema):
-    mv = build_model_view(schema)
-    return build_relationships(mv)
+

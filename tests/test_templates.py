@@ -1,7 +1,7 @@
 from json import load
 import pytest
 
-from jsonschema2dj.models import Model, build_relationships2
+from jsonschema2dj.models import Model, build_relationships
 from jsonschema2dj.templates import (
     build_models,
     build_serializers,
@@ -391,7 +391,7 @@ class A(filters.FilterSet):
 def test_build_models(schema, model, serializer, admin, url, view, filter):
     models = [
         Model(model_name, schema["definitions"][model_name], **kwargs)
-        for model_name, kwargs in build_relationships2(schema).items()
+        for model_name, kwargs in build_relationships(schema).items()
     ]
 
     assert build_models(models) == model
