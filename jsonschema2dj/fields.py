@@ -147,7 +147,7 @@ def build_field(name, sch, required):
         return "BooleanField", dict(null=null, primary_key=primary_key)
 
     if field_type == "object":
-        return "JSONSchemaField", dict(null=null, primary_key=primary_key, schema=sch)
+        return "JSONSchemaField", dict(schema=sch)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 

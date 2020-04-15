@@ -23,7 +23,7 @@ def is_relation(sch):
 
 
 class Model:
-    def __init__(self, name, sch, **kwargs):
+    def __init__(self, name, sch, **relations):
         """build the django-like model from jsonschema"""
         self.name = name
         properties = sch.get("properties", {})
@@ -40,9 +40,8 @@ class Model:
             if "choices" in options
         ]
 
-        self.o2o = kwargs.get("o2o", {})
-        self.o2m = kwargs.get("o2m", {})
-        self.m2m = kwargs.get("m2m", {})
+        self.relations = relations
+
 
     @property
     def fields_str(self):
@@ -92,21 +91,21 @@ def build_relationships(schema):
     relationships = build_model_view(schema)
 
     for model, (singles, manys) in relationships.items():
-        models[model] = {"o2o": {}, "o2m": {}, "m2m": {}}
+        models[model] = {}
         for single, single_name in singles.items():
             related_single, related_many = relationships[single]
             if model in related_single:
-                models[model]["o2o"][single_name] = single
+                models[model][single_name] = "OneToOneField", single, dict(null=True, on_delete="models.CASCADE")
             else:
-                models[model]["o2m"][single_name] = single
+                models[model][single_name] = "ForeignKey", single, dict(null=True, on_delete="models.CASCADE")
 
 
         for many, many_name in manys.items():
             related_single, related_many = relationships[many]
             if model in related_single:
-                models[many]["o2m"][related_single[model]] = model
+                models[many][related_single[model]] = "ForeignKey", model, dict(null=True, on_delete="models.CASCADE")
             else:
-                models[model]["m2m"][many_name] = many
+                models[model][many_name] = "ManyToManyField", many, dict(null=True, on_delete="models.CASCADE")
 
     return models
 
