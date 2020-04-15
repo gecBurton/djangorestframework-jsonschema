@@ -40,7 +40,7 @@ results = {
     "boolean": ("BooleanField", {"null": False, "primary_key": False}),
     "integer": (
         "IntegerField",
-        {"validators": [], "null": False, "primary_key": False},
+        {"validators": "[]", "null": False, "primary_key": False},
     ),
     "enum": (
         "CharField",
@@ -54,7 +54,7 @@ results = {
     "integer-minimum-maximum": (
         "IntegerField",
         {
-            "validators": [("MinValueValidator", 3), ("MaxValueValidator", 5)],
+            "validators": "[validators.MinValueValidator(3), validators.MaxValueValidator(5)]",
             "null": False,
             "primary_key": False,
         },

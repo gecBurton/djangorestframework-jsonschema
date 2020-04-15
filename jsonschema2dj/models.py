@@ -43,17 +43,7 @@ class Model:
         self.relations = relations
 
 
-    @property
-    def fields_str(self):
-        field_repr = {}
-        for field_name, (field_type, field_attrs) in self.fields.items():
-            if validators := field_attrs.get("validators"):
-                field_attrs["validators"] = (
-                    "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
-                )
-            field_attrs_dict = ", ".join(f"{k}={v}" for k, v in field_attrs.items())
-            field_repr[field_name] = (field_type, field_attrs_dict)
-        return field_repr
+
 
     @property
     def search_fields(self):

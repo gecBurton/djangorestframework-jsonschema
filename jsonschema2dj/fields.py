@@ -2,6 +2,7 @@
 """
 
 
+
 def build_value_validators(sch):
     """common to integers and strings"""
     validators = []
@@ -9,7 +10,7 @@ def build_value_validators(sch):
         validators.append(("MinValueValidator", sch["minimum"]))
     if "maximum" in sch:
         validators.append(("MaxValueValidator", sch["maximum"]))
-    return validators
+    return "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
 
 
 def build_choices(enums, _type="string"):

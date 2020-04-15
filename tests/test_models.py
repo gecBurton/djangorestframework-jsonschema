@@ -32,7 +32,7 @@ results = {
                 {
                     "null": False,
                     "primary_key": False,
-                    "validators": [("MinValueValidator", 0)],
+                    'validators': '[validators.MinValueValidator(0)]',
                 },
             ),
             "id": ("UUIDField", {"primary_key": True, "default": "uuid.uuid4"}),
