@@ -11,10 +11,10 @@ from jsonschema2dj.templates import (
     build_filters,
 )
 
-with open("tests/schemas/basic_model.json") as f:
+with open("tests/json-schemas/basic_model.json") as f:
     basic_model = load(f)
 
-with open("tests/schemas/simple_tree.json") as f:
+with open("tests/json-schemas/simple_tree.json") as f:
     simple_tree = load(f)
 
 

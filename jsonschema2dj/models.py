@@ -23,6 +23,14 @@ def is_relation(sch):
 
 
 class Model:
+
+    @staticmethod
+    def factory(schema):
+        return [
+            Model(model_name, schema["definitions"][model_name], **kwargs)
+            for model_name, kwargs in build_relationships(schema).items()
+        ]
+
     def __init__(self, name, sch, **relations):
         """build the django-like model from jsonschema"""
         self.name = name
@@ -34,6 +42,10 @@ class Model:
             if not is_relation(field_sch)
         }
         self.relations = relations
+
+    @property
+    def dict_repr(self):
+        return dict(name=self.name, fields=dict(**self.fields, **self.relations))
 
     @property
     def enum_fields(self):
@@ -58,7 +70,7 @@ def build_model_view(schema):
     for model_name, model in schema["definitions"].items():
         single, many = {}, {}
 
-        for name, _property in model["properties"].items():
+        for name, _property in model.get("properties", {}).items():
             if ref := _property.get("$ref"):
                 single[ref.split("/")[-1]] = name
 

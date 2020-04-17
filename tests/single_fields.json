@@ -170,6 +170,24 @@
       "type": "string",
       "format": "uuid"
     },
-    "json-schema": {"type": "object", "required":  ["a", "b"], "properties": {"a":  {"type":  "boolean"}, "b":  {"type":  "integer"}, "c":  {"type":  "boolean"}}}
+    "json-schema": {
+      "type": "object",
+      "required": [
+        "a",
+        "b"
+      ],
+      "properties": {
+        "a": {
+          "type": "boolean"
+        },
+        "b": {
+          "type": "integer"
+        },
+        "c": {
+          "type": "boolean"
+        }
+      }
+
+    }
   }
 }

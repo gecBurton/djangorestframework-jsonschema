@@ -7,19 +7,19 @@ from jsonschema2dj.models import (
     build_relationships,
 )
 
-with open("tests/schemas/basic_model.json") as f:
+with open("tests/json-schemas/basic_model.json") as f:
     basic_model = load(f)
 
-with open("tests/schemas/simple_tree.json") as f:
+with open("tests/json-schemas/simple_tree.json") as f:
     simple_tree = load(f)
 
-with open("tests/schemas/explicit_cardinalities.json") as f:
+with open("tests/json-schemas/explicit_cardinalities.json") as f:
     explicit_cardinalities = load(f)
 
-with open("tests/schemas/implicit_cardinalities.json") as f:
+with open("tests/json-schemas/implicit_cardinalities.json") as f:
     implicit_cardinalities = load(f)
 
-with open("tests/schemas/simple_tree.json") as f:
+with open("tests/json-schemas/simple_tree.json") as f:
     simple_tree = load(f)
 
 

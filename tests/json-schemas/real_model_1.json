@@ -1,0 +1,171 @@
+{
+  "definitions": {
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "redcap",
+        "sample_id",
+        "well",
+        "volume_ul",
+        "concentration_ng_ul",
+        "od_260_280",
+        "cancer_sample_y_n",
+        "sample_type",
+        "priority",
+        "plate"
+      ],
+      "properties": {
+        "plate": {
+          "$ref": "#/definitions/plate"
+        },
+        "redcap": {"type": "array", "items": {
+          "$ref": "#/definitions/redcap"
+        }
+        },
+        "sample_id": {
+          "type": "integer",
+          "minimum": 1000000000,
+          "maximum": 2147483647
+        },
+        "well": {
+          "type": "string",
+          "pattern": "^[A-H](0[1-9]|1[1-2])$"
+        },
+        "volume_ul": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 700
+        },
+        "concentration_ng_ul": {
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 9999.99
+        },
+        "od_260_280": {
+          "type": "number",
+          "multipleOf": 0.01,
+          "minimum": 0,
+          "maximum": 10
+        },
+        "cancer_sample_y_n": {
+          "enum": [
+            "yes",
+            "no"
+          ]
+        },
+        "sample_type": {
+          "enum": [
+            "dna_blood_germline",
+            "dna_saliva",
+            "dna_fibroblast",
+            "dna_ff_germline",
+            "dna_ffpe_tumour",
+            "dna_ff_tumour",
+            "dna_blood_tumour",
+            "dna_bone_marrow_aspirate_tumour_sorted_cells",
+            "dna_bone_marrow_aspirate_tumour_cells",
+            "tumour_tissue_ffpe",
+            "lysate_ffpe",
+            "lysate_ff",
+            "lysed_tumour_cells",
+            "streck_plasma",
+            "edta_plasma",
+            "lihep_plasma",
+            "serum",
+            "rna_blood",
+            "tumour_tissue_ff",
+            "bone_marrow_rna_gtc",
+            "blood_rna_gtc"
+          ]
+        }
+      }
+    },
+    "redcap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "GenOMICC",
+        "sex",
+        "nhs_number",
+        "date_of_birth",
+        "consent_taken_assertion",
+        "hospital_trust",
+        "date_of_identifying_eligibility_for_the_study",
+        "responsible_clinician"
+      ],
+      "properties": {
+        "GenOMICC": {
+          "type": "string",
+          "pattern": "^.{4,32}$"
+        },
+        "sex": {
+          "enum": [
+            "m",
+            "f",
+            "u"
+          ]
+        },
+        "nhs_number": {
+          "type": "string",
+          "pattern": "^\\d{3} \\d{3} \\d{4}$"
+        },
+        "date_of_birth": {
+          "type": "string",
+          "format": "date"
+        },
+        "consent_taken_assertion": {
+          "type": "boolean"
+        },
+        "hospital_trust": {
+          "type": "string"
+        },
+        "date_of_identifying_eligibility_for_the_study": {
+          "type": "string",
+          "format": "date"
+        },
+        "responsible_clinician": {
+          "$ref": "#/definitions/ResponsibleClinician"
+        }
+      }
+    },
+    "ResponsibleClinician": {
+      "properties": {
+        "name": {"type":  "string"},
+        "email": {"type":  "string", "format": "email"},
+        "address": {
+          "type":  "object",
+          "properties": {
+            "lines":  {"type":  "array", "items":  {"type": "string"} },
+            "postcode": {"type": "string", "pattern":  "^[A-Z]{2}\\d \\d[A-Z]{2}$"}
+          }
+        }
+      }
+    },
+    "plate": {
+      "required": ["barcode","priority"],
+      "properties": {
+        "barcode": {
+          "type": "string",
+          "pattern": "^LP\\d{7}-DNA$"
+        },        "priority": {
+          "enum": [
+            "routine",
+            "urgent"
+          ]
+        }
+
+      }
+    }
+  },
+  "properties": {
+    "redcap": {
+      "$ref": "#/definitions/redcap"
+    },
+    "manifest": {
+      "$ref": "#/definitions/manifest"
+    }
+
+  }
+}

@@ -4,7 +4,7 @@ import pytest
 
 from jsonschema2dj.fields import build_field
 
-with open("tests/schemas/single_fields.json") as f:
+with open("tests/single_fields.json") as f:
     single_fields = load(f)
 
 
