@@ -1,7 +1,7 @@
 from json import load
 from django.core.management.base import BaseCommand
 
-from jsonschema2dj.models import Model, build_relationships2, build_relationships
+from jsonschema2dj.models import Model
 from jsonschema2dj.templates import (
     build_models,
     build_serializers,
@@ -25,10 +25,7 @@ class Command(BaseCommand):
         with open(f"{base_dir}/schema.json") as f:
             schema = load(f)
 
-        models = [
-            Model(model_name, schema["definitions"][model_name], **kwargs)
-            for model_name, kwargs in build_relationships(schema).items()
-        ]
+        models = Model.factory(schema)
 
         with open(f"{base_dir}/models.py", "w") as f:
             f.write(build_models(models=models))
