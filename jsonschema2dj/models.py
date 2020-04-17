@@ -23,7 +23,6 @@ def is_relation(sch):
 
 
 class Model:
-
     @staticmethod
     def factory(schema):
         return [
