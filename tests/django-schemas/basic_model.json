@@ -9,20 +9,15 @@
       },
       "name": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255
       },
       "age": {
         "type": "IntegerField",
-        "null": false,
-        "validators": "[validators.MinValueValidator(0)]",
-        "primary_key": false
+        "validators": "[validators.MinValueValidator(0)]"
       },
       "sex": {
         "type": "CharField",
         "null": true,
-        "primary_key": false,
         "max_length": 6,
         "choices": [
           [

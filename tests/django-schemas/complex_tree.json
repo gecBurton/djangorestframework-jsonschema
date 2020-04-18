@@ -4,8 +4,6 @@
     "fields": {
       "postcode": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255,
         "validators": [
           [
@@ -16,8 +14,6 @@
       },
       "type": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 7,
         "choices": [
           [
@@ -42,8 +38,6 @@
     "fields": {
       "name": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255
       }
     },
@@ -67,8 +61,6 @@
     "fields": {
       "nhs_number": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255,
         "validators": [
           [

@@ -7,6 +7,8 @@ class Field(dict):
         for k, v in kwargs.items():
             if k in ("default", ) and v is None:
                 pass
+            elif k in ("null", "primary_key") and not v:
+                pass
             else:
                 _kwargs[k] = v
         super().__init__(**_kwargs)
@@ -71,7 +73,7 @@ def build_string_field(sch, null, primary_key, default):
             "uuid": "UUIDField",
         }
         try:
-            return  Field(type=formats[_format],null=options["null"], primary_key=primary_key, default=default)
+            return  Field(type=formats[_format],null=options.get("null", False), primary_key=primary_key, default=default)
         except KeyError:
             raise NotImplementedError(f"no code written to handle format: {_format}")
 

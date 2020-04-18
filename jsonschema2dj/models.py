@@ -63,7 +63,7 @@ class Model:
     def field_str(self):
         r = {}
         for name, details in self.fields.items():
-            r[name] = details["type"], {k: v for k, v in details.items() if not (k=="type" or (k in ("null","primary_key") and not v)) }
+            r[name] = details["type"], {k: v for k, v in details.items() if k!="type" }
 
         if not r and not self.relations:
             return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}

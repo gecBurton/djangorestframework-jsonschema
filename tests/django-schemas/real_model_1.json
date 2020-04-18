@@ -4,14 +4,10 @@
     "fields": {
       "sample_id": {
         "type": "IntegerField",
-        "null": false,
-        "validators": "[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)]",
-        "primary_key": false
+        "validators": "[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)]"
       },
       "well": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255,
         "validators": [
           [
@@ -22,30 +18,22 @@
       },
       "volume_ul": {
         "type": "IntegerField",
-        "null": false,
-        "validators": "[validators.MinValueValidator(10), validators.MaxValueValidator(700)]",
-        "primary_key": false
+        "validators": "[validators.MinValueValidator(10), validators.MaxValueValidator(700)]"
       },
       "concentration_ng_ul": {
         "type": "DecimalField",
-        "null": false,
         "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(9999.99)]",
         "max_digits": 10,
-        "decimal_places": 5,
-        "primary_key": false
+        "decimal_places": 5
       },
       "od_260_280": {
         "type": "DecimalField",
-        "null": false,
         "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(10)]",
         "max_digits": 10,
-        "decimal_places": 5,
-        "primary_key": false
+        "decimal_places": 5
       },
       "cancer_sample_y_n": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 3,
         "choices": [
           [
@@ -60,8 +48,6 @@
       },
       "sample_type": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 44,
         "choices": [
           [
@@ -171,7 +157,6 @@
     "fields": {
       "GenOMICC": {
         "type": "CharField",
-        "null": false,
         "primary_key": true,
         "max_length": 255,
         "validators": [
@@ -183,8 +168,6 @@
       },
       "sex": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 1,
         "choices": [
           [
@@ -203,8 +186,6 @@
       },
       "nhs_number": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255,
         "validators": [
           [
@@ -214,25 +195,17 @@
         ]
       },
       "date_of_birth": {
-        "type": "DateField",
-        "null": false,
-        "primary_key": false
+        "type": "DateField"
       },
       "consent_taken_assertion": {
-        "type": "BooleanField",
-        "null": false,
-        "primary_key": false
+        "type": "BooleanField"
       },
       "hospital_trust": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255
       },
       "date_of_identifying_eligibility_for_the_study": {
-        "type": "DateField",
-        "null": false,
-        "primary_key": false
+        "type": "DateField"
       }
     },
     "relations": {
@@ -249,14 +222,10 @@
     "fields": {
       "name": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 255
       },
       "email": {
-        "type": "EmailField",
-        "null": false,
-        "primary_key": false
+        "type": "EmailField"
       },
       "address": {
         "type": "JSONSchemaField",
@@ -284,7 +253,6 @@
     "fields": {
       "barcode": {
         "type": "CharField",
-        "null": false,
         "primary_key": true,
         "max_length": 255,
         "validators": [
@@ -296,8 +264,6 @@
       },
       "priority": {
         "type": "CharField",
-        "null": false,
-        "primary_key": false,
         "max_length": 7,
         "choices": [
           [
