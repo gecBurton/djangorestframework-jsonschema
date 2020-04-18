@@ -46,6 +46,7 @@ results = {
     },
     "boolean": {"type": "BooleanField", "null": False, "primary_key": False},
     "integer": {
+        "default": 2,
         "type": "IntegerField",
         "validators": "[]",
         "null": False,
@@ -72,7 +73,7 @@ results = {
         "primary_key": False,
     },
     "boolean-null": {"type": "BooleanField", "null": True, "primary_key": False},
-    "format-uuid": {"type": "UUIDField", "null": False, "primary_key": False},
+    "format-uuid": {"type": "UUIDField", "null": False, "primary_key": False, "default": "uuid.uuid4"},
     "id": {
         "type": "UUIDField",
         "primary_key": True,

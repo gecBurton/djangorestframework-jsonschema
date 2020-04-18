@@ -115,10 +115,12 @@
     },
     "format-uuid": {
       "type": "string",
-      "format": "uuid"
+      "format": "uuid",
+      "default": "uuid.uuid4"
     },
     "integer": {
-      "type": "integer"
+      "type": "integer",
+      "default": 2
     },
     "integer-minimum-maximum": {
       "type": "integer",

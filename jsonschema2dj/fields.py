@@ -1,6 +1,15 @@
 """helper methods for field level schema to django field like object
 """
 
+class Field(dict):
+    def __init__(self, **kwargs):
+        _kwargs = {}
+        for k, v in kwargs.items():
+            if k in ("default", ) and v is None:
+                pass
+            else:
+                _kwargs[k] = v
+        super().__init__(**_kwargs)
 
 def build_value_validators(sch):
     """common to integers and strings"""
@@ -16,17 +25,17 @@ def build_choices(enums, _type="string"):
     "helper function for enums to choices"
     if _type == "string":
         names = [value.lower().replace(" ", "_") for value in enums]
-        return dict(max_length=max(map(len, enums)), choices=list(zip(names, enums)))
+        return Field(max_length=max(map(len, enums)), choices=list(zip(names, enums)))
 
     if _type == "integer":
-        return dict(choices=list(zip(map(str, enums), enums)))
+        return Field(choices=list(zip(map(str, enums), enums)))
 
     raise NotImplementedError("only integer or string enums are supported")
 
 
-def build_string_field(sch, null, primary_key):
+def build_string_field(sch, null, primary_key, default):
     "the string case is complex enough to have its own function"
-    options = dict(null=null, primary_key=primary_key)
+    options = Field(null=null, primary_key=primary_key, default=default)
     validators = []
 
     max_length = sch.get("maxLength", 255)
@@ -38,7 +47,7 @@ def build_string_field(sch, null, primary_key):
         validators.append(("MinLengthValidator", min_length))
 
     if (min_length and max_length <= min_length) or max_length > 255:
-        return dict(type="TextField", **options)
+        return Field(type="TextField", **options)
 
     if enums := sch.get("enum"):
         options.update(build_choices(enums))
@@ -62,16 +71,17 @@ def build_string_field(sch, null, primary_key):
             "uuid": "UUIDField",
         }
         try:
-            return  dict(type=formats[_format],null=options["null"], primary_key=primary_key)
+            return  Field(type=formats[_format],null=options["null"], primary_key=primary_key, default=default)
         except KeyError:
             raise NotImplementedError(f"no code written to handle format: {_format}")
 
-    return dict(type="CharField", **options)
+    return Field(type="CharField", **options)
 
 
 def rationalize_type(sch):
     """the type is problematic especially with regards to enums and null"""
     null = False
+    default = sch.get("default")
     if _type := sch.get("type"):
         if isinstance(_type, list):
             if (
@@ -88,7 +98,7 @@ def rationalize_type(sch):
             else:
                 null = True
                 _type = next(x for x in _type if x != "null")
-        return _type, sch, null
+        return _type, sch, null, default
 
     if enums := sch.get("enum"):
         if "null" in enums:
@@ -103,7 +113,7 @@ def rationalize_type(sch):
             raise ValueError(
                 "all values in an enum must be either all strings or all integers"
             )
-        return _type, sch, null
+        return _type, sch, null, default
 
     raise ValueError(f"either the type must be specified or it must be an enum")
 
@@ -113,37 +123,38 @@ def build_field(name, sch, required):
 
     primary_key = (name == required[0]) if required else False
 
-    field_type, sch, null = rationalize_type(sch)
+    field_type, sch, null, default = rationalize_type(sch)
 
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             raise ValueError("field with name id must be a UUID")
-        return dict(type="UUIDField", default="uuid.uuid4", primary_key=primary_key)
+        return Field(type="UUIDField", default=default or "uuid.uuid4", primary_key=primary_key)
 
     if field_type == "string":
-        return build_string_field(sch, null, primary_key)
+        return build_string_field(sch, null, primary_key, default)
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return dict(type="IntegerField", null=null, validators=validators, primary_key=primary_key)
+        return Field(type="IntegerField", null=null, validators=validators, primary_key=primary_key, default=default)
 
 
     if field_type == "number":
         validators = build_value_validators(sch)
-        return dict(type="DecimalField",
+        return Field(type="DecimalField",
                 null=null,
                 validators=validators,
                 max_digits=10,
                 decimal_places=5,
                 primary_key=primary_key,
+                default=default
             )
 
 
     if field_type == "boolean":
-        return  dict(type="BooleanField", null=null, primary_key=primary_key)
+        return  Field(type="BooleanField", null=null, primary_key=primary_key, default=default)
 
     if field_type == "object":
-        return dict(type="JSONSchemaField", schema=sch)
+        return Field(type="JSONSchemaField", schema=sch, default=default)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 
