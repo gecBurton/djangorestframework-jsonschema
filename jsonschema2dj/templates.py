@@ -52,16 +52,12 @@ except ImportError:
 
 
 class {{model.name}}(models.Model):
+
 {% for name, (type, options) in model.field_str.items() %}
     {{name}} = models.{{type}}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
 {% for name, (type, model, options) in model.relations_str.items() %}
-    {{name}} = models.{{type}}(
-         "{{model}}",
-{% for k, v in options.items() %}
-         {{k}}={{v}},
-{% endfor %}
-         )
+    {{name}} = models.{{type}}("{{model}}",{% for k, v in options.items() %}{{k}}={{v}},{% endfor %})
 {% endfor %}
 {% endfor %}
 """
