@@ -2,9 +2,9 @@
   {
     "name": "Hospital",
     "fields": {
-      "postcode": [
-        "CharField",
+      "postcode":
         {
+"type":          "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 255,
@@ -15,10 +15,10 @@
             ]
           ]
         }
-      ],
-      "type": [
-        "CharField",
+      ,
+      "type":
         {
+      "type":    "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 7,
@@ -37,21 +37,20 @@
             ]
           ]
         }
-      ]
     },
     "relations": {}
   },
   {
     "name": "Doctor",
     "fields": {
-      "name": [
-        "CharField",
+      "name":
         {
+"type":          "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 255
         }
-      ]
+
     },
     "relations": {
       "hospital": [
@@ -75,9 +74,9 @@
   {
     "name": "Patient",
     "fields": {
-      "nhs_number": [
-        "CharField",
+      "nhs_number":
         {
+      "type":    "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 255,
@@ -88,7 +87,7 @@
             ]
           ]
         }
-      ]
+
     },
     "relations": {}
   }

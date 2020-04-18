@@ -27,28 +27,27 @@ results = {
     "person": (
         "person",
         {
-            "age": (
-                "IntegerField",
-                {
+            "age":                 {
+                    "type":         "IntegerField",
                     "null": False,
                     "primary_key": False,
                     "validators": "[validators.MinValueValidator(0)]",
                 },
-            ),
-            "id": ("UUIDField", {"primary_key": True, "default": "uuid.uuid4"}),
-            "name": (
+
+            "id": {"type":"UUIDField", "primary_key": True, "default": "uuid.uuid4"},
+            "name": {"type":
                 "CharField",
-                {"max_length": 255, "null": False, "primary_key": False},
-            ),
-            "sex": (
+                "max_length": 255, "null": False, "primary_key": False},
+
+            "sex": {"type":
                 "CharField",
-                {
+
                     "choices": [("male", "male"), ("female", "female")],
                     "max_length": 6,
                     "null": True,
                     "primary_key": False,
                 },
-            ),
+
         },
         ["sex"],
     )

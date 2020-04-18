@@ -38,7 +38,7 @@ def build_string_field(sch, null, primary_key):
         validators.append(("MinLengthValidator", min_length))
 
     if (min_length and max_length <= min_length) or max_length > 255:
-        return "TextField", options
+        return dict(type="TextField", **options)
 
     if enums := sch.get("enum"):
         options.update(build_choices(enums))
@@ -62,11 +62,11 @@ def build_string_field(sch, null, primary_key):
             "uuid": "UUIDField",
         }
         try:
-            return formats[_format], dict(null=options["null"], primary_key=primary_key)
+            return  dict(type=formats[_format],null=options["null"], primary_key=primary_key)
         except KeyError:
             raise NotImplementedError(f"no code written to handle format: {_format}")
 
-    return "CharField", options
+    return dict(type="CharField", **options)
 
 
 def rationalize_type(sch):
@@ -118,36 +118,32 @@ def build_field(name, sch, required):
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             raise ValueError("field with name id must be a UUID")
-        return "UUIDField", dict(default="uuid.uuid4", primary_key=primary_key)
+        return dict(type="UUIDField", default="uuid.uuid4", primary_key=primary_key)
 
     if field_type == "string":
         return build_string_field(sch, null, primary_key)
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return (
-            "IntegerField",
-            dict(null=null, validators=validators, primary_key=primary_key),
-        )
+        return dict(type="IntegerField", null=null, validators=validators, primary_key=primary_key)
+
 
     if field_type == "number":
         validators = build_value_validators(sch)
-        return (
-            "DecimalField",
-            dict(
+        return dict(type="DecimalField",
                 null=null,
                 validators=validators,
                 max_digits=10,
                 decimal_places=5,
                 primary_key=primary_key,
-            ),
-        )
+            )
+
 
     if field_type == "boolean":
-        return "BooleanField", dict(null=null, primary_key=primary_key)
+        return  dict(type="BooleanField", null=null, primary_key=primary_key)
 
     if field_type == "object":
-        return "JSONSchemaField", dict(schema=sch)
+        return dict(type="JSONSchemaField", schema=sch)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 

@@ -9,19 +9,18 @@ with open("tests/single_fields.json") as f:
 
 
 results = {
-    "basic": ("CharField", {"max_length": 255, "null": False, "primary_key": True}),
-    "length": (
-        "CharField",
-        {
-            "max_length": 3,
+    "basic":  {"type":"CharField","max_length": 255, "null": False, "primary_key": True},
+    "length":         {"type":         "CharField",
+
+         "max_length": 3,
             "validators": [("MinLengthValidator", 2)],
             "null": False,
             "primary_key": False,
         },
-    ),
-    "regular_expressions": (
-        "CharField",
+    "regular_expressions":
+
         {
+            "type":"CharField",
             "max_length": 255,
             "validators": [
                 ("RegexValidator", 'r"^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"')
@@ -29,55 +28,50 @@ results = {
             "null": False,
             "primary_key": False,
         },
-    ),
-    "format_date-time": ("DateTimeField", {"null": False, "primary_key": False}),
-    "format_time": ("TimeField", {"null": False, "primary_key": False}),
-    "format_date": ("DateField", {"null": False, "primary_key": False}),
-    "format_email": ("EmailField", {"null": False, "primary_key": False}),
-    "format_idn-email": ("EmailField", {"null": False, "primary_key": False}),
-    "format_ipv4": ("GenericIPAddressField", {"null": False, "primary_key": False}),
-    "format_ipv6": ("GenericIPAddressField", {"null": False, "primary_key": False}),
-    "boolean": ("BooleanField", {"null": False, "primary_key": False}),
-    "integer": (
+
+    "format_date-time": {"type": "DateTimeField","null": False, "primary_key": False},
+    "format_time": {"type": "TimeField","null": False, "primary_key": False},
+    "format_date": {"type": "DateField", "null": False, "primary_key": False},
+    "format_email": {"type": "EmailField", "null": False, "primary_key": False},
+    "format_idn-email": {"type": "EmailField", "null": False, "primary_key": False},
+    "format_ipv4": {"type": "GenericIPAddressField", "null": False, "primary_key": False},
+    "format_ipv6": {"type": "GenericIPAddressField", "null": False, "primary_key": False},
+    "boolean": {"type": "BooleanField", "null": False, "primary_key": False},
+    "integer": {"type":
         "IntegerField",
-        {"validators": "[]", "null": False, "primary_key": False},
-    ),
-    "enum": (
+        "validators": "[]", "null": False, "primary_key": False}
+    ,
+    "enum": {"type":
         "CharField",
-        {
+
             "max_length": 1,
             "choices": [("a", "A"), ("b", "b"), ("c", "C")],
             "null": False,
             "primary_key": False,
         },
-    ),
-    "integer-minimum-maximum": (
+    "integer-minimum-maximum": {"type":
         "IntegerField",
-        {
             "validators": "[validators.MinValueValidator(3), validators.MaxValueValidator(5)]",
             "null": False,
             "primary_key": False,
         },
-    ),
-    "enum-null": (
+    "enum-null": {"type":
         "CharField",
-        {
             "max_length": 1,
             "choices": [("a", "A"), ("b", "b"), ("c", "C")],
             "null": True,
             "primary_key": False,
         },
-    ),
-    "boolean-null": ("BooleanField", {"null": True, "primary_key": False}),
-    "format-uuid": ("UUIDField", {"null": False, "primary_key": False}),
-    "id": (
+    "boolean-null": {"type": "BooleanField", "null": True, "primary_key": False},
+    "format-uuid": {"type": "UUIDField", "null": False, "primary_key": False},
+    "id": {"type":
         "UUIDField",
-        {"primary_key": True, "default": "uuid.uuid4", "primary_key": False},
-    ),
-    "json-schema": (
-        "JSONSchemaField",
-        {
-            "schema": {
+        "primary_key": True, "default": "uuid.uuid4", "primary_key": False},
+
+    "json-schema":
+        {"type": "JSONSchemaField",
+
+         "schema": {
                 "properties": {
                     "a": {"type": "boolean"},
                     "b": {"type": "integer"},
@@ -87,7 +81,6 @@ results = {
                 "type": "object",
             }
         },
-    ),
 }
 
 

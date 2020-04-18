@@ -2,17 +2,18 @@
   {
     "name": "manifest",
     "fields": {
-      "sample_id": [
-        "IntegerField",
-        {
+      "sample_id": {
+        "type":"IntegerField",
+
           "null": false,
           "validators": "[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)]",
           "primary_key": false
         }
-      ],
-      "well": [
-        "CharField",
+      ,
+      "well":
         {
+          "type":   "CharField",
+
           "null": false,
           "primary_key": false,
           "max_length": 255,
@@ -23,38 +24,39 @@
             ]
           ]
         }
-      ],
-      "volume_ul": [
-        "IntegerField",
+      ,
+      "volume_ul":
         {
+"type":          "IntegerField",
           "null": false,
           "validators": "[validators.MinValueValidator(10), validators.MaxValueValidator(700)]",
           "primary_key": false
         }
-      ],
-      "concentration_ng_ul": [
-        "DecimalField",
+      ,
+      "concentration_ng_ul":
         {
+          "type":   "DecimalField",
+
           "null": false,
           "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(9999.99)]",
           "max_digits": 10,
           "decimal_places": 5,
           "primary_key": false
         }
-      ],
-      "od_260_280": [
-        "DecimalField",
+      ,
+      "od_260_280":
         {
+          "type":         "DecimalField",
+
           "null": false,
           "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(10)]",
           "max_digits": 10,
           "decimal_places": 5,
           "primary_key": false
         }
-      ],
-      "cancer_sample_y_n": [
-        "CharField",
+,      "cancer_sample_y_n":
         {
+ "type"    :     "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 3,
@@ -69,10 +71,10 @@
             ]
           ]
         }
-      ],
-      "sample_type": [
-        "CharField",
+      ,
+      "sample_type":
         {
+        "type":  "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 44,
@@ -163,7 +165,7 @@
             ]
           ]
         }
-      ]
+
     },
     "relations": {
       "plate": [
@@ -187,9 +189,9 @@
   {
     "name": "redcap",
     "fields": {
-      "GenOMICC": [
-        "CharField",
+      "GenOMICC":
         {
+"type":          "CharField",
           "null": false,
           "primary_key": true,
           "max_length": 255,
@@ -200,10 +202,10 @@
             ]
           ]
         }
-      ],
-      "sex": [
-        "CharField",
+      ,
+      "sex":
         {
+      "type":    "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 1,
@@ -222,10 +224,11 @@
             ]
           ]
         }
-      ],
-      "nhs_number": [
-        "CharField",
+      ,
+      "nhs_number":
         {
+          "type":   "CharField",
+
           "null": false,
           "primary_key": false,
           "max_length": 255,
@@ -236,36 +239,37 @@
             ]
           ]
         }
-      ],
-      "date_of_birth": [
-        "DateField",
+      ,
+      "date_of_birth":
         {
+      "type":    "DateField",
           "null": false,
           "primary_key": false
         }
-      ],
-      "consent_taken_assertion": [
-        "BooleanField",
+      ,
+      "consent_taken_assertion":
         {
+          "type":        "BooleanField",
+
           "null": false,
           "primary_key": false
         }
-      ],
-      "hospital_trust": [
-        "CharField",
+      ,
+      "hospital_trust":
         {
+      "type":  "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 255
         }
-      ],
-      "date_of_identifying_eligibility_for_the_study": [
-        "DateField",
+      ,
+      "date_of_identifying_eligibility_for_the_study":
         {
+      "type":    "DateField",
           "null": false,
           "primary_key": false
         }
-      ]
+
     },
     "relations": {
       "responsible_clinician": [
@@ -281,24 +285,24 @@
   {
     "name": "ResponsibleClinician",
     "fields": {
-      "name": [
-        "CharField",
+      "name":
         {
+      "type":    "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 255
         }
-      ],
-      "email": [
-        "EmailField",
+      ,
+      "email":
         {
+"type":          "EmailField",
           "null": false,
           "primary_key": false
         }
-      ],
-      "address": [
-        "JSONSchemaField",
-        {
+      ,
+      "address":
+        {"type":   "JSONSchemaField",
+
           "schema": {
             "type": "object",
             "properties": {
@@ -315,16 +319,16 @@
             }
           }
         }
-      ]
+
     },
     "relations": {}
   },
   {
     "name": "plate",
     "fields": {
-      "barcode": [
-        "CharField",
+      "barcode":
         {
+      "type":    "CharField",
           "null": false,
           "primary_key": true,
           "max_length": 255,
@@ -335,10 +339,10 @@
             ]
           ]
         }
-      ],
-      "priority": [
-        "CharField",
+      ,
+      "priority":
         {
+      "type":    "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 7,
@@ -353,7 +357,7 @@
             ]
           ]
         }
-      ]
+
     },
     "relations": {}
   }

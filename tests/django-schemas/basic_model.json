@@ -2,32 +2,32 @@
   {
     "name": "person",
     "fields": {
-      "id": [
-        "UUIDField",
-        {
-          "default": "uuid.uuid4",
+      "id":         {"type":         "UUIDField",
+
+        "default": "uuid.uuid4",
           "primary_key": true
         }
-      ],
-      "name": [
-        "CharField",
+      ,
+      "name":
         {
+      "type":    "CharField",
           "null": false,
           "primary_key": false,
           "max_length": 255
         }
-      ],
-      "age": [
-        "IntegerField",
+      ,
+      "age":
         {
+          "type":   "IntegerField",
+
           "null": false,
           "validators": "[validators.MinValueValidator(0)]",
           "primary_key": false
         }
-      ],
-      "sex": [
-        "CharField",
+      ,
+      "sex":
         {
+      "type":    "CharField",
           "null": true,
           "primary_key": false,
           "max_length": 6,
@@ -42,7 +42,7 @@
             ]
           ]
         }
-      ]
+
     },
     "relations": {}
   }
