@@ -103,7 +103,7 @@ class {{model.name}}(filters.FilterSet):
         model = models.{{model.name}}
         fields = {
 {% for name, (type, options) in model.fields.items() %}
-{% if type in ("IntegerField", "DecimalField") %}
+{% if type in ("IntegerField", "DecimalField", "DateField", "DateTimeField") %}
             "{{name}}": ["exact", "gte", "lte"],
 {% elif "choices" in options.keys() %}
             "{{name}}": ["exact", "in"],

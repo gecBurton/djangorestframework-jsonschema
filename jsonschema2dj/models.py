@@ -44,7 +44,7 @@ class Model:
 
     @property
     def dict_repr(self):
-        return dict(name=self.name, fields=dict(**self.fields, **self.relations))
+        return dict(name=self.name, fields=self.fields, relations=self.relations)
 
     @property
     def enum_fields(self):

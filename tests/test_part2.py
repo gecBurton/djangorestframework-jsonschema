@@ -1,5 +1,5 @@
 from json import load
-from os import listdir
+from os import listdir, path
 
 import pytest
 
@@ -14,8 +14,8 @@ from jsonschema2dj.templates import (
 )
 
 
-json_schema_dir = "tests/json-schemas/"
-django_files_dir = "tests/django-files/"
+json_schema_dir = path.join("tests", "json-schemas")
+django_files_dir = path.join("tests", "django-files")
 
 
 assets = [
@@ -36,11 +36,11 @@ stuff = [
 
 @pytest.mark.parametrize("model,asset_name,asset_function", stuff)
 def test_q(model, asset_name, asset_function):
-    with open(json_schema_dir + model) as f:
+    with open(path.join(json_schema_dir, model)) as f:
         schema = load(f)
 
     with open(
-        django_files_dir + model.replace(".json", "") + "/" + asset_name + ".py"
+        path.join(django_files_dir, model.replace(".json", ""),  asset_name + ".py")
     ) as f:
         model_file = f.read()
 

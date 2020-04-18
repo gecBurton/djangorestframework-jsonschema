@@ -163,7 +163,9 @@
             ]
           ]
         }
-      ],
+      ]
+    },
+    "relations": {
       "plate": [
         "ForeignKey",
         "plate",
@@ -263,7 +265,9 @@
           "null": false,
           "primary_key": false
         }
-      ],
+      ]
+    },
+    "relations": {
       "responsible_clinician": [
         "ForeignKey",
         "ResponsibleClinician",
@@ -312,7 +316,8 @@
           }
         }
       ]
-    }
+    },
+    "relations": {}
   },
   {
     "name": "plate",
@@ -349,6 +354,7 @@
           ]
         }
       ]
-    }
+    },
+    "relations": {}
   }
 ]

@@ -20,6 +20,8 @@ class redcap(filters.FilterSet):
         model = models.redcap
         fields = {
             "sex": ["exact", "in"],
+            "date_of_birth": ["exact", "gte", "lte"],
+            "date_of_identifying_eligibility_for_the_study": ["exact", "gte", "lte"],
             }
 
 

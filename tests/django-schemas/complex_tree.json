@@ -38,7 +38,8 @@
           ]
         }
       ]
-    }
+    },
+    "relations": {}
   },
   {
     "name": "Doctor",
@@ -50,7 +51,9 @@
           "primary_key": false,
           "max_length": 255
         }
-      ],
+      ]
+    },
+    "relations": {
       "hospital": [
         "ForeignKey",
         "Hospital",
@@ -86,6 +89,7 @@
           ]
         }
       ]
-    }
+    },
+    "relations": {}
   }
 ]

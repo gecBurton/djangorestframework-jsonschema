@@ -1,11 +1,13 @@
 [
   {
     "name": "F",
-    "fields": {}
+    "fields": {},
+    "relations": {}
   },
   {
     "name": "E",
-    "fields": {
+    "fields": {},
+    "relations": {
       "f": [
         "ForeignKey",
         "F",
@@ -18,11 +20,13 @@
   },
   {
     "name": "D",
-    "fields": {}
+    "fields": {},
+    "relations": {}
   },
   {
     "name": "C",
-    "fields": {
+    "fields": {},
+    "relations": {
       "d": [
         "ForeignKey",
         "D",
@@ -35,7 +39,8 @@
   },
   {
     "name": "B",
-    "fields": {
+    "fields": {},
+    "relations": {
       "c": [
         "ForeignKey",
         "C",
@@ -56,7 +61,8 @@
   },
   {
     "name": "A",
-    "fields": {
+    "fields": {},
+    "relations": {
       "b": [
         "ForeignKey",
         "B",
