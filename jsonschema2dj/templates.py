@@ -25,47 +25,41 @@ class {{model.name}}(viewsets.ModelViewSet):
 {% endfor %}
 """
 
-SERIALIZER_TEMPLATE = """
-from . import models
+SERIALIZER_TEMPLATE = """from . import models
 from rest_framework.serializers import HyperlinkedModelSerializer
-
-
 {% for model in models %}
 
-class {{model.name}}(HyperlinkedModelSerializer):
 
+class {{model.name}}(HyperlinkedModelSerializer):
     class Meta:
         model = models.{{model.name}}
-        fields = '__all__'
-
+        fields = "__all__"
 {% endfor %}
 """
 
-MODEL_TEMPLATE = """
-import uuid
+MODEL_TEMPLATE = """import uuid
 from django.core import validators
 from django.db import models
+
 try:
     from extra_fields import JSONSchemaField
 except ImportError:
     pass
-
 {% for model in models %}
 
+
 class {{model.name}}(models.Model):
+
 {% for name, (type, options) in model.field_str.items() %}
     {{name}} = models.{{type}}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
-
 {% for name, (type, model, options) in model.relations_str.items() %}
     {{name}} = models.{{type}}("{{model}}", {% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
-
 {% endfor %}
 """
 
-URL_TEMPLATE = """
-from django.urls import path, include
+URL_TEMPLATE = """from django.urls import path, include
 from rest_framework import routers
 
 from . import views
@@ -79,6 +73,7 @@ router.register("{{model.name}}", views.{{model.name}})
 urlpatterns = [
     path("", include(router.urls)),
 ]
+
 """
 
 ADMIN_TEMPLATE = """from django.contrib import admin
