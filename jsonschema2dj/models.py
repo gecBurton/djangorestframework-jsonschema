@@ -70,6 +70,9 @@ class Model:
                 r[name] = details.pop("type"), details
             except KeyError:
                 raise Exception(name, details )
+
+        if not r and not self.relations:
+            return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}
         return r
 
     @property

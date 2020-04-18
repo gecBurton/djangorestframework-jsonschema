@@ -30,5 +30,6 @@ class D(models.Model):
 
 
 class E(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=False, )
 
 
