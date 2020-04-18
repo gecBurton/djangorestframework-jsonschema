@@ -60,7 +60,6 @@ results = {
     "format-uuid": {"type": "UUIDField",  "default": "uuid.uuid4"},
     "id": {
         "type": "UUIDField",
-        "primary_key": True,
         "default": "uuid.uuid4",
     },
     "json-schema": {
