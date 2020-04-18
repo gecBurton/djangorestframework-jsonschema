@@ -2,8 +2,8 @@
   {
     "name": "person",
     "fields": {
-      "id":         {"type":         "UUIDField",
-
+      "id":   {
+        "type":  "UUIDField",
         "default": "uuid.uuid4",
           "primary_key": true
         }

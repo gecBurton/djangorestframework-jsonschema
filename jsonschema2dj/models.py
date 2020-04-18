@@ -57,11 +57,25 @@ class Model:
     @property
     def search_fields(self):
         fields = []
-        for field_name, (field_type, field_attrs) in self.fields.items():
+        for field_name, (field_type, field_attrs) in self.field_str.items():
             if field_type == "CharField" and "choices" not in field_attrs:
                 fields.append(field_name)
         return fields
 
+    @property
+    def field_str(self):
+        r = {}
+        for name, details in self.fields.items():
+            try:
+                r[name] = details.pop("type"), details
+            except KeyError:
+                raise Exception(name, details )
+        return r
+
+
+class Model2:
+    def __init__(self, model):
+        self.fields = {name: (details.pop("type"), details) for name, details in model.fields.items()}
 
 def build_model_view(schema):
     relationships = {}
@@ -91,31 +105,21 @@ def build_relationships(schema):
         for single, single_name in singles.items():
             related_single, related_many = relationships[single]
             if model in related_single:
-                models[model][single_name] = (
-                    "OneToOneField",
-                    single,
-                    dict(null=True, on_delete="models.CASCADE"),
-                )
+                models[model][single_name] =                    dict(type="OneToOneField",to=single, null=True, on_delete="models.CASCADE")
+
             else:
-                models[model][single_name] = (
-                    "ForeignKey",
-                    single,
-                    dict(null=True, on_delete="models.CASCADE"),
-                )
+                models[model][single_name] =                     dict(type="ForeignKey",to=single, null=True, on_delete="models.CASCADE")
+
 
         for many, many_name in manys.items():
             related_single, related_many = relationships[many]
             if model in related_single:
-                models[many][related_single[model]] = (
-                    "ForeignKey",
-                    model,
-                    dict(null=True, on_delete="models.CASCADE"),
-                )
+                models[many][related_single[model]] =                     dict(type=    "ForeignKey",
+                         to=model,null=True, on_delete="models.CASCADE")
+
             else:
-                models[model][many_name] = (
-                    "ManyToManyField",
-                    many,
-                    dict(null=True, on_delete="models.CASCADE"),
-                )
+                models[model][many_name] =                     dict(type=    "ManyToManyField",
+                         to=many, null=True, on_delete="models.CASCADE")
+
 
     return models

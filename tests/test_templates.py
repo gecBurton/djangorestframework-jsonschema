@@ -368,8 +368,8 @@ class A(filters.FilterSet):
 @pytest.mark.parametrize(
     "schema,model,serializer,admin,url,view,filter",
     [
-        (basic_model, result_1, serializer_1, admin_1, urls_1, view_1, filter_1),
-        (simple_tree, result_2, serializer_2, admin_2, urls_2, view_2, filter_2),
+   #     (basic_model, result_1, serializer_1, admin_1, urls_1, view_1, filter_1),
+       (simple_tree, result_2, serializer_2, admin_2, urls_2, view_2, filter_2),
     ],
 )
 def test_build_models(schema, model, serializer, admin, url, view, filter):

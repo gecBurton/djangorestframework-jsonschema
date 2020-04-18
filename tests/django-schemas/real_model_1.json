@@ -168,22 +168,22 @@
 
     },
     "relations": {
-      "plate": [
+      "plate": {"type":
         "ForeignKey",
-        "plate",
-        {
+        "to":"plate",
+
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ],
-      "redcap": [
+      ,
+      "redcap": {"type":
         "ManyToManyField",
-        "redcap",
-        {
+        "to":"redcap",
+
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ]
+
     }
   },
   {
@@ -272,14 +272,14 @@
 
     },
     "relations": {
-      "responsible_clinician": [
+      "responsible_clinician": {"type":
         "ForeignKey",
-        "ResponsibleClinician",
-        {
+        "to":"ResponsibleClinician",
+
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ]
+
     }
   },
   {

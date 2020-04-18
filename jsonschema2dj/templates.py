@@ -53,7 +53,7 @@ except ImportError:
 {% for model in models %}
 
 class {{model.name}}(models.Model):
-{% for name, (type, options) in model.fields.items() %}
+{% for name, (type, options) in model.field_str.items() %}
     {{name}} = models.{{type}}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
 
@@ -102,7 +102,7 @@ class {{model.name}}(filters.FilterSet):
     class Meta:
         model = models.{{model.name}}
         fields = {
-{% for name, (type, options) in model.fields.items() %}
+{% for name, (type, options) in model.field_str.items() %}
 {% if type in ("IntegerField", "DecimalField", "DateField", "DateTimeField") %}
             "{{name}}": ["exact", "gte", "lte"],
 {% elif "choices" in options.keys() %}

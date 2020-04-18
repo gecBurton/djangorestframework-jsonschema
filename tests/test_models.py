@@ -88,18 +88,18 @@ def test_build_model_view_explicit():
     x = build_relationships(explicit_cardinalities)
     assert x == {
         "A": {
-            "b": ("OneToOneField", "B", {"null": True, "on_delete": "models.CASCADE"})
+            "b": {"type":"OneToOneField", "to": "B", "null": True, "on_delete": "models.CASCADE"}
         },
         "B": {
-            "a": ("OneToOneField", "A", {"null": True, "on_delete": "models.CASCADE"}),
-            "c": ("ForeignKey", "C", {"null": True, "on_delete": "models.CASCADE"}),
+            "a": {"type":"OneToOneField", "to": "A", "null": True, "on_delete": "models.CASCADE"},
+            "c": {"type":"ForeignKey", "to":"C", "null": True, "on_delete": "models.CASCADE"},
         },
-        "C": {"d": ("ForeignKey", "D", {"null": True, "on_delete": "models.CASCADE"})},
+        "C": {"d": {"type":"ForeignKey", "to":"D", "null": True, "on_delete": "models.CASCADE"}},
         "D": {
-            "e": ("ManyToManyField", "E", {"null": True, "on_delete": "models.CASCADE"})
+            "e": {"type":"ManyToManyField", "to":"E", "null": True, "on_delete": "models.CASCADE"}
         },
         "E": {
-            "d": ("ManyToManyField", "D", {"null": True, "on_delete": "models.CASCADE"})
+            "d": {"type":"ManyToManyField", "to":"D", "null": True, "on_delete": "models.CASCADE"}
         },
     }
 
@@ -109,15 +109,15 @@ def test_build_model_view_implicit():
     x = build_relationships(implicit_cardinalities)
     assert x == {
         "A": {
-            "b": ("OneToOneField", "B", {"null": True, "on_delete": "models.CASCADE"})
+            "b": {"type":"OneToOneField", "to":"B", "null": True, "on_delete": "models.CASCADE"}
         },
         "B": {
-            "a": ("OneToOneField", "A", {"null": True, "on_delete": "models.CASCADE"}),
-            "c": ("ForeignKey", "C", {"null": True, "on_delete": "models.CASCADE"}),
+            "a": {"type":"OneToOneField", "to":"A", "null": True, "on_delete": "models.CASCADE"},
+            "c": {"type":"ForeignKey", "to":"C", "null": True, "on_delete": "models.CASCADE"},
         },
-        "C": {"d": ("ForeignKey", "D", {"null": True, "on_delete": "models.CASCADE"})},
+        "C": {"d": {"type":"ForeignKey", "to":"D", "null": True, "on_delete": "models.CASCADE"}},
         "D": {
-            "e": ("ManyToManyField", "E", {"null": True, "on_delete": "models.CASCADE"})
+            "e": {"type":"ManyToManyField", "to":"E", "null": True, "on_delete": "models.CASCADE"}
         },
         "E": {},
     }
@@ -127,13 +127,13 @@ def test_build_():
 
     x = build_relationships(simple_tree)
     assert x == {
-        "A": {"b": ("ForeignKey", "B", {"null": True, "on_delete": "models.CASCADE"})},
+        "A": {"b": {"type":"ForeignKey", "to":"B", "null": True, "on_delete": "models.CASCADE"}},
         "B": {
-            "c": ("ForeignKey", "C", {"null": True, "on_delete": "models.CASCADE"}),
-            "e": ("ForeignKey", "E", {"null": True, "on_delete": "models.CASCADE"}),
+            "c": {"type":"ForeignKey", "to":"C", "null": True, "on_delete": "models.CASCADE"},
+            "e": {"type":"ForeignKey", "to":"E", "null": True, "on_delete": "models.CASCADE"},
         },
-        "C": {"d": ("ForeignKey", "D", {"null": True, "on_delete": "models.CASCADE"})},
+        "C": {"d": {"type":"ForeignKey","to": "D", "null": True, "on_delete": "models.CASCADE"}},
         "D": {},
-        "E": {"f": ("ForeignKey", "F", {"null": True, "on_delete": "models.CASCADE"})},
+        "E": {"f": {"type":"ForeignKey", "to": "F", "null": True, "on_delete": "models.CASCADE"}},
         "F": {},
     }

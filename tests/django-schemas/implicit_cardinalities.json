@@ -3,64 +3,61 @@
     "name": "A",
     "fields": {},
     "relations": {
-      "b": [
+      "b": {"type":
         "OneToOneField",
-        "B",
-        {
+        "to":"B",
+
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ]
+
     }
   },
   {
     "name": "B",
     "fields": {},
     "relations": {
-      "a": [
+      "a": {"type":
         "OneToOneField",
-        "A",
-        {
+        "to":"A",
+
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ],
-      "c": [
+      ,
+      "c": {"type":
         "ForeignKey",
-        "C",
-        {
+        "to":"C",
+
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ]
+
     }
   },
   {
     "name": "C",
     "fields": {},
     "relations": {
-      "d": [
-        "ForeignKey",
-        "D",
-        {
+      "d": {"type": "ForeignKey",
+        "to":"D",
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ]
+
     }
   },
   {
     "name": "D",
     "fields": {},
     "relations": {
-      "e": [
+      "e": {"type":
         "ManyToManyField",
-        "E",
-        {
+        "to":"E",
+
           "null": true,
           "on_delete": "models.CASCADE"
         }
-      ]
     }
   },
   {
