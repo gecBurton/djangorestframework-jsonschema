@@ -4,14 +4,13 @@ from jinja2 import Template
 
 from jsonschema2dj.models import Model
 
-VIEW_TEMPLATE = """
-from rest_framework import viewsets
+VIEW_TEMPLATE = """from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 
 from . import serializers, models, filters
-
 {% for model in models %}
+
 
 class {{model.name}}(viewsets.ModelViewSet):
     queryset = models.{{model.name}}.objects.all()
@@ -19,9 +18,13 @@ class {{model.name}}(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.{{model.name}}
     ordering_fields = "__all__"
-    search_fields = [{% for field in model.search_fields %}"${{field}}", {% endfor %}]
-
-
+{% if model.search_fields|length %}
+    search_fields = [
+{% for field in model.search_fields %}
+        "${{field}}",
+{% endfor %}
+    ]
+{% endif %}
 {% endfor %}
 """
 
@@ -49,12 +52,16 @@ except ImportError:
 
 
 class {{model.name}}(models.Model):
-
 {% for name, (type, options) in model.field_str.items() %}
     {{name}} = models.{{type}}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
 {% for name, (type, model, options) in model.relations_str.items() %}
-    {{name}} = models.{{type}}("{{model}}", {% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
+    {{name}} = models.{{type}}(
+         "{{model}}",
+{% for k, v in options.items() %}
+         {{k}}={{v}},
+{% endfor %}
+         )
 {% endfor %}
 {% endfor %}
 """
@@ -95,25 +102,21 @@ class {{model.name}}Admin(admin.ModelAdmin):
 {% endfor %}
 """
 
-FILTER_TEMPLATE = """
-from django_filters import rest_framework as filters
+FILTER_TEMPLATE = """from django_filters import rest_framework as filters
 from . import models
-
 {% for model in models%}
+
+
 class {{model.name}}(filters.FilterSet):
     class Meta:
         model = models.{{model.name}}
+{% if model.filter_fields|length %}
         fields = {
-{% for name, (type, options) in model.field_str.items() %}
-{% if type in ("IntegerField", "DecimalField", "DateField", "DateTimeField") %}
-            "{{name}}": ["exact", "gte", "lte"],
-{% elif "choices" in options.keys() %}
-            "{{name}}": ["exact", "in"],
-{% endif %}
+{% for name, filter in model.filter_fields.items() %}
+            "{{name}}": ["{{filter|join('", "') }}"],
 {% endfor %}
-            }
-
-
+        }
+{% endif %}
 {% endfor %}
 
 """

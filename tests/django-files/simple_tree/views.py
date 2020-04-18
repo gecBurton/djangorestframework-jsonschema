@@ -11,7 +11,6 @@ class F(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.F
     ordering_fields = "__all__"
-    search_fields = []
 
 
 class E(viewsets.ModelViewSet):
@@ -20,7 +19,6 @@ class E(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.E
     ordering_fields = "__all__"
-    search_fields = []
 
 
 class D(viewsets.ModelViewSet):
@@ -29,7 +27,6 @@ class D(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.D
     ordering_fields = "__all__"
-    search_fields = []
 
 
 class C(viewsets.ModelViewSet):
@@ -38,7 +35,6 @@ class C(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.C
     ordering_fields = "__all__"
-    search_fields = []
 
 
 class B(viewsets.ModelViewSet):
@@ -47,7 +43,6 @@ class B(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.B
     ordering_fields = "__all__"
-    search_fields = []
 
 
 class A(viewsets.ModelViewSet):
@@ -56,4 +51,3 @@ class A(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.A
     ordering_fields = "__all__"
-    search_fields = []

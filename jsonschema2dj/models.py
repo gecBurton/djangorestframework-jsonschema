@@ -35,11 +35,8 @@ class Model:
         self.name = name
         properties = sch.get("properties", {})
         required = sch.get("required", [])
-        self.fields = {
-            field_name: build_field(field_name, field_sch, required)
-            for field_name, field_sch in properties.items()
-            if not is_relation(field_sch)
-        }
+        self.fields = {field_name :build_field(field_name, field_sch, required)        for field_name, field_sch in properties.items() if not is_relation(field_sch)}
+
         self.relations = relations
 
     @property
@@ -66,10 +63,7 @@ class Model:
     def field_str(self):
         r = {}
         for name, details in self.fields.items():
-            try:
-                r[name] = details.pop("type"), details
-            except KeyError:
-                raise Exception(name, details )
+            r[name] = details["type"], {k: v for k, v in details.items() if k!="type"}
 
         if not r and not self.relations:
             return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}
@@ -78,6 +72,17 @@ class Model:
     @property
     def relations_str(self):
         return {k: (v.pop("type"), v.pop("to"), v) for k, v in self.relations.items()}
+
+    @property
+    def filter_fields(self):
+        r = {}
+        for k, v in self.fields.items():
+            if v["type"] in ("IntegerField", "DecimalField", "DateField", "DateTimeField"):
+                r[k] = ["exact", "gte", "lte"]
+            elif "choices" in v:
+                r[k] = ["exact", "in"]
+        return r
+
 
 
 class Model2:
