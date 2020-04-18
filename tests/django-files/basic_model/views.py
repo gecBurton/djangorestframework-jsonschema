@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -12,6 +11,6 @@ class person(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.person
     ordering_fields = "__all__"
-    search_fields = ["$name", ]
-
-
+    search_fields = [
+        "$name",
+    ]

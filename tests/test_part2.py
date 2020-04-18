@@ -40,7 +40,7 @@ def test_q(model, asset_name, asset_function):
         schema = load(f)
 
     with open(
-        path.join(django_files_dir, model.replace(".json", ""),  asset_name + ".py")
+        path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
     ) as f:
         model_file = f.read()
 

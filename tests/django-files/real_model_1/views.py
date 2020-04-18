@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -12,8 +11,9 @@ class manifest(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.manifest
     ordering_fields = "__all__"
-    search_fields = ["$well", ]
-
+    search_fields = [
+        "$well",
+    ]
 
 
 class redcap(viewsets.ModelViewSet):
@@ -22,8 +22,11 @@ class redcap(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.redcap
     ordering_fields = "__all__"
-    search_fields = ["$GenOMICC", "$nhs_number", "$hospital_trust", ]
-
+    search_fields = [
+        "$GenOMICC",
+        "$nhs_number",
+        "$hospital_trust",
+    ]
 
 
 class ResponsibleClinician(viewsets.ModelViewSet):
@@ -32,8 +35,9 @@ class ResponsibleClinician(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ResponsibleClinician
     ordering_fields = "__all__"
-    search_fields = ["$name", ]
-
+    search_fields = [
+        "$name",
+    ]
 
 
 class plate(viewsets.ModelViewSet):
@@ -42,6 +46,6 @@ class plate(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.plate
     ordering_fields = "__all__"
-    search_fields = ["$barcode", ]
-
-
+    search_fields = [
+        "$barcode",
+    ]

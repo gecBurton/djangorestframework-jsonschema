@@ -1,46 +1,38 @@
-
 from django_filters import rest_framework as filters
 from . import models
+
 
 class F(filters.FilterSet):
     class Meta:
         model = models.F
-        fields = {
-            }
+        fields = {}
 
 
 class E(filters.FilterSet):
     class Meta:
         model = models.E
-        fields = {
-            }
+        fields = {}
 
 
 class D(filters.FilterSet):
     class Meta:
         model = models.D
-        fields = {
-            }
+        fields = {}
 
 
 class C(filters.FilterSet):
     class Meta:
         model = models.C
-        fields = {
-            }
+        fields = {}
 
 
 class B(filters.FilterSet):
     class Meta:
         model = models.B
-        fields = {
-            }
+        fields = {}
 
 
 class A(filters.FilterSet):
     class Meta:
         model = models.A
-        fields = {
-            }
-
-
+        fields = {}

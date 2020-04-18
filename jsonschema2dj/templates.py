@@ -81,15 +81,22 @@ urlpatterns = [
 ]
 """
 
-ADMIN_TEMPLATE = """
-from django.contrib import admin
+ADMIN_TEMPLATE = """from django.contrib import admin
 from . import models
-
 {% for model in models %}
+
 
 @admin.register(models.{{model.name}})
 class {{model.name}}Admin(admin.ModelAdmin):
-    list_filter = ({% for enum in model.enum_fields %}"{{enum}}", {% endfor %})
+{% if model.enum_fields|length %}
+    list_filter = (
+{% for enum in model.enum_fields %}
+        "{{enum}}",
+{% endfor %}
+    )
+{% else %}
+    pass
+{% endif %}
 {% endfor %}
 """
 

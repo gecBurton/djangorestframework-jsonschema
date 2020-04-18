@@ -27,27 +27,26 @@ results = {
     "person": (
         "person",
         {
-            "age":                 {
-                    "type":         "IntegerField",
-                    "null": False,
-                    "primary_key": False,
-                    "validators": "[validators.MinValueValidator(0)]",
-                },
-
-            "id": {"type":"UUIDField", "primary_key": True, "default": "uuid.uuid4"},
-            "name": {"type":
-                "CharField",
-                "max_length": 255, "null": False, "primary_key": False},
-
-            "sex": {"type":
-                "CharField",
-
-                    "choices": [("male", "male"), ("female", "female")],
-                    "max_length": 6,
-                    "null": True,
-                    "primary_key": False,
-                },
-
+            "age": {
+                "type": "IntegerField",
+                "null": False,
+                "primary_key": False,
+                "validators": "[validators.MinValueValidator(0)]",
+            },
+            "id": {"type": "UUIDField", "primary_key": True, "default": "uuid.uuid4"},
+            "name": {
+                "type": "CharField",
+                "max_length": 255,
+                "null": False,
+                "primary_key": False,
+            },
+            "sex": {
+                "type": "CharField",
+                "choices": [("male", "male"), ("female", "female")],
+                "max_length": 6,
+                "null": True,
+                "primary_key": False,
+            },
         },
         ["sex"],
     )
@@ -88,18 +87,50 @@ def test_build_model_view_explicit():
     x = build_relationships(explicit_cardinalities)
     assert x == {
         "A": {
-            "b": {"type":"OneToOneField", "to": "B", "null": True, "on_delete": "models.CASCADE"}
+            "b": {
+                "type": "OneToOneField",
+                "to": "B",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
         },
         "B": {
-            "a": {"type":"OneToOneField", "to": "A", "null": True, "on_delete": "models.CASCADE"},
-            "c": {"type":"ForeignKey", "to":"C", "null": True, "on_delete": "models.CASCADE"},
+            "a": {
+                "type": "OneToOneField",
+                "to": "A",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            },
+            "c": {
+                "type": "ForeignKey",
+                "to": "C",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            },
         },
-        "C": {"d": {"type":"ForeignKey", "to":"D", "null": True, "on_delete": "models.CASCADE"}},
+        "C": {
+            "d": {
+                "type": "ForeignKey",
+                "to": "D",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
+        },
         "D": {
-            "e": {"type":"ManyToManyField", "to":"E", "null": True, "on_delete": "models.CASCADE"}
+            "e": {
+                "type": "ManyToManyField",
+                "to": "E",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
         },
         "E": {
-            "d": {"type":"ManyToManyField", "to":"D", "null": True, "on_delete": "models.CASCADE"}
+            "d": {
+                "type": "ManyToManyField",
+                "to": "D",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
         },
     }
 
@@ -109,15 +140,42 @@ def test_build_model_view_implicit():
     x = build_relationships(implicit_cardinalities)
     assert x == {
         "A": {
-            "b": {"type":"OneToOneField", "to":"B", "null": True, "on_delete": "models.CASCADE"}
+            "b": {
+                "type": "OneToOneField",
+                "to": "B",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
         },
         "B": {
-            "a": {"type":"OneToOneField", "to":"A", "null": True, "on_delete": "models.CASCADE"},
-            "c": {"type":"ForeignKey", "to":"C", "null": True, "on_delete": "models.CASCADE"},
+            "a": {
+                "type": "OneToOneField",
+                "to": "A",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            },
+            "c": {
+                "type": "ForeignKey",
+                "to": "C",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            },
         },
-        "C": {"d": {"type":"ForeignKey", "to":"D", "null": True, "on_delete": "models.CASCADE"}},
+        "C": {
+            "d": {
+                "type": "ForeignKey",
+                "to": "D",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
+        },
         "D": {
-            "e": {"type":"ManyToManyField", "to":"E", "null": True, "on_delete": "models.CASCADE"}
+            "e": {
+                "type": "ManyToManyField",
+                "to": "E",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
         },
         "E": {},
     }
@@ -127,13 +185,44 @@ def test_build_():
 
     x = build_relationships(simple_tree)
     assert x == {
-        "A": {"b": {"type":"ForeignKey", "to":"B", "null": True, "on_delete": "models.CASCADE"}},
-        "B": {
-            "c": {"type":"ForeignKey", "to":"C", "null": True, "on_delete": "models.CASCADE"},
-            "e": {"type":"ForeignKey", "to":"E", "null": True, "on_delete": "models.CASCADE"},
+        "A": {
+            "b": {
+                "type": "ForeignKey",
+                "to": "B",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
         },
-        "C": {"d": {"type":"ForeignKey","to": "D", "null": True, "on_delete": "models.CASCADE"}},
+        "B": {
+            "c": {
+                "type": "ForeignKey",
+                "to": "C",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            },
+            "e": {
+                "type": "ForeignKey",
+                "to": "E",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            },
+        },
+        "C": {
+            "d": {
+                "type": "ForeignKey",
+                "to": "D",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
+        },
         "D": {},
-        "E": {"f": {"type":"ForeignKey", "to": "F", "null": True, "on_delete": "models.CASCADE"}},
+        "E": {
+            "f": {
+                "type": "ForeignKey",
+                "to": "F",
+                "null": True,
+                "on_delete": "models.CASCADE",
+            }
+        },
         "F": {},
     }

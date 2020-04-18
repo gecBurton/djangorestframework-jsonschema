@@ -1,4 +1,3 @@
-
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -15,7 +14,6 @@ class F(viewsets.ModelViewSet):
     search_fields = []
 
 
-
 class E(viewsets.ModelViewSet):
     queryset = models.E.objects.all()
     serializer_class = serializers.E
@@ -23,7 +21,6 @@ class E(viewsets.ModelViewSet):
     filterset_class = filters.E
     ordering_fields = "__all__"
     search_fields = []
-
 
 
 class D(viewsets.ModelViewSet):
@@ -35,7 +32,6 @@ class D(viewsets.ModelViewSet):
     search_fields = []
 
 
-
 class C(viewsets.ModelViewSet):
     queryset = models.C.objects.all()
     serializer_class = serializers.C
@@ -43,7 +39,6 @@ class C(viewsets.ModelViewSet):
     filterset_class = filters.C
     ordering_fields = "__all__"
     search_fields = []
-
 
 
 class B(viewsets.ModelViewSet):
@@ -55,7 +50,6 @@ class B(viewsets.ModelViewSet):
     search_fields = []
 
 
-
 class A(viewsets.ModelViewSet):
     queryset = models.A.objects.all()
     serializer_class = serializers.A
@@ -63,5 +57,3 @@ class A(viewsets.ModelViewSet):
     filterset_class = filters.A
     ordering_fields = "__all__"
     search_fields = []
-
-
