@@ -3,361 +3,313 @@
     "name": "manifest",
     "fields": {
       "sample_id": {
-        "type":"IntegerField",
-
-          "null": false,
-          "validators": "[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)]",
-          "primary_key": false
-        }
-      ,
-      "well":
-        {
-          "type":   "CharField",
-
-          "null": false,
-          "primary_key": false,
-          "max_length": 255,
-          "validators": [
-            [
-              "RegexValidator",
-              "r\"^[A-H](0[1-9]|1[1-2])$\""
-            ]
+        "type": "IntegerField",
+        "null": false,
+        "validators": "[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)]",
+        "primary_key": false
+      },
+      "well": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 255,
+        "validators": [
+          [
+            "RegexValidator",
+            "r\"^[A-H](0[1-9]|1[1-2])$\""
           ]
-        }
-      ,
-      "volume_ul":
-        {
-"type":          "IntegerField",
-          "null": false,
-          "validators": "[validators.MinValueValidator(10), validators.MaxValueValidator(700)]",
-          "primary_key": false
-        }
-      ,
-      "concentration_ng_ul":
-        {
-          "type":   "DecimalField",
-
-          "null": false,
-          "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(9999.99)]",
-          "max_digits": 10,
-          "decimal_places": 5,
-          "primary_key": false
-        }
-      ,
-      "od_260_280":
-        {
-          "type":         "DecimalField",
-
-          "null": false,
-          "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(10)]",
-          "max_digits": 10,
-          "decimal_places": 5,
-          "primary_key": false
-        }
-,      "cancer_sample_y_n":
-        {
- "type"    :     "CharField",
-          "null": false,
-          "primary_key": false,
-          "max_length": 3,
-          "choices": [
-            [
-              "yes",
-              "yes"
-            ],
-            [
-              "no",
-              "no"
-            ]
+        ]
+      },
+      "volume_ul": {
+        "type": "IntegerField",
+        "null": false,
+        "validators": "[validators.MinValueValidator(10), validators.MaxValueValidator(700)]",
+        "primary_key": false
+      },
+      "concentration_ng_ul": {
+        "type": "DecimalField",
+        "null": false,
+        "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(9999.99)]",
+        "max_digits": 10,
+        "decimal_places": 5,
+        "primary_key": false
+      },
+      "od_260_280": {
+        "type": "DecimalField",
+        "null": false,
+        "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(10)]",
+        "max_digits": 10,
+        "decimal_places": 5,
+        "primary_key": false
+      },
+      "cancer_sample_y_n": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 3,
+        "choices": [
+          [
+            "yes",
+            "yes"
+          ],
+          [
+            "no",
+            "no"
           ]
-        }
-      ,
-      "sample_type":
-        {
-        "type":  "CharField",
-          "null": false,
-          "primary_key": false,
-          "max_length": 44,
-          "choices": [
-            [
-              "dna_blood_germline",
-              "dna_blood_germline"
-            ],
-            [
-              "dna_saliva",
-              "dna_saliva"
-            ],
-            [
-              "dna_fibroblast",
-              "dna_fibroblast"
-            ],
-            [
-              "dna_ff_germline",
-              "dna_ff_germline"
-            ],
-            [
-              "dna_ffpe_tumour",
-              "dna_ffpe_tumour"
-            ],
-            [
-              "dna_ff_tumour",
-              "dna_ff_tumour"
-            ],
-            [
-              "dna_blood_tumour",
-              "dna_blood_tumour"
-            ],
-            [
-              "dna_bone_marrow_aspirate_tumour_sorted_cells",
-              "dna_bone_marrow_aspirate_tumour_sorted_cells"
-            ],
-            [
-              "dna_bone_marrow_aspirate_tumour_cells",
-              "dna_bone_marrow_aspirate_tumour_cells"
-            ],
-            [
-              "tumour_tissue_ffpe",
-              "tumour_tissue_ffpe"
-            ],
-            [
-              "lysate_ffpe",
-              "lysate_ffpe"
-            ],
-            [
-              "lysate_ff",
-              "lysate_ff"
-            ],
-            [
-              "lysed_tumour_cells",
-              "lysed_tumour_cells"
-            ],
-            [
-              "streck_plasma",
-              "streck_plasma"
-            ],
-            [
-              "edta_plasma",
-              "edta_plasma"
-            ],
-            [
-              "lihep_plasma",
-              "lihep_plasma"
-            ],
-            [
-              "serum",
-              "serum"
-            ],
-            [
-              "rna_blood",
-              "rna_blood"
-            ],
-            [
-              "tumour_tissue_ff",
-              "tumour_tissue_ff"
-            ],
-            [
-              "bone_marrow_rna_gtc",
-              "bone_marrow_rna_gtc"
-            ],
-            [
-              "blood_rna_gtc",
-              "blood_rna_gtc"
-            ]
+        ]
+      },
+      "sample_type": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 44,
+        "choices": [
+          [
+            "dna_blood_germline",
+            "dna_blood_germline"
+          ],
+          [
+            "dna_saliva",
+            "dna_saliva"
+          ],
+          [
+            "dna_fibroblast",
+            "dna_fibroblast"
+          ],
+          [
+            "dna_ff_germline",
+            "dna_ff_germline"
+          ],
+          [
+            "dna_ffpe_tumour",
+            "dna_ffpe_tumour"
+          ],
+          [
+            "dna_ff_tumour",
+            "dna_ff_tumour"
+          ],
+          [
+            "dna_blood_tumour",
+            "dna_blood_tumour"
+          ],
+          [
+            "dna_bone_marrow_aspirate_tumour_sorted_cells",
+            "dna_bone_marrow_aspirate_tumour_sorted_cells"
+          ],
+          [
+            "dna_bone_marrow_aspirate_tumour_cells",
+            "dna_bone_marrow_aspirate_tumour_cells"
+          ],
+          [
+            "tumour_tissue_ffpe",
+            "tumour_tissue_ffpe"
+          ],
+          [
+            "lysate_ffpe",
+            "lysate_ffpe"
+          ],
+          [
+            "lysate_ff",
+            "lysate_ff"
+          ],
+          [
+            "lysed_tumour_cells",
+            "lysed_tumour_cells"
+          ],
+          [
+            "streck_plasma",
+            "streck_plasma"
+          ],
+          [
+            "edta_plasma",
+            "edta_plasma"
+          ],
+          [
+            "lihep_plasma",
+            "lihep_plasma"
+          ],
+          [
+            "serum",
+            "serum"
+          ],
+          [
+            "rna_blood",
+            "rna_blood"
+          ],
+          [
+            "tumour_tissue_ff",
+            "tumour_tissue_ff"
+          ],
+          [
+            "bone_marrow_rna_gtc",
+            "bone_marrow_rna_gtc"
+          ],
+          [
+            "blood_rna_gtc",
+            "blood_rna_gtc"
           ]
-        }
-
+        ]
+      }
     },
     "relations": {
-      "plate": {"type":
-        "ForeignKey",
-        "to":"plate",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-      ,
-      "redcap": {"type":
-        "ManyToManyField",
-        "to":"redcap",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-
+      "plate": {
+        "type": "ForeignKey",
+        "to": "plate",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      },
+      "redcap": {
+        "type": "ManyToManyField",
+        "to": "redcap",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      }
     }
   },
   {
     "name": "redcap",
     "fields": {
-      "GenOMICC":
-        {
-"type":          "CharField",
-          "null": false,
-          "primary_key": true,
-          "max_length": 255,
-          "validators": [
-            [
-              "RegexValidator",
-              "r\"^.{4,32}$\""
-            ]
+      "GenOMICC": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": true,
+        "max_length": 255,
+        "validators": [
+          [
+            "RegexValidator",
+            "r\"^.{4,32}$\""
           ]
-        }
-      ,
-      "sex":
-        {
-      "type":    "CharField",
-          "null": false,
-          "primary_key": false,
-          "max_length": 1,
-          "choices": [
-            [
-              "m",
-              "m"
-            ],
-            [
-              "f",
-              "f"
-            ],
-            [
-              "u",
-              "u"
-            ]
+        ]
+      },
+      "sex": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 1,
+        "choices": [
+          [
+            "m",
+            "m"
+          ],
+          [
+            "f",
+            "f"
+          ],
+          [
+            "u",
+            "u"
           ]
-        }
-      ,
-      "nhs_number":
-        {
-          "type":   "CharField",
-
-          "null": false,
-          "primary_key": false,
-          "max_length": 255,
-          "validators": [
-            [
-              "RegexValidator",
-              "r\"^\\d{3} \\d{3} \\d{4}$\""
-            ]
+        ]
+      },
+      "nhs_number": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 255,
+        "validators": [
+          [
+            "RegexValidator",
+            "r\"^\\d{3} \\d{3} \\d{4}$\""
           ]
-        }
-      ,
-      "date_of_birth":
-        {
-      "type":    "DateField",
-          "null": false,
-          "primary_key": false
-        }
-      ,
-      "consent_taken_assertion":
-        {
-          "type":        "BooleanField",
-
-          "null": false,
-          "primary_key": false
-        }
-      ,
-      "hospital_trust":
-        {
-      "type":  "CharField",
-          "null": false,
-          "primary_key": false,
-          "max_length": 255
-        }
-      ,
-      "date_of_identifying_eligibility_for_the_study":
-        {
-      "type":    "DateField",
-          "null": false,
-          "primary_key": false
-        }
-
+        ]
+      },
+      "date_of_birth": {
+        "type": "DateField",
+        "null": false,
+        "primary_key": false
+      },
+      "consent_taken_assertion": {
+        "type": "BooleanField",
+        "null": false,
+        "primary_key": false
+      },
+      "hospital_trust": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 255
+      },
+      "date_of_identifying_eligibility_for_the_study": {
+        "type": "DateField",
+        "null": false,
+        "primary_key": false
+      }
     },
     "relations": {
-      "responsible_clinician": {"type":
-        "ForeignKey",
-        "to":"ResponsibleClinician",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-
+      "responsible_clinician": {
+        "type": "ForeignKey",
+        "to": "ResponsibleClinician",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      }
     }
   },
   {
     "name": "ResponsibleClinician",
     "fields": {
-      "name":
-        {
-      "type":    "CharField",
-          "null": false,
-          "primary_key": false,
-          "max_length": 255
-        }
-      ,
-      "email":
-        {
-"type":          "EmailField",
-          "null": false,
-          "primary_key": false
-        }
-      ,
-      "address":
-        {"type":   "JSONSchemaField",
-
-          "schema": {
-            "type": "object",
-            "properties": {
-              "lines": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "postcode": {
-                "type": "string",
-                "pattern": "^[A-Z]{2}\\d \\d[A-Z]{2}$"
+      "name": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 255
+      },
+      "email": {
+        "type": "EmailField",
+        "null": false,
+        "primary_key": false
+      },
+      "address": {
+        "type": "JSONSchemaField",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "lines": {
+              "type": "array",
+              "items": {
+                "type": "string"
               }
+            },
+            "postcode": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}\\d \\d[A-Z]{2}$"
             }
           }
         }
-
+      }
     },
     "relations": {}
   },
   {
     "name": "plate",
     "fields": {
-      "barcode":
-        {
-      "type":    "CharField",
-          "null": false,
-          "primary_key": true,
-          "max_length": 255,
-          "validators": [
-            [
-              "RegexValidator",
-              "r\"^LP\\d{7}-DNA$\""
-            ]
+      "barcode": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": true,
+        "max_length": 255,
+        "validators": [
+          [
+            "RegexValidator",
+            "r\"^LP\\d{7}-DNA$\""
           ]
-        }
-      ,
-      "priority":
-        {
-      "type":    "CharField",
-          "null": false,
-          "primary_key": false,
-          "max_length": 7,
-          "choices": [
-            [
-              "routine",
-              "routine"
-            ],
-            [
-              "urgent",
-              "urgent"
-            ]
+        ]
+      },
+      "priority": {
+        "type": "CharField",
+        "null": false,
+        "primary_key": false,
+        "max_length": 7,
+        "choices": [
+          [
+            "routine",
+            "routine"
+          ],
+          [
+            "urgent",
+            "urgent"
           ]
-        }
-
+        ]
+      }
     },
     "relations": {}
   }

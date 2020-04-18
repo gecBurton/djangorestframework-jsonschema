@@ -8,14 +8,12 @@
     "name": "E",
     "fields": {},
     "relations": {
-      "f": {"type":
-        "ForeignKey",
-        "to":"F",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-
+      "f": {
+        "type": "ForeignKey",
+        "to": "F",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      }
     }
   },
   {
@@ -27,50 +25,42 @@
     "name": "C",
     "fields": {},
     "relations": {
-      "d": {"type":
-      "ForeignKey",
-        "to":"D",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-
+      "d": {
+        "type": "ForeignKey",
+        "to": "D",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      }
     }
   },
   {
     "name": "B",
     "fields": {},
     "relations": {
-      "c": {"type":
-      "ForeignKey",
-        "to":"C",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-      ,
-      "e":
-        {"type":   "ForeignKey",
-        "to":"E",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-
+      "c": {
+        "type": "ForeignKey",
+        "to": "C",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      },
+      "e": {
+        "type": "ForeignKey",
+        "to": "E",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      }
     }
   },
   {
     "name": "A",
     "fields": {},
     "relations": {
-      "b": {"type":
-      "ForeignKey",
-        "to":"B",
-
-          "null": true,
-          "on_delete": "models.CASCADE"
-        }
-
+      "b": {
+        "type": "ForeignKey",
+        "to": "B",
+        "null": true,
+        "on_delete": "models.CASCADE"
+      }
     }
   }
 ]

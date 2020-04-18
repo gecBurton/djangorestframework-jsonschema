@@ -19,9 +19,11 @@
         "plate": {
           "$ref": "#/definitions/plate"
         },
-        "redcap": {"type": "array", "items": {
-          "$ref": "#/definitions/redcap"
-        }
+        "redcap": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/redcap"
+          }
         },
         "sample_id": {
           "type": "integer",
@@ -132,30 +134,46 @@
     },
     "ResponsibleClinician": {
       "properties": {
-        "name": {"type":  "string"},
-        "email": {"type":  "string", "format": "email"},
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
         "address": {
-          "type":  "object",
+          "type": "object",
           "properties": {
-            "lines":  {"type":  "array", "items":  {"type": "string"} },
-            "postcode": {"type": "string", "pattern":  "^[A-Z]{2}\\d \\d[A-Z]{2}$"}
+            "lines": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "postcode": {
+              "type": "string",
+              "pattern": "^[A-Z]{2}\\d \\d[A-Z]{2}$"
+            }
           }
         }
       }
     },
     "plate": {
-      "required": ["barcode","priority"],
+      "required": [
+        "barcode",
+        "priority"
+      ],
       "properties": {
         "barcode": {
           "type": "string",
           "pattern": "^LP\\d{7}-DNA$"
-        },        "priority": {
+        },
+        "priority": {
           "enum": [
             "routine",
             "urgent"
           ]
         }
-
       }
     }
   },
@@ -166,6 +184,5 @@
     "manifest": {
       "$ref": "#/definitions/manifest"
     }
-
   }
 }
