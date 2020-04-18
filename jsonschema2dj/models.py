@@ -72,6 +72,10 @@ class Model:
                 raise Exception(name, details )
         return r
 
+    @property
+    def relations_str(self):
+        return {k: (v.pop("type"), v.pop("to"), v) for k, v in self.relations.items()}
+
 
 class Model2:
     def __init__(self, model):

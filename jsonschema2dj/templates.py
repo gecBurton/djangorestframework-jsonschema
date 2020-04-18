@@ -57,7 +57,7 @@ class {{model.name}}(models.Model):
     {{name}} = models.{{type}}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
 
-{% for name, (type, model, options) in model.relations.items() %}
+{% for name, (type, model, options) in model.relations_str.items() %}
     {{name}} = models.{{type}}("{{model}}", {% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
 
