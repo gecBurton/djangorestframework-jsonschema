@@ -1,17 +1,19 @@
 """helper methods for field level schema to django field like object
 """
 
+
 class Field(dict):
     def __init__(self, **kwargs):
         _kwargs = {}
         for k, v in kwargs.items():
-            if k in ("default", ) and v is None:
+            if k in ("default",) and v is None:
                 pass
             elif k in ("null", "primary_key", "label") and not v:
                 pass
             else:
                 _kwargs[k] = v
         super().__init__(**_kwargs)
+
 
 def build_value_validators(sch):
     """common to integers and strings"""
@@ -37,7 +39,9 @@ def build_choices(enums, _type="string"):
 
 def build_string_field(sch, null, primary_key, default, description):
     "the string case is complex enough to have its own function"
-    options = Field(null=null, primary_key=primary_key, default=default, label=description)
+    options = Field(
+        null=null, primary_key=primary_key, default=default, label=description
+    )
     validators = []
 
     max_length = sch.get("maxLength", 255)
@@ -73,7 +77,13 @@ def build_string_field(sch, null, primary_key, default, description):
             "uuid": "UUIDField",
         }
         try:
-            return  Field(type=formats[_format],null=options.get("null", False), primary_key=primary_key, default=default, label=sch.get("description"))
+            return Field(
+                type=formats[_format],
+                null=options.get("null", False),
+                primary_key=primary_key,
+                default=default,
+                label=sch.get("description"),
+            )
         except KeyError:
             raise NotImplementedError(f"no code written to handle format: {_format}")
 
@@ -132,33 +142,53 @@ def build_field(name, sch, required):
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             raise ValueError("field with name id must be a UUID")
-        return Field(type="UUIDField", default=default or "uuid.uuid4", primary_key=primary_key, label=description)
+        return Field(
+            type="UUIDField",
+            default=default or "uuid.uuid4",
+            primary_key=primary_key,
+            label=description,
+        )
 
     if field_type == "string":
         return build_string_field(sch, null, primary_key, default, description)
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return Field(type="IntegerField", null=null, validators=validators, primary_key=primary_key, default=default, label=description)
-
+        return Field(
+            type="IntegerField",
+            null=null,
+            validators=validators,
+            primary_key=primary_key,
+            default=default,
+            label=description,
+        )
 
     if field_type == "number":
         validators = build_value_validators(sch)
-        return Field(type="DecimalField",
-                null=null,
-                validators=validators,
-                max_digits=10,
-                decimal_places=5,
-                primary_key=primary_key,
-                default=default, label=description
-            )
-
+        return Field(
+            type="DecimalField",
+            null=null,
+            validators=validators,
+            max_digits=10,
+            decimal_places=5,
+            primary_key=primary_key,
+            default=default,
+            label=description,
+        )
 
     if field_type == "boolean":
-        return  Field(type="BooleanField", null=null, primary_key=primary_key, default=default, label=description)
+        return Field(
+            type="BooleanField",
+            null=null,
+            primary_key=primary_key,
+            default=default,
+            label=description,
+        )
 
     if field_type == "object":
-        return Field(type="JSONSchemaField", schema=sch, default=default, label=description)
+        return Field(
+            type="JSONSchemaField", schema=sch, default=default, label=description
+        )
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 

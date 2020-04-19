@@ -1,0 +1,253 @@
+{
+  "definitions": {
+    "json-field": {
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "properties"
+      ],
+      "properties": {
+        "type": {
+          "const": "object"
+        },
+        "properties": {
+          "type": "object"
+        },
+        "required": {
+          "type": "array",
+          "minItems": 1
+        }
+      }
+    },
+    "enum-field": {
+      "additionalProperties": false,
+      "required": [
+        "enum"
+      ],
+      "properties": {
+        "enum": {
+          "type": "array",
+          "minItems": 1
+        }
+      }
+    },
+    "one-to-many-field": {
+      "additionalProperties": false,
+      "required": [
+        "$ref"
+      ],
+      "properties": {
+        "$ref": {
+          "type": "string",
+          "pattern": "^#/definitions/[a-zA-Z0-9]+$"
+        }
+      }
+    },
+    "many-to-many-field": {
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "array"
+        },
+        "items": {
+          "$ref": "#/definitions/one-to-many-field"
+        }
+      }
+    },
+    "boolean-field": {
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "boolean",
+            [
+              "boolean",
+              "null"
+            ],
+            [
+              "null",
+              "boolean"
+            ]
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "integer-field": {
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "integer"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "maximum": {
+          "type": "integer"
+        },
+        "minimum": {
+          "type": "integer"
+        },
+        "default": {
+          "type": "integer"
+        }
+      }
+    },
+    "number-field": {
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "number"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "multipleOf": {
+          "type": "number"
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "minimum": {
+          "type": "number"
+        },
+        "default": {
+          "type": "number"
+        }
+      }
+    },
+    "string-field": {
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "string"
+          ]
+        },
+        "default": {
+          "type": "string"
+        },
+        "minLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxLength": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "format": {
+          "enum": [
+            "regex",
+            "date-time",
+            "time",
+            "date",
+            "email",
+            "idn-email",
+            "hostname",
+            "idn-hostname",
+            "ipv4",
+            "ipv6",
+            "uri",
+            "uri-reference",
+            "iri",
+            "iri-reference",
+            "uri-template",
+            "json-pointer",
+            "relative-json-pointer",
+            "uuid"
+          ]
+        },
+        "pattern": {
+          "type": "string",
+          "format": "regex"
+        }
+      }
+    },
+    "field": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/string-field"
+        },
+        {
+          "$ref": "#/definitions/integer-field"
+        },
+        {
+          "$ref": "#/definitions/boolean-field"
+        },
+        {
+          "$ref": "#/definitions/enum-field"
+        },
+        {
+          "$ref": "#/definitions/one-to-many-field"
+        },
+        {
+          "$ref": "#/definitions/many-to-many-field"
+        },
+        {
+          "$ref": "#/definitions/number-field"
+        },
+        {
+          "$ref": "#/definitions/json-field"
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "properties": {
+      "type": "object"
+    },
+    "definitions": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_]+$": {
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "const": "object"
+            },
+            "required": {
+              "type": "array",
+              "minItems": 0
+            },
+            "additionalProperties": false,
+            "properties": {
+              "additionalProperties": false,
+              "patternProperties": {
+                "^[a-zA-Z0-9_]+$": {
+                  "$ref": "#/definitions/field"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,6 @@
   "definitions": {
     "manifest": {
       "type": "object",
-      "additionalProperties": false,
       "required": [
         "redcap",
         "sample_id",
@@ -87,7 +86,6 @@
     },
     "redcap": {
       "type": "object",
-      "additionalProperties": false,
       "required": [
         "GenOMICC",
         "sex",

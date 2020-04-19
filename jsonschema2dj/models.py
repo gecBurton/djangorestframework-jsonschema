@@ -1,6 +1,12 @@
-from typing import List
+from os import path
+from json import load
+
+from jsonschema import validate
 
 from .fields import build_field, build_relations
+
+with open(path.join("jsonschema2dj", "meta-schema.json")) as f:
+    META_SCHEMA = load(f)
 
 
 def to_str(field_type, field_options):
@@ -25,6 +31,7 @@ def is_relation(sch):
 class Model:
     @staticmethod
     def factory(schema):
+        validate(schema, META_SCHEMA)
         return [
             Model(model_name, schema["definitions"][model_name], **kwargs)
             for model_name, kwargs in build_relationships(schema).items()
@@ -35,7 +42,11 @@ class Model:
         self.name = name
         properties = sch.get("properties", {})
         required = sch.get("required", [])
-        self.fields = {field_name :build_field(field_name, field_sch, required)        for field_name, field_sch in properties.items() if not is_relation(field_sch)}
+        self.fields = {
+            field_name: build_field(field_name, field_sch, required)
+            for field_name, field_sch in properties.items()
+            if not is_relation(field_sch)
+        }
 
         self.relations = relations
 
@@ -61,7 +72,6 @@ class Model:
 
     @property
     def field_str(self):
-
         def stringify(key, value):
             if key == "label" and value is not None:
                 return f'"{value}"'
@@ -69,7 +79,10 @@ class Model:
 
         r = {}
         for name, details in self.fields.items():
-            r[name] = details["type"], {k: stringify(k, v) for k, v in details.items() if k!="type" }
+            r[name] = (
+                details["type"],
+                {k: stringify(k, v) for k, v in details.items() if k != "type"},
+            )
 
         if not r and not self.relations:
             return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}
@@ -83,17 +96,25 @@ class Model:
     def filter_fields(self):
         r = {}
         for k, v in self.fields.items():
-            if v["type"] in ("IntegerField", "DecimalField", "DateField", "DateTimeField"):
+            if v["type"] in (
+                "IntegerField",
+                "DecimalField",
+                "DateField",
+                "DateTimeField",
+            ):
                 r[k] = ["exact", "gte", "lte"]
             elif "choices" in v:
                 r[k] = ["exact", "in"]
         return r
 
 
-
 class Model2:
     def __init__(self, model):
-        self.fields = {name: (details.pop("type"), details) for name, details in model.fields.items()}
+        self.fields = {
+            name: (details.pop("type"), details)
+            for name, details in model.fields.items()
+        }
+
 
 def build_model_view(schema):
     relationships = {}
@@ -123,21 +144,31 @@ def build_relationships(schema):
         for single, single_name in singles.items():
             related_single, related_many = relationships[single]
             if model in related_single:
-                models[model][single_name] =                    dict(type="OneToOneField",to=single, null=True, on_delete="models.CASCADE")
+                models[model][single_name] = dict(
+                    type="OneToOneField",
+                    to=single,
+                    null=True,
+                    on_delete="models.CASCADE",
+                )
 
             else:
-                models[model][single_name] =                     dict(type="ForeignKey",to=single, null=True, on_delete="models.CASCADE")
-
+                models[model][single_name] = dict(
+                    type="ForeignKey", to=single, null=True, on_delete="models.CASCADE"
+                )
 
         for many, many_name in manys.items():
             related_single, related_many = relationships[many]
             if model in related_single:
-                models[many][related_single[model]] =                     dict(type=    "ForeignKey",
-                         to=model,null=True, on_delete="models.CASCADE")
+                models[many][related_single[model]] = dict(
+                    type="ForeignKey", to=model, null=True, on_delete="models.CASCADE"
+                )
 
             else:
-                models[model][many_name] =                     dict(type=    "ManyToManyField",
-                         to=many, null=True, on_delete="models.CASCADE")
-
+                models[model][many_name] = dict(
+                    type="ManyToManyField",
+                    to=many,
+                    null=True,
+                    on_delete="models.CASCADE",
+                )
 
     return models
