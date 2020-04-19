@@ -7,6 +7,7 @@
         "validators": "[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)]"
       },
       "well": {
+        "label": "physical location of the well on the plate",
         "type": "CharField",
         "max_length": 255,
         "validators": [

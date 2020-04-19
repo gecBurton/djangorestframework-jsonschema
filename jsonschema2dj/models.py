@@ -61,9 +61,15 @@ class Model:
 
     @property
     def field_str(self):
+
+        def stringify(key, value):
+            if key == "label" and value is not None:
+                return f'"{value}"'
+            return value
+
         r = {}
         for name, details in self.fields.items():
-            r[name] = details["type"], {k: v for k, v in details.items() if k!="type" }
+            r[name] = details["type"], {k: stringify(k, v) for k, v in details.items() if k!="type" }
 
         if not r and not self.relations:
             return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}

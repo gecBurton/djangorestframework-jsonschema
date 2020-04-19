@@ -7,7 +7,7 @@ class Field(dict):
         for k, v in kwargs.items():
             if k in ("default", ) and v is None:
                 pass
-            elif k in ("null", "primary_key") and not v:
+            elif k in ("null", "primary_key", "label") and not v:
                 pass
             else:
                 _kwargs[k] = v
@@ -35,9 +35,9 @@ def build_choices(enums, _type="string"):
     raise NotImplementedError("only integer or string enums are supported")
 
 
-def build_string_field(sch, null, primary_key, default):
+def build_string_field(sch, null, primary_key, default, description):
     "the string case is complex enough to have its own function"
-    options = Field(null=null, primary_key=primary_key, default=default)
+    options = Field(null=null, primary_key=primary_key, default=default, label=description)
     validators = []
 
     max_length = sch.get("maxLength", 255)
@@ -73,7 +73,7 @@ def build_string_field(sch, null, primary_key, default):
             "uuid": "UUIDField",
         }
         try:
-            return  Field(type=formats[_format],null=options.get("null", False), primary_key=primary_key, default=default)
+            return  Field(type=formats[_format],null=options.get("null", False), primary_key=primary_key, default=default, label=sch.get("description"))
         except KeyError:
             raise NotImplementedError(f"no code written to handle format: {_format}")
 
@@ -84,6 +84,8 @@ def rationalize_type(sch):
     """the type is problematic especially with regards to enums and null"""
     null = False
     default = sch.get("default")
+    description = sch.get("description")
+
     if _type := sch.get("type"):
         if isinstance(_type, list):
             if (
@@ -100,7 +102,7 @@ def rationalize_type(sch):
             else:
                 null = True
                 _type = next(x for x in _type if x != "null")
-        return _type, sch, null, default
+        return _type, sch, null, default, description
 
     if enums := sch.get("enum"):
         if "null" in enums:
@@ -115,7 +117,7 @@ def rationalize_type(sch):
             raise ValueError(
                 "all values in an enum must be either all strings or all integers"
             )
-        return _type, sch, null, default
+        return _type, sch, null, default, description
 
     raise ValueError(f"either the type must be specified or it must be an enum")
 
@@ -125,19 +127,19 @@ def build_field(name, sch, required):
 
     primary_key = (name == required[0]) if required else False
 
-    field_type, sch, null, default = rationalize_type(sch)
+    field_type, sch, null, default, description = rationalize_type(sch)
 
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             raise ValueError("field with name id must be a UUID")
-        return Field(type="UUIDField", default=default or "uuid.uuid4", primary_key=primary_key)
+        return Field(type="UUIDField", default=default or "uuid.uuid4", primary_key=primary_key, label=description)
 
     if field_type == "string":
-        return build_string_field(sch, null, primary_key, default)
+        return build_string_field(sch, null, primary_key, default, description)
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return Field(type="IntegerField", null=null, validators=validators, primary_key=primary_key, default=default)
+        return Field(type="IntegerField", null=null, validators=validators, primary_key=primary_key, default=default, label=description)
 
 
     if field_type == "number":
@@ -148,15 +150,15 @@ def build_field(name, sch, required):
                 max_digits=10,
                 decimal_places=5,
                 primary_key=primary_key,
-                default=default
+                default=default, label=description
             )
 
 
     if field_type == "boolean":
-        return  Field(type="BooleanField", null=null, primary_key=primary_key, default=default)
+        return  Field(type="BooleanField", null=null, primary_key=primary_key, default=default, label=description)
 
     if field_type == "object":
-        return Field(type="JSONSchemaField", schema=sch, default=default)
+        return Field(type="JSONSchemaField", schema=sch, default=default, label=description)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 

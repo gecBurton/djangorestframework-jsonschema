@@ -31,6 +31,7 @@
           "maximum": 2147483647
         },
         "well": {
+          "description": "physical location of the well on the plate",
           "type": "string",
           "pattern": "^[A-H](0[1-9]|1[1-2])$"
         },
