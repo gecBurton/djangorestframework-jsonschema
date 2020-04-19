@@ -5,12 +5,9 @@
       "postcode": {
         "type": "CharField",
         "max_length": 255,
-        "validators": [
-          [
-            "RegexValidator",
-            "r\"^[a-z]{1,2}\\d[a-z\\d]?\\s*\\d[a-z]{2}$\""
-          ]
-        ]
+        "validators": {
+          "RegexValidator": "r\"^[a-z]{1,2}\\d[a-z\\d]?\\s*\\d[a-z]{2}$\""
+        }
       },
       "type": {
         "type": "CharField",
@@ -62,12 +59,9 @@
       "nhs_number": {
         "type": "CharField",
         "max_length": 255,
-        "validators": [
-          [
-            "RegexValidator",
-            "r\"^\\d{3}-\\d{3}-\\d{4}$\""
-          ]
-        ]
+        "validators": {
+          "RegexValidator": "r\"^\\d{3}-\\d{3}-\\d{4}$\""
+        }
       }
     },
     "relations": {}

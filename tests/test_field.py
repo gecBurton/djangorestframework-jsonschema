@@ -17,12 +17,12 @@ results = {
     "length": {
         "type": "CharField",
         "max_length": 3,
-        "validators": [("MinLengthValidator", 2)],
+        "validators": {"MinLengthValidator": 2},
     },
     "regular_expressions": {
         "type": "CharField",
         "max_length": 255,
-        "validators": [("RegexValidator", 'r"^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"')],
+        "validators": {"RegexValidator": 'r"^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"'},
     },
     "format_date-time": {"type": "DateTimeField"},
     "format_time": {"type": "TimeField"},
@@ -39,7 +39,7 @@ results = {
     "integer": {
         "default": 2,
         "type": "IntegerField",
-        "validators": "[]",
+        "validators": {},
     },
     "enum": {
         "type": "CharField",
@@ -48,7 +48,7 @@ results = {
     },
     "integer-minimum-maximum": {
         "type": "IntegerField",
-        "validators": "[validators.MinValueValidator(3), validators.MaxValueValidator(5)]",
+        "validators": {"MinValueValidator": 3, "MaxValueValidator": 5},
     },
     "enum-null": {
         "type": "CharField",

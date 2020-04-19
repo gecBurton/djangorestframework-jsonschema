@@ -13,7 +13,9 @@
       },
       "age": {
         "type": "IntegerField",
-        "validators": "[validators.MinValueValidator(0)]"
+        "validators": {
+          "MinValueValidator": 0
+        }
       },
       "sex": {
         "type": "CharField",

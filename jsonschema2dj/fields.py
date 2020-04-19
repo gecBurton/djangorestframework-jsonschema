@@ -17,12 +17,13 @@ class Field(dict):
 
 def build_value_validators(sch):
     """common to integers and strings"""
-    validators = []
+    validators = {}
     if "minimum" in sch:
-        validators.append(("MinValueValidator", sch["minimum"]))
+        validators["MinValueValidator"] = sch["minimum"]
     if "maximum" in sch:
-        validators.append(("MaxValueValidator", sch["maximum"]))
-    return "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
+        validators["MaxValueValidator"] = sch["maximum"]
+    return validators
+#    return "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
 
 
 def build_choices(enums, _type="string"):
@@ -42,7 +43,7 @@ def build_string_field(sch, null, primary_key, default, description):
     options = Field(
         null=null, primary_key=primary_key, default=default, label=description
     )
-    validators = []
+    validators = {}
 
     max_length = sch.get("maxLength", 255)
     min_length = sch.get("minLength")
@@ -50,7 +51,7 @@ def build_string_field(sch, null, primary_key, default, description):
     options.update(max_length=max_length)
 
     if min_length:
-        validators.append(("MinLengthValidator", min_length))
+        validators["MinLengthValidator"] = min_length
 
     if (min_length and max_length <= min_length) or max_length > 255:
         return Field(type="TextField", **options)
@@ -59,7 +60,7 @@ def build_string_field(sch, null, primary_key, default, description):
         options.update(build_choices(enums))
 
     if pattern := sch.get("pattern"):
-        validators.append(("RegexValidator", f'r"{pattern}"'))
+        validators["RegexValidator"] = f'r"{pattern}"'
 
     if validators:
         options.update(validators=validators)

@@ -4,32 +4,41 @@
     "fields": {
       "sample_id": {
         "type": "IntegerField",
-        "validators": "[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)]"
+        "validators": {
+          "MinValueValidator": 1000000000,
+          "MaxValueValidator": 2147483647
+        }
       },
       "well": {
         "label": "physical location of the well on the plate",
         "type": "CharField",
         "max_length": 255,
-        "validators": [
-          [
-            "RegexValidator",
-            "r\"^[A-H](0[1-9]|1[1-2])$\""
-          ]
-        ]
+        "validators": {
+          "RegexValidator": "r\"^[A-H](0[1-9]|1[1-2])$\""
+        }
       },
       "volume_ul": {
         "type": "IntegerField",
-        "validators": "[validators.MinValueValidator(10), validators.MaxValueValidator(700)]"
+        "validators": {
+          "MinValueValidator": 10,
+          "MaxValueValidator": 700
+        }
       },
       "concentration_ng_ul": {
         "type": "DecimalField",
-        "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(9999.99)]",
+        "validators": {
+          "MinValueValidator": 0,
+          "MaxValueValidator": 9999.99
+        },
         "max_digits": 10,
         "decimal_places": 5
       },
       "od_260_280": {
         "type": "DecimalField",
-        "validators": "[validators.MinValueValidator(0), validators.MaxValueValidator(10)]",
+        "validators": {
+          "MinValueValidator": 0,
+          "MaxValueValidator": 10
+        },
         "max_digits": 10,
         "decimal_places": 5
       },
@@ -160,12 +169,9 @@
         "type": "CharField",
         "primary_key": true,
         "max_length": 255,
-        "validators": [
-          [
-            "RegexValidator",
-            "r\"^.{4,32}$\""
-          ]
-        ]
+        "validators": {
+          "RegexValidator": "r\"^.{4,32}$\""
+        }
       },
       "sex": {
         "type": "CharField",
@@ -188,12 +194,9 @@
       "nhs_number": {
         "type": "CharField",
         "max_length": 255,
-        "validators": [
-          [
-            "RegexValidator",
-            "r\"^\\d{3} \\d{3} \\d{4}$\""
-          ]
-        ]
+        "validators": {
+          "RegexValidator": "r\"^\\d{3} \\d{3} \\d{4}$\""
+        }
       },
       "date_of_birth": {
         "type": "DateField"
@@ -256,12 +259,9 @@
         "type": "CharField",
         "primary_key": true,
         "max_length": 255,
-        "validators": [
-          [
-            "RegexValidator",
-            "r\"^LP\\d{7}-DNA$\""
-          ]
-        ]
+        "validators": {
+          "RegexValidator": "r\"^LP\\d{7}-DNA$\""
+        }
       },
       "priority": {
         "type": "CharField",

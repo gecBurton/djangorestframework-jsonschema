@@ -75,6 +75,8 @@ class Model:
         def stringify(key, value):
             if key == "label" and value is not None:
                 return f'"{value}"'
+            if key == "validators":
+                return "[" + ", ".join(f"validators.{a}({b})" for a, b in value.items()) + "]"
             return value
 
         r = {}
