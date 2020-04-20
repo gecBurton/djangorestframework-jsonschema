@@ -14,7 +14,7 @@
         "type": "CharField",
         "max_length": 255,
         "validators": {
-          "RegexValidator": "r\"^[A-H](0[1-9]|1[1-2])$\""
+          "RegexValidator": "^[A-H](0[1-9]|1[1-2])$"
         }
       },
       "volume_ul": {
@@ -168,7 +168,7 @@
         "primary_key": true,
         "max_length": 255,
         "validators": {
-          "RegexValidator": "r\"^.{4,32}$\""
+          "RegexValidator": "^.{4,32}$"
         }
       },
       "sex": {
@@ -193,7 +193,7 @@
         "type": "CharField",
         "max_length": 255,
         "validators": {
-          "RegexValidator": "r\"^\\d{3} \\d{3} \\d{4}$\""
+          "RegexValidator": "^\\d{3} \\d{3} \\d{4}$"
         }
       },
       "date_of_birth": {
@@ -257,7 +257,7 @@
         "primary_key": true,
         "max_length": 255,
         "validators": {
-          "RegexValidator": "r\"^LP\\d{7}-DNA$\""
+          "RegexValidator": "^LP\\d{7}-DNA$"
         }
       },
       "priority": {

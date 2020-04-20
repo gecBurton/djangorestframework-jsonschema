@@ -22,7 +22,7 @@ results = {
     "regular_expressions": {
         "type": "CharField",
         "max_length": 255,
-        "validators": {"RegexValidator": 'r"^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"'},
+        "validators": {"RegexValidator": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"},
     },
     "format_date-time": {"type": "DateTimeField"},
     "format_time": {"type": "TimeField"},

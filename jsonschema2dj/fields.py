@@ -23,7 +23,6 @@ def build_value_validators(sch):
     if "maximum" in sch:
         validators["MaxValueValidator"] = sch["maximum"]
     return validators
-#    return "[" + ", ".join(f"validators.{a}({b})" for a, b in validators) + "]"
 
 
 def build_choices(enums, _type="string"):
@@ -60,7 +59,7 @@ def build_string_field(sch, null, primary_key, default, description):
         options.update(build_choices(enums))
 
     if pattern := sch.get("pattern"):
-        validators["RegexValidator"] = f'r"{pattern}"'
+        validators["RegexValidator"] = f'{pattern}'
 
     if validators:
         options.update(validators=validators)
