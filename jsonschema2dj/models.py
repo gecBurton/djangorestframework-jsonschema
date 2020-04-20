@@ -68,10 +68,10 @@ class Model:
     @property
     def field_str(self):
         def stringify(key, value):
-            if key == "label" and value is not None:
+            if key in ("label", "RegexValidator") and value is not None:
                 return f'"{value}"'
             if key == "validators":
-                return "[" + ", ".join(f"validators.{a}({b})" for a, b in value.items()) + "]"
+                return "[" + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items()) + "]"
             return value
 
         r = {}
