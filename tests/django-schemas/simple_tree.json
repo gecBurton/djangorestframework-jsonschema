@@ -11,7 +11,6 @@
       "f": {
         "type": "ForeignKey",
         "to": "F",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
@@ -28,7 +27,6 @@
       "d": {
         "type": "ForeignKey",
         "to": "D",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
@@ -40,13 +38,11 @@
       "c": {
         "type": "ForeignKey",
         "to": "C",
-        "null": true,
         "on_delete": "models.CASCADE"
       },
       "e": {
         "type": "ForeignKey",
         "to": "E",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
@@ -58,7 +54,6 @@
       "b": {
         "type": "ForeignKey",
         "to": "B",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }

@@ -42,13 +42,11 @@
       "hospital": {
         "type": "ForeignKey",
         "to": "Hospital",
-        "null": true,
         "on_delete": "models.CASCADE"
       },
       "patient": {
         "type": "ManyToManyField",
         "to": "Patient",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }

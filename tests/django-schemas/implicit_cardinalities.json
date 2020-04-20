@@ -6,7 +6,6 @@
       "b": {
         "type": "OneToOneField",
         "to": "B",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
@@ -18,13 +17,11 @@
       "a": {
         "type": "OneToOneField",
         "to": "A",
-        "null": true,
         "on_delete": "models.CASCADE"
       },
       "c": {
         "type": "ForeignKey",
         "to": "C",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
@@ -36,7 +33,6 @@
       "d": {
         "type": "ForeignKey",
         "to": "D",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
@@ -48,7 +44,6 @@
       "e": {
         "type": "ManyToManyField",
         "to": "E",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }

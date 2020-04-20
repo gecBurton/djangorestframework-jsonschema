@@ -3,7 +3,7 @@ from json import load
 
 from jsonschema import validate
 
-from .fields import build_field, build_relations
+from .fields import build_field, build_relations, Field
 
 with open(path.join("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
@@ -15,16 +15,11 @@ def to_str(field_type, field_options):
 
 def is_relation(sch):
     """helper method to determine whether a field is pointing to another model"""
-    if set(sch.keys()) == {
-        "$ref",
-    }:
+    if "$ref" in sch:
         return True
-    if set(sch.keys()) == {
-        "type",
-        "items",
-    }:
-        if sch["type"] == "array":
-            return is_relation(sch["items"])
+    if items:= sch.get("items"):
+        if sch.get("type") == "array":
+            return is_relation(items)
     return False
 
 
@@ -110,14 +105,6 @@ class Model:
         return r
 
 
-class Model2:
-    def __init__(self, model):
-        self.fields = {
-            name: (details.pop("type"), details)
-            for name, details in model.fields.items()
-        }
-
-
 def build_model_view(schema):
     relationships = {}
 
@@ -126,11 +113,11 @@ def build_model_view(schema):
 
         for name, _property in model.get("properties", {}).items():
             if ref := _property.get("$ref"):
-                single[ref.split("/")[-1]] = name
+                single[ref.split("/")[-1]] = name, "null" in _property.get("type", [])
 
             elif items := _property.get("items"):
                 if ref := items.get("$ref"):
-                    many[ref.split("/")[-1]] = name
+                    many[ref.split("/")[-1]] = name, "null" in _property.get("type", [])
 
         relationships[model_name] = single, many
 
@@ -143,33 +130,34 @@ def build_relationships(schema):
 
     for model, (singles, manys) in relationships.items():
         models[model] = {}
-        for single, single_name in singles.items():
+        for single, (single_name, null) in singles.items():
             related_single, related_many = relationships[single]
             if model in related_single:
-                models[model][single_name] = dict(
+                models[model][single_name] = Field(
                     type="OneToOneField",
                     to=single,
-                    null=True,
+                    null=null,
                     on_delete="models.CASCADE",
                 )
 
             else:
-                models[model][single_name] = dict(
-                    type="ForeignKey", to=single, null=True, on_delete="models.CASCADE"
+                models[model][single_name] = Field(
+                    type="ForeignKey", to=single, null=null, on_delete="models.CASCADE"
                 )
 
-        for many, many_name in manys.items():
+        for many, (many_name, null) in manys.items():
             related_single, related_many = relationships[many]
             if model in related_single:
-                models[many][related_single[model]] = dict(
-                    type="ForeignKey", to=model, null=True, on_delete="models.CASCADE"
+                single_name, _ = related_single[model]
+                models[many][single_name] = Field(
+                    type="ForeignKey", to=model, null=null, on_delete="models.CASCADE"
                 )
 
             else:
-                models[model][many_name] = dict(
+                models[model][many_name] = Field(
                     type="ManyToManyField",
                     to=many,
-                    null=True,
+                    null=null,
                     on_delete="models.CASCADE",
                 )
 

@@ -151,13 +151,11 @@
       "plate": {
         "type": "ForeignKey",
         "to": "plate",
-        "null": true,
         "on_delete": "models.CASCADE"
       },
       "redcap": {
         "type": "ManyToManyField",
         "to": "redcap",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
@@ -216,7 +214,6 @@
       "responsible_clinician": {
         "type": "ForeignKey",
         "to": "ResponsibleClinician",
-        "null": true,
         "on_delete": "models.CASCADE"
       }
     }
