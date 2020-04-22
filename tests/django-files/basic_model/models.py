@@ -3,7 +3,7 @@ from django.core import validators
 from django.db import models
 
 try:
-    from extra_fields import JSONSchemaField
+    from jsonschema2dj.extra_fields import ValidatedJSONField
 except ImportError:
     pass
 

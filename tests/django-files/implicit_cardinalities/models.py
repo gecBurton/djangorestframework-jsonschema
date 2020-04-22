@@ -3,7 +3,7 @@ from django.core import validators
 from django.db import models
 
 try:
-    from extra_fields import JSONSchemaField
+    from jsonschema2dj.extra_fields import ValidatedJSONField
 except ImportError:
     pass
 
@@ -26,7 +26,7 @@ class C(models.Model):
 
 class D(models.Model):
 
-    e = models.ManyToManyField("E",on_delete=models.CASCADE,)
+    e = models.ManyToManyField("E",)
 
 
 class E(models.Model):

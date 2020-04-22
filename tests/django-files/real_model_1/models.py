@@ -3,7 +3,7 @@ from django.core import validators
 from django.db import models
 
 try:
-    from extra_fields import JSONSchemaField
+    from jsonschema2dj.extra_fields import ValidatedJSONField
 except ImportError:
     pass
 
@@ -18,7 +18,7 @@ class manifest(models.Model):
     cancer_sample_y_n = models.CharField(max_length=3, choices=[('yes', 'yes'), ('no', 'no')], )
     sample_type = models.CharField(max_length=44, choices=[('dna_blood_germline', 'dna_blood_germline'), ('dna_saliva', 'dna_saliva'), ('dna_fibroblast', 'dna_fibroblast'), ('dna_ff_germline', 'dna_ff_germline'), ('dna_ffpe_tumour', 'dna_ffpe_tumour'), ('dna_ff_tumour', 'dna_ff_tumour'), ('dna_blood_tumour', 'dna_blood_tumour'), ('dna_bone_marrow_aspirate_tumour_sorted_cells', 'dna_bone_marrow_aspirate_tumour_sorted_cells'), ('dna_bone_marrow_aspirate_tumour_cells', 'dna_bone_marrow_aspirate_tumour_cells'), ('tumour_tissue_ffpe', 'tumour_tissue_ffpe'), ('lysate_ffpe', 'lysate_ffpe'), ('lysate_ff', 'lysate_ff'), ('lysed_tumour_cells', 'lysed_tumour_cells'), ('streck_plasma', 'streck_plasma'), ('edta_plasma', 'edta_plasma'), ('lihep_plasma', 'lihep_plasma'), ('serum', 'serum'), ('rna_blood', 'rna_blood'), ('tumour_tissue_ff', 'tumour_tissue_ff'), ('bone_marrow_rna_gtc', 'bone_marrow_rna_gtc'), ('blood_rna_gtc', 'blood_rna_gtc')], )
     plate = models.ForeignKey("plate",on_delete=models.CASCADE,)
-    redcap = models.ManyToManyField("redcap",on_delete=models.CASCADE,)
+    redcap = models.ManyToManyField("redcap",)
 
 
 class redcap(models.Model):
@@ -37,7 +37,7 @@ class ResponsibleClinician(models.Model):
 
     name = models.CharField(max_length=255, )
     email = models.EmailField()
-    address = models.JSONSchemaField(schema={'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}}, )
+    address = ValidatedJSONField(schema={'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}}, )
 
 
 class plate(models.Model):

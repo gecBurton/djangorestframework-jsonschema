@@ -46,8 +46,7 @@
       },
       "patient": {
         "type": "ManyToManyField",
-        "to": "Patient",
-        "on_delete": "models.CASCADE"
+        "to": "Patient"
       }
     }
   },

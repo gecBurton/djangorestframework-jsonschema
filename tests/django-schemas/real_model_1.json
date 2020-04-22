@@ -155,8 +155,7 @@
       },
       "redcap": {
         "type": "ManyToManyField",
-        "to": "redcap",
-        "on_delete": "models.CASCADE"
+        "to": "redcap"
       }
     }
   },

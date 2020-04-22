@@ -45,7 +45,7 @@ from django.core import validators
 from django.db import models
 
 try:
-    from extra_fields import JSONSchemaField
+    from jsonschema2dj.extra_fields import ValidatedJSONField
 except ImportError:
     pass
 {% for model in models %}
@@ -54,7 +54,7 @@ except ImportError:
 class {{model.name}}(models.Model):
 
 {% for name, (type, options) in model.field_str.items() %}
-    {{name}} = models.{{type}}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
+    {{name}} = {% if type == "JSONSchemaField" %}ValidatedJSONField{% else %}models.{{type}}{% endif %}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
 {% for name, (type, model, options) in model.relations_str.items() %}
     {{name}} = models.{{type}}("{{model}}",{% for k, v in options.items() %}{{k}}={{v}},{% endfor %})

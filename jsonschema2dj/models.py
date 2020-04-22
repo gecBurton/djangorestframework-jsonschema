@@ -3,9 +3,12 @@ from json import load
 
 from jsonschema import validate
 
-from .fields import build_field, build_relations, Field
+from .fields import build_field, Field
 
-with open(path.join("jsonschema2dj", "meta-schema.json")) as f:
+
+from pkg_resources import resource_filename
+filepath = resource_filename("jsonschema2dj", 'meta-schema.json')
+with open(filepath) as f:
     META_SCHEMA = load(f)
 
 
@@ -157,8 +160,7 @@ def build_relationships(schema):
                 models[model][many_name] = Field(
                     type="ManyToManyField",
                     to=many,
-                    null=null,
-                    on_delete="models.CASCADE",
+                    null=null
                 )
 
     return models

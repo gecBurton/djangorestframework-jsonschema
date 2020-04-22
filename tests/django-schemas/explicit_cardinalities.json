@@ -43,8 +43,7 @@
     "relations": {
       "e": {
         "type": "ManyToManyField",
-        "to": "E",
-        "on_delete": "models.CASCADE"
+        "to": "E"
       }
     }
   },
@@ -54,8 +53,7 @@
     "relations": {
       "d": {
         "type": "ManyToManyField",
-        "to": "D",
-        "on_delete": "models.CASCADE"
+        "to": "D"
       }
     }
   }

@@ -3,7 +3,7 @@ from django.core import validators
 from django.db import models
 
 try:
-    from extra_fields import JSONSchemaField
+    from jsonschema2dj.extra_fields import ValidatedJSONField
 except ImportError:
     pass
 
@@ -18,7 +18,7 @@ class Doctor(models.Model):
 
     name = models.CharField(max_length=255, )
     hospital = models.ForeignKey("Hospital",on_delete=models.CASCADE,)
-    patient = models.ManyToManyField("Patient",on_delete=models.CASCADE,)
+    patient = models.ManyToManyField("Patient",)
 
 
 class Patient(models.Model):

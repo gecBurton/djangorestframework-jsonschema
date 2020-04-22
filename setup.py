@@ -89,5 +89,7 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Topic :: Internet :: WWW/HTTP',
-    ]
+    ],
+    include_package_data=True,
+#    data_files=[("jsonschema2dj", ["meta-schema.json"])]
 )
