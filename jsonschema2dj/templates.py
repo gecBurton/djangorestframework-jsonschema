@@ -112,6 +112,8 @@ class {{model.name}}(filters.FilterSet):
             "{{name}}": ["{{filter|join('", "') }}"],
 {% endfor %}
         }
+{% else %}
+        fields = []
 {% endif %}
 {% endfor %}
 

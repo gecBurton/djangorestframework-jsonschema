@@ -28,6 +28,7 @@ class redcap(filters.FilterSet):
 class ResponsibleClinician(filters.FilterSet):
     class Meta:
         model = models.ResponsibleClinician
+        fields = []
 
 
 class plate(filters.FilterSet):

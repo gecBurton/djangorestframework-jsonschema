@@ -13,8 +13,10 @@ class Hospital(filters.FilterSet):
 class Doctor(filters.FilterSet):
     class Meta:
         model = models.Doctor
+        fields = []
 
 
 class Patient(filters.FilterSet):
     class Meta:
         model = models.Patient
+        fields = []
