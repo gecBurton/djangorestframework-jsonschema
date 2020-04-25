@@ -43,9 +43,9 @@ class {{model.name}}(HyperlinkedModelSerializer):
 MODEL_TEMPLATE = """import uuid
 from django.core import validators
 from django.db import models
-
+from jsonschema2dj.extra_fields import JSONSchemaValidator
 try:
-    from jsonschema2dj.extra_fields import ValidatedJSONField
+    from django.contrib.postgres.fields import JSONField
 except ImportError:
     pass
 {% for model in models %}
@@ -57,7 +57,11 @@ class {{model.name}}(models.Model):
     {{name}} = {% if type == "JSONSchemaField" %}ValidatedJSONField{% else %}models.{{type}}{% endif %}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
 {% endfor %}
 {% for name, (type, model, options) in model.relations_str.items() %}
+{% if type == "JSONField" %}
+    {{name}} = {{type}}("{{model}}",{% for k, v in options.items() %}{{k}}={{v}},{% endfor %})
+{% else %}
     {{name}} = models.{{type}}("{{model}}",{% for k, v in options.items() %}{{k}}={{v}},{% endfor %})
+{% endif %}
 {% endfor %}
 {% endfor %}
 """

@@ -1,18 +1,12 @@
-from django.contrib.postgres.fields import JSONField
 from jsonschema import Draft7Validator
-from rest_framework import exceptions
-from rest_framework.utils import json
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy
 
 
-class ValidatedJSONField(JSONField):
-    def __init__(self, *args, schema=None, **kwargs):
-        self.schema = schema
-        super().__init__(*args, **kwargs)
+class JSONSchemaValidator:
+    def __init__(self, schema):
+        self.validator = Draft7Validator(schema)
 
-    def validate(self, value, model_instance):
-        value = super().validate(value, model_instance)
-        data = json.loads(value)
-        validator = Draft7Validator(self.schema)
-        if errors := list(validator.iter_errors(data)):
-            raise exceptions.ValidationError(errors, code="invalid")
-        return value
+    def __call__(self, payload):
+        if errors := list(self.validator.iter_errors(payload)):
+            raise ValidationError(gettext_lazy("%(value) raised"), params={"value": errors})

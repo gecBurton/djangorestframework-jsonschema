@@ -1,9 +1,9 @@
 import uuid
 from django.core import validators
 from django.db import models
-
+from jsonschema2dj.extra_fields import JSONSchemaValidator
 try:
-    from jsonschema2dj.extra_fields import ValidatedJSONField
+    from django.contrib.postgres.fields import JSONField
 except ImportError:
     pass
 
@@ -37,7 +37,7 @@ class ResponsibleClinician(models.Model):
 
     name = models.CharField(max_length=255, )
     email = models.EmailField()
-    address = ValidatedJSONField(schema={'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}}, )
+    address = JSONField(validators=[JSONSchemaValidator({'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}})], )
 
 
 class plate(models.Model):

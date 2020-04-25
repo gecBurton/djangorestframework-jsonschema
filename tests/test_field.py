@@ -62,19 +62,15 @@ results = {
         "type": "UUIDField",
         "default": "uuid.uuid4",
     },
-    "json-schema": {
-        "type": "JSONSchemaField",
-        "schema": {
-            "properties": {
-                "a": {"type": "boolean"},
-                "b": {"type": "integer"},
-                "c": {"type": "boolean"},
-            },
-            "required": ["a", "b"],
-            "type": "object",
-        },
-    },
-}
+    "json-schema":
+        {'type': 'JSONField',
+         'validators': {'JSONSchemaValidator': {'properties': {'a': {'type': 'boolean'},
+                                                               'b': {'type': 'integer'},
+                                                               'c': {'type': 'boolean'}},
+                                                'required': ['a', 'b'],
+                                                'type': 'object'}}}
+    }
+
 
 
 @pytest.mark.parametrize("name,result", results.items())

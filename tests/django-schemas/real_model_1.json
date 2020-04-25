@@ -228,8 +228,8 @@
         "type": "EmailField"
       },
       "address": {
-        "type": "JSONSchemaField",
-        "schema": {
+        "type": "JSONField", "validators":
+        {"JSONSchemaValidator": {
           "type": "object",
           "properties": {
             "lines": {
@@ -242,6 +242,7 @@
               "type": "string",
               "pattern": "^[A-Z]{2}\\d \\d[A-Z]{2}$"
             }
+          }
           }
         }
       }

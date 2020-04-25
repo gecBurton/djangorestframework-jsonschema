@@ -187,7 +187,7 @@ def build_field(name, sch, required):
 
     if field_type == "object":
         return Field(
-            type="JSONSchemaField", schema=sch, default=default, label=description
+            type="JSONField", validators={"JSONSchemaValidator": sch}, default=default, label=description
         )
 
     raise NotImplementedError(f"no code written for type: {field_type}")

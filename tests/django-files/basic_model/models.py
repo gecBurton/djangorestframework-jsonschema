@@ -1,9 +1,9 @@
 import uuid
 from django.core import validators
 from django.db import models
-
+from jsonschema2dj.extra_fields import JSONSchemaValidator
 try:
-    from jsonschema2dj.extra_fields import ValidatedJSONField
+    from django.contrib.postgres.fields import JSONField
 except ImportError:
     pass
 
