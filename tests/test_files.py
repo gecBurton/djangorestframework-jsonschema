@@ -35,7 +35,7 @@ stuff = [
 
 
 @pytest.mark.parametrize("model,asset_name,asset_function", stuff)
-def test_q(model, asset_name, asset_function):
+def test_django_files(model, asset_name, asset_function):
     with open(path.join(json_schema_dir, model)) as f:
         schema = load(f)
 

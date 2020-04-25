@@ -43,7 +43,7 @@ class {{model.name}}(HyperlinkedModelSerializer):
 MODEL_TEMPLATE = """import uuid
 from django.core import validators
 from django.db import models
-from jsonschema2dj.extra_fields import JSONSchemaValidator
+from jsonschema2dj.valdiators import JSONSchemaValidator
 try:
     from django.contrib.postgres.fields import JSONField
 except ImportError:

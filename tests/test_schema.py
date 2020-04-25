@@ -1,9 +1,9 @@
 import os
-from json import load, dumps, loads, dump
+from json import load
 
 import pytest
 
-from jsonschema2dj.models import Model, build_relationships
+from jsonschema2dj.models import Model
 
 json_schema_dir = "tests/json-schemas/"
 django_schema_dir = "tests/django-schemas/"
@@ -21,7 +21,7 @@ def tuple_to_list(obj):
 
 
 @pytest.mark.parametrize("json_file, django_file", schemas)
-def test_part_1(json_file, django_file):
+def test_django_schema(json_file, django_file):
     with open(json_schema_dir + json_file) as f:
         json_schema = load(f)
 
