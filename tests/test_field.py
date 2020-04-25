@@ -64,11 +64,11 @@ results = {
     },
     "json-schema":
         {'type': 'JSONField',
-         'validators': {'JSONSchemaValidator': {'properties': {'a': {'type': 'boolean'},
+         'schema': {'properties': {'a': {'type': 'boolean'},
                                                                'b': {'type': 'integer'},
                                                                'c': {'type': 'boolean'}},
                                                 'required': ['a', 'b'],
-                                                'type': 'object'}}}
+                                                'type': 'object'}}
     }
 
 

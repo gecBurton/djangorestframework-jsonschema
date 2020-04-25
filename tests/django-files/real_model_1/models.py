@@ -37,7 +37,7 @@ class ResponsibleClinician(models.Model):
 
     name = models.CharField(max_length=255, )
     email = models.EmailField()
-    address = JSONField(validators=[JSONSchemaValidator({'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}})], )
+    address = JSONField(validators=[JSONSchemaValidator({'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}})])
 
 
 class plate(models.Model):
