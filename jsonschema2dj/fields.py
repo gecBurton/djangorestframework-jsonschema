@@ -59,7 +59,7 @@ def build_string_field(sch, null, primary_key, default, description):
         options.update(build_choices(enums))
 
     if pattern := sch.get("pattern"):
-        validators["RegexValidator"] = f'{pattern}'
+        validators["RegexValidator"] = f"{pattern}"
 
     if validators:
         options.update(validators=validators)
@@ -186,9 +186,7 @@ def build_field(name, sch, required):
         )
 
     if field_type == "object":
-        return Field(
-            type="JSONField", schema=sch, default=default, label=description
-        )
+        return Field(type="JSONField", schema=sch, default=default, label=description)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 

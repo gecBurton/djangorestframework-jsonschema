@@ -16,8 +16,8 @@ class JSONSchemaValidator(validators.BaseValidator):
                 [
                     ValidationError(
                         gettext_lazy("JSONSchema: %(value)s"),
-                        params={"value": error.message.replace('\\\\', '\\')},
-                        code='jsonschema'
+                        params={"value": error.message.replace("\\\\", "\\")},
+                        code="jsonschema",
                     )
                     for error in errors
                 ]
