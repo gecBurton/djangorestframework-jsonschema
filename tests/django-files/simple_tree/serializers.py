@@ -1,38 +1,38 @@
 from . import models
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 
-class F(HyperlinkedModelSerializer):
+class F(ModelSerializer):
     class Meta:
         model = models.F
         fields = "__all__"
 
 
-class E(HyperlinkedModelSerializer):
+class E(ModelSerializer):
     class Meta:
         model = models.E
         fields = "__all__"
 
 
-class D(HyperlinkedModelSerializer):
+class D(ModelSerializer):
     class Meta:
         model = models.D
         fields = "__all__"
 
 
-class C(HyperlinkedModelSerializer):
+class C(ModelSerializer):
     class Meta:
         model = models.C
         fields = "__all__"
 
 
-class B(HyperlinkedModelSerializer):
+class B(ModelSerializer):
     class Meta:
         model = models.B
         fields = "__all__"
 
 
-class A(HyperlinkedModelSerializer):
+class A(ModelSerializer):
     class Meta:
         model = models.A
         fields = "__all__"

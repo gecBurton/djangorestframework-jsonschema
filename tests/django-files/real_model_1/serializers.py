@@ -1,26 +1,26 @@
 from . import models
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 
-class manifest(HyperlinkedModelSerializer):
+class Manifest(ModelSerializer):
     class Meta:
-        model = models.manifest
+        model = models.Manifest
         fields = "__all__"
 
 
-class redcap(HyperlinkedModelSerializer):
+class Redcap(ModelSerializer):
     class Meta:
-        model = models.redcap
+        model = models.Redcap
         fields = "__all__"
 
 
-class ResponsibleClinician(HyperlinkedModelSerializer):
+class ResponsibleClinician(ModelSerializer):
     class Meta:
         model = models.ResponsibleClinician
         fields = "__all__"
 
 
-class plate(HyperlinkedModelSerializer):
+class Plate(ModelSerializer):
     class Meta:
-        model = models.plate
+        model = models.Plate
         fields = "__all__"

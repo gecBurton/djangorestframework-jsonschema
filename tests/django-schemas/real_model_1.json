@@ -1,6 +1,6 @@
 [
   {
-    "name": "manifest",
+    "name": "Manifest",
     "fields": {
       "sample_id": {
         "type": "IntegerField",
@@ -150,17 +150,17 @@
     "relations": {
       "plate": {
         "type": "ForeignKey",
-        "to": "plate",
+        "to": "Plate",
         "on_delete": "models.CASCADE"
       },
       "redcap": {
         "type": "ManyToManyField",
-        "to": "redcap"
+        "to": "Redcap"
       }
     }
   },
   {
-    "name": "redcap",
+    "name": "Redcap",
     "fields": {
       "GenOMICC": {
         "type": "CharField",
@@ -249,7 +249,7 @@
     "relations": {}
   },
   {
-    "name": "plate",
+    "name": "Plate",
     "fields": {
       "barcode": {
         "type": "CharField",

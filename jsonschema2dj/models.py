@@ -43,6 +43,9 @@ class Model:
 
         self.relations = relations
 
+    def __lt__(self, other):
+        return self.name in [relation["to"] for relation in self.relations.values() if relation["type"] == "ForeignKey"]
+
     @property
     def dict_repr(self):
         return dict(name=self.name, fields=self.fields, relations=self.relations)
@@ -163,3 +166,32 @@ def build_models(schema):
                 )
 
     return models
+
+
+
+
+class Dependent:
+    """represents one-to-many relationships between models
+    such that they are sortable so that that dependencies
+    are created before dependents"""
+
+    @staticmethod
+    def sort_models(models):
+        dependencies = sorted(
+            Dependent(
+                model,
+                [relation["to"] for relation in relations.values() if relation["type"] == "ForeignKey"]
+            )
+            for model, relations in models.items()
+        )
+
+        return [model.name for model in dependencies]
+
+    def __init__(self, name, dependencies):
+        self.name = name
+        self.dependencies = dependencies
+
+    def __lt__(self, other):
+        """this is the operator required for python's default sorted algo
+        """
+        return self.name in other.dependencies

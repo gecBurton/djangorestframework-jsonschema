@@ -2,9 +2,9 @@ from django_filters import rest_framework as filters
 from . import models
 
 
-class manifest(filters.FilterSet):
+class Manifest(filters.FilterSet):
     class Meta:
-        model = models.manifest
+        model = models.Manifest
         fields = {
             "sample_id": ["exact", "gte", "lte"],
             "volume_ul": ["exact", "gte", "lte"],
@@ -15,9 +15,9 @@ class manifest(filters.FilterSet):
         }
 
 
-class redcap(filters.FilterSet):
+class Redcap(filters.FilterSet):
     class Meta:
-        model = models.redcap
+        model = models.Redcap
         fields = {
             "sex": ["exact", "in"],
             "date_of_birth": ["exact", "gte", "lte"],
@@ -31,9 +31,9 @@ class ResponsibleClinician(filters.FilterSet):
         fields = []
 
 
-class plate(filters.FilterSet):
+class Plate(filters.FilterSet):
     class Meta:
-        model = models.plate
+        model = models.Plate
         fields = {
             "priority": ["exact", "in"],
         }

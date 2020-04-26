@@ -5,10 +5,10 @@ from . import views
 
 router = routers.DefaultRouter()
 
-router.register("manifest", views.manifest)
-router.register("redcap", views.redcap)
+router.register("Manifest", views.Manifest)
+router.register("Redcap", views.Redcap)
 router.register("ResponsibleClinician", views.ResponsibleClinician)
-router.register("plate", views.plate)
+router.register("Plate", views.Plate)
 
 urlpatterns = [
     path("", include(router.urls)),

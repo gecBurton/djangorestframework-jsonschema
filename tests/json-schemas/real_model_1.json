@@ -1,6 +1,6 @@
 {
   "definitions": {
-    "manifest": {
+    "Manifest": {
       "type": "object",
       "required": [
         "redcap",
@@ -16,12 +16,12 @@
       ],
       "properties": {
         "plate": {
-          "$ref": "#/definitions/plate"
+          "$ref": "#/definitions/Plate"
         },
         "redcap": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/redcap"
+            "$ref": "#/definitions/Redcap"
           }
         },
         "sample_id": {
@@ -84,7 +84,7 @@
         }
       }
     },
-    "redcap": {
+    "Redcap": {
       "type": "object",
       "required": [
         "GenOMICC",
@@ -157,7 +157,7 @@
         }
       }
     },
-    "plate": {
+    "Plate": {
       "required": [
         "barcode",
         "priority"
@@ -178,10 +178,10 @@
   },
   "properties": {
     "redcap": {
-      "$ref": "#/definitions/redcap"
+      "$ref": "#/definitions/Redcap"
     },
     "manifest": {
-      "$ref": "#/definitions/manifest"
+      "$ref": "#/definitions/Manifest"
     }
   }
 }

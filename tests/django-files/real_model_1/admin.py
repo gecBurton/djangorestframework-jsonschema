@@ -2,16 +2,16 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.manifest)
-class manifestAdmin(admin.ModelAdmin):
+@admin.register(models.Manifest)
+class ManifestAdmin(admin.ModelAdmin):
     list_filter = (
         "cancer_sample_y_n",
         "sample_type",
     )
 
 
-@admin.register(models.redcap)
-class redcapAdmin(admin.ModelAdmin):
+@admin.register(models.Redcap)
+class RedcapAdmin(admin.ModelAdmin):
     list_filter = (
         "sex",
     )
@@ -22,8 +22,8 @@ class ResponsibleClinicianAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(models.plate)
-class plateAdmin(admin.ModelAdmin):
+@admin.register(models.Plate)
+class PlateAdmin(admin.ModelAdmin):
     list_filter = (
         "priority",
     )
