@@ -176,7 +176,7 @@ To build the documentation:
     $ mkdocs build
 
 .. _tox: http://tox.readthedocs.org/en/latest/
-.. _example-schemas: /tests/json-schemas/real_model_1.json
+.. _real_model: /tests/json-schemas/real_model_1.json
 .. _json-api: https://github.com/django-json-api/django-rest-framework-json-api
 
 .. |build-status-image| image:: https://secure.travis-ci.org/gecBurton/django-rest-framework-jsonschema.svg?branch=master
