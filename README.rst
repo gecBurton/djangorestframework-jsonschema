@@ -61,9 +61,9 @@ Example
 -------
 
 
-`example-schemas`_ can be found in the tests.
+An example `real_model`_ can be found in the tests.
 
-To use any of these create a new project and app, and copy the example schema
+To use this example create a new project and app, and copy the example schema
 into the root of the app directory and rename as rename `schema.json`.
 
 Now run:
@@ -72,7 +72,7 @@ Now run:
     
     $ python manage.py jsonschema2dj example_app
 
-and the following are built:
+and the following will be built:
 
 - models.py
 - views.py
@@ -81,17 +81,12 @@ and the following are built:
 - filters.py
 - admin.py
 
-as usual run:
+now as usual run:
 
 .. code:: bash
 
     $ python manage.py makemigrations
     $ python manage.py migrate
-
-and that's it!
-
-.. code:: bash
-
     $ python manage.py runserver
 
 Testing
@@ -174,7 +169,7 @@ To build the documentation:
     $ mkdocs build
 
 .. _tox: http://tox.readthedocs.org/en/latest/
-.. _example-schemas: /tests/json-schemas
+.. _example-schemas: /tests/json-schemas/real_model_1.json
 .. _json-api: https://github.com/django-json-api/django-rest-framework-json-api
 
 .. |build-status-image| image:: https://secure.travis-ci.org/gecBurton/django-rest-framework-jsonschema.svg?branch=master
