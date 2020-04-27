@@ -13,7 +13,7 @@ on it.
 The emphasis is on enabling the user to quickly produce a basic-but-robust
 solution that can be adapted as needed.
 
-Apart from the schema.json itself this tool is intentional not configurable.
+Apart from the ``schema.json`` itself this tool is intentionally not configurable.
 It is our view that too often too much time is spent debating
 the finer points of MVC when a basic solution will do, and that this
 time is better spent on either the data model or the core application logic.
