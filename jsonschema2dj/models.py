@@ -1,11 +1,15 @@
+"""This
+"""
 from json import load
 
 from jsonschema import validate
 
-from .fields import build_field, Field
+from .fields import build_field
 
 
 from pkg_resources import resource_filename
+
+from .relationships import build_models
 
 with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
@@ -24,6 +28,7 @@ class Model:
 
     @classmethod
     def factory(cls, schema):
+        "factory for parsing json schema of many models"
         validate(schema, META_SCHEMA)
         return [
             Model(model_name, schema["definitions"][model_name], **kwargs)
@@ -43,15 +48,16 @@ class Model:
 
         self.relations = relations
 
-    def __lt__(self, other):
-        return self.name in [relation["to"] for relation in self.relations.values() if relation["type"] == "ForeignKey"]
-
     @property
     def dict_repr(self):
+        "only used for testing a half way stage"
         return dict(name=self.name, fields=self.fields, relations=self.relations)
 
     @property
     def enum_fields(self):
+        """lists enum fields.
+        A helper method of jinja admin template
+        """
         return [
             field
             for field, (*_, options) in self.fields.items()
@@ -60,6 +66,9 @@ class Model:
 
     @property
     def search_fields(self):
+        """lists searchable fields.
+        A helper method of jinja view template
+        """
         fields = []
         for field_name, (field_type, field_attrs) in self.field_str.items():
             if field_type == "CharField" and "choices" not in field_attrs:
@@ -68,6 +77,9 @@ class Model:
 
     @property
     def field_str(self):
+        """lists jinja friendly fields.
+        A helper method of jinja model template
+        """
         def stringify(key, value):
             if key in ("label", "RegexValidator") and value is not None:
                 return f'"{value}"'
@@ -81,117 +93,40 @@ class Model:
                 )
             return value
 
-        r = {}
+        result = {}
         for name, details in self.fields.items():
-            r[name] = (
+            result[name] = (
                 details["type"],
-                {k: stringify(k, v) for k, v in details.items() if k != "type"},
+                {key: stringify(key, value) for key, value in details.items() if key != "type"},
             )
 
-        if not r and not self.relations:
+        if not result and not self.relations:
             return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}
-        return r
+        return result
 
     @property
     def relations_str(self):
+        """lists jinja friendly relationship-fields.
+        A helper method of jinja filter template
+        """
         return {k: (v.pop("type"), v.pop("to"), v) for k, v in self.relations.items()}
 
     @property
     def filter_fields(self):
-        r = {}
-        for k, v in self.fields.items():
-            if v["type"] in (
+        """lists filterable fields.
+        A helper method of jinja view template
+        """
+        result = {}
+        for key, value in self.fields.items():
+            if value["type"] in (
                 "IntegerField",
                 "DecimalField",
                 "DateField",
                 "DateTimeField",
             ):
-                r[k] = ["exact", "gte", "lte"]
-            elif "choices" in v:
-                r[k] = ["exact", "in"]
-        return r
+                result[key] = ["exact", "gte", "lte"]
+            elif "choices" in value:
+                result[key] = ["exact", "in"]
+        return result
 
 
-def build_relationships(schema):
-    relationships = {}
-
-    for model_name, model in schema["definitions"].items():
-        single, many = {}, {}
-
-        for name, _property in model.get("properties", {}).items():
-            if ref := _property.get("$ref"):
-                single[ref.split("/")[-1]] = name, "null" in _property.get("type", [])
-
-            elif items := _property.get("items"):
-                if ref := items.get("$ref"):
-                    many[ref.split("/")[-1]] = name, "null" in _property.get("type", [])
-
-        relationships[model_name] = single, many
-
-    return relationships
-
-
-def build_models(schema):
-    models = dict()
-    relationships = build_relationships(schema)
-
-    for model, (singles, manys) in relationships.items():
-        models[model] = {}
-        for single, (single_name, null) in singles.items():
-            related_single, related_many = relationships[single]
-            if model in related_single:
-                models[model][single_name] = Field(
-                    type="OneToOneField",
-                    to=single,
-                    null=null,
-                    on_delete="models.CASCADE",
-                )
-
-            else:
-                models[model][single_name] = Field(
-                    type="ForeignKey", to=single, null=null, on_delete="models.CASCADE"
-                )
-
-        for many, (many_name, null) in manys.items():
-            related_single, related_many = relationships[many]
-            if model in related_single:
-                single_name, _ = related_single[model]
-                models[many][single_name] = Field(
-                    type="ForeignKey", to=model, null=null, on_delete="models.CASCADE"
-                )
-
-            else:
-                models[model][many_name] = Field(
-                    type="ManyToManyField", to=many, null=null
-                )
-
-    return models
-
-
-
-
-class Dependent:
-    """represents one-to-many relationships between models
-    such that they are sortable so that that dependencies
-    are created before dependents"""
-
-    @staticmethod
-    def sort_models(models):
-        dependencies = sorted(
-            Dependent(
-                model,
-                [relation["to"] for relation in relations.values() if relation["type"] == "ForeignKey"]
-            )
-            for model, relations in models.items()
-        )
-
-        return [model.name for model in dependencies]
-
-    def __init__(self, name, dependencies):
-        self.name = name
-        self.dependencies = dependencies
-
-    def __lt__(self, other):
-        """this is the operator required for python's default sorted algo
-        """
-        return self.name in other.dependencies

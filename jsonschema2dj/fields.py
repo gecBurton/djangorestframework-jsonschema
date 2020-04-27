@@ -1,18 +1,6 @@
 """helper methods for field level schema to django field like object
 """
-
-
-class Field(dict):
-    def __init__(self, **kwargs):
-        _kwargs = {}
-        for k, v in kwargs.items():
-            if k in ("default",) and v is None:
-                pass
-            elif k in ("null", "primary_key", "label") and not v:
-                pass
-            else:
-                _kwargs[k] = v
-        super().__init__(**_kwargs)
+from jsonschema2dj.relationships import FieldDict
 
 
 def build_value_validators(sch):
@@ -29,17 +17,17 @@ def build_choices(enums, _type="string"):
     "helper function for enums to choices"
     if _type == "string":
         names = [value.lower().replace(" ", "_") for value in enums]
-        return Field(max_length=max(map(len, enums)), choices=list(zip(names, enums)))
+        return FieldDict(max_length=max(map(len, enums)), choices=list(zip(names, enums)))
 
     if _type == "integer":
-        return Field(choices=list(zip(map(str, enums), enums)))
+        return FieldDict(choices=list(zip(map(str, enums), enums)))
 
     raise NotImplementedError("only integer or string enums are supported")
 
 
 def build_string_field(sch, null, primary_key, default, description):
     "the string case is complex enough to have its own function"
-    options = Field(
+    options = FieldDict(
         null=null, primary_key=primary_key, default=default, label=description
     )
     validators = {}
@@ -53,7 +41,7 @@ def build_string_field(sch, null, primary_key, default, description):
         validators["MinLengthValidator"] = min_length
 
     if (min_length and max_length <= min_length) or max_length > 255:
-        return Field(type="TextField", **options)
+        return FieldDict(type="TextField", **options)
 
     if enums := sch.get("enum"):
         options.update(build_choices(enums))
@@ -77,7 +65,7 @@ def build_string_field(sch, null, primary_key, default, description):
             "uuid": "UUIDField",
         }
         try:
-            return Field(
+            return FieldDict(
                 type=formats[_format],
                 null=options.get("null", False),
                 primary_key=primary_key,
@@ -87,7 +75,7 @@ def build_string_field(sch, null, primary_key, default, description):
         except KeyError:
             raise NotImplementedError(f"no code written to handle format: {_format}")
 
-    return Field(type="CharField", **options)
+    return FieldDict(type="CharField", **options)
 
 
 def rationalize_type(sch):
@@ -142,7 +130,7 @@ def build_field(name, sch, required):
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             raise ValueError("field with name id must be a UUID")
-        return Field(
+        return FieldDict(
             type="UUIDField",
             default=default or "uuid.uuid4",
             primary_key=primary_key,
@@ -154,7 +142,7 @@ def build_field(name, sch, required):
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return Field(
+        return FieldDict(
             type="IntegerField",
             null=null,
             validators=validators,
@@ -165,7 +153,7 @@ def build_field(name, sch, required):
 
     if field_type == "number":
         validators = build_value_validators(sch)
-        return Field(
+        return FieldDict(
             type="DecimalField",
             null=null,
             validators=validators,
@@ -177,7 +165,7 @@ def build_field(name, sch, required):
         )
 
     if field_type == "boolean":
-        return Field(
+        return FieldDict(
             type="BooleanField",
             null=null,
             primary_key=primary_key,
@@ -186,20 +174,8 @@ def build_field(name, sch, required):
         )
 
     if field_type == "object":
-        return Field(type="JSONField", schema=sch, default=default, label=description)
+        return FieldDict(type="JSONField", schema=sch, default=default, label=description)
 
     raise NotImplementedError(f"no code written for type: {field_type}")
 
 
-def build_relations(sch, null=False):
-    if set(sch.keys()) == {
-        "$ref",
-    }:
-        model = sch["$ref"].split("/")[-1]
-        return model, null, False
-
-    if sch.get("items"):
-        model = sch["items"]["$ref"].split("/")[-1]
-        return model, null, True
-
-    raise NotImplementedError(f"no code written for type: {sch}")

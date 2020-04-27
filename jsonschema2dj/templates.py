@@ -1,3 +1,5 @@
+"""django files are built using the jinja templating framework
+"""
 from typing import List
 
 from jinja2 import Template
