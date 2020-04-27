@@ -18,7 +18,7 @@ It is our view that too often too much time is spent debating
 the finer points of MVC when a basic solution will do, and that this
 time is better spent on either the data model or the core application logic.
 
-In a similar vein in it recommended that this project is used with json-api_.
+In a similar vein in it recommended that this package is used with json-api_.
 
 Requirements
 ------------
