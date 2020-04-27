@@ -119,12 +119,15 @@ Documentation
 Models are objects at the top level of the ``definitions`` of the
 ``schema.json``.
 
-
-Fields
-######
-
 A model's fields are its top level ``properties``, the django field
 types and validation are inferred from the jsonschema property.
+
+Nullability is inferred by the usef of ``"type": ["null", ".."]``.
+
+
+Simple-Fields
+#############
+
 
 approximately:
 
@@ -133,13 +136,18 @@ approximately:
 -  ``"number"`` -> ``DecimalField``
 -  ``"boolean"`` -> ``BooleanField``
 
--  ``"object"`` -> ``JSONField``
+Object-Fields
 
-- ``"$ref": "Model-X"`` -> one-to-one or one-to-many
-- ``"items": {"ref": "Model-X"}`` -> many-to-one or many-to-many
+-  ``"object"`` -> ``JSONField``
 
 In the event that a field used JSONField then its validity will be checked
 against the schema specified.
+
+Relationships
+#############
+
+- ``"$ref": "Model-X"`` -> one-to-one or one-to-many
+- ``"items": {"ref": "Model-X"}`` -> many-to-one or many-to-many
 
 Cardinality between models ``A`` and ``B`` is inferred
 by comparing both sides of the relationship. If only one side is specified
@@ -147,7 +155,6 @@ the it is assumed that it is one-to-many or many-to-many.
 
 Primary-Keys are inferred by the name of field being ``id``.
 
-Nullability is inferred by the usef of ``"type": ["null", ".."]``.
 
 To build the documentation, you’ll need to install ``mkdocs``.
 
