@@ -11,6 +11,7 @@ from django.core import validators
 class JSONSchemaValidator(validators.BaseValidator):
     """Bespoke jsonschema validator to be used with the JSONField
     """
+
     def __init__(self, schema):
         self.validator = Draft7Validator(schema)
 

@@ -17,7 +17,9 @@ def build_choices(enums, _type="string"):
     "helper function for enums to choices"
     if _type == "string":
         names = [value.lower().replace(" ", "_") for value in enums]
-        return FieldDict(max_length=max(map(len, enums)), choices=list(zip(names, enums)))
+        return FieldDict(
+            max_length=max(map(len, enums)), choices=list(zip(names, enums))
+        )
 
     if _type == "integer":
         return FieldDict(choices=list(zip(map(str, enums), enums)))
@@ -174,8 +176,8 @@ def build_field(name, sch, required):
         )
 
     if field_type == "object":
-        return FieldDict(type="JSONField", schema=sch, default=default, label=description)
+        return FieldDict(
+            type="JSONField", schema=sch, default=default, label=description
+        )
 
     raise NotImplementedError(f"no code written for type: {field_type}")
-
-

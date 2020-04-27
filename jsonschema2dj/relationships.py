@@ -9,6 +9,7 @@ class FieldDict(dict):
     This is not strictly necessary but produces slightly nicer
     looking code.
     """
+
     def __init__(self, **kwargs):
         _kwargs = {}
         for key, value in kwargs.items():

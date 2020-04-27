@@ -80,6 +80,7 @@ class Model:
         """lists jinja friendly fields.
         A helper method of jinja model template
         """
+
         def stringify(key, value):
             if key in ("label", "RegexValidator") and value is not None:
                 return f'"{value}"'
@@ -97,7 +98,11 @@ class Model:
         for name, details in self.fields.items():
             result[name] = (
                 details["type"],
-                {key: stringify(key, value) for key, value in details.items() if key != "type"},
+                {
+                    key: stringify(key, value)
+                    for key, value in details.items()
+                    if key != "type"
+                },
             )
 
         if not result and not self.relations:
@@ -128,5 +133,3 @@ class Model:
             elif "choices" in value:
                 result[key] = ["exact", "in"]
         return result
-
-
