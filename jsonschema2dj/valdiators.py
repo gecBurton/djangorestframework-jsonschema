@@ -16,7 +16,8 @@ class JSONSchemaValidator(validators.BaseValidator):
         self.validator = Draft7Validator(schema)
 
     def __call__(self, payload):
-        if errors := list(self.validator.iter_errors(payload)):
+        errors = list(self.validator.iter_errors(payload))
+        if errors:
             raise ValidationError(
                 [
                     ValidationError(

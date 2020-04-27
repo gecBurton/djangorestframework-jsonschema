@@ -8,7 +8,7 @@ VALID_SCHEMAS = [
     (
         {
             "additionalProperties": False,
-            "properties": {"c": {"type": "string", "pattern": "\d+"}},
+            "properties": {"c": {"type": "string", "pattern": "\\d+"}},
         },
         {"c": "123"},
     ),
@@ -18,7 +18,7 @@ INVALID_SCHEMAS = [
     (
         {
             "additionalProperties": False,
-            "properties": {"c": {"type": "string", "pattern": "\d+"}},
+            "properties": {"c": {"type": "string", "pattern": "\\d+"}},
         },
         {"b": 1, "c": "abc"},
         [
@@ -30,7 +30,7 @@ INVALID_SCHEMAS = [
 
 
 @pytest.mark.parametrize("schema,payload", VALID_SCHEMAS)
-def test_raises_error(schema, payload):
+def test_doesnt_raises_error(schema, payload):
     validator = JSONSchemaValidator(schema)
     validator(payload)
     assert True

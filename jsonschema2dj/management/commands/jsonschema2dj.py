@@ -13,10 +13,10 @@ from jsonschema2dj.templates import (
 
 
 class Command(BaseCommand):
-    help: str = "blah blah blah"
+    help = ""
 
     def add_arguments(self, parser):
-        parser.add_argument("app", type=str, help="vnsknvcsl")
+        parser.add_argument("app", type=str, help="")
 
     def handle(self, *args, **kwargs) -> None:
 

@@ -9,26 +9,26 @@ with open("tests/single_fields.json") as f:
 
 
 results = {
-    "basic": {"type": "CharField", "max_length": 255, "primary_key": True,},
+    "basic": {"type": "CharField", "max_length": 255, "primary_key": True},
     "length": {
         "type": "CharField",
         "max_length": 3,
-        "validators": {"MinLengthValidator": 2},
+        "validators": {"MinLengthValidator": 2}
     },
     "regular_expressions": {
         "type": "CharField",
         "max_length": 255,
-        "validators": {"RegexValidator": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"},
+        "validators": {"RegexValidator": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"}
     },
     "format_date-time": {"type": "DateTimeField"},
     "format_time": {"type": "TimeField"},
     "format_date": {"type": "DateField"},
     "format_email": {"type": "EmailField"},
     "format_idn-email": {"type": "EmailField"},
-    "format_ipv4": {"type": "GenericIPAddressField",},
-    "format_ipv6": {"type": "GenericIPAddressField",},
+    "format_ipv4": {"type": "GenericIPAddressField"},
+    "format_ipv6": {"type": "GenericIPAddressField"},
     "boolean": {"type": "BooleanField"},
-    "integer": {"default": 2, "type": "IntegerField", "validators": {},},
+    "integer": {"default": 2, "type": "IntegerField", "validators": {}},
     "enum": {
         "type": "CharField",
         "max_length": 1,
@@ -46,7 +46,7 @@ results = {
     },
     "boolean-null": {"type": "BooleanField", "null": True},
     "format-uuid": {"type": "UUIDField", "default": "uuid.uuid4"},
-    "id": {"type": "UUIDField", "default": "uuid.uuid4",},
+    "id": {"type": "UUIDField", "default": "uuid.uuid4"},
     "json-schema": {
         "type": "JSONField",
         "schema": {

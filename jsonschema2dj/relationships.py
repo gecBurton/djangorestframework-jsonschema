@@ -58,12 +58,12 @@ def extract_relationships(schema: Dict) -> Dict:
         single, many = {}, {}
 
         for name, _property in model.get("properties", {}).items():
-            if ref := _property.get("$ref"):
-                single[ref.split("/")[-1]] = name, "null" in _property.get("type", [])
+            if _property.get("$ref"):
+                single[_property.get("$ref").split("/")[-1]] = name, "null" in _property.get("type", [])
 
-            elif items := _property.get("items"):
-                if ref := items.get("$ref"):
-                    many[ref.split("/")[-1]] = name, "null" in _property.get("type", [])
+            elif _property.get("items"):
+                if _property.get("items").get("$ref"):
+                    many[_property.get("items").get("$ref").split("/")[-1]] = name, "null" in _property.get("type", [])
 
         relationships[model_name] = single, many
 

@@ -45,16 +45,16 @@ def build_string_field(sch, null, primary_key, default, description):
     if (min_length and max_length <= min_length) or max_length > 255:
         return FieldDict(type="TextField", **options)
 
-    if enums := sch.get("enum"):
-        options.update(build_choices(enums))
+    if sch.get("enum"):
+        options.update(build_choices(sch.get("enum")))
 
-    if pattern := sch.get("pattern"):
-        validators["RegexValidator"] = f"{pattern}"
+    if sch.get("pattern"):
+        validators["RegexValidator"] = f"{sch.get('pattern')}"
 
     if validators:
         options.update(validators=validators)
 
-    if _format := sch.get("format"):
+    if sch.get("format"):
 
         formats = {
             "date-time": "DateTimeField",
@@ -68,14 +68,14 @@ def build_string_field(sch, null, primary_key, default, description):
         }
         try:
             return FieldDict(
-                type=formats[_format],
+                type=formats[sch.get("format")],
                 null=options.get("null", False),
                 primary_key=primary_key,
                 default=default,
                 label=sch.get("description"),
             )
         except KeyError:
-            raise NotImplementedError(f"no code written to handle format: {_format}")
+            raise NotImplementedError(f"no code written to handle format: {sch.get('format')}")
 
     return FieldDict(type="CharField", **options)
 
@@ -86,14 +86,10 @@ def rationalize_type(sch):
     default = sch.get("default")
     description = sch.get("description")
 
-    if _type := sch.get("type"):
+    if sch.get("type"):
+        _type = sch.get("type")
         if isinstance(_type, list):
-            if (
-                len(sch["type"]) == 0
-                or len(_type) > 2
-                or len(_type) == 2
-                and "null" not in _type
-            ):
+            if len(sch["type"]) == 0 or len(_type) > 2 or len(_type) == 2 and "null" not in _type:
                 raise ValueError(
                     "if type is a list it should either contain 1 element, or 2 where one is null"
                 )
@@ -104,7 +100,8 @@ def rationalize_type(sch):
                 _type = next(x for x in _type if x != "null")
         return _type, sch, null, default, description
 
-    if enums := sch.get("enum"):
+    if sch.get("enum"):
+        enums = sch.get("enum")
         if "null" in enums:
             enums.remove("null")
             null = True
@@ -119,7 +116,7 @@ def rationalize_type(sch):
             )
         return _type, sch, null, default, description
 
-    raise ValueError(f"either the type must be specified or it must be an enum")
+    raise ValueError("either the type must be specified or it must be an enum")
 
 
 def build_field(name, sch, required):

@@ -21,9 +21,9 @@ class Model:
         """helper method to determine whether a field is pointing to another model"""
         if "$ref" in sch:
             return True
-        if items := sch.get("items"):
+        if sch.get("items"):
             if sch.get("type") == "array":
-                return cls.is_relation(items)
+                return cls.is_relation(sch.get("items"))
         return False
 
     @classmethod
@@ -87,13 +87,7 @@ class Model:
             if key in ("label", "RegexValidator") and value is not None:
                 return f'"{value}"'
             if key == "validators":
-                return (
-                    "["
-                    + ", ".join(
-                        f"validators.{a}({stringify(a, b)})" for a, b in value.items()
-                    )
-                    + "]"
-                )
+                return "[" + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items()) + "]"
             return value
 
         result = {}
