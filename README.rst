@@ -6,7 +6,19 @@ djangorestframework-jsonschema
 Overview
 --------
 
-Build simple Django-Rest-Framework projects configured from jsonschema .
+This package takes a JSONSchema representation of data and builds a
+Django-REST-Framework solution capable of performing CRUD operations
+on it.
+
+The emphasis is on enabling the user to produce a basic-but-robust
+solution that can be adapted rather than a fully fledged one.
+
+Beyond the jsonschema itself this tool is not configurable. This is
+intentional. It is our view that too often
+too much time is spent debating the finer points of MVC when a basic
+solution will do, and that this time is better spent on either the
+data model or the core application logic. To this end this project
+uses `json-api`_ for the views and serializers.
 
 Requirements
 ------------
@@ -41,36 +53,44 @@ Install using ``pip``\ …
 
     $ pip  install -r requirements.txt
 
-This app needs to included it in the INSTALLED_APPS of your project, it should come after "rest_framework" which must also be included, but before anything specific to your project.
+This app needs to included it in the INSTALLED_APPS of your project, it should
+come after "rest_framework" and "django_filters", which are required, but before
+anything specific to your project.
 
 .. code-block:: python
 
     INSTALLED_APPS = [
         "django.contrib.admin",
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.sessions",
-        "django.contrib.messages",
-        "django.contrib.staticfiles",
+        ...
         "rest_framework",
+        "django_filters",
         "jsonschema2dj",
-        "example_app.apps.ExampleAppConfig",
+        ...
     ]
 
 Example
 -------
 
 
-An [exaple project](https://github.com/gecBurton/djangorestframework-jsonschema/tree/master/example_project) is included 
+`example-schemas`_ can be found in the tests.
 
-Create a schema 
-.. _ie: https://github.com/gecBurton/djangorestframework-jsonschema/tree/master/example_project/example_app/schema.json file in the root of you projects application (where the models.py etc are). The scheama.json will specify .... TODO fill this out!  then run 
+To use any of these create a new project and app, and copy the example schema
+into the root of the app directory and rename as rename `schema.json`.
+
+Now run:
 
 .. code:: bash
     
     $ python manage.py jsonschema2dj example_app
 
-And models.py, seriliazers.py, views.py and urls.py will be generated.
+and the following are built:
+
+- models.py
+- views.py
+- serializers.py
+- urls.py
+- filters.py
+- admin.py
 
 Dont forget that you still have to run
 
@@ -81,6 +101,11 @@ Dont forget that you still have to run
     
 as normal.
 
+Thats it!
+
+.. code:: bash
+
+    $ python manage.py runserver
 
 Testing
 -------
@@ -178,6 +203,10 @@ To build the documentation:
     $ mkdocs build
 
 .. _tox: http://tox.readthedocs.org/en/latest/
+
+.. _example-schemas: /tests/json-schemas
+
+.. _json-api: https://github.com/django-json-api/django-rest-framework-json-api
 
 .. |build-status-image| image:: https://secure.travis-ci.org/gecBurton/django-rest-framework-jsonschema.svg?branch=master
    :target: http://travis-ci.org/gecBurton/django-rest-framework-jsonschema?branch=master
