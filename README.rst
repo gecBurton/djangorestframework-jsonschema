@@ -6,17 +6,16 @@ djangorestframework-jsonschema
 Overview
 --------
 
-This package takes a JSONSchema representation of data and builds a
-Django-REST-Framework solution capable of performing CRUD operations
-on it.
+This package provides a management command that turns a JSONSchema representation of data 
+into the Django files required to build a Django-REST-Framework solution.
 
 The emphasis is on enabling the user to quickly produce a basic-but-robust
 solution that can be adapted as needed.
 
 Apart from the ``schema.json`` itself this tool is intentionally not configurable.
 It is our view that too often too much time is spent debating
-the finer points of MVC when a basic solution will do, and that this
-time is better spent on either the data model or the core application logic.
+the finer points of REST when a basic solution will do, and the user would better spend their
+time on either the data model itself or the core application logic.
 
 In a similar vein in it recommended that this package is used with json-api_.
 
