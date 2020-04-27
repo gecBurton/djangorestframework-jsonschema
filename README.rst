@@ -10,52 +10,41 @@ This package takes a JSONSchema representation of data and builds a
 Django-REST-Framework solution capable of performing CRUD operations
 on it.
 
-The emphasis is on enabling the user to produce a basic-but-robust
-solution that can be adapted rather than a fully fledged one.
+The emphasis is on enabling the user to quickly produce a basic-but-robust
+solution that can be adapted as needed.
 
-Beyond the jsonschema itself this tool is not configurable. This is
-intentional. It is our view that too often
-too much time is spent debating the finer points of MVC when a basic
-solution will do, and that this time is better spent on either the
-data model or the core application logic. To this end this project
-uses `json-api`_ for the views and serializers.
+Apart from the schema.json itself this tool is intentional not configurable.
+It is our view that too often too much time is spent debating
+the finer points of MVC when a basic solution will do, and that this
+time is better spent on either the data model or the core application logic.
+
+In a similar vein in it recommended that this project is used with json-api_.
 
 Requirements
 ------------
 
--  Python (2.7, 3.3, 3.4)
--  Django (1.6, 1.7, 1.8)
--  Django REST Framework (2.4, 3.0, 3.1)
+-  Python (3.5, 3.6, 3.7, 3.8)
+-  Django (2.2, 3.0)
+-  Django REST Framework (3.8, 3.9, 3.10)
+-  Django-filter (2.2)
 
 Installation
 ------------
 
-As this project is not on pypi the set up is a little more complicated.
+From Source
+###########
 
-1. checkout this repo: ``git clone git@github.com:gecBurton/djangorestframework-jsonschema.git``
-2. change directory: ``cd djangorestframework-jsonschema``
-3. build package: ``python setup.py sdist``
+.. code-block::  bash
 
-The package can be installed via requirements.txt
+    $ git clone git@github.com:gecBurton/djangorestframework-jsonschema.git
+    $ cd djangorestframework-jsonschema
+    $ pip install -e
+    $ python setup.py sdist
 
-.. code-block:: txt
-
-    django==3.0.2
-    djangorestframework==3.11.0
-    drf-writable-nested==0.5.4
-    ../django-rest-framework-jsonschema/dist/djangorestframework-jsonschema-0.1.0.tar.gz
-
-
-
-Install using ``pip``\ …
-
-.. code:: bash
-
-    $ pip  install -r requirements.txt
 
 This app needs to included it in the INSTALLED_APPS of your project, it should
-come after "rest_framework" and "django_filters", which are required, but before
-anything specific to your project.
+come after "rest_framework" and "django_filters", both of which are required,
+but before anything specific to your project.
 
 .. code-block:: python
 
@@ -92,16 +81,14 @@ and the following are built:
 - filters.py
 - admin.py
 
-Dont forget that you still have to run
+as usual run:
 
 .. code:: bash
 
     $ python manage.py makemigrations
     $ python manage.py migrate
-    
-as normal.
 
-Thats it!
+and that's it!
 
 .. code:: bash
 
@@ -132,56 +119,40 @@ globally, and then simply run:
 
 Documentation
 -------------
-Primary Key
-###########
-
-Is given by the first field in the ``required`` of the model schema.
 
 
-Cardinality
-###########
+Models are objects at the top level of the ``definitions`` of the
+``schema.json``.
 
-Cardinality is inferred from the use of `$ref`
 
-many-to-one relationship between Patient(s) and Medication
+Fields
+######
 
-.. code-block:: json
+A model's fields are its top level ``properties``, the django field
+types and validation are inferred from the jsonschema property.
 
-    {
-      "definitions": {
-        "Patient": {
-          "properties": {
-            "medication": {
-              "$ref": "#/definitions/Medication"
-            }
-          }
-        },
-        "Medication": {
-      }
-    }
+approximately:
 
-many-to-many relationship between Patient(s) and Doctor(s)
+-  ``"string"`` -> ``CharField``
+-  ``"integer"`` -> ``IntegerField``
+-  ``"number"`` -> ``DecimalField``
+-  ``"boolean"`` -> ``BooleanField``
 
-.. code-block:: json
+-  ``"object"`` -> ``JSONField``
 
-    {
-      "definitions": {
-        "Patient": {
-          "properties": {
-            "type": "array",
-            "items": {
-              "doctor": {
-                "$ref": "#/definitions/Doctor"
-              }
-            }
-          }
-        },
-        "Doctor": {
-        }
-      }
-    }
+- ``"$ref": "Model-X"`` -> one-to-one or one-to-many
+- ``"items": {"ref": "Model-X"}`` -> many-to-one or many-to-many
 
-There is no specification for one-to-one relationships at this time.
+In the event that a field used JSONField then its validity will be checked
+against the schema specified.
+
+Cardinality between models ``A`` and ``B`` is inferred
+by comparing both sides of the relationship. If only one side is specified
+the it is assumed that it is one-to-many or many-to-many.
+
+Primary-Keys are inferred by the name of field being ``id``.
+
+Nullability is inferred by the usef of ``"type": ["null", ".."]``.
 
 To build the documentation, you’ll need to install ``mkdocs``.
 
@@ -203,9 +174,7 @@ To build the documentation:
     $ mkdocs build
 
 .. _tox: http://tox.readthedocs.org/en/latest/
-
 .. _example-schemas: /tests/json-schemas
-
 .. _json-api: https://github.com/django-json-api/django-rest-framework-json-api
 
 .. |build-status-image| image:: https://secure.travis-ci.org/gecBurton/django-rest-framework-jsonschema.svg?branch=master
