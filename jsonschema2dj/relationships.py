@@ -1,16 +1,17 @@
-"""core functions for converting jsonschema to djnago model relationships"""
-from typing import Dict
+"""core functions for converting jsonschema to djnago model relationships
+"""
+from typing import Dict, Any
 
 
 class FieldDict(dict):
-    """helper class, like a dict but wont accept store certain
-    django specific keys and values that have default values.
+    """A dict that doesnt store certain django specific keys
+    and values that have default values.
 
     This is not strictly necessary but produces slightly nicer
     looking code.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Dict[str, Any]) -> None:
         _kwargs = {}
         for key, value in kwargs.items():
             if key in ("default", "label") and value is None:
@@ -69,9 +70,44 @@ def extract_relationships(schema: Dict) -> Dict:
     return relationships
 
 
-def build_models(schema):
+def build_models(relationships: Dict) -> Dict:
+    """converts the result of `extract_relationships` into a dictionary
+    of objects where the keys are model names and the values are dict
+    representation of django model relationships
+
+    example argument:
+    >>> {
+    >>>     "Patient": (
+    >>>         {"Address": ("address", False), "Doctor": ("doctor", True)},
+    >>>         {"Prescription": ("prescription", False)},
+    >>>     ),
+    >>>     "Address": ({}, {}),
+    >>>     "Doctor": ({}, {}),
+    >>>     "Prescription": ({}, {})
+    >>> }
+
+    example result
+    >>> {
+    >>>     "Address": {},
+    >>>     "Doctor": {},
+    >>>     "Patient": {
+    >>>         "address": {
+    >>>             "on_delete": "models.CASCADE",
+    >>>             "to": "Address",
+    >>>             "type": "ForeignKey",
+    >>>         },
+    >>>         "doctor": {
+    >>>             "null": True,
+    >>>             "on_delete": "models.CASCADE",
+    >>>             "to": "Doctor",
+    >>>             "type": "ForeignKey",
+    >>>         },
+    >>>         "prescription": {"to": "Prescription", "type": "ManyToManyField"},
+    >>>     },
+    >>>     "Prescription": {},
+    >>> }
+    """
     models = dict()
-    relationships = extract_relationships(schema)
 
     for model, (singles, manys) in relationships.items():
         models[model] = {}

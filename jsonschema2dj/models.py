@@ -9,7 +9,7 @@ from .fields import build_field
 
 from pkg_resources import resource_filename
 
-from .relationships import build_models
+from .relationships import build_models, extract_relationships
 
 with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
@@ -32,7 +32,9 @@ class Model:
         validate(schema, META_SCHEMA)
         return [
             Model(model_name, schema["definitions"][model_name], **kwargs)
-            for model_name, kwargs in build_models(schema).items()
+            for model_name, kwargs in build_models(
+                extract_relationships(schema)
+            ).items()
         ]
 
     def __init__(self, name, sch, **relations):

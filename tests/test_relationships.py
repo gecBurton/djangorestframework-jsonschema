@@ -34,28 +34,14 @@ def test_extract_relationships():
 
 
 def test_build_models():
-    schema = {
-        "definitions": {
-            "Doctor": {},
-            "Address": {},
-            "Prescription": {},
-            "Patient": {
-                "properties": {
-                    "doctor": {
-                        "type": ["object", "null"],
-                        "$ref": "#/definitions/Doctor",
-                    },
-                    "address": {"type": "object", "$ref": "#/definitions/Address"},
-                    "prescription": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "$ref": "#/definitions/Prescription",
-                        },
-                    },
-                }
-            },
-        }
+    relationships = {
+        "Patient": (
+            {"Address": ("address", False), "Doctor": ("doctor", True)},
+            {"Prescription": ("prescription", False)},
+        ),
+        "Address": ({}, {}),
+        "Doctor": ({}, {}),
+        "Prescription": ({}, {}),
     }
 
     result = {
@@ -78,4 +64,4 @@ def test_build_models():
         "Prescription": {},
     }
 
-    assert build_models(schema) == result
+    assert build_models(relationships) == result
