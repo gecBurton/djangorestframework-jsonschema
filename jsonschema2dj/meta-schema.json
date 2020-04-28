@@ -226,21 +226,21 @@
     "definitions": {
       "type": "object",
       "patternProperties": {
-        "^[a-zA-Z0-9_]+$": {
+        "^\\w+$": {
           "additionalProperties": false,
+          "required": [
+            "properties"
+          ],
           "properties": {
+            "required": {"type":  "array", "items":  {"type": "string"}},
             "type": {
               "const": "object"
-            },
-            "required": {
-              "type": "array",
-              "minItems": 0
             },
             "additionalProperties": false,
             "properties": {
               "additionalProperties": false,
               "patternProperties": {
-                "^[a-zA-Z0-9_]+$": {
+                "^\\w+$": {
                   "$ref": "#/definitions/field"
                 }
               }

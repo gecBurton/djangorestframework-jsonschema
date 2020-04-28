@@ -1,0 +1,55 @@
+[
+  {
+    "fields": {
+      "genre": {
+        "choices": [
+          [
+            "celebrity_autobiographies",
+            "celebrity autobiographies"
+          ],
+          [
+            "military-history",
+            "military-history"
+          ],
+          [
+            "other",
+            "other"
+          ]
+        ],
+        "max_length": 25,
+        "type": "CharField"
+      },
+      "pages": {
+        "type": "IntegerField",
+        "validators": {
+          "MinValueValidator": 0
+        }
+      },
+      "title": {
+        "max_length": 255,
+        "type": "CharField"
+      }
+    },
+    "name": "Book",
+    "relations": {
+      "author": {
+        "on_delete": "models.CASCADE",
+        "to": "Author",
+        "type": "ForeignKey"
+      }
+    }
+  },
+  {
+    "fields": {
+      "date_of_birth": {
+        "type": "DateField"
+      },
+      "name": {
+        "max_length": 255,
+        "type": "CharField"
+      }
+    },
+    "name": "Author",
+    "relations": {}
+  }
+]

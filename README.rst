@@ -6,18 +6,97 @@ djangorestframework-jsonschema
 Overview
 --------
 
-This package provides a management command that turns a JSONSchema representation of data 
-into the Django files required to build a Django-REST-Framework solution.
+This package provides a management command that builds a
+Django-REST-Framework solution from a `JSONSchema`_ specification.
 
-The emphasis is on enabling the user to quickly produce a basic-but-robust
-solution that can be adapted as needed.
+example
+#######
 
-Apart from the ``schema.json`` itself this tool is intentionally not configurable.
-It is our view that too often too much time is spent debating
-the finer points of REST when a basic solution will do, and the user would better spend their
-time on either the data model itself or the core application logic.
+running
 
-In a similar vein in it recommended that this package is used with json-api_.
+.. code:: bash
+
+    $ python manage.py jsonschema2dj example_app
+
+on
+
+.. code:: json
+
+    {
+      "definitions": {
+        "Book": {
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "pages": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "genre": {
+              "enum": [
+                "celebrity nonsense",
+                "military tat",
+                "other"
+              ]
+            },
+            "author": {
+              "$ref": "#/definitions/Author"
+            }
+          }
+        },
+        "Author": {
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "date_of_birth": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      }
+    }
+
+produces
+
+- models.py
+- views.py
+- serializers.py
+- urls.py
+- filters.py
+- admin.py
+
+e.g. models is:
+
+.. code:: python
+
+    class Book(models.Model):
+
+        title = models.CharField(max_length=255, )
+        pages = models.IntegerField(validators=[validators.MinValueValidator(0)], )
+        genre = models.CharField(max_length=25, choices=[('celebrity_autobiographies', 'celebrity autobiographies'), ('military-history', 'military-history'), ('other', 'other')], )
+        author = models.ForeignKey("Author",on_delete=models.CASCADE,)
+
+
+    class Author(models.Model):
+
+        name = models.CharField(max_length=255, )
+        date_of_birth = models.DateField()
+
+.. code:: bash
+
+    $ python manage.py makemigrations
+    $ python manage.py migrate
+    $ python manage.py runserver
+
+This is intended to be:
+
+- accessible to anyone with knowledge of JSONSchema
+- extensible by anyone with a rudimentary understanding of Django
+
+In is suggested that this package is used with json-api_.
 
 Requirements
 ------------
@@ -56,37 +135,6 @@ but before anything specific to your project.
         ...
     ]
 
-Example
--------
-
-
-An example `real_model`_ can be found in the tests.
-
-To use this example create a new project and app, and copy the example schema
-into the root of the app directory and rename as rename `schema.json`.
-
-Now run:
-
-.. code:: bash
-    
-    $ python manage.py jsonschema2dj example_app
-
-and the following will be built:
-
-- models.py
-- views.py
-- serializers.py
-- urls.py
-- filters.py
-- admin.py
-
-now as usual run:
-
-.. code:: bash
-
-    $ python manage.py makemigrations
-    $ python manage.py migrate
-    $ python manage.py runserver
 
 Testing
 -------
@@ -103,13 +151,6 @@ Run with runtests.
 
     $ ./runtests.py
 
-You can also use the excellent `tox`_ testing tool to run the tests
-against all supported versions of Python and Django. Install tox
-globally, and then simply run:
-
-.. code:: bash
-
-    $ tox
 
 Documentation
 -------------
@@ -177,7 +218,7 @@ To build the documentation:
 .. _tox: http://tox.readthedocs.org/en/latest/
 .. _real_model: /tests/json-schemas/real_model_1.json
 .. _json-api: https://github.com/django-json-api/django-rest-framework-json-api
-
+.. _JSONSchema: https://json-schema.org/
 .. |build-status-image| image:: https://secure.travis-ci.org/gecBurton/django-rest-framework-jsonschema.svg?branch=master
    :target: http://travis-ci.org/gecBurton/django-rest-framework-jsonschema?branch=master
 .. |pypi-version| image:: https://img.shields.io/pypi/v/djangorestframework-jsonschema.svg

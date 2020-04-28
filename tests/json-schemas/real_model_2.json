@@ -1,0 +1,36 @@
+{
+  "definitions": {
+    "Book": {
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "pages": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "genre": {
+          "enum": [
+            "celebrity autobiographies",
+            "military-history",
+            "other"
+          ]
+        },
+        "author": {
+          "$ref": "#/definitions/Author"
+        }
+      }
+    },
+    "Author": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "date_of_birth": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}
