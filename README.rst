@@ -76,7 +76,11 @@ e.g. models is:
 
         title = models.CharField(max_length=255, )
         pages = models.IntegerField(validators=[validators.MinValueValidator(0)], )
-        genre = models.CharField(max_length=25, choices=[('celebrity_autobiographies', 'celebrity autobiographies'), ('military-history', 'military-history'), ('other', 'other')], )
+        genre = models.CharField(max_length=25, choices=[
+             ('celebrity_autobiographies', 'celebrity autobiographies'),
+             ('military-history', 'military-history'),
+             ('other', 'other')
+        ], )
         author = models.ForeignKey("Author",on_delete=models.CASCADE,)
 
 
@@ -85,11 +89,6 @@ e.g. models is:
         name = models.CharField(max_length=255, )
         date_of_birth = models.DateField()
 
-.. code:: bash
-
-    $ python manage.py makemigrations
-    $ python manage.py migrate
-    $ python manage.py runserver
 
 This is intended to be:
 
