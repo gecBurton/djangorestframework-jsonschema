@@ -39,7 +39,8 @@
       "properties": {
         "$ref": {
           "type": "string",
-          "pattern": "^#/definitions/[a-zA-Z0-9]+$"
+          "pattern": "^#/definitions/[a-zA-Z0-9]+$",
+          "format": "json-pointer"
         }
       }
     },
