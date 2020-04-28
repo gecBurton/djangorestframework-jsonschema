@@ -2,8 +2,8 @@
 Django>=1.6
 djangorestframework>=2.4.3
 django-filter==0.15.3
-jinja2==2.11.1
-jsonschema
+jinja2>2.0
+jsonschema>3.0
 # Test requirements
 pytest-django==3.8.0
 pytest==5.4.1
