@@ -12,13 +12,9 @@ Django-REST-Framework solution from a `JSONSchema`_ specification.
 example
 #######
 
-running
 
-.. code:: bash
-
-    $ python manage.py jsonschema2dj example_app
-
-on
+If the following schema is saved as ``schema.json`` and placed in the root
+of ``example_app``
 
 .. code:: json
 
@@ -59,7 +55,14 @@ on
       }
     }
 
-produces
+and the running is run
+
+.. code:: bash
+
+    $ python manage.py jsonschema2dj example_app
+
+
+it will produce:
 
 - models.py
 - views.py
@@ -74,19 +77,22 @@ e.g. models is:
 
     class Book(models.Model):
 
-        title = models.CharField(max_length=255, )
-        pages = models.IntegerField(validators=[validators.MinValueValidator(0)], )
-        genre = models.CharField(max_length=25, choices=[
-             ('celebrity_autobiographies', 'celebrity autobiographies'),
-             ('military-history', 'military-history'),
-             ('other', 'other')
-        ], )
-        author = models.ForeignKey("Author",on_delete=models.CASCADE,)
+        title = models.CharField(max_length=255,)
+        pages = models.IntegerField(validators=[validators.MinValueValidator(0)],)
+        genre = models.CharField(
+            max_length=25,
+            choices=[
+                ("celebrity_autobiographies", "celebrity autobiographies"),
+                ("military-history", "military-history"),
+                ("other", "other"),
+            ],
+        )
+        author = models.ForeignKey("Author", on_delete=models.CASCADE,)
 
 
     class Author(models.Model):
 
-        name = models.CharField(max_length=255, )
+        name = models.CharField(max_length=255,)
         date_of_birth = models.DateField()
 
 
