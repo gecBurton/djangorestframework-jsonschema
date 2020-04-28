@@ -82,8 +82,8 @@ e.g. models is:
         genre = models.CharField(
             max_length=25,
             choices=[
-                ("celebrity_autobiographies", "celebrity autobiographies"),
-                ("military-history", "military-history"),
+                ("celebrity nonsense", "celebrity nonsense"),
+                ("military tat", "military tat"),
                 ("other", "other"),
             ],
         )
