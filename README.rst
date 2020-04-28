@@ -101,7 +101,7 @@ This is intended to be:
 - accessible to anyone with knowledge of JSONSchema
 - extensible by anyone with a rudimentary understanding of Django
 
-In is suggested that this package is used with json-api_.
+It is suggested that this package is used with json-api_.
 
 Requirements
 ------------
