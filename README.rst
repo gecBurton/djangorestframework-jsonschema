@@ -193,7 +193,7 @@ Relationships
 #############
 
 - ``"$ref": "Model-X"`` -> one-to-one or one-to-many
-- ``"items": {"ref": "Model-X"}`` -> many-to-one or many-to-many
+- ``"items": {"$ref": "Model-X"}`` -> many-to-one or many-to-many
 
 Cardinality between models ``A`` and ``B`` is inferred
 by comparing both sides of the relationship. If only one side is specified
