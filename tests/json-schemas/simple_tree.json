@@ -1,0 +1,43 @@
+{
+  "definitions": {
+    "F": {
+      "properties": {
+      }
+    },
+    "E": {
+      "properties": {
+        "f": {
+          "$ref": "#/definitions/F"
+        }
+      }
+    },
+    "D": {
+      "properties": {
+      }
+    },
+    "C": {
+      "properties": {
+        "d": {
+          "$ref": "#/definitions/D"
+        }
+      }
+    },
+    "B": {
+      "properties": {
+        "c": {
+          "$ref": "#/definitions/C"
+        },
+        "e": {
+          "$ref": "#/definitions/E"
+        }
+      }
+    },
+    "A": {
+      "properties": {
+        "b": {
+          "$ref": "#/definitions/B"
+        }
+      }
+    }
+  }
+}

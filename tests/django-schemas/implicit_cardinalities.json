@@ -1,0 +1,55 @@
+[
+  {
+    "name": "A",
+    "fields": {},
+    "relations": {
+      "b": {
+        "type": "OneToOneField",
+        "to": "B",
+        "on_delete": "models.CASCADE"
+      }
+    }
+  },
+  {
+    "name": "B",
+    "fields": {},
+    "relations": {
+      "a": {
+        "type": "OneToOneField",
+        "to": "A",
+        "on_delete": "models.CASCADE"
+      },
+      "c": {
+        "type": "ForeignKey",
+        "to": "C",
+        "on_delete": "models.CASCADE"
+      }
+    }
+  },
+  {
+    "name": "C",
+    "fields": {},
+    "relations": {
+      "d": {
+        "type": "ForeignKey",
+        "to": "D",
+        "on_delete": "models.CASCADE"
+      }
+    }
+  },
+  {
+    "name": "D",
+    "fields": {},
+    "relations": {
+      "e": {
+        "type": "ManyToManyField",
+        "to": "E"
+      }
+    }
+  },
+  {
+    "name": "E",
+    "fields": {},
+    "relations": {}
+  }
+]

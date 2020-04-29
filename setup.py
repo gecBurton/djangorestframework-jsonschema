@@ -6,31 +6,34 @@ import sys
 from setuptools import setup
 
 
-name = 'djangorestframework-jsonschema'
-package = 'jsonschema2dj'
-description = 'builds models and serializers from jsonschema'
-url = 'https://github.com/gecBurton/django-rest-framework-jsonschema'
-author = 'George Burton'
-author_email = 'g.e.c.burton@gmail.com'
-license = 'BSD'
+name = "djangorestframework-jsonschema"
+package = "jsonschema2dj"
+description = "builds models and serializers from jsonschema"
+url = "https://github.com/gecBurton/django-rest-framework-jsonschema"
+author = "George Burton"
+author_email = "g.e.c.burton@gmail.com"
+license = "BSD"
 
 
 def get_version(package):
     """
     Return package version as listed in `__version__` in `init.py`.
     """
-    init_py = open(os.path.join(package, '__init__.py')).read()
-    return re.search("^__version__ = ['\"]([^'\"]+)['\"]",
-                     init_py, re.MULTILINE).group(1)
+    init_py = open(os.path.join(package, "__init__.py")).read()
+    return re.search("^__version__ = ['\"]([^'\"]+)['\"]", init_py, re.MULTILINE).group(
+        1
+    )
 
 
 def get_packages(package):
     """
     Return root package and all sub-packages.
     """
-    return [dirpath
-            for dirpath, dirnames, filenames in os.walk(package)
-            if os.path.exists(os.path.join(dirpath, '__init__.py'))]
+    return [
+        dirpath
+        for dirpath, dirnames, filenames in os.walk(package)
+        if os.path.exists(os.path.join(dirpath, "__init__.py"))
+    ]
 
 
 def get_package_data(package):
@@ -38,21 +41,22 @@ def get_package_data(package):
     Return all files under the root package, that are not in a
     package themselves.
     """
-    walk = [(dirpath.replace(package + os.sep, '', 1), filenames)
-            for dirpath, dirnames, filenames in os.walk(package)
-            if not os.path.exists(os.path.join(dirpath, '__init__.py'))]
+    walk = [
+        (dirpath.replace(package + os.sep, "", 1), filenames)
+        for dirpath, dirnames, filenames in os.walk(package)
+        if not os.path.exists(os.path.join(dirpath, "__init__.py"))
+    ]
 
     filepaths = []
     for base, filenames in walk:
-        filepaths.extend([os.path.join(base, filename)
-                          for filename in filenames])
+        filepaths.extend([os.path.join(base, filename) for filename in filenames])
     return {package: filepaths}
 
 
 version = get_version(package)
 
 
-if sys.argv[-1] == 'publish':
+if sys.argv[-1] == "publish":
     if os.system("pip freeze | grep wheel"):
         print("wheel not installed.\nUse `pip install wheel`.\nExiting.")
         sys.exit()
@@ -76,18 +80,20 @@ setup(
     package_data=get_package_data(package),
     install_requires=[],
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Environment :: Web Environment',
-        'Framework :: Django',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Topic :: Internet :: WWW/HTTP',
-    ]
+        "Development Status :: 2 - Pre-Alpha",
+        "Environment :: Web Environment",
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
+        "Topic :: Internet :: WWW/HTTP",
+    ],
+    include_package_data=True,
+    #    data_files=[("jsonschema2dj", ["meta-schema.json"])]
 )

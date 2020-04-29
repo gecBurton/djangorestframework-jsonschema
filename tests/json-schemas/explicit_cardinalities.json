@@ -1,0 +1,60 @@
+{
+  "definitions": {
+    "A": {
+      "properties": {
+        "b": {
+          "$ref": "#/definitions/B"
+        }
+      }
+    },
+    "B": {
+      "properties": {
+        "a": {
+          "$ref": "#/definitions/A"
+        },
+        "c": {
+          "$ref": "#/definitions/C"
+        }
+      }
+    },
+    "C": {
+      "properties": {
+        "b": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/B"
+          }
+        },
+        "d": {
+          "$ref": "#/definitions/D"
+        }
+      }
+    },
+    "D": {
+      "properties": {
+        "c": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/C"
+          }
+        },
+        "e": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/E"
+          }
+        }
+      }
+    },
+    "E": {
+      "properties": {
+        "d": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/D"
+          }
+        }
+      }
+    }
+  }
+}

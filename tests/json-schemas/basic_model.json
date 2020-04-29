@@ -1,0 +1,36 @@
+{
+  "definitions": {
+    "person": {
+      "required": [
+        "id",
+        "age",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sex": {
+          "enum": [
+            "male",
+            "female",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "properties": {
+    "person": {
+      "$ref": "#/definitions/person"
+    }
+  }
+}

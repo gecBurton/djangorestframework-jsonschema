@@ -1,0 +1,43 @@
+{
+  "definitions": {
+    "Hospital": {
+      "properties": {
+        "postcode": {
+          "type": "string",
+          "pattern": "^[a-z]{1,2}\\d[a-z\\d]?\\s*\\d[a-z]{2}$"
+        },
+        "type": {
+          "enum": [
+            "general",
+            "local",
+            "clinic"
+          ]
+        }
+      }
+    },
+    "Doctor": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "patient": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Patient"
+          }
+        },
+        "hospital": {
+          "$ref": "#/definitions/Hospital"
+        }
+      }
+    },
+    "Patient": {
+      "properties": {
+        "nhs_number": {
+          "type": "string",
+          "pattern": "^\\d{3}-\\d{3}-\\d{4}$"
+        }
+      }
+    }
+  }
+}

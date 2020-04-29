@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Hospital",
+    "fields": {
+      "postcode": {
+        "type": "CharField",
+        "max_length": 255,
+        "validators": {
+          "RegexValidator": "^[a-z]{1,2}\\d[a-z\\d]?\\s*\\d[a-z]{2}$"
+        }
+      },
+      "type": {
+        "type": "CharField",
+        "max_length": 7,
+        "choices": [
+          [
+            "general",
+            "general"
+          ],
+          [
+            "local",
+            "local"
+          ],
+          [
+            "clinic",
+            "clinic"
+          ]
+        ]
+      }
+    },
+    "relations": {}
+  },
+  {
+    "name": "Doctor",
+    "fields": {
+      "name": {
+        "type": "CharField",
+        "max_length": 255
+      }
+    },
+    "relations": {
+      "hospital": {
+        "type": "ForeignKey",
+        "to": "Hospital",
+        "on_delete": "models.CASCADE"
+      },
+      "patient": {
+        "type": "ManyToManyField",
+        "to": "Patient"
+      }
+    }
+  },
+  {
+    "name": "Patient",
+    "fields": {
+      "nhs_number": {
+        "type": "CharField",
+        "max_length": 255,
+        "validators": {
+          "RegexValidator": "^\\d{3}-\\d{3}-\\d{4}$"
+        }
+      }
+    },
+    "relations": {}
+  }
+]
