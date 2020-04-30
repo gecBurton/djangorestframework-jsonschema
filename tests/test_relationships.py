@@ -4,6 +4,10 @@ from jsonschema2dj.relationships import extract_relationships, build_models
 def test_extract_relationships():
     schema = {
         "definitions": {
+            "Address": {"properties": {}},
+            "Doctor": {"properties": {}},
+            "Prescription": {"properties": {}},
+
             "Patient": {
                 "properties": {
                     "doctor": {
@@ -23,12 +27,11 @@ def test_extract_relationships():
         }
     }
 
-    result = {
-        "Patient": (
-            {"Address": ("address", False), "Doctor": ("doctor", True)},
-            {"Prescription": ("prescription", False)},
-        )
-    }
+    result = {'Address': ({}, {}),
+              'Doctor': ({}, {}),
+              'Patient': ({'Address': ('address', False), 'Doctor': ('doctor', True)},
+                          {'Prescription': ('prescription', False)}),
+              'Prescription': ({}, {})}
 
     assert extract_relationships(schema) == result
 
