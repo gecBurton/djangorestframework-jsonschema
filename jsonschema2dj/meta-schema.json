@@ -227,7 +227,24 @@
     "definitions": {
       "type": "object",
       "patternProperties": {
-        "^\\w+$": {
+        "^\\w+$": {"anyOf":[{
+          "$ref": "#/definitions/string-field"
+        },
+          {
+            "$ref": "#/definitions/integer-field"
+          },
+          {
+            "$ref": "#/definitions/boolean-field"
+          },
+          {
+            "$ref": "#/definitions/enum-field"
+          },
+          {
+            "$ref": "#/definitions/number-field"
+          },
+          {
+            "$ref": "#/definitions/json-field"
+          },{
           "additionalProperties": false,
           "required": [
             "properties"
@@ -247,7 +264,7 @@
               }
             }
           }
-        }
+        }]}
       }
     }
   }

@@ -75,7 +75,9 @@ def build_string_field(sch, null, primary_key, default, description):
                 label=sch.get("description"),
             )
         except KeyError:
-            raise NotImplementedError(f"no code written to handle format: {sch.get('format')}")
+            raise NotImplementedError(
+                f"no code written to handle format: {sch.get('format')}"
+            )
 
     return FieldDict(type="CharField", **options)
 
@@ -89,7 +91,12 @@ def rationalize_type(sch):
     if sch.get("type"):
         _type = sch.get("type")
         if isinstance(_type, list):
-            if len(sch["type"]) == 0 or len(_type) > 2 or len(_type) == 2 and "null" not in _type:
+            if (
+                len(sch["type"]) == 0
+                or len(_type) > 2
+                or len(_type) == 2
+                and "null" not in _type
+            ):
                 raise ValueError(
                     "if type is a list it should either contain 1 element, or 2 where one is null"
                 )
@@ -172,9 +179,4 @@ def build_field(name, sch, required):
             label=description,
         )
 
-    if field_type == "object":
-        return FieldDict(
-            type="JSONField", schema=sch, default=default, label=description
-        )
-
-    raise NotImplementedError(f"no code written for type: {field_type}")
+    return FieldDict(type="JSONField", schema=sch, default=default, label=description)

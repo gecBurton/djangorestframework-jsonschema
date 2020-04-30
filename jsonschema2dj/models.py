@@ -29,9 +29,10 @@ class Model:
     @classmethod
     def factory(cls, schema):
         "factory for parsing json schema of many models"
-        validate(schema, META_SCHEMA)
+        definitions = schema["definitions"]
+        validate(dict(definitions=definitions), META_SCHEMA)
         return [
-            Model(model_name, schema["definitions"][model_name], **kwargs)
+            Model(model_name, definitions[model_name], **kwargs)
             for model_name, kwargs in build_models(
                 extract_relationships(schema)
             ).items()
@@ -87,7 +88,13 @@ class Model:
             if key in ("label", "RegexValidator") and value is not None:
                 return f'"{value}"'
             if key == "validators":
-                return "[" + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items()) + "]"
+                return (
+                    "["
+                    + ", ".join(
+                        f"validators.{a}({stringify(a, b)})" for a, b in value.items()
+                    )
+                    + "]"
+                )
             return value
 
         result = {}

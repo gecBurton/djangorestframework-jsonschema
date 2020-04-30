@@ -1,0 +1,17 @@
+[
+  {
+    "fields": {},
+    "name": "field",
+    "relations": {}
+  },
+  {
+    "fields": {
+      "field_2": {
+        "type": "IntegerField",
+        "validators": {}
+      }
+    },
+    "name": "model",
+    "relations": {}
+  }
+]

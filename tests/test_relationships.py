@@ -7,7 +7,6 @@ def test_extract_relationships():
             "Address": {"properties": {}},
             "Doctor": {"properties": {}},
             "Prescription": {"properties": {}},
-
             "Patient": {
                 "properties": {
                     "doctor": {
@@ -23,15 +22,19 @@ def test_extract_relationships():
                         },
                     },
                 }
-            }
+            },
         }
     }
 
-    result = {'Address': ({}, {}),
-              'Doctor': ({}, {}),
-              'Patient': ({'Address': ('address', False), 'Doctor': ('doctor', True)},
-                          {'Prescription': ('prescription', False)}),
-              'Prescription': ({}, {})}
+    result = {
+        "Address": ({}, {}),
+        "Doctor": ({}, {}),
+        "Patient": (
+            {"Address": ("address", False), "Doctor": ("doctor", True)},
+            {"Prescription": ("prescription", False)},
+        ),
+        "Prescription": ({}, {}),
+    }
 
     assert extract_relationships(schema) == result
 
