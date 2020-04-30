@@ -12,7 +12,12 @@ PYTEST_ARGS = {
     "fast": ["tests", "-q"],
 }
 
-FLAKE8_ARGS = ["jsonschema2dj", "tests", "--ignore=E501", "--exclude=tests/django-files/*"]
+FLAKE8_ARGS = [
+    "jsonschema2dj",
+    "tests",
+    "--ignore=E501",
+    "--exclude=tests/django-files/*",
+]
 
 
 sys.path.append(os.path.dirname(__file__))
