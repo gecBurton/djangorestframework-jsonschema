@@ -1,5 +1,5 @@
 import os
-from json import load
+from json import load, dump
 
 import pytest
 

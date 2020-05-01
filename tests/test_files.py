@@ -40,8 +40,8 @@ def test_django_files(model, asset_name, asset_function):
         schema = load(f)
 
     with open(
-        path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
-    ) as f:
-        model_file = f.read()
+            path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
+        ) as f:
+            model_file = f.read()
 
     assert asset_function(models=Model.factory(schema)) == model_file

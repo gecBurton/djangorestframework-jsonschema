@@ -87,6 +87,8 @@ def rationalize_type(sch):
     null = False
     default = sch.get("default")
     description = sch.get("description")
+    if description:
+        description =description.replace('\n', '\\n')
 
     if sch.get("type"):
         _type = sch.get("type")
@@ -123,10 +125,10 @@ def rationalize_type(sch):
             )
         return _type, sch, null, default, description
 
-    if "$ref" in sch:
+    if "$ref" in sch or "const" in sch:
         return "object", sch, null, default, description
 
-    raise ValueError("either the type must be specified or it must be an enum or a $ref")
+    raise ValueError("either the type must be specified or it must be an enum or a $ref or a const", sch)
 
 
 def build_field(name, sch, required):
@@ -138,7 +140,7 @@ def build_field(name, sch, required):
 
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
-            raise ValueError("field with name id must be a UUID")
+            return FieldDict(type="JSONField", schema=sch) #"field with name id must be a UUID", sch)
         return FieldDict(
             type="UUIDField",
             default=default or "uuid.uuid4",

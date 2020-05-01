@@ -19,15 +19,14 @@ class Model:
     @classmethod
     def is_relation(cls, model_name, field_name, schema):
         """helper method to determine whether a field is pointing to another model"""
-        print(model_name, field_name, schema)
         sch = schema[model_name]["properties"][field_name]
         if "$ref" in sch:
             if "properties" in schema[sch["$ref"].split('/')[-1]]:
                 return True
         if sch.get("items"):
-            if sch.get("type") == "array":
-                items = sch.get("items")
-                if "properties" in schema[items["$ref"].split('/')[-1]]:
+            if sch.get("type") == "array" and "$ref" in sch.get("items"):
+                ref = sch["items"]["$ref"]
+                if "properties" in schema[ref.split('/')[-1]]:
                     return True
         return False
 
@@ -35,17 +34,19 @@ class Model:
     def factory(cls, schema):
         "factory for parsing json schema of many models"
         definitions = schema["definitions"]
-        validate(dict(definitions=definitions), META_SCHEMA)
-        return [
-            Model(model_name, definitions, **kwargs)
-            for model_name, kwargs in build_models(
-                extract_relationships(schema)
-            ).items()
-        ]
+        #validate(dict(definitions=definitions), META_SCHEMA)
+        ret = []
+        for model_name, kwargs in build_models(extract_relationships(schema)).items():
+            try:
+                ret.append(Model(model_name, definitions, **kwargs))
+            except TypeError:
+                print(kwargs)
+                raise
+        return ret
 
-    def __init__(self, name, schema, **relations):
+    def __init__(self, __name, schema, **relations):
         """build the django-like model from jsonschema"""
-        self.name = name
+        self.name = __name
         properties = schema[self.name].get("properties", {})
         required = schema[self.name].get("required", [])
         self.fields = {

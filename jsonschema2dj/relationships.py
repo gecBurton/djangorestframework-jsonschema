@@ -1,5 +1,6 @@
 """core functions for converting jsonschema to djnago model relationships
 """
+from collections import defaultdict
 from typing import Dict, Any
 
 
@@ -112,7 +113,7 @@ def build_models(relationships: Dict) -> Dict:
     >>>     "Prescription": {},
     >>> }
     """
-    models = dict()
+    models = defaultdict(dict)
 
     for model, (singles, manys) in relationships.items():
         models[model] = {}
@@ -135,13 +136,16 @@ def build_models(relationships: Dict) -> Dict:
             related_single, related_many = relationships[many]
             if model in related_single:
                 single_name, _ = related_single[model]
-                models[many][single_name] = FieldDict(
-                    type="ForeignKey", to=model, null=null, on_delete="models.CASCADE"
-                )
+                try:
+                    models[many][single_name] = FieldDict(
+                        type="ForeignKey", to=model, null=null, on_delete="models.CASCADE"
+                    )
+                except KeyError:
+                    raise Exception(many, models.keys())
 
             else:
                 models[model][many_name] = FieldDict(
                     type="ManyToManyField", to=many, null=null
                 )
 
-    return models
+    return dict(models)
