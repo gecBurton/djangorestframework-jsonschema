@@ -82,8 +82,8 @@ e.g. models is:
         genre = models.CharField(
             max_length=25,
             choices=[
-                ("celebrity_autobiographies", "celebrity autobiographies"),
-                ("military-history", "military-history"),
+                ("celebrity nonsense", "celebrity nonsense"),
+                ("military tat", "military tat"),
                 ("other", "other"),
             ],
         )
@@ -101,7 +101,7 @@ This is intended to be:
 - accessible to anyone with knowledge of JSONSchema
 - extensible by anyone with a rudimentary understanding of Django
 
-In is suggested that this package is used with json-api_.
+It is suggested that this package is used with json-api_.
 
 Requirements
 ------------
@@ -193,7 +193,7 @@ Relationships
 #############
 
 - ``"$ref": "Model-X"`` -> one-to-one or one-to-many
-- ``"items": {"ref": "Model-X"}`` -> many-to-one or many-to-many
+- ``"items": {"$ref": "Model-X"}`` -> many-to-one or many-to-many
 
 Cardinality between models ``A`` and ``B`` is inferred
 by comparing both sides of the relationship. If only one side is specified
