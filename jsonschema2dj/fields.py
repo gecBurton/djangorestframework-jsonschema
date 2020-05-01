@@ -123,7 +123,10 @@ def rationalize_type(sch):
             )
         return _type, sch, null, default, description
 
-    raise ValueError("either the type must be specified or it must be an enum")
+    if "$ref" in sch:
+        return "object", sch, null, default, description
+
+    raise ValueError("either the type must be specified or it must be an enum or a $ref")
 
 
 def build_field(name, sch, required):

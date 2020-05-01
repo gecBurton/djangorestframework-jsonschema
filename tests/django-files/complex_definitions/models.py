@@ -10,4 +10,5 @@ except ImportError:
 
 class model(models.Model):
 
+    field_1 = JSONField(validators=[JSONSchemaValidator({'$ref': '#/definitions/field'})])
     field_2 = models.IntegerField(validators=[], )

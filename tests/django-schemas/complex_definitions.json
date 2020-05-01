@@ -1,6 +1,12 @@
 [
   {
     "fields": {
+      "field_1": {
+        "schema": {
+          "$ref": "#/definitions/field"
+        },
+        "type": "JSONField"
+      },
       "field_2": {
         "type": "IntegerField",
         "validators": {}

@@ -17,13 +17,18 @@ with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
 
 class Model:
     @classmethod
-    def is_relation(cls, sch):
+    def is_relation(cls, model_name, field_name, schema):
         """helper method to determine whether a field is pointing to another model"""
+        print(model_name, field_name, schema)
+        sch = schema[model_name]["properties"][field_name]
         if "$ref" in sch:
-            return True
+            if "properties" in schema[sch["$ref"].split('/')[-1]]:
+                return True
         if sch.get("items"):
             if sch.get("type") == "array":
-                return cls.is_relation(sch.get("items"))
+                items = sch.get("items")
+                if "properties" in schema[items["$ref"].split('/')[-1]]:
+                    return True
         return False
 
     @classmethod
@@ -32,21 +37,21 @@ class Model:
         definitions = schema["definitions"]
         validate(dict(definitions=definitions), META_SCHEMA)
         return [
-            Model(model_name, definitions[model_name], **kwargs)
+            Model(model_name, definitions, **kwargs)
             for model_name, kwargs in build_models(
                 extract_relationships(schema)
             ).items()
         ]
 
-    def __init__(self, name, sch, **relations):
+    def __init__(self, name, schema, **relations):
         """build the django-like model from jsonschema"""
         self.name = name
-        properties = sch.get("properties", {})
-        required = sch.get("required", [])
+        properties = schema[self.name].get("properties", {})
+        required = schema[self.name].get("required", [])
         self.fields = {
             field_name: build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
-            if not self.is_relation(field_sch)
+            if not self.is_relation(self.name, field_name, schema)
         }
 
         self.relations = relations
