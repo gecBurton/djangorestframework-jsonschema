@@ -55,21 +55,22 @@ def extract_relationships(schema: Dict) -> Dict:
     relationships = {}
 
     for model_name, model in schema["definitions"].items():
-        single, many = {}, {}
+        if "properties" in model:
+            single, many = {}, {}
 
-        for name, _property in model.get("properties", {}).items():
-            if _property.get("$ref"):
-                ref = _property.get("$ref").split("/")[-1]
-                if "properties" in schema["definitions"][ref]:
-                    single[ref] = name, "null" in _property.get("type", [])
-
-            elif _property.get("items"):
-                if _property.get("items").get("$ref"):
-                    ref = _property.get("items").get("$ref").split("/")[-1]
+            for name, _property in model.get("properties", {}).items():
+                if _property.get("$ref"):
+                    ref = _property.get("$ref").split("/")[-1]
                     if "properties" in schema["definitions"][ref]:
-                        many[ref] = name, "null" in _property.get("type", [])
+                        single[ref] = name, "null" in _property.get("type", [])
 
-        relationships[model_name] = single, many
+                elif _property.get("items"):
+                    if _property.get("items").get("$ref"):
+                        ref = _property.get("items").get("$ref").split("/")[-1]
+                        if "properties" in schema["definitions"][ref]:
+                            many[ref] = name, "null" in _property.get("type", [])
+
+            relationships[model_name] = single, many
 
     return relationships
 

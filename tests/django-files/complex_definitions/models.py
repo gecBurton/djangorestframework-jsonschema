@@ -8,11 +8,6 @@ except ImportError:
     pass
 
 
-class field(models.Model):
-
-    id = models.UUIDField(default=uuid.uuid4, primary_key=False, )
-
-
 class model(models.Model):
 
     field_2 = models.IntegerField(validators=[], )
