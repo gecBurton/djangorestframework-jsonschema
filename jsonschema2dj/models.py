@@ -82,9 +82,9 @@ class Model:
         A helper method of jinja view template
         """
         fields = []
-        for field_name, (field_type, field_attrs) in self.field_str.items():
-            if field_type == "CharField" and "choices" not in field_attrs:
-                fields.append(field_name)
+        for field in self.fields:
+            if field.options["type"] == "CharField" and "choices" not in field.options:
+                fields.append(field.name)
         return fields
 
     @property
