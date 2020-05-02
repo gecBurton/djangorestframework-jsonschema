@@ -55,12 +55,8 @@ except ImportError:
 
 class {{model.name}}(models.Model):
 
-{% for name, (type, options) in model.field_str.items() %}
-{% if type == "JSONField" %}
-    {{name}} = JSONField(validators=[JSONSchemaValidator({{options["schema"]}})])
-{% else %}
-    {{name}} = models.{{type}}({% for k, v in options.items() %}{{k}}={{v}}, {% endfor %})
-{% endif %}
+{% for field in model.field_str %}
+    {{field}}
 {% endfor %}
 {% for name, (type, model, options) in model.relations_str.items() %}
     {{name}} = models.{{type}}("{{model}}",{% for k, v in options.items() %}{{k}}={{v}},{% endfor %})

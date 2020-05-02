@@ -25,13 +25,15 @@ class Field:
 
     @property
     def jinja(self):
-        return (
-            self.name,
-            (
-                self.type,
-                {key: stringify(key, value) for key, value in self.options.items()},
-            ),
-        )
+        if self.type == "JSONField":
+            options = f'{self.name} = JSONField(validators=[JSONSchemaValidator({self.options["schema"]})])'
+        else:
+            _options = ", ".join(f"{key}={stringify(key, value)}" for key, value in self.options.items())
+            options = f'{self.name} = models.{self.type}({_options})'
+
+        return  options
+
+
 
     def __init__(self, django_type: str, name: str, **kwargs: Any) -> None:
         self.type = django_type

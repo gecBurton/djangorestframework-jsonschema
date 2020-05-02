@@ -89,10 +89,10 @@ class Model:
         A helper method of jinja model template
         """
 
-        result = dict(field.jinja for field in self.fields)
+        result = [field.jinja for field in self.fields]
 
         if not result and not self.relations:
-            return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}
+            return ["id = models.UUIDField(default=uuid.uuid4, primary_key=False)"]
         return result
 
     @property

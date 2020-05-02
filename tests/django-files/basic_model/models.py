@@ -10,7 +10,7 @@ except ImportError:
 
 class person(models.Model):
 
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True, )
-    name = models.CharField(max_length=255, )
-    age = models.IntegerField(validators=[validators.MinValueValidator(0)], )
-    sex = models.CharField(null=True, max_length=6, choices=[('male', 'male'), ('female', 'female')], )
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
+    name = models.CharField(max_length=255)
+    age = models.IntegerField(validators=[validators.MinValueValidator(0)])
+    sex = models.CharField(null=True, max_length=6, choices=[('male', 'male'), ('female', 'female')])

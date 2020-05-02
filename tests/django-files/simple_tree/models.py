@@ -10,7 +10,7 @@ except ImportError:
 
 class F(models.Model):
 
-    id = models.UUIDField(default=uuid.uuid4, primary_key=False, )
+    id = models.UUIDField(default=uuid.uuid4, primary_key=False)
 
 
 class E(models.Model):
@@ -20,7 +20,7 @@ class E(models.Model):
 
 class D(models.Model):
 
-    id = models.UUIDField(default=uuid.uuid4, primary_key=False, )
+    id = models.UUIDField(default=uuid.uuid4, primary_key=False)
 
 
 class C(models.Model):
