@@ -47,20 +47,20 @@ class Model:
         self.name = __name
         properties = schema[self.name].get("properties", {})
         required = schema[self.name].get("required", [])
-        self.fields: Dict[str, Field] = {
-            field_name: build_field(field_name, field_sch, required)
+        self.fields: List[Field] = [
+            build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
             if not self.is_relation(self.name, field_name, schema)
-        }
+        ]
 
         self.relations = relations
 
     @property
-    def dict_repr(self):
+    def dict_repr(self) -> Dict:
         "only used for testing a half way stage"
         return dict(
             name=self.name,
-            fields={k: v.options for k, v in self.fields.items()},
+            fields={field.name: field.options for field in self.fields},
             relations=self.relations,
         )
 
@@ -71,9 +71,9 @@ class Model:
         """
 
         ret = []
-        for field_name, field in self.fields.items():
+        for field in self.fields:
             if "choices" in field.options:
-                ret.append(field_name)
+                ret.append(field.name)
         return ret
 
     @property
@@ -107,8 +107,8 @@ class Model:
             return value
 
         result = {}
-        for name, field in self.fields.items():
-            result[name] = (
+        for field in self.fields:
+            result[field.name] = (
                 field.options["type"],
                 {
                     key: stringify(key, value)
@@ -137,14 +137,14 @@ class Model:
         A helper method of jinja view template
         """
         result = {}
-        for key, value in self.fields.items():
-            if value.options["type"] in (
+        for field in self.fields:
+            if field.options["type"] in (
                 "IntegerField",
                 "DecimalField",
                 "DateField",
                 "DateTimeField",
             ):
-                result[key] = ["exact", "gte", "lte"]
-            elif "choices" in value.options:
-                result[key] = ["exact", "in"]
+                result[field.name] = ["exact", "gte", "lte"]
+            elif "choices" in field.options:
+                result[field.name] = ["exact", "in"]
         return result

@@ -13,6 +13,7 @@ class Field:
     """
 
     def __init__(self, name, **kwargs: Any) -> None:
+        self.name = name
         self.options = {}
         for key, value in kwargs.items():
             if key in ("default", "label") and value is None:
