@@ -8,13 +8,12 @@ def stringify(key, value):
         return f'"{value}"'
     if key == "validators":
         return (
-                "["
-                + ", ".join(
-            f"validators.{a}({stringify(a, b)})" for a, b in value.items()
-        )
-                + "]"
+            "["
+            + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items())
+            + "]"
         )
     return value
+
 
 class Field:
     """A dict that doesnt store certain django specific keys
@@ -26,7 +25,13 @@ class Field:
 
     @property
     def jinja(self):
-        return self.name, (self.type, {key: stringify(key, value) for key, value in self.options.items()})
+        return (
+            self.name,
+            (
+                self.type,
+                {key: stringify(key, value) for key, value in self.options.items()},
+            ),
+        )
 
     def __init__(self, django_type: str, name: str, **kwargs: Any) -> None:
         self.type = django_type
@@ -52,12 +57,7 @@ class Field:
 
     @property
     def filter_type(self):
-        if self.type in (
-                "IntegerField",
-                "DecimalField",
-                "DateField",
-                "DateTimeField",
-        ):
+        if self.type in ("IntegerField", "DecimalField", "DateField", "DateTimeField",):
             return ["exact", "gte", "lte"]
         elif self.is_enum:
             return ["exact", "in"]
@@ -76,7 +76,6 @@ class Relationship(Field):
     @property
     def jinja(self):
         return self.name, (self.type, self.to, self.options)
-
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -275,10 +274,4 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             label=description,
         )
 
-    return Field(
-        "JSONField",
-        name,
-        schema=schema,
-        default=default,
-        label=description,
-    )
+    return Field("JSONField", name, schema=schema, default=default, label=description,)

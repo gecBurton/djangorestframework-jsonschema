@@ -105,22 +105,12 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
             related_single, related_many = relationships[single]
             if model in related_single:
                 models[model].append(
-                    Relationship(
-                        "OneToOneField",
-                        single_name,
-                        single,
-                        null,
-                    )
+                    Relationship("OneToOneField", single_name, single, null,)
                 )
 
             else:
                 models[model].append(
-                    Relationship(
-                        "ForeignKey",
-                        single_name,
-                        single,
-                        null,
-                    )
+                    Relationship("ForeignKey", single_name, single, null,)
                 )
 
         for many, (many_name, null) in manys.items():
@@ -128,22 +118,12 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
             if model in related_single:
                 single_name, _ = related_single[model]
                 models[many].append(
-                    Relationship(
-                        "ForeignKey",
-                        single_name,
-                        model,
-                        null,
-                    )
+                    Relationship("ForeignKey", single_name, model, null,)
                 )
 
             else:
                 models[model].append(
-                    Relationship(
-                        "ManyToManyField",
-                        many_name,
-                        many,
-                        null,
-                    )
+                    Relationship("ManyToManyField", many_name, many, null,)
                 )
 
     return models

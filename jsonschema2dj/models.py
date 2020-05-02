@@ -59,8 +59,13 @@ class Model:
         "only used for testing a half way stage"
         return dict(
             name=self.name,
-            fields={field.name: dict(type=field.type, **field.options) for field in self.fields},
-            relations={v.name: dict(type=v.type, to=v.to, **v.options) for v in self.relations},
+            fields={
+                field.name: dict(type=field.type, **field.options)
+                for field in self.fields
+            },
+            relations={
+                v.name: dict(type=v.type, to=v.to, **v.options) for v in self.relations
+            },
         )
 
     @property
@@ -102,4 +107,6 @@ class Model:
         """lists filterable fields.
         A helper method of jinja view template
         """
-        return {field.name: field.filter_type for field in self.fields if field.filter_type}
+        return {
+            field.name: field.filter_type for field in self.fields if field.filter_type
+        }
