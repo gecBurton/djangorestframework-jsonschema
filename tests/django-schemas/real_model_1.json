@@ -10,7 +10,7 @@
         }
       },
       "well": {
-        "label": "physical location of the well on the plate",
+        "label": "\"\"\"physical location of the well on the plate\"\"\"",
         "type": "CharField",
         "max_length": 255,
         "validators": {

@@ -1,10 +1,11 @@
 """helper methods for field level schema to django field like object
 """
-from typing import List, Dict, Any, Tuple, Optional
+from typing import List, Dict, Any, Tuple
+import keyword
 
 
 def stringify(key, value):
-    if key in ("label", "RegexValidator") and value is not None:
+    if key in ("RegexValidator",) and value is not None:
         return f'"{value}"'
     if key == "validators":
         return (
@@ -25,15 +26,18 @@ class Field:
 
     @property
     def jinja(self):
+        _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
+        verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
+
         if self.type == "JSONField":
-            options = f'{self.name} = JSONField(validators=[JSONSchemaValidator({self.options["schema"]})])'
+            options = f'{_name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]})])'
         else:
-            _options = ", ".join(f"{key}={stringify(key, value)}" for key, value in self.options.items())
-            options = f'{self.name} = models.{self.type}({_options})'
+            _options = ", ".join(
+                f"{key}={stringify(key, value)}" for key, value in self.options.items()
+            )
+            options = f"{_name} = models.{self.type}({verbose_name}{_options})"
 
-        return  options
-
-
+        return options
 
     def __init__(self, django_type: str, name: str, **kwargs: Any) -> None:
         self.type = django_type
@@ -77,7 +81,11 @@ class Relationship(Field):
 
     @property
     def jinja(self):
-        return self.name, (self.type, self.to, self.options)
+        _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
+        if keyword.iskeyword(self.name):
+            self.options.update(verbose_name=f'"self.name"')
+
+        return _name, (self.type, self.to, self.options)
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -155,7 +163,7 @@ def build_string_field(
                 null=options.get("null", False),
                 primary_key=primary_key,
                 default=default,
-                label=sch.get("description"),
+                label=description,
             )
         except KeyError:
             raise NotImplementedError(
@@ -171,7 +179,7 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
     default = sch.get("default")
     description = sch.get("description")
     if description:
-        description = description.replace("\n", "\\n")
+        description = f'"""{description}"""'
 
     if sch.get("type"):
         _type = sch.get("type")

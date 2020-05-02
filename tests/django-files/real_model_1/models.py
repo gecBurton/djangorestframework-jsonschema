@@ -11,7 +11,7 @@ except ImportError:
 class Manifest(models.Model):
 
     sample_id = models.IntegerField(validators=[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)])
-    well = models.CharField(label="physical location of the well on the plate", max_length=255, validators=[validators.RegexValidator("^[A-H](0[1-9]|1[1-2])$")])
+    well = models.CharField(label="""physical location of the well on the plate""", max_length=255, validators=[validators.RegexValidator("^[A-H](0[1-9]|1[1-2])$")])
     volume_ul = models.IntegerField(validators=[validators.MinValueValidator(10), validators.MaxValueValidator(700)])
     concentration_ng_ul = models.DecimalField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(9999.99)], max_digits=10, decimal_places=5)
     od_260_280 = models.DecimalField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(10)], max_digits=10, decimal_places=5)

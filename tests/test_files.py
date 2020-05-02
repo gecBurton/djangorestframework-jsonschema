@@ -39,9 +39,16 @@ def test_django_files(model, asset_name, asset_function):
     with open(path.join(json_schema_dir, model)) as f:
         schema = load(f)
 
-    with open(
-            path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
-        ) as f:
-            model_file = f.read()
+    try:
+        with open(
+                path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
+            ) as f:
+                model_file = f.read()
 
-    assert asset_function(models=Model.factory(schema)) == model_file
+        assert asset_function(models=Model.factory(schema)) == model_file
+    except FileNotFoundError:
+        with open(
+                path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py"), "w"
+        ) as f:
+            f.write(asset_function(models=Model.factory(schema)))
+

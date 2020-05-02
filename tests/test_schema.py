@@ -34,6 +34,11 @@ def test_django_schema(json_file, django_file):
     with open(django_schema_dir + django_file) as f:
         django_schema = load(f)
 
-    assert [
-        tuple_to_list(m.dict_repr) for m in Model.factory(json_schema)
-    ] == django_schema
+    if django_schema == {}:
+        with open(django_schema_dir + django_file, "w") as f:
+            dump(        [tuple_to_list(m.dict_repr) for m in Model.factory(json_schema)], f, indent=2                                         )
+
+    else:
+        assert [
+            tuple_to_list(m.dict_repr) for m in Model.factory(json_schema)
+        ] == django_schema
