@@ -2,7 +2,7 @@
 """
 from typing import List, Dict, Any, Tuple, Optional
 
-from jsonschema2dj.relationships import FieldDict
+from jsonschema2dj.relationships import Field
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -15,24 +15,26 @@ def build_value_validators(sch: Dict) -> Dict:
     return validators
 
 
-def build_choices(enums, _type:str="string") -> FieldDict:
+def build_choices(name: str, enums, _type: str = "string") -> Field:
     "helper function for enums to choices"
     if _type == "string":
         names = [value.lower().replace(" ", "_") for value in enums]
-        return FieldDict(
-            max_length=max(map(len, enums)), choices=list(zip(names, enums))
+        return Field(
+            name, max_length=max(map(len, enums)), choices=list(zip(names, enums))
         )
 
     if _type == "integer":
-        return FieldDict(choices=list(zip(map(str, enums), enums)))
+        return Field(name, choices=list(zip(map(str, enums), enums)))
 
     raise NotImplementedError("only integer or string enums are supported")
 
 
-def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, description: str) -> FieldDict:
+def build_string_field(
+    name: str, sch: Dict, null: bool, primary_key: bool, default: str, description: str
+) -> Field:
     "the string case is complex enough to have its own function"
-    field = FieldDict(
-        null=null, primary_key=primary_key, default=default, label=description
+    field = Field(
+        name, null=null, primary_key=primary_key, default=default, label=description
     )
     validators = {}
 
@@ -45,10 +47,10 @@ def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, d
         validators["MinLengthValidator"] = min_length
 
     if (min_length and max_length <= min_length) or max_length > 255:
-        return FieldDict(type="TextField", **field.options)
+        return Field(type="TextField", **field.options)
 
     if sch.get("enum"):
-        field.options.update(build_choices(sch.get("enum")).options)
+        field.options.update(build_choices(name, sch.get("enum")).options)
 
     if sch.get("pattern"):
         validators["RegexValidator"] = f"{sch.get('pattern')}"
@@ -69,7 +71,8 @@ def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, d
             "uuid": "UUIDField",
         }
         try:
-            return FieldDict(
+            return Field(
+                name,
                 type=formats[sch["format"]],
                 null=field.options.get("null", False),
                 primary_key=primary_key,
@@ -81,7 +84,7 @@ def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, d
                 f"no code written to handle format: {sch.get('format')}"
             )
 
-    return FieldDict(type="CharField", **field.options)
+    return Field(name, type="CharField", **field.options)
 
 
 def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
@@ -90,7 +93,7 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
     default = sch.get("default")
     description = sch.get("description")
     if description:
-        description =description.replace('\n', '\\n')
+        description = description.replace("\n", "\\n")
 
     if sch.get("type"):
         _type = sch.get("type")
@@ -130,10 +133,13 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
     if "$ref" in sch or "const" in sch:
         return "object", sch, null, default, description
 
-    raise ValueError("either the type must be specified or it must be an enum or a $ref or a const", sch)
+    raise ValueError(
+        "either the type must be specified or it must be an enum or a $ref or a const",
+        sch,
+    )
 
 
-def build_field(name: str, sch: Dict, required: List) -> FieldDict:
+def build_field(name: str, sch: Dict, required: List) -> Field:
     """this is the entry point for the module"""
 
     primary_key = (name == required[0]) if required else False
@@ -142,8 +148,11 @@ def build_field(name: str, sch: Dict, required: List) -> FieldDict:
 
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
-            return FieldDict(type="JSONField", schema=sch) #"field with name id must be a UUID", sch)
-        return FieldDict(
+            return Field(
+                name, type="JSONField", schema=sch
+            )  # "field with name id must be a UUID", sch)
+        return Field(
+            name,
             type="UUIDField",
             default=default or "uuid.uuid4",
             primary_key=primary_key,
@@ -151,11 +160,12 @@ def build_field(name: str, sch: Dict, required: List) -> FieldDict:
         )
 
     if field_type == "string":
-        return build_string_field(sch, null, primary_key, default, description)
+        return build_string_field(name, sch, null, primary_key, default, description)
 
     if field_type == "integer":
         validators = build_value_validators(sch)
-        return FieldDict(
+        return Field(
+            name,
             type="IntegerField",
             null=null,
             validators=validators,
@@ -166,7 +176,8 @@ def build_field(name: str, sch: Dict, required: List) -> FieldDict:
 
     if field_type == "number":
         validators = build_value_validators(sch)
-        return FieldDict(
+        return Field(
+            name,
             type="DecimalField",
             null=null,
             validators=validators,
@@ -178,7 +189,8 @@ def build_field(name: str, sch: Dict, required: List) -> FieldDict:
         )
 
     if field_type == "boolean":
-        return FieldDict(
+        return Field(
+            name,
             type="BooleanField",
             null=null,
             primary_key=primary_key,
@@ -186,4 +198,4 @@ def build_field(name: str, sch: Dict, required: List) -> FieldDict:
             label=description,
         )
 
-    return FieldDict(type="JSONField", schema=sch, default=default, label=description)
+    return Field(name, type="JSONField", schema=sch, default=default, label=description)
