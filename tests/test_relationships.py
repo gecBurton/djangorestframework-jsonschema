@@ -51,24 +51,16 @@ def test_build_models():
         "Prescription": ({}, {}),
     }
 
-    result = {
-        "Address": {},
-        "Doctor": {},
-        "Patient": {
-            "address": {
-                "on_delete": "models.CASCADE",
-                "to": "Address",
-                "type": "ForeignKey",
-            },
-            "doctor": {
-                "null": True,
-                "on_delete": "models.CASCADE",
-                "to": "Doctor",
-                "type": "ForeignKey",
-            },
-            "prescription": {"to": "Prescription", "type": "ManyToManyField"},
-        },
-        "Prescription": {},
-    }
+    result = {'Address': [],
+              'Doctor': [],
+              'Patient': [{'on_delete': 'models.CASCADE',
+                           'to': 'Address',
+                           'type': 'ForeignKey'},
+                          {'null': True,
+                           'on_delete': 'models.CASCADE',
+                           'to': 'Doctor',
+                           'type': 'ForeignKey'},
+                          {'to': 'Prescription', 'type': 'ManyToManyField'}],
+              'Prescription': []}
 
     assert tuple_to_list(build_models(relationships)) == result

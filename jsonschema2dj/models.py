@@ -38,11 +38,11 @@ class Model:
         definitions = schema["definitions"]
         # validate(dict(definitions=definitions), META_SCHEMA)
         ret = []
-        for model_name, kwargs in build_models(extract_relationships(schema)).items():
-            ret.append(Model(model_name, definitions, **kwargs))
+        for model_name, fields in build_models(extract_relationships(schema)).items():
+            ret.append(Model(model_name, definitions, *fields))
         return ret
 
-    def __init__(self, __name, schema, **relations: Field):
+    def __init__(self, __name, schema, *relations: Field):
         """build the django-like model from jsonschema"""
         self.name = __name
         properties = schema[self.name].get("properties", {})
@@ -61,7 +61,7 @@ class Model:
         return dict(
             name=self.name,
             fields={field.name: field.options for field in self.fields},
-            relations=self.relations,
+            relations={v.name: v.options for v in self.relations},
         )
 
     @property
@@ -127,8 +127,8 @@ class Model:
         A helper method of jinja filter template
         """
         return {
-            k: (v.options.pop("type"), v.options.pop("to"), v.options)
-            for k, v in self.relations.items()
+            v.name: (v.options.pop("type"), v.options.pop("to"), v.options)
+            for v in self.relations
         }
 
     @property

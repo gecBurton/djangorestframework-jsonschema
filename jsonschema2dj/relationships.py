@@ -1,7 +1,7 @@
 """core functions for converting jsonschema to djnago model relationships
 """
 from collections import defaultdict
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Tuple, List
 
 
 class Field:
@@ -78,7 +78,7 @@ def extract_relationships(
     return relationships
 
 
-def build_models(relationships: Dict) -> Dict[str, Dict[str, Field]]:
+def build_models(relationships: Dict) -> Dict[str, List[Field]]:
     """converts the result of `extract_relationships` into a dictionary
     of objects where the keys are model names and the values are dict
     representation of django model relationships
@@ -115,48 +115,45 @@ def build_models(relationships: Dict) -> Dict[str, Dict[str, Field]]:
     >>>     "Prescription": {},
     >>> }
     """
-    models: Dict[str, Dict] = defaultdict(dict)
+    models: Dict[str, List[Field]] = defaultdict(list)
 
     for model, (singles, manys) in relationships.items():
-        models[model] = {}
+        models[model] = []
         for single, (single_name, null) in singles.items():
             related_single, related_many = relationships[single]
             if model in related_single:
-                models[model][single_name] = Field(
+                models[model].append(Field(
                     single_name,
                     type="OneToOneField",
                     to=single,
                     null=null,
                     on_delete="models.CASCADE",
-                )
+                ))
 
             else:
-                models[model][single_name] = Field(
+                models[model].append(Field(
                     single_name,
                     type="ForeignKey",
                     to=single,
                     null=null,
                     on_delete="models.CASCADE",
-                )
+                ))
 
         for many, (many_name, null) in manys.items():
             related_single, related_many = relationships[many]
             if model in related_single:
                 single_name, _ = related_single[model]
-                try:
-                    models[many][single_name] = Field(
+                models[many].append(Field(
                         single_name,
                         type="ForeignKey",
                         to=model,
                         null=null,
                         on_delete="models.CASCADE",
-                    )
-                except KeyError:
-                    raise Exception(many, models.keys())
+                    ))
 
             else:
-                models[model][many_name] = Field(
+                models[model].append(Field(
                     many_name, type="ManyToManyField", to=many, null=null
-                )
+                ))
 
-    return dict(models)
+    return models
