@@ -1,27 +1,9 @@
 """core functions for converting jsonschema to djnago model relationships
 """
 from collections import defaultdict
-from typing import Dict, Any, Tuple, List
+from typing import Dict, Tuple, List
 
-
-class Field:
-    """A dict that doesnt store certain django specific keys
-    and values that have default values.
-
-    This is not strictly necessary but produces slightly nicer
-    looking code.
-    """
-
-    def __init__(self, name, **kwargs: Any) -> None:
-        self.name = name
-        self.options = {}
-        for key, value in kwargs.items():
-            if key in ("default", "label") and value is None:
-                pass
-            elif key in ("null", "primary_key") and not value:
-                pass
-            else:
-                self.options[key] = value
+from jsonschema2dj.fields import Field
 
 
 def extract_relationships(
@@ -122,38 +104,53 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
         for single, (single_name, null) in singles.items():
             related_single, related_many = relationships[single]
             if model in related_single:
-                models[model].append(Field(
-                    single_name,
-                    type="OneToOneField",
-                    to=single,
-                    null=null,
-                    on_delete="models.CASCADE",
-                ))
+                models[model].append(
+                    Field(
+                        "OneToOneField",
+                        single_name,
+                        type="OneToOneField",
+                        to=single,
+                        null=null,
+                        on_delete="models.CASCADE",
+                    )
+                )
 
             else:
-                models[model].append(Field(
-                    single_name,
-                    type="ForeignKey",
-                    to=single,
-                    null=null,
-                    on_delete="models.CASCADE",
-                ))
+                models[model].append(
+                    Field(
+                        "ForeignKey",
+                        single_name,
+                        type="ForeignKey",
+                        to=single,
+                        null=null,
+                        on_delete="models.CASCADE",
+                    )
+                )
 
         for many, (many_name, null) in manys.items():
             related_single, related_many = relationships[many]
             if model in related_single:
                 single_name, _ = related_single[model]
-                models[many].append(Field(
+                models[many].append(
+                    Field(
+                        "ForeignKey",
                         single_name,
                         type="ForeignKey",
                         to=model,
                         null=null,
                         on_delete="models.CASCADE",
-                    ))
+                    )
+                )
 
             else:
-                models[model].append(Field(
-                    many_name, type="ManyToManyField", to=many, null=null
-                ))
+                models[model].append(
+                    Field(
+                        "ManyToManyField",
+                        many_name,
+                        type="ManyToManyField",
+                        to=many,
+                        null=null,
+                    )
+                )
 
     return models
