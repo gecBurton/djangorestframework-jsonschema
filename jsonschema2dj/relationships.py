@@ -1,10 +1,10 @@
 """core functions for converting jsonschema to djnago model relationships
 """
 from collections import defaultdict
-from typing import Dict, Any
+from typing import Dict, Any, Tuple
 
 
-class FieldDict(dict):
+class FieldDict:
     """A dict that doesnt store certain django specific keys
     and values that have default values.
 
@@ -13,18 +13,17 @@ class FieldDict(dict):
     """
 
     def __init__(self, **kwargs: Any) -> None:
-        _kwargs = {}
+        self.options = {}
         for key, value in kwargs.items():
             if key in ("default", "label") and value is None:
                 pass
             elif key in ("null", "primary_key") and not value:
                 pass
             else:
-                _kwargs[key] = value
-        super().__init__(**_kwargs)
+                self.options[key] = value
 
 
-def extract_relationships(schema: Dict) -> Dict:
+def extract_relationships(schema: Dict) -> Dict[str, Tuple[Dict[str,Tuple[str, bool]], Dict[str,Tuple[str, bool]]]]:
     """this function takes jsonschema and returns a dictionary of it
     where each model (object in the #/definitions) is a key wholes value
     is a tuple of dictionaries of singularly and multiply related models
@@ -76,7 +75,7 @@ def extract_relationships(schema: Dict) -> Dict:
     return relationships
 
 
-def build_models(relationships: Dict) -> Dict:
+def build_models(relationships: Dict) -> Dict[str, Dict[str, FieldDict]]:
     """converts the result of `extract_relationships` into a dictionary
     of objects where the keys are model names and the values are dict
     representation of django model relationships

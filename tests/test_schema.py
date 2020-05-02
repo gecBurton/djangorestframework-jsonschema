@@ -4,6 +4,7 @@ from json import load, dump
 import pytest
 
 from jsonschema2dj.models import Model
+from jsonschema2dj.relationships import FieldDict
 
 json_schema_dir = "tests/json-schemas/"
 django_schema_dir = "tests/django-schemas/"
@@ -17,6 +18,8 @@ def tuple_to_list(obj):
         return {k: tuple_to_list(v) for k, v in obj.items()}
     if isinstance(obj, (list, tuple)):
         return list(map(tuple_to_list, obj))
+    if isinstance(obj, FieldDict):
+        return obj.options
     return obj
 
 

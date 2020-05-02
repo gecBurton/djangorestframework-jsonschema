@@ -1,8 +1,8 @@
 """This
 """
-from json import load
-from typing import List
 from __future__ import annotations
+from json import load
+from typing import List, Dict, Any
 
 from jsonschema import validate  # type: ignore
 
@@ -11,7 +11,7 @@ from .fields import build_field
 
 from pkg_resources import resource_filename
 
-from .relationships import build_models, extract_relationships
+from .relationships import build_models, extract_relationships, FieldDict
 
 with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
@@ -42,12 +42,12 @@ class Model:
             ret.append(Model(model_name, definitions, **kwargs))
         return ret
 
-    def __init__(self, __name, schema, **relations):
+    def __init__(self, __name, schema, **relations: FieldDict):
         """build the django-like model from jsonschema"""
         self.name = __name
         properties = schema[self.name].get("properties", {})
         required = schema[self.name].get("required", [])
-        self.fields = {
+        self.fields: Dict[str, FieldDict] = {
             field_name: build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
             if not self.is_relation(self.name, field_name, schema)
@@ -58,21 +58,22 @@ class Model:
     @property
     def dict_repr(self):
         "only used for testing a half way stage"
-        return dict(name=self.name, fields=self.fields, relations=self.relations)
+        return dict(name=self.name, fields={k:v.options for k, v in self.fields.items()}, relations=self.relations)
 
     @property
-    def enum_fields(self):
+    def enum_fields(self) -> List[str]:
         """lists enum fields.
         A helper method of jinja admin template
         """
-        return [
-            field
-            for field, (*_, options) in self.fields.items()
-            if "choices" in options
-        ]
+
+        ret = []
+        for field_name, field  in self.fields.items():
+            if "choices" in field.options:
+                ret.append(field_name)
+        return ret
 
     @property
-    def search_fields(self):
+    def search_fields(self) -> List[str]:
         """lists searchable fields.
         A helper method of jinja view template
         """
@@ -102,12 +103,12 @@ class Model:
             return value
 
         result = {}
-        for name, details in self.fields.items():
+        for name, field in self.fields.items():
             result[name] = (
-                details["type"],
+                field.options["type"],
                 {
                     key: stringify(key, value)
-                    for key, value in details.items()
+                    for key, value in field.options.items()
                     if key != "type"
                 },
             )
@@ -117,26 +118,26 @@ class Model:
         return result
 
     @property
-    def relations_str(self):
+    def relations_str(self) -> Dict[str, Any]:
         """lists jinja friendly relationship-fields.
         A helper method of jinja filter template
         """
-        return {k: (v.pop("type"), v.pop("to"), v) for k, v in self.relations.items()}
+        return {k: (v.options.pop("type"), v.options.pop("to"), v.options) for k, v in self.relations.items()}
 
     @property
-    def filter_fields(self):
+    def filter_fields(self) -> Dict[str, List[str]]:
         """lists filterable fields.
         A helper method of jinja view template
         """
         result = {}
         for key, value in self.fields.items():
-            if value["type"] in (
+            if value.options["type"] in (
                 "IntegerField",
                 "DecimalField",
                 "DateField",
                 "DateTimeField",
             ):
                 result[key] = ["exact", "gte", "lte"]
-            elif "choices" in value:
+            elif "choices" in value.options:
                 result[key] = ["exact", "in"]
         return result

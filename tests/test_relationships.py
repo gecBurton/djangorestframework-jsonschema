@@ -1,4 +1,5 @@
 from jsonschema2dj.relationships import extract_relationships, build_models
+from tests.test_schema import tuple_to_list
 
 
 def test_extract_relationships():
@@ -70,4 +71,4 @@ def test_build_models():
         "Prescription": {},
     }
 
-    assert build_models(relationships) == result
+    assert tuple_to_list(build_models(relationships)) == result

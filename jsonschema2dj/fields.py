@@ -39,22 +39,22 @@ def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, d
     max_length = sch.get("maxLength", 255)
     min_length = sch.get("minLength")
 
-    field.update(max_length=max_length)
+    field.options.update(max_length=max_length)
 
     if min_length:
         validators["MinLengthValidator"] = min_length
 
     if (min_length and max_length <= min_length) or max_length > 255:
-        return FieldDict(type="TextField", **field)
+        return FieldDict(type="TextField", **field.options)
 
     if sch.get("enum"):
-        field.update(build_choices(sch.get("enum")))
+        field.options.update(build_choices(sch.get("enum")).options)
 
     if sch.get("pattern"):
         validators["RegexValidator"] = f"{sch.get('pattern')}"
 
     if validators:
-        field.update(validators=validators)
+        field.options.update(validators=validators)
 
     if sch.get("format"):
 
@@ -71,7 +71,7 @@ def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, d
         try:
             return FieldDict(
                 type=formats[sch["format"]],
-                null=field.get("null", False),
+                null=field.options.get("null", False),
                 primary_key=primary_key,
                 default=default,
                 label=sch.get("description"),
@@ -81,7 +81,7 @@ def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, d
                 f"no code written to handle format: {sch.get('format')}"
             )
 
-    return FieldDict(type="CharField", **field)
+    return FieldDict(type="CharField", **field.options)
 
 
 def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
