@@ -3,6 +3,7 @@ from json import load, dump
 
 import pytest
 
+from jsonschema2dj.fields import Relationship
 from jsonschema2dj.models import Model
 from jsonschema2dj.relationships import Field
 
@@ -18,6 +19,8 @@ def tuple_to_list(obj):
         return {k: tuple_to_list(v) for k, v in obj.items()}
     if isinstance(obj, (list, tuple)):
         return list(map(tuple_to_list, obj))
+    if isinstance(obj, Relationship):
+        return {**obj.options, "to": obj.to, "type": obj.type}
     if isinstance(obj, Field):
         return obj.options
     return obj

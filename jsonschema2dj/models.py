@@ -6,8 +6,7 @@ from typing import List, Dict, Any
 
 from jsonschema import validate  # type: ignore
 
-from .fields import build_field
-
+from .fields import build_field, stringify
 
 from pkg_resources import resource_filename
 
@@ -61,7 +60,7 @@ class Model:
         return dict(
             name=self.name,
             fields={field.name: dict(type=field.type, **field.options) for field in self.fields},
-            relations={v.name: dict(type=v.type, **v.options) for v in self.relations},
+            relations={v.name: dict(type=v.type, to=v.to, **v.options) for v in self.relations},
         )
 
     @property
@@ -85,28 +84,7 @@ class Model:
         A helper method of jinja model template
         """
 
-        def stringify(key, value):
-            if key in ("label", "RegexValidator") and value is not None:
-                return f'"{value}"'
-            if key == "validators":
-                return (
-                    "["
-                    + ", ".join(
-                        f"validators.{a}({stringify(a, b)})" for a, b in value.items()
-                    )
-                    + "]"
-                )
-            return value
-
-        result = {}
-        for field in self.fields:
-            result[field.name] = (
-                field.type,
-                {
-                    key: stringify(key, value)
-                    for key, value in field.options.items()
-                },
-            )
+        result = dict(field.jinja for field in self.fields)
 
         if not result and not self.relations:
             return {"id": ("UUIDField", dict(default="uuid.uuid4", primary_key=False))}
@@ -117,10 +95,7 @@ class Model:
         """lists jinja friendly relationship-fields.
         A helper method of jinja filter template
         """
-        return {
-            v.name: (v.type, v.options.pop("to"), v.options)
-            for v in self.relations
-        }
+        return dict(field.jinja for field in self.relations)
 
     @property
     def filter_fields(self) -> Dict[str, List[str]]:

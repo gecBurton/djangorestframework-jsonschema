@@ -3,6 +3,19 @@
 from typing import List, Dict, Any, Tuple, Optional
 
 
+def stringify(key, value):
+    if key in ("label", "RegexValidator") and value is not None:
+        return f'"{value}"'
+    if key == "validators":
+        return (
+                "["
+                + ", ".join(
+            f"validators.{a}({stringify(a, b)})" for a, b in value.items()
+        )
+                + "]"
+        )
+    return value
+
 class Field:
     """A dict that doesnt store certain django specific keys
     and values that have default values.
@@ -10,6 +23,10 @@ class Field:
     This is not strictly necessary but produces slightly nicer
     looking code.
     """
+
+    @property
+    def jinja(self):
+        return self.name, (self.type, {key: stringify(key, value) for key, value in self.options.items()})
 
     def __init__(self, django_type: str, name: str, **kwargs: Any) -> None:
         self.type = django_type
@@ -47,6 +64,21 @@ class Field:
         return []
 
 
+class Relationship(Field):
+    def __init__(self, type, name, to, null=False):
+        self.to = to
+        self.null = null
+        if type == "ManyToManyField":
+            super().__init__(type, name, null=null)
+        else:
+            super().__init__(type, name, null=null, on_delete="models.CASCADE")
+
+    @property
+    def jinja(self):
+        return self.name, (self.type, self.to, self.options)
+
+
+
 def build_value_validators(sch: Dict) -> Dict:
     """common to integers and strings"""
     validators = {}
@@ -57,9 +89,9 @@ def build_value_validators(sch: Dict) -> Dict:
     return validators
 
 
-def build_choices(name: str, enums, _type: str = "string") -> Field:
+def build_choices(name: str, enums) -> Field:
     "helper function for enums to choices"
-    if _type == "string":
+    if all(isinstance(enum, str) for enum in enums):
         names = [value.lower().replace(" ", "_") for value in enums]
         return Field(
             "CharField",
@@ -68,7 +100,7 @@ def build_choices(name: str, enums, _type: str = "string") -> Field:
             choices=list(zip(names, enums)),
         )
 
-    if _type == "integer":
+    if all(isinstance(enum, int) for enum in enums):
         return Field("IntegerField", name, choices=list(zip(map(str, enums), enums)))
 
     raise NotImplementedError("only integer or string enums are supported")
@@ -184,17 +216,17 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
     )
 
 
-def build_field(name: str, sch: Dict, required: List) -> Field:
+def build_field(name: str, schema: Dict, required: List) -> Field:
     """this is the entry point for the module"""
 
     primary_key = (name == required[0]) if required else False
 
-    field_type, sch, null, default, description = rationalize_type(sch)
+    field_type, schema, null, default, description = rationalize_type(schema)
 
     if name == "id":
-        if sch.get("type") != "string" and sch.get("format") != "uuid":
+        if schema.get("type") != "string" and schema.get("format") != "uuid":
             return Field(
-                "JSONField", name, schema=sch
+                "JSONField", name, schema=schema
             )  # "field with name id must be a UUID", sch)
         return Field(
             "UUIDField",
@@ -205,10 +237,10 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
         )
 
     if field_type == "string":
-        return build_string_field(name, sch, null, primary_key, default, description)
+        return build_string_field(name, schema, null, primary_key, default, description)
 
     if field_type == "integer":
-        validators = build_value_validators(sch)
+        validators = build_value_validators(schema)
         return Field(
             "IntegerField",
             name,
@@ -220,7 +252,7 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
         )
 
     if field_type == "number":
-        validators = build_value_validators(sch)
+        validators = build_value_validators(schema)
         return Field(
             "DecimalField",
             name,
@@ -246,7 +278,7 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
     return Field(
         "JSONField",
         name,
-        schema=sch,
+        schema=schema,
         default=default,
         label=description,
     )

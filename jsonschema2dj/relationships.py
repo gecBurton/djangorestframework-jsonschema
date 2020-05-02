@@ -3,7 +3,7 @@
 from collections import defaultdict
 from typing import Dict, Tuple, List
 
-from jsonschema2dj.fields import Field
+from jsonschema2dj.fields import Field, Relationship
 
 
 def extract_relationships(
@@ -105,23 +105,21 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
             related_single, related_many = relationships[single]
             if model in related_single:
                 models[model].append(
-                    Field(
+                    Relationship(
                         "OneToOneField",
                         single_name,
-                        to=single,
-                        null=null,
-                        on_delete="models.CASCADE",
+                        single,
+                        null,
                     )
                 )
 
             else:
                 models[model].append(
-                    Field(
+                    Relationship(
                         "ForeignKey",
                         single_name,
-                        to=single,
-                        null=null,
-                        on_delete="models.CASCADE",
+                        single,
+                        null,
                     )
                 )
 
@@ -130,22 +128,21 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
             if model in related_single:
                 single_name, _ = related_single[model]
                 models[many].append(
-                    Field(
+                    Relationship(
                         "ForeignKey",
                         single_name,
-                        to=model,
-                        null=null,
-                        on_delete="models.CASCADE",
+                        model,
+                        null,
                     )
                 )
 
             else:
                 models[model].append(
-                    Field(
+                    Relationship(
                         "ManyToManyField",
                         many_name,
-                        to=many,
-                        null=null,
+                        many,
+                        null,
                     )
                 )
 
