@@ -83,7 +83,7 @@ class Relationship(Field):
     def jinja(self):
         _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         if keyword.iskeyword(self.name):
-            self.options.update(verbose_name=f'"self.name"')
+            self.options.update(verbose_name=f'"{self.name}"')
 
         return _name, (self.type, self.to, self.options)
 
