@@ -1,6 +1,8 @@
 """This
 """
 from json import load
+from typing import List
+from __future__ import annotations
 
 from jsonschema import validate  # type: ignore
 
@@ -17,7 +19,7 @@ with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
 
 class Model:
     @classmethod
-    def is_relation(cls, model_name, field_name, schema):
+    def is_relation(cls, model_name, field_name, schema) -> bool:
         """helper method to determine whether a field is pointing to another model"""
         sch = schema[model_name]["properties"][field_name]
         if "$ref" in sch:
@@ -31,17 +33,13 @@ class Model:
         return False
 
     @classmethod
-    def factory(cls, schema):
+    def factory(cls, schema) -> List[Model]:
         "factory for parsing json schema of many models"
         definitions = schema["definitions"]
         #validate(dict(definitions=definitions), META_SCHEMA)
         ret = []
         for model_name, kwargs in build_models(extract_relationships(schema)).items():
-            try:
-                ret.append(Model(model_name, definitions, **kwargs))
-            except TypeError:
-                print(kwargs)
-                raise
+            ret.append(Model(model_name, definitions, **kwargs))
         return ret
 
     def __init__(self, __name, schema, **relations):

@@ -1,9 +1,11 @@
 """helper methods for field level schema to django field like object
 """
+from typing import List, Dict, Any, Tuple, Optional
+
 from jsonschema2dj.relationships import FieldDict
 
 
-def build_value_validators(sch):
+def build_value_validators(sch: Dict) -> Dict:
     """common to integers and strings"""
     validators = {}
     if "minimum" in sch:
@@ -13,7 +15,7 @@ def build_value_validators(sch):
     return validators
 
 
-def build_choices(enums, _type="string"):
+def build_choices(enums, _type:str="string") -> FieldDict:
     "helper function for enums to choices"
     if _type == "string":
         names = [value.lower().replace(" ", "_") for value in enums]
@@ -27,9 +29,9 @@ def build_choices(enums, _type="string"):
     raise NotImplementedError("only integer or string enums are supported")
 
 
-def build_string_field(sch, null, primary_key, default, description):
+def build_string_field(sch: Dict, null: bool, primary_key: bool, default: str, description: str) -> FieldDict:
     "the string case is complex enough to have its own function"
-    options = FieldDict(
+    field = FieldDict(
         null=null, primary_key=primary_key, default=default, label=description
     )
     validators = {}
@@ -37,22 +39,22 @@ def build_string_field(sch, null, primary_key, default, description):
     max_length = sch.get("maxLength", 255)
     min_length = sch.get("minLength")
 
-    options.update(max_length=max_length)
+    field.update(max_length=max_length)
 
     if min_length:
         validators["MinLengthValidator"] = min_length
 
     if (min_length and max_length <= min_length) or max_length > 255:
-        return FieldDict(type="TextField", **options)
+        return FieldDict(type="TextField", **field)
 
     if sch.get("enum"):
-        options.update(build_choices(sch.get("enum")))
+        field.update(build_choices(sch.get("enum")))
 
     if sch.get("pattern"):
         validators["RegexValidator"] = f"{sch.get('pattern')}"
 
     if validators:
-        options.update(validators=validators)
+        field.update(validators=validators)
 
     if sch.get("format"):
 
@@ -68,8 +70,8 @@ def build_string_field(sch, null, primary_key, default, description):
         }
         try:
             return FieldDict(
-                type=formats[sch.get("format")],
-                null=options.get("null", False),
+                type=formats[sch["format"]],
+                null=field.get("null", False),
                 primary_key=primary_key,
                 default=default,
                 label=sch.get("description"),
@@ -79,10 +81,10 @@ def build_string_field(sch, null, primary_key, default, description):
                 f"no code written to handle format: {sch.get('format')}"
             )
 
-    return FieldDict(type="CharField", **options)
+    return FieldDict(type="CharField", **field)
 
 
-def rationalize_type(sch):
+def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
     """the type is problematic especially with regards to enums and null"""
     null = False
     default = sch.get("default")
@@ -110,7 +112,7 @@ def rationalize_type(sch):
         return _type, sch, null, default, description
 
     if sch.get("enum"):
-        enums = sch.get("enum")
+        enums = sch.get("enum", [])
         if "null" in enums:
             enums.remove("null")
             null = True
@@ -131,7 +133,7 @@ def rationalize_type(sch):
     raise ValueError("either the type must be specified or it must be an enum or a $ref or a const", sch)
 
 
-def build_field(name, sch, required):
+def build_field(name: str, sch: Dict, required: List) -> FieldDict:
     """this is the entry point for the module"""
 
     primary_key = (name == required[0]) if required else False
