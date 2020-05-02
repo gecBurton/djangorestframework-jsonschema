@@ -12,7 +12,7 @@ class FieldDict(dict):
     looking code.
     """
 
-    def __init__(self, **kwargs: Dict[str, Any]) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         _kwargs = {}
         for key, value in kwargs.items():
             if key in ("default", "label") and value is None:
@@ -113,7 +113,7 @@ def build_models(relationships: Dict) -> Dict:
     >>>     "Prescription": {},
     >>> }
     """
-    models = defaultdict(dict)
+    models: Dict[str, Dict] = defaultdict(dict)
 
     for model, (singles, manys) in relationships.items():
         models[model] = {}

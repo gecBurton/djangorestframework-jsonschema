@@ -1,10 +1,10 @@
 """additional jsonschema validators
 """
-from django.utils.deconstruct import deconstructible
-from jsonschema import Draft7Validator
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy
-from django.core import validators
+from django.utils.deconstruct import deconstructible  # type: ignore
+from jsonschema import Draft7Validator  # type: ignore
+from django.core.exceptions import ValidationError  # type: ignore
+from django.utils.translation import gettext_lazy  # type: ignore
+from django.core import validators  # type: ignore
 
 
 @deconstructible

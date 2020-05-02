@@ -1,5 +1,5 @@
 from json import load
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand  # type: ignore
 
 from jsonschema2dj.models import Model
 from jsonschema2dj.templates import (

@@ -2,7 +2,7 @@
 """
 from json import load
 
-from jsonschema import validate
+from jsonschema import validate  # type: ignore
 
 from .fields import build_field
 
