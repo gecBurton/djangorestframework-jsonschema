@@ -108,7 +108,6 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
                     Field(
                         "OneToOneField",
                         single_name,
-                        type="OneToOneField",
                         to=single,
                         null=null,
                         on_delete="models.CASCADE",
@@ -120,7 +119,6 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
                     Field(
                         "ForeignKey",
                         single_name,
-                        type="ForeignKey",
                         to=single,
                         null=null,
                         on_delete="models.CASCADE",
@@ -135,7 +133,6 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
                     Field(
                         "ForeignKey",
                         single_name,
-                        type="ForeignKey",
                         to=model,
                         null=null,
                         on_delete="models.CASCADE",
@@ -147,7 +144,6 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
                     Field(
                         "ManyToManyField",
                         many_name,
-                        type="ManyToManyField",
                         to=many,
                         null=null,
                     )

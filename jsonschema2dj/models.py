@@ -60,8 +60,8 @@ class Model:
         "only used for testing a half way stage"
         return dict(
             name=self.name,
-            fields={field.name: field.options for field in self.fields},
-            relations={v.name: v.options for v in self.relations},
+            fields={field.name: dict(type=field.type, **field.options) for field in self.fields},
+            relations={v.name: dict(type=v.type, **v.options) for v in self.relations},
         )
 
     @property
@@ -70,22 +70,14 @@ class Model:
         A helper method of jinja admin template
         """
 
-        ret = []
-        for field in self.fields:
-            if "choices" in field.options:
-                ret.append(field.name)
-        return ret
+        return [field.name for field in self.fields if field.is_enum]
 
     @property
     def search_fields(self) -> List[str]:
         """lists searchable fields.
         A helper method of jinja view template
         """
-        fields = []
-        for field in self.fields:
-            if field.options["type"] == "CharField" and "choices" not in field.options:
-                fields.append(field.name)
-        return fields
+        return [field.name for field in self.fields if field.is_text_search]
 
     @property
     def field_str(self):
@@ -109,11 +101,10 @@ class Model:
         result = {}
         for field in self.fields:
             result[field.name] = (
-                field.options["type"],
+                field.type,
                 {
                     key: stringify(key, value)
                     for key, value in field.options.items()
-                    if key != "type"
                 },
             )
 
@@ -127,7 +118,7 @@ class Model:
         A helper method of jinja filter template
         """
         return {
-            v.name: (v.options.pop("type"), v.options.pop("to"), v.options)
+            v.name: (v.type, v.options.pop("to"), v.options)
             for v in self.relations
         }
 
@@ -136,15 +127,4 @@ class Model:
         """lists filterable fields.
         A helper method of jinja view template
         """
-        result = {}
-        for field in self.fields:
-            if field.options["type"] in (
-                "IntegerField",
-                "DecimalField",
-                "DateField",
-                "DateTimeField",
-            ):
-                result[field.name] = ["exact", "gte", "lte"]
-            elif "choices" in field.options:
-                result[field.name] = ["exact", "in"]
-        return result
+        return {field.name: field.filter_type for field in self.fields if field.filter_type}

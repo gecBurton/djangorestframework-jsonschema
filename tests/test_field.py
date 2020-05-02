@@ -65,7 +65,8 @@ results = {
 @pytest.mark.parametrize("name,result", results.items())
 def test_build_field_pass(name, result):
     schema = single_fields["properties"][name]
-    assert build_field(name, schema, single_fields.get("required", [])).options == result
+    field = build_field(name, schema, single_fields.get("required", []))
+    assert  {"type": field.type, **field.options}== result
 
 
 format_failures = [

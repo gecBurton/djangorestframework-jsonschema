@@ -20,8 +20,31 @@ class Field:
                 pass
             elif key in ("null", "primary_key") and not value:
                 pass
+            elif key == "type":
+                raise TypeError("type cannot be specified in the kwargs")
             else:
                 self.options[key] = value
+
+    @property
+    def is_enum(self):
+        return "choices" in self.options
+
+    @property
+    def is_text_search(self):
+        return self.type == "CharField" and "choices" not in self.options
+
+    @property
+    def filter_type(self):
+        if self.type in (
+                "IntegerField",
+                "DecimalField",
+                "DateField",
+                "DateTimeField",
+        ):
+            return ["exact", "gte", "lte"]
+        elif self.is_enum:
+            return ["exact", "in"]
+        return []
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -96,7 +119,6 @@ def build_string_field(
             return Field(
                 formats[sch["format"]],
                 name,
-                type=formats[sch["format"]],
                 null=options.get("null", False),
                 primary_key=primary_key,
                 default=default,
@@ -107,7 +129,7 @@ def build_string_field(
                 f"no code written to handle format: {sch.get('format')}"
             )
 
-    return Field("CharField", name, type="CharField", **options)
+    return Field("CharField", name, **options)
 
 
 def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
@@ -172,12 +194,11 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
     if name == "id":
         if sch.get("type") != "string" and sch.get("format") != "uuid":
             return Field(
-                "JSONField", name, type="JSONField", schema=sch
+                "JSONField", name, schema=sch
             )  # "field with name id must be a UUID", sch)
         return Field(
             "UUIDField",
             name,
-            type="UUIDField",
             default=default or "uuid.uuid4",
             primary_key=primary_key,
             label=description,
@@ -191,7 +212,6 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
         return Field(
             "IntegerField",
             name,
-            type="IntegerField",
             null=null,
             validators=validators,
             primary_key=primary_key,
@@ -204,7 +224,6 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
         return Field(
             "DecimalField",
             name,
-            type="DecimalField",
             null=null,
             validators=validators,
             max_digits=10,
@@ -218,7 +237,6 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
         return Field(
             "BooleanField",
             name,
-            type="BooleanField",
             null=null,
             primary_key=primary_key,
             default=default,
@@ -228,7 +246,6 @@ def build_field(name: str, sch: Dict, required: List) -> Field:
     return Field(
         "JSONField",
         name,
-        type="JSONField",
         schema=sch,
         default=default,
         label=description,
