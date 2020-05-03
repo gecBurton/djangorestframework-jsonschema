@@ -4,6 +4,7 @@
     "fields": {
       "postcode": {
         "type": "CharField",
+        "null": true,
         "max_length": 255,
         "validators": {
           "RegexValidator": "^[a-z]{1,2}\\d[a-z\\d]?\\s*\\d[a-z]{2}$"
@@ -11,6 +12,7 @@
       },
       "type": {
         "type": "CharField",
+        "null": true,
         "max_length": 7,
         "choices": [
           [
@@ -35,19 +37,20 @@
     "fields": {
       "name": {
         "type": "CharField",
+        "null": true,
         "max_length": 255
       }
     },
     "relations": {
       "hospital": {
-        "null": true,
         "type": "ForeignKey",
-        "to": "Hospital"
+        "to": "Hospital",
+        "null": true
       },
       "patient": {
-        "null": true,
         "type": "ManyToManyField",
-        "to": "Patient"
+        "to": "Patient",
+        "null": true
       }
     }
   },
@@ -56,6 +59,7 @@
     "fields": {
       "nhs_number": {
         "type": "CharField",
+        "null": true,
         "max_length": 255,
         "validators": {
           "RegexValidator": "^\\d{3}-\\d{3}-\\d{4}$"

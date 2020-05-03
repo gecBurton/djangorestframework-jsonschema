@@ -1,7 +1,23 @@
 [
   {
+    "name": "Book",
     "fields": {
+      "title": {
+        "type": "CharField",
+        "null": true,
+        "max_length": 255
+      },
+      "pages": {
+        "type": "IntegerField",
+        "null": true,
+        "validators": {
+          "MinValueValidator": 0
+        }
+      },
       "genre": {
+        "type": "CharField",
+        "null": true,
+        "max_length": 25,
         "choices": [
           [
             "celebrity_autobiographies",
@@ -15,41 +31,30 @@
             "other",
             "other"
           ]
-        ],
-        "max_length": 25,
-        "type": "CharField"
-      },
-      "pages": {
-        "type": "IntegerField",
-        "validators": {
-          "MinValueValidator": 0
-        }
-      },
-      "title": {
-        "max_length": 255,
-        "type": "CharField"
+        ]
       }
     },
-    "name": "Book",
     "relations": {
       "author": {
-        "null": true,
+        "type": "ForeignKey",
         "to": "Author",
-        "type": "ForeignKey"
+        "null": true
       }
     }
   },
   {
+    "name": "Author",
     "fields": {
-      "date_of_birth": {
-        "type": "DateField"
-      },
       "name": {
-        "max_length": 255,
-        "type": "CharField"
+        "type": "CharField",
+        "null": true,
+        "max_length": 255
+      },
+      "date_of_birth": {
+        "type": "DateField",
+        "null": true
       }
     },
-    "name": "Author",
     "relations": {}
   }
 ]

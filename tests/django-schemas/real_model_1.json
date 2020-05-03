@@ -10,8 +10,8 @@
         }
       },
       "well": {
-        "label": "\"\"\"physical location of the well on the plate\"\"\"",
         "type": "CharField",
+        "label": "\"\"\"physical location of the well on the plate\"\"\"",
         "max_length": 255,
         "validators": {
           "RegexValidator": "^[A-H](0[1-9]|1[1-2])$"
@@ -220,10 +220,12 @@
     "fields": {
       "name": {
         "type": "CharField",
+        "null": true,
         "max_length": 255
       },
       "email": {
-        "type": "EmailField"
+        "type": "EmailField",
+        "null": true
       },
       "address": {
         "type": "JSONField",

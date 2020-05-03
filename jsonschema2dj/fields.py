@@ -240,6 +240,8 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
 
     field_type, schema, null, default, description = rationalize_type(schema)
 
+    null = null or name not in required
+
     if name == "id":
         if schema.get("type") != "string" and schema.get("format") != "uuid":
             return JSONField(

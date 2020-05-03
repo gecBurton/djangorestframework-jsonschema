@@ -35,8 +35,8 @@ class Redcap(models.Model):
 
 class ResponsibleClinician(models.Model):
 
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
+    name = models.CharField(null=True, max_length=255)
+    email = models.EmailField(null=True)
     address = JSONField(validators=[JSONSchemaValidator({'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}})])
 
 
