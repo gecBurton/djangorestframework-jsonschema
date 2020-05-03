@@ -70,10 +70,7 @@ class Relationship(Field):
     def __init__(self, type, name, to, null=False):
         self.to = to
         self.null = null
-        if type == "ManyToManyField":
-            super().__init__(type, name, null=null)
-        else:
-            super().__init__(type, name, null=null, on_delete="models.CASCADE")
+        super().__init__(type, name, null=null)
 
     @property
     def jinja(self):
@@ -81,7 +78,10 @@ class Relationship(Field):
         if keyword.iskeyword(self.name):
             self.options.update(verbose_name=f'"{self.name}"')
 
-        return _name, (self.type, self.to, self.options)
+        if self.type == "ManyToManyField":
+            return _name, (self.type, self.to, self.options)
+        else:
+            return _name, (self.type, self.to, dict(on_delete="models.CASCADE", **self.options))
 
 
 class JSONField(Field):

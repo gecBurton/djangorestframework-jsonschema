@@ -10,8 +10,7 @@
     "relations": {
       "f": {
         "type": "ForeignKey",
-        "to": "F",
-        "on_delete": "models.CASCADE"
+        "to": "F"
       }
     }
   },
@@ -26,8 +25,7 @@
     "relations": {
       "d": {
         "type": "ForeignKey",
-        "to": "D",
-        "on_delete": "models.CASCADE"
+        "to": "D"
       }
     }
   },
@@ -37,13 +35,11 @@
     "relations": {
       "c": {
         "type": "ForeignKey",
-        "to": "C",
-        "on_delete": "models.CASCADE"
+        "to": "C"
       },
       "e": {
         "type": "ForeignKey",
-        "to": "E",
-        "on_delete": "models.CASCADE"
+        "to": "E"
       }
     }
   },
@@ -53,8 +49,7 @@
     "relations": {
       "b": {
         "type": "ForeignKey",
-        "to": "B",
-        "on_delete": "models.CASCADE"
+        "to": "B"
       }
     }
   }

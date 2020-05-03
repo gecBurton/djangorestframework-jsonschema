@@ -150,8 +150,7 @@
     "relations": {
       "plate": {
         "type": "ForeignKey",
-        "to": "Plate",
-        "on_delete": "models.CASCADE"
+        "to": "Plate"
       },
       "redcap": {
         "type": "ManyToManyField",
@@ -212,8 +211,7 @@
     "relations": {
       "responsible_clinician": {
         "type": "ForeignKey",
-        "to": "ResponsibleClinician",
-        "on_delete": "models.CASCADE"
+        "to": "ResponsibleClinician"
       }
     }
   },

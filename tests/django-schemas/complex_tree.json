@@ -41,8 +41,7 @@
     "relations": {
       "hospital": {
         "type": "ForeignKey",
-        "to": "Hospital",
-        "on_delete": "models.CASCADE"
+        "to": "Hospital"
       },
       "patient": {
         "type": "ManyToManyField",

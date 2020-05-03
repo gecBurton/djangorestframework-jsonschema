@@ -53,11 +53,9 @@ def test_build_models():
 
     result = {'Address': [],
               'Doctor': [],
-              'Patient': [{'on_delete': 'models.CASCADE',
-                           'to': 'Address',
+              'Patient': [{'to': 'Address',
                            'type': 'ForeignKey'},
                           {'null': True,
-                           'on_delete': 'models.CASCADE',
                            'to': 'Doctor',
                            'type': 'ForeignKey'},
                           {'to': 'Prescription', 'type': 'ManyToManyField'}],

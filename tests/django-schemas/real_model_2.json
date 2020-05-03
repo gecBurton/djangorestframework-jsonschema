@@ -33,7 +33,6 @@
     "name": "Book",
     "relations": {
       "author": {
-        "on_delete": "models.CASCADE",
         "to": "Author",
         "type": "ForeignKey"
       }
