@@ -35,7 +35,6 @@ class Field:
         )
         return f"{_name} = models.{self.type}({verbose_name}{_options})"
 
-
     def __init__(self, django_type: str, name: str, **kwargs: Any) -> None:
         self.type = django_type
         self.name = name
@@ -75,7 +74,7 @@ class Relationship(Field):
 
     @property
     def jinja(self):
-        _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
+        name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         options = dict(self.options)
         if keyword.iskeyword(self.name):
             options.update(verbose_name=f'"{self.name}"')
@@ -85,7 +84,7 @@ class Relationship(Field):
 
         options = ", ".join([f'"{self.to}"'] + [f"{k}={v}" for k, v in options.items()])
 
-        return f'{_name} = models.{self.type}({options})'
+        return f"{name} = models.{self.type}({options})"
 
 
 class JSONField(Field):
@@ -94,9 +93,9 @@ class JSONField(Field):
 
     @property
     def jinja(self):
-        _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
+        name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
-        return f'{_name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]})])'
+        return f'{name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]})])'
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -168,9 +167,7 @@ def build_string_field(
             "uuid": "UUIDField",
         }
         if sch["format"] not in formats:
-            warnings.warn(
-                f"no code written to handle format: {sch.get('format')}"
-            )
+            warnings.warn(f"no code written to handle format: {sch.get('format')}")
 
         return Field(
             formats.get(sch["format"], "CharField"),
@@ -180,7 +177,6 @@ def build_string_field(
             default=default,
             label=description,
         )
-
 
     return Field("CharField", name, **options)
 

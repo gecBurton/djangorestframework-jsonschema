@@ -89,9 +89,9 @@ class Model:
         A helper method of jinja model template
         """
 
-        return [field.jinja for field in self.fields] + sorted({field.jinja for field in self.relations})
-
-
+        return [field.jinja for field in self.fields] + sorted(
+            {field.jinja for field in self.relations}
+        )
 
     @property
     def filter_fields(self) -> Dict[str, List[str]]:
