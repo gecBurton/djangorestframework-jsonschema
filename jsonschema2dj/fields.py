@@ -29,15 +29,11 @@ class Field:
         _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 
-        if self.type == "JSONField":
-            options = f'{_name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]})])'
-        else:
-            _options = ", ".join(
-                f"{key}={stringify(key, value)}" for key, value in self.options.items()
-            )
-            options = f"{_name} = models.{self.type}({verbose_name}{_options})"
+        _options = ", ".join(
+            f"{key}={stringify(key, value)}" for key, value in self.options.items()
+        )
+        return f"{_name} = models.{self.type}({verbose_name}{_options})"
 
-        return options
 
     def __init__(self, django_type: str, name: str, **kwargs: Any) -> None:
         self.type = django_type
@@ -86,6 +82,17 @@ class Relationship(Field):
             self.options.update(verbose_name=f'"{self.name}"')
 
         return _name, (self.type, self.to, self.options)
+
+
+class JSONField(Field):
+    def __init__(self, *args, **kwargs):
+        super().__init__("JSONField", *args, **kwargs)
+
+    @property
+    def jinja(self):
+        _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
+        verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
+        return f'{_name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]})])'
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -234,8 +241,8 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
 
     if name == "id":
         if schema.get("type") != "string" and schema.get("format") != "uuid":
-            return Field(
-                "JSONField", name, schema=schema
+            return JSONField(
+                name, schema=schema
             )  # "field with name id must be a UUID", sch)
         return Field(
             "UUIDField",
@@ -284,4 +291,4 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             label=description,
         )
 
-    return Field("JSONField", name, schema=schema, default=default, label=description,)
+    return JSONField(name, schema=schema, default=default, label=description,)
