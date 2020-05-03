@@ -36,39 +36,39 @@ class Extension(models.Model):
     valueUri = models.CharField(label="""Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUrl = models.CharField(label="""Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUuid = models.CharField(label="""Value of extension - must be one of a constrained set of the data types (see [Extensibility](extensibility.html) for a list).""", max_length=255, validators=[validators.RegexValidator("^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")])
-    _valueUuid = models.ForeignKey("Element", on_delete=models.CASCADE)
-    extension = models.ManyToManyField("Extension")
-    valueAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    valueAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    valueAnnotation = models.ForeignKey("Annotation", on_delete=models.CASCADE)
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueContactDetail = models.ForeignKey("ContactDetail", on_delete=models.CASCADE)
-    valueContactPoint = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    valueContributor = models.ForeignKey("Contributor", on_delete=models.CASCADE)
-    valueCount = models.ForeignKey("Count", on_delete=models.CASCADE)
-    valueDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    valueDistance = models.ForeignKey("Distance", on_delete=models.CASCADE)
-    valueDosage = models.ForeignKey("Dosage", on_delete=models.CASCADE)
-    valueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    valueExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    valueHumanName = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    valueIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    valueMeta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    valueMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    valueParameterDefinition = models.ForeignKey("ParameterDefinition", on_delete=models.CASCADE)
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", on_delete=models.CASCADE)
-    valueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
-    valueSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    valueTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    valueUsageContext = models.ForeignKey("UsageContext", on_delete=models.CASCADE)
+    _valueUuid = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    extension = models.ManyToManyField("Extension", null=True)
+    valueAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    valueAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    valueAnnotation = models.ForeignKey("Annotation", null=True, on_delete=models.CASCADE)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueContactDetail = models.ForeignKey("ContactDetail", null=True, on_delete=models.CASCADE)
+    valueContactPoint = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    valueContributor = models.ForeignKey("Contributor", null=True, on_delete=models.CASCADE)
+    valueCount = models.ForeignKey("Count", null=True, on_delete=models.CASCADE)
+    valueDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    valueDistance = models.ForeignKey("Distance", null=True, on_delete=models.CASCADE)
+    valueDosage = models.ForeignKey("Dosage", null=True, on_delete=models.CASCADE)
+    valueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    valueExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    valueHumanName = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    valueIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    valueMeta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    valueMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    valueParameterDefinition = models.ForeignKey("ParameterDefinition", null=True, on_delete=models.CASCADE)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", null=True, on_delete=models.CASCADE)
+    valueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
+    valueSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    valueTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    valueUsageContext = models.ForeignKey("UsageContext", null=True, on_delete=models.CASCADE)
 
 
 class Narrative(models.Model):
@@ -76,8 +76,8 @@ class Narrative(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     status = models.CharField(label="""The status of the narrative - whether it's entirely generated (from just the defined data or the extensions too), or whether a human authored it and it may contain additional data.""", max_length=10, choices=[('generated', 'generated'), ('extensions', 'extensions'), ('additional', 'additional'), ('empty', 'empty')])
     div = JSONField(validators=[JSONSchemaValidator({'description': 'The actual narrative content, a stripped down version of XHTML.', '$ref': '#/definitions/xhtml'})])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    extension = models.ManyToManyField("Extension")
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    extension = models.ManyToManyField("Extension", null=True)
 
 
 class Annotation(models.Model):
@@ -86,8 +86,8 @@ class Annotation(models.Model):
     authorString = models.CharField(label="""The individual responsible for making the annotation.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     time = models.DateTimeField(label="""Indicates when this particular annotation was made.""")
     text = JSONField(validators=[JSONSchemaValidator({'description': 'The text of the annotation in markdown format.', '$ref': '#/definitions/markdown'})])
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    authorReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    authorReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Attachment(models.Model):
@@ -101,7 +101,7 @@ class Attachment(models.Model):
     hash = JSONField(validators=[JSONSchemaValidator({'description': 'The calculated hash of the data using SHA-1. Represented using base64.', '$ref': '#/definitions/base64Binary'})])
     title = models.CharField(label="""A label or set of text to display in place of the data.""", max_length=255)
     creation = models.DateTimeField(label="""The date that the attachment was first created.""")
-    _creation = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _creation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Identifier(models.Model):
@@ -110,18 +110,18 @@ class Identifier(models.Model):
     use = models.CharField(label="""The purpose of this identifier.""", max_length=9, choices=[('usual', 'usual'), ('official', 'official'), ('temp', 'temp'), ('secondary', 'secondary'), ('old', 'old')])
     system = models.CharField(label="""Establishes the namespace for the value - that is, a URL that describes a set values that are unique.""")
     value = models.CharField(label="""The portion of the identifier typically relevant to the user and which is unique within the context of the system.""", max_length=255)
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    assigner = models.OneToOneField("Reference", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    assigner = models.OneToOneField("Reference", null=True, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class CodeableConcept(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     text = models.CharField(label="""A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    coding = models.ManyToManyField("Coding")
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    coding = models.ManyToManyField("Coding", null=True)
 
 
 class Coding(models.Model):
@@ -132,7 +132,7 @@ class Coding(models.Model):
     code = models.CharField(label="""A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     display = models.CharField(label="""A representation of the meaning of the code in the system, following the rules of the system.""", max_length=255)
     userSelected = models.BooleanField(label="""Indicates that this coding was chosen by a user directly - e.g. off a pick list of available items (codes or displays).""")
-    _userSelected = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _userSelected = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Quantity(models.Model):
@@ -143,7 +143,7 @@ class Quantity(models.Model):
     unit = models.CharField(label="""A human-readable form of the unit.""", max_length=255)
     system = models.CharField(label="""The identification of the system that provides the coded form of the unit.""")
     code = models.CharField(label="""A computer processable form of the unit in some unit representation system.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Duration(models.Model):
@@ -154,7 +154,7 @@ class Duration(models.Model):
     unit = models.CharField(label="""A human-readable form of the unit.""", max_length=255)
     system = models.CharField(label="""The identification of the system that provides the coded form of the unit.""")
     code = models.CharField(label="""A computer processable form of the unit in some unit representation system.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Distance(models.Model):
@@ -165,7 +165,7 @@ class Distance(models.Model):
     unit = models.CharField(label="""A human-readable form of the unit.""", max_length=255)
     system = models.CharField(label="""The identification of the system that provides the coded form of the unit.""")
     code = models.CharField(label="""A computer processable form of the unit in some unit representation system.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Count(models.Model):
@@ -176,7 +176,7 @@ class Count(models.Model):
     unit = models.CharField(label="""A human-readable form of the unit.""", max_length=255)
     system = models.CharField(label="""The identification of the system that provides the coded form of the unit.""")
     code = models.CharField(label="""A computer processable form of the unit in some unit representation system.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Money(models.Model):
@@ -184,7 +184,7 @@ class Money(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     value = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Numerical value (with implicit precision).""")
     currency = models.CharField(label="""ISO 4217 Currency Code.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _currency = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _currency = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Age(models.Model):
@@ -195,13 +195,13 @@ class Age(models.Model):
     unit = models.CharField(label="""A human-readable form of the unit.""", max_length=255)
     system = models.CharField(label="""The identification of the system that provides the coded form of the unit.""")
     code = models.CharField(label="""A computer processable form of the unit in some unit representation system.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Range(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    high = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    high = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class Period(models.Model):
@@ -209,13 +209,13 @@ class Period(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     start = models.DateTimeField(label="""The start of the period. The boundary is inclusive.""")
     end = models.DateTimeField(label="""The end of the period. If the end of the period is missing, it means no end was known or planned at the time the instance was created. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.""")
-    _end = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _end = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class Ratio(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    denominator = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    denominator = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class Reference(models.Model):
@@ -226,8 +226,8 @@ class Reference(models.Model):
 
 The type is the Canonical URL of Resource Definition that is the type this reference refers to. References are URLs that are relative to http://hl7.org/fhir/StructureDefinition/ e.g. "Patient" is a reference to http://hl7.org/fhir/StructureDefinition/Patient. Absolute URLs are only allowed for logical models (and can only be used in references in logical models, not resources).""")
     display = models.CharField(label="""Plain text narrative that identifies the resource in addition to the resource reference.""", max_length=255)
-    _display = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.OneToOneField("Identifier", on_delete=models.CASCADE)
+    _display = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.OneToOneField("Identifier", null=True, on_delete=models.CASCADE)
 
 
 class SampledData(models.Model):
@@ -239,7 +239,7 @@ class SampledData(models.Model):
     upperLimit = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The upper limit of detection of the measured points. This is needed if any of the data points have the value "U" (higher than detection limit).""")
     dimensions = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""The number of sample points at each time point. If this value is greater than one, then the dimensions will be interlaced - all the sample points for a point in time will be recorded at once.""")
     data = models.CharField(label="""A series of data points which are decimal values separated by a single space (character u20). The special values "E" (error), "L" (below detection limit) and "U" (above detection limit) can also be used in place of a decimal value.""", max_length=255)
-    _data = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _data = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     origin = models.ForeignKey("Quantity", on_delete=models.CASCADE)
 
 
@@ -250,8 +250,8 @@ class Signature(models.Model):
     targetFormat = models.CharField(label="""A mime type that indicates the technical format of the target resources signed by the signature.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     sigFormat = models.CharField(label="""A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jose for JWS, and image/* for a graphical image of a signature, etc.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     data = JSONField(validators=[JSONSchemaValidator({'description': 'The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty.', '$ref': '#/definitions/base64Binary'})])
-    _data = models.ForeignKey("Element", on_delete=models.CASCADE)
-    onBehalfOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _data = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    onBehalfOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
     type = models.ManyToManyField("Coding")
 
 
@@ -264,9 +264,9 @@ class HumanName(models.Model):
     given = JSONField(validators=[JSONSchemaValidator({'description': 'Given name.', 'items': {'type': 'string'}, 'type': 'array'})])
     prefix = JSONField(validators=[JSONSchemaValidator({'description': 'Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the start of the name.', 'items': {'type': 'string'}, 'type': 'array'})])
     suffix = JSONField(validators=[JSONSchemaValidator({'description': 'Part of the name that is acquired as a title due to academic, legal, employment or nobility status, etc. and that appears at the end of the name.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _family = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _suffix = models.ManyToManyField("Element")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _family = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _suffix = models.ManyToManyField("Element", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class Address(models.Model):
@@ -281,9 +281,9 @@ class Address(models.Model):
     state = models.CharField(label="""Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (e.g. US 2 letter state codes).""", max_length=255)
     postalCode = models.CharField(label="""A postal code designating a region defined by the postal service.""", max_length=255)
     country = models.CharField(label="""Country - a nation as commonly understood or generally accepted.""", max_length=255)
-    _country = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _line = models.ManyToManyField("Element")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _country = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _line = models.ManyToManyField("Element", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class ContactPoint(models.Model):
@@ -293,17 +293,17 @@ class ContactPoint(models.Model):
     value = models.CharField(label="""The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).""", max_length=255)
     use = models.CharField(label="""Identifies the purpose for the contact point.""", max_length=6, choices=[('home', 'home'), ('work', 'work'), ('temp', 'temp'), ('old', 'old'), ('mobile', 'mobile')])
     rank = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Specifies a preferred order in which to use a set of contacts. ContactPoints with lower rank values are more preferred than those with higher rank values.""")
-    _rank = models.ForeignKey("Element", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _rank = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class Timing(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     event = JSONField(validators=[JSONSchemaValidator({'description': 'Identifies specific times when the event occurs.', 'items': {'format': 'date-time', 'type': 'string'}, 'type': 'array'})])
-    _event = models.ManyToManyField("Element")
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    repeat = models.ForeignKey("Timing_Repeat", on_delete=models.CASCADE)
+    _event = models.ManyToManyField("Element", null=True)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    repeat = models.ForeignKey("Timing_Repeat", null=True, on_delete=models.CASCADE)
 
 
 class Timing_Repeat(models.Model):
@@ -323,12 +323,12 @@ class Timing_Repeat(models.Model):
     timeOfDay = JSONField(validators=[JSONSchemaValidator({'description': 'Specified time of day for action to take place.', 'items': {'format': 'time', 'type': 'string'}, 'type': 'array'})])
     when = JSONField(validators=[JSONSchemaValidator({'description': 'An approximate time period during the day, potentially linked to an event of daily living that indicates when the action should occur.', 'items': {'enum': ['MORN', 'MORN.early', 'MORN.late', 'NOON', 'AFT', 'AFT.early', 'AFT.late', 'EVE', 'EVE.early', 'EVE.late', 'NIGHT', 'PHS', 'HS', 'WAKE', 'C', 'CM', 'CD', 'CV', 'AC', 'ACM', 'ACD', 'ACV', 'PC', 'PCM', 'PCD', 'PCV']}, 'type': 'array'})])
     offset = models.IntegerField(validators=[], label="""The number of minutes from the event. If the event code does not indicate whether the minutes is before or after the event, then the offset is assumed to be after the event.""")
-    _offset = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _when = models.ManyToManyField("Element")
-    boundsDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    boundsPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    boundsRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _offset = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _when = models.ManyToManyField("Element", null=True)
+    boundsDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    boundsPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    boundsRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Meta(models.Model):
@@ -338,16 +338,16 @@ class Meta(models.Model):
     lastUpdated = models.DateTimeField(label="""When the resource last changed - e.g. when the version changed.""")
     source = models.CharField(label="""A uri that identifies the source system of the resource. This provides a minimal amount of [[[Provenance]]] information that can be used to track or differentiate the source of information in the resource. The source may identify another FHIR server, document, message, database, etc.""")
     profile = JSONField(validators=[JSONSchemaValidator({'description': 'A list of profiles (references to [[[StructureDefinition]]] resources) that this resource claims to conform to. The URL is a reference to [[[StructureDefinition.url]]].', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _source = models.ForeignKey("Element", on_delete=models.CASCADE)
-    tag = models.ManyToManyField("Coding")
+    _source = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    tag = models.ManyToManyField("Coding", null=True)
 
 
 class ContactDetail(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""The name of an individual to contact.""", max_length=255)
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    telecom = models.ManyToManyField("ContactPoint")
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
 
 
 class Contributor(models.Model):
@@ -355,8 +355,8 @@ class Contributor(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""The type of contributor.""", max_length=8, choices=[('author', 'author'), ('editor', 'editor'), ('reviewer', 'reviewer'), ('endorser', 'endorser')])
     name = models.CharField(label="""The name of the individual or organization responsible for the contribution.""", max_length=255)
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
 
 
 class DataRequirement(models.Model):
@@ -366,13 +366,13 @@ class DataRequirement(models.Model):
     profile = JSONField(validators=[JSONSchemaValidator({'description': 'The profile of the required data, specified as the uri of the profile definition.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     mustSupport = JSONField(validators=[JSONSchemaValidator({'description': 'Indicates that specific elements of the type are referenced by the knowledge module and must be supported by the consumer in order to obtain an effective evaluation. This does not mean that a value is required for this element, only that the consuming system must understand the element and be able to provide values for it if they are available. \n\nThe value of mustSupport SHALL be a FHIRPath resolveable on the type of the DataRequirement. The path SHALL consist only of identifiers, constant indexers, and .resolve() (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).', 'items': {'type': 'string'}, 'type': 'array'})])
     limit = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Specifies a maximum number of results that are required (uses the _count search parameter).""")
-    _limit = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _mustSupport = models.ManyToManyField("Element")
-    codeFilter = models.ManyToManyField("DataRequirement_CodeFilter")
-    dateFilter = models.ManyToManyField("DataRequirement_DateFilter")
-    sort = models.ManyToManyField("DataRequirement_Sort")
-    subjectCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    subjectReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _limit = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _mustSupport = models.ManyToManyField("Element", null=True)
+    codeFilter = models.ManyToManyField("DataRequirement_CodeFilter", null=True)
+    dateFilter = models.ManyToManyField("DataRequirement_DateFilter", null=True)
+    sort = models.ManyToManyField("DataRequirement_Sort", null=True)
+    subjectCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    subjectReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class DataRequirement_CodeFilter(models.Model):
@@ -381,9 +381,9 @@ class DataRequirement_CodeFilter(models.Model):
     path = models.CharField(label="""The code-valued attribute of the filter. The specified path SHALL be a FHIRPath resolveable on the specified type of the DataRequirement, and SHALL consist only of identifiers, constant indexers, and .resolve(). The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note that the index must be an integer constant. The path must resolve to an element of type code, Coding, or CodeableConcept.""", max_length=255)
     searchParam = models.CharField(label="""A token parameter that refers to a search parameter defined on the specified type of the DataRequirement, and which searches on elements of type code, Coding, or CodeableConcept.""", max_length=255)
     valueSet = models.CharField(label="""The valueset for the code filter. The valueSet and code elements are additive. If valueSet is specified, the filter will return only those data items for which the value of the code-valued element specified in the path is a member of the specified valueset.""")
-    _searchParam = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ManyToManyField("Coding")
-    modifierExtension = models.ManyToManyField("Extension")
+    _searchParam = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ManyToManyField("Coding", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DataRequirement_DateFilter(models.Model):
@@ -392,10 +392,10 @@ class DataRequirement_DateFilter(models.Model):
     path = models.CharField(label="""The date-valued attribute of the filter. The specified path SHALL be a FHIRPath resolveable on the specified type of the DataRequirement, and SHALL consist only of identifiers, constant indexers, and .resolve(). The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note that the index must be an integer constant. The path must resolve to an element of type date, dateTime, Period, Schedule, or Timing.""", max_length=255)
     searchParam = models.CharField(label="""A date parameter that refers to a search parameter defined on the specified type of the DataRequirement, and which searches on elements of type date, dateTime, Period, Schedule, or Timing.""", max_length=255)
     valueDateTime = models.CharField(label="""The value of the filter. If period is specified, the filter will return only those data items that fall within the bounds determined by the Period, inclusive of the period boundaries. If dateTime is specified, the filter will return only those data items that are equal to the specified dateTime. If a Duration is specified, the filter will return only those data items that fall within Duration before now.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _valueDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _valueDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class DataRequirement_Sort(models.Model):
@@ -403,8 +403,8 @@ class DataRequirement_Sort(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     path = models.CharField(label="""The attribute of the sort. The specified path must be resolvable from the type of the required data. The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements. Note that the index must be an integer constant.""", max_length=255)
     direction = models.CharField(label="""The direction of the sort, ascending or descending.""", max_length=10, choices=[('ascending', 'ascending'), ('descending', 'descending')])
-    _direction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _direction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ParameterDefinition(models.Model):
@@ -417,7 +417,7 @@ class ParameterDefinition(models.Model):
     documentation = models.CharField(label="""A brief discussion of what the parameter is for and how it is used by the module.""", max_length=255)
     type = models.CharField(label="""The type of the parameter.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     profile = models.CharField(label="""If specified, this indicates a profile that the input data must conform to, or that the output data will conform to.""")
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class RelatedArtifact(models.Model):
@@ -429,8 +429,8 @@ class RelatedArtifact(models.Model):
     citation = JSONField(validators=[JSONSchemaValidator({'description': 'A bibliographic citation for the related artifact. This text SHOULD be formatted according to an accepted citation format.', '$ref': '#/definitions/markdown'})])
     url = models.CharField(label="""A url for the artifact that can be followed to access the actual content.""")
     resource = models.CharField(label="""The related resource, such as a library, value set, profile, or other knowledge resource.""")
-    _url = models.ForeignKey("Element", on_delete=models.CASCADE)
-    document = models.ForeignKey("Attachment", on_delete=models.CASCADE)
+    _url = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    document = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
 
 
 class TriggerDefinition(models.Model):
@@ -440,21 +440,21 @@ class TriggerDefinition(models.Model):
     name = models.CharField(label="""A formal name for the event. This may be an absolute URI that identifies the event formally (e.g. from a trigger registry), or a simple relative URI that identifies the event in a local context.""", max_length=255)
     timingDate = models.CharField(label="""The timing of the event (if this is a periodic trigger).""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     timingDateTime = models.CharField(label="""The timing of the event (if this is a periodic trigger).""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _timingDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    condition = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    data = models.ManyToManyField("DataRequirement")
-    timingReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    timingTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
+    _timingDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    condition = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    data = models.ManyToManyField("DataRequirement", null=True)
+    timingReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    timingTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
 
 
 class UsageContext(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Dosage(models.Model):
@@ -464,40 +464,40 @@ class Dosage(models.Model):
     text = models.CharField(label="""Free text dosage instructions e.g. SIG.""", max_length=255)
     patientInstruction = models.CharField(label="""Instructions in terms that are understood by the patient or consumer.""", max_length=255)
     asNeededBoolean = models.BooleanField(label="""Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).""")
-    _asNeededBoolean = models.ForeignKey("Element", on_delete=models.CASCADE)
-    additionalInstruction = models.ManyToManyField("CodeableConcept")
-    doseAndRate = models.ManyToManyField("Dosage_DoseAndRate")
-    maxDosePerLifetime = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    maxDosePerPeriod = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    method = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    timing = models.ForeignKey("Timing", on_delete=models.CASCADE)
+    _asNeededBoolean = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    additionalInstruction = models.ManyToManyField("CodeableConcept", null=True)
+    doseAndRate = models.ManyToManyField("Dosage_DoseAndRate", null=True)
+    maxDosePerLifetime = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    maxDosePerPeriod = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    method = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    timing = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
 
 
 class Dosage_DoseAndRate(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    rateQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    rateRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    rateRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    rateQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    rateRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    rateRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Population(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    ageRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    physiologicalCondition = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    ageRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    physiologicalCondition = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ProductShelfLife(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     period = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    specialPrecautionsForStorage = models.ManyToManyField("CodeableConcept")
+    specialPrecautionsForStorage = models.ManyToManyField("CodeableConcept", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -507,21 +507,21 @@ class ProdCharacteristic(models.Model):
     shape = models.CharField(label="""Where applicable, the shape can be specified An appropriate controlled vocabulary shall be used The term and the term identifier shall be used.""", max_length=255)
     color = JSONField(validators=[JSONSchemaValidator({'description': 'Where applicable, the color can be specified An appropriate controlled vocabulary shall be used The term and the term identifier shall be used.', 'items': {'type': 'string'}, 'type': 'array'})])
     imprint = JSONField(validators=[JSONSchemaValidator({'description': 'Where applicable, the imprint can be specified as text.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _imprint = models.ManyToManyField("Element")
-    _shape = models.ForeignKey("Element", on_delete=models.CASCADE)
-    externalDiameter = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    image = models.ManyToManyField("Attachment")
-    modifierExtension = models.ManyToManyField("Extension")
-    scoring = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _imprint = models.ManyToManyField("Element", null=True)
+    _shape = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    externalDiameter = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    image = models.ManyToManyField("Attachment", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    scoring = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MarketingStatus(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     restoreDate = models.DateTimeField(label="""The date when the Medicinal Product is placed on the market by the Marketing Authorisation Holder (or where applicable, the manufacturer/distributor) in a country and/or jurisdiction shall be provided A complete date consisting of day, month and year shall be specified using the ISO 8601 date format NOTE “Placed on the market” refers to the release of the Medicinal Product into the distribution chain.""")
-    _restoreDate = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _restoreDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     dateRange = models.ForeignKey("Period", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     status = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -530,19 +530,19 @@ class SubstanceAmount(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     amountString = models.CharField(label="""Used to capture quantitative values for a variety of elements. If only limits are given, the arithmetic mean would be the average. If only a single definite value for a given element is given, it would be captured in this field.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     amountText = models.CharField(label="""A textual comment on a numeric value.""", max_length=255)
-    _amountText = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amountQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    amountRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    amountType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    referenceRange = models.ForeignKey("SubstanceAmount_ReferenceRange", on_delete=models.CASCADE)
+    _amountText = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amountQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    amountRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    amountType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    referenceRange = models.ForeignKey("SubstanceAmount_ReferenceRange", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceAmount_ReferenceRange(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    highLimit = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    highLimit = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Expression(models.Model):
@@ -553,7 +553,7 @@ class Expression(models.Model):
     language = models.CharField(label="""The media type of the language for the expression.""", max_length=24, choices=[('text/cql', 'text/cql'), ('text/fhirpath', 'text/fhirpath'), ('application/x-fhir-query', 'application/x-fhir-query')])
     expression = models.CharField(label="""An expression in the specified language that returns a value.""", max_length=255)
     reference = models.CharField(label="""A URI that defines where the expression is found.""")
-    _reference = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _reference = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
 
 
 class ElementDefinition(models.Model):
@@ -843,48 +843,48 @@ When pattern[x] is used to constrain a complex object, it means that each proper
     isModifier = models.BooleanField(label="""If true, the value of this element affects the interpretation of the element or resource that contains it, and the value of the element cannot be ignored. Typically, this is used for status, negation and qualification codes. The effect of this is that the element cannot be ignored by systems: they SHALL either recognize the element and process it, and/or a pre-determination has been made that it is not relevant to their particular system.""")
     isModifierReason = models.CharField(label="""Explains how that element affects the interpretation of the resource or element that contains it.""", max_length=255)
     isSummary = models.BooleanField(label="""Whether the element should be included if a client requests a search with the parameter _summary=true.""")
-    _condition = models.ManyToManyField("Element")
-    _isSummary = models.ForeignKey("Element", on_delete=models.CASCADE)
-    base = models.ForeignKey("ElementDefinition_Base", on_delete=models.CASCADE)
-    binding = models.ForeignKey("ElementDefinition_Binding", on_delete=models.CASCADE)
-    code = models.ManyToManyField("Coding")
-    constraint = models.ManyToManyField("ElementDefinition_Constraint")
-    example = models.ManyToManyField("ElementDefinition_Example")
-    mapping = models.ManyToManyField("ElementDefinition_Mapping")
-    maxValueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    patternAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    patternAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    patternAnnotation = models.ForeignKey("Annotation", on_delete=models.CASCADE)
-    patternAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    patternCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    patternCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    patternContactDetail = models.ForeignKey("ContactDetail", on_delete=models.CASCADE)
-    patternContactPoint = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    patternContributor = models.ForeignKey("Contributor", on_delete=models.CASCADE)
-    patternCount = models.ForeignKey("Count", on_delete=models.CASCADE)
-    patternDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    patternDistance = models.ForeignKey("Distance", on_delete=models.CASCADE)
-    patternDosage = models.ForeignKey("Dosage", on_delete=models.CASCADE)
-    patternDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    patternExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    patternHumanName = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    patternIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    patternMeta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    patternMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    patternParameterDefinition = models.ForeignKey("ParameterDefinition", on_delete=models.CASCADE)
-    patternPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    patternRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    patternRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    patternReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    patternRelatedArtifact = models.ForeignKey("RelatedArtifact", on_delete=models.CASCADE)
-    patternSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
-    patternSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    patternTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    patternTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    patternUsageContext = models.ForeignKey("UsageContext", on_delete=models.CASCADE)
-    slicing = models.ForeignKey("ElementDefinition_Slicing", on_delete=models.CASCADE)
-    type = models.ManyToManyField("ElementDefinition_Type")
+    _condition = models.ManyToManyField("Element", null=True)
+    _isSummary = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    base = models.ForeignKey("ElementDefinition_Base", null=True, on_delete=models.CASCADE)
+    binding = models.ForeignKey("ElementDefinition_Binding", null=True, on_delete=models.CASCADE)
+    code = models.ManyToManyField("Coding", null=True)
+    constraint = models.ManyToManyField("ElementDefinition_Constraint", null=True)
+    example = models.ManyToManyField("ElementDefinition_Example", null=True)
+    mapping = models.ManyToManyField("ElementDefinition_Mapping", null=True)
+    maxValueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    patternAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    patternAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    patternAnnotation = models.ForeignKey("Annotation", null=True, on_delete=models.CASCADE)
+    patternAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    patternCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    patternCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    patternContactDetail = models.ForeignKey("ContactDetail", null=True, on_delete=models.CASCADE)
+    patternContactPoint = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    patternContributor = models.ForeignKey("Contributor", null=True, on_delete=models.CASCADE)
+    patternCount = models.ForeignKey("Count", null=True, on_delete=models.CASCADE)
+    patternDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    patternDistance = models.ForeignKey("Distance", null=True, on_delete=models.CASCADE)
+    patternDosage = models.ForeignKey("Dosage", null=True, on_delete=models.CASCADE)
+    patternDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    patternExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    patternHumanName = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    patternIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    patternMeta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    patternMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    patternParameterDefinition = models.ForeignKey("ParameterDefinition", null=True, on_delete=models.CASCADE)
+    patternPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    patternRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    patternRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    patternReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    patternRelatedArtifact = models.ForeignKey("RelatedArtifact", null=True, on_delete=models.CASCADE)
+    patternSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
+    patternSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    patternTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    patternTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    patternUsageContext = models.ForeignKey("UsageContext", null=True, on_delete=models.CASCADE)
+    slicing = models.ForeignKey("ElementDefinition_Slicing", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("ElementDefinition_Type", null=True)
 
 
 class ElementDefinition_Slicing(models.Model):
@@ -893,9 +893,9 @@ class ElementDefinition_Slicing(models.Model):
     description = models.CharField(label="""A human-readable text description of how the slicing works. If there is no discriminator, this is required to be present to provide whatever information is possible about how the slices can be differentiated.""", max_length=255)
     ordered = models.BooleanField(label="""If the matching elements have to occur in the same order as defined in the profile.""")
     rules = models.CharField(label="""Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.""", max_length=9, choices=[('closed', 'closed'), ('open', 'open'), ('openatend', 'openAtEnd')])
-    _rules = models.ForeignKey("Element", on_delete=models.CASCADE)
-    discriminator = models.ManyToManyField("ElementDefinition_Discriminator")
-    modifierExtension = models.ManyToManyField("Extension")
+    _rules = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    discriminator = models.ManyToManyField("ElementDefinition_Discriminator", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ElementDefinition_Discriminator(models.Model):
@@ -903,8 +903,8 @@ class ElementDefinition_Discriminator(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""How the element value is interpreted when discrimination is evaluated.""", max_length=7, choices=[('value', 'value'), ('exists', 'exists'), ('pattern', 'pattern'), ('type', 'type'), ('profile', 'profile')])
     path = models.CharField(label="""A FHIRPath expression, using [the simple subset of FHIRPath](fhirpath.html#simple), that is used to identify the element on which discrimination is based.""", max_length=255)
-    _path = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _path = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ElementDefinition_Base(models.Model):
@@ -913,8 +913,8 @@ class ElementDefinition_Base(models.Model):
     path = models.CharField(label="""The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [[[StructureDefinition]]] without a StructureDefinition.base.""", max_length=255)
     min = models.IntegerField(validators=[], label="""Minimum cardinality of the base element identified by the path.""")
     max = models.CharField(label="""Maximum cardinality of the base element identified by the path.""", max_length=255)
-    _max = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _max = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ElementDefinition_Type(models.Model):
@@ -925,9 +925,9 @@ class ElementDefinition_Type(models.Model):
     targetProfile = JSONField(validators=[JSONSchemaValidator({'description': 'Used when the type is "Reference" or "canonical", and identifies a profile structure or implementation Guide that applies to the target of the reference this element refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     aggregation = JSONField(validators=[JSONSchemaValidator({'description': 'If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained resource, or a reference, and if the context is a bundle, is it included in the bundle.', 'items': {'enum': ['contained', 'referenced', 'bundled']}, 'type': 'array'})])
     versioning = models.CharField(label="""Whether this reference needs to be version specific or version independent, or whether either can be used.""", max_length=11, choices=[('either', 'either'), ('independent', 'independent'), ('specific', 'specific')])
-    _aggregation = models.ManyToManyField("Element")
-    _versioning = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _aggregation = models.ManyToManyField("Element", null=True)
+    _versioning = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ElementDefinition_Example(models.Model):
@@ -953,39 +953,39 @@ class ElementDefinition_Example(models.Model):
     valueUri = models.CharField(label="""The actual value for the element, which must be one of the types allowed for this element.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUrl = models.CharField(label="""The actual value for the element, which must be one of the types allowed for this element.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUuid = models.CharField(label="""The actual value for the element, which must be one of the types allowed for this element.""", max_length=255, validators=[validators.RegexValidator("^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")])
-    _valueUuid = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    valueAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    valueAnnotation = models.ForeignKey("Annotation", on_delete=models.CASCADE)
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueContactDetail = models.ForeignKey("ContactDetail", on_delete=models.CASCADE)
-    valueContactPoint = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    valueContributor = models.ForeignKey("Contributor", on_delete=models.CASCADE)
-    valueCount = models.ForeignKey("Count", on_delete=models.CASCADE)
-    valueDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    valueDistance = models.ForeignKey("Distance", on_delete=models.CASCADE)
-    valueDosage = models.ForeignKey("Dosage", on_delete=models.CASCADE)
-    valueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    valueExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    valueHumanName = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    valueIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    valueMeta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    valueMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    valueParameterDefinition = models.ForeignKey("ParameterDefinition", on_delete=models.CASCADE)
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", on_delete=models.CASCADE)
-    valueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
-    valueSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    valueTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    valueUsageContext = models.ForeignKey("UsageContext", on_delete=models.CASCADE)
+    _valueUuid = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    valueAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    valueAnnotation = models.ForeignKey("Annotation", null=True, on_delete=models.CASCADE)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueContactDetail = models.ForeignKey("ContactDetail", null=True, on_delete=models.CASCADE)
+    valueContactPoint = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    valueContributor = models.ForeignKey("Contributor", null=True, on_delete=models.CASCADE)
+    valueCount = models.ForeignKey("Count", null=True, on_delete=models.CASCADE)
+    valueDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    valueDistance = models.ForeignKey("Distance", null=True, on_delete=models.CASCADE)
+    valueDosage = models.ForeignKey("Dosage", null=True, on_delete=models.CASCADE)
+    valueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    valueExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    valueHumanName = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    valueIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    valueMeta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    valueMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    valueParameterDefinition = models.ForeignKey("ParameterDefinition", null=True, on_delete=models.CASCADE)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", null=True, on_delete=models.CASCADE)
+    valueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
+    valueSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    valueTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    valueUsageContext = models.ForeignKey("UsageContext", null=True, on_delete=models.CASCADE)
 
 
 class ElementDefinition_Constraint(models.Model):
@@ -998,8 +998,8 @@ class ElementDefinition_Constraint(models.Model):
     expression = models.CharField(label="""A [FHIRPath](fhirpath.html) expression of constraint that can be executed to see if this constraint is met.""", max_length=255)
     xpath = models.CharField(label="""An XPath expression of constraint that can be executed to see if this constraint is met.""", max_length=255)
     source = models.CharField(label="""A reference to the original source of the constraint, for traceability purposes.""")
-    _xpath = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _xpath = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ElementDefinition_Binding(models.Model):
@@ -1008,8 +1008,8 @@ class ElementDefinition_Binding(models.Model):
     strength = models.CharField(label="""Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.""", max_length=10, choices=[('required', 'required'), ('extensible', 'extensible'), ('preferred', 'preferred'), ('example', 'example')])
     description = models.CharField(label="""Describes the intended use of this particular set of codes.""", max_length=255)
     valueSet = models.CharField(label="""Refers to the value set that identifies the set of codes the binding refers to.""")
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ElementDefinition_Mapping(models.Model):
@@ -1019,8 +1019,8 @@ class ElementDefinition_Mapping(models.Model):
     language = models.CharField(label="""Identifies the computable language in which mapping.map is expressed.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     map = models.CharField(label="""Expresses what part of the target specification corresponds to this element.""", max_length=255)
     comment = models.CharField(label="""Comments that provide information about the mapping or its use.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Account(models.Model):
@@ -1033,36 +1033,36 @@ class Account(models.Model):
     status = models.CharField(label="""Indicates whether the account is presently used/usable or not.""", max_length=16, choices=[('active', 'active'), ('inactive', 'inactive'), ('entered-in-error', 'entered-in-error'), ('on-hold', 'on-hold'), ('unknown', 'unknown')])
     name = models.CharField(label="""Name used for the account when displaying it to humans in reports, etc.""", max_length=255)
     description = models.CharField(label="""Provides additional information about what the account tracks and how it is used.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    coverage = models.ManyToManyField("Account_Coverage")
-    guarantor = models.ManyToManyField("Account_Guarantor")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    partOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    servicePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    subject = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    coverage = models.ManyToManyField("Account_Coverage", null=True)
+    guarantor = models.ManyToManyField("Account_Guarantor", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    partOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    servicePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    subject = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Account_Coverage(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     priority = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""The priority of the coverage in the context of this account.""")
-    _priority = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _priority = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     coverage = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Account_Guarantor(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     onHold = models.BooleanField(label="""A guarantor may be placed on credit hold or otherwise have their role temporarily suspended.""")
-    _onHold = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _onHold = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     party = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class ActivityDefinition(models.Model):
@@ -1095,45 +1095,45 @@ class ActivityDefinition(models.Model):
     doNotPerform = models.BooleanField(label="""Set this to true if the definition is to indicate that a particular activity should NOT be performed. If true, this element should be interpreted to reinforce a negative coding. For example NPO as a code with a doNotPerform of true would still indicate to NOT perform the action.""")
     timingDateTime = models.CharField(label="""The period, timing or frequency upon which the described activity is to occur.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     transform = models.CharField(label="""A reference to a StructureMap resource that defines a transform that can be executed to produce the intent resource using the ActivityDefinition instance as the input.""")
-    _timingDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    bodySite = models.ManyToManyField("CodeableConcept")
-    dosage = models.ManyToManyField("Dosage")
-    dynamicValue = models.ManyToManyField("ActivityDefinition_DynamicValue")
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    observationResultRequirement = models.ManyToManyField("Reference")
-    participant = models.ManyToManyField("ActivityDefinition_Participant")
-    productCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    productReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    timingAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    timingDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    timingPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    timingRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    timingTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _timingDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    bodySite = models.ManyToManyField("CodeableConcept", null=True)
+    dosage = models.ManyToManyField("Dosage", null=True)
+    dynamicValue = models.ManyToManyField("ActivityDefinition_DynamicValue", null=True)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    observationResultRequirement = models.ManyToManyField("Reference", null=True)
+    participant = models.ManyToManyField("ActivityDefinition_Participant", null=True)
+    productCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    productReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    timingAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    timingDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    timingPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    timingRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    timingTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ActivityDefinition_Participant(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""The type of participant in the action.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    role = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ActivityDefinition_DynamicValue(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     path = models.CharField(label="""The path to the element to be customized. This is the path on the resource that will hold the result of the calculation defined by the expression. The specified path SHALL be a FHIRPath resolveable on the specified target type of the ActivityDefinition, and SHALL consist only of identifiers, constant indexers, and a restricted subset of functions. The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).""", max_length=255)
-    _path = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _path = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     expression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class AdverseEvent(models.Model):
@@ -1147,34 +1147,34 @@ class AdverseEvent(models.Model):
     date = models.DateTimeField(label="""The date (and perhaps time) when the adverse event occurred.""")
     detected = models.DateTimeField(label="""Estimated or actual date the AdverseEvent began, in the opinion of the reporter.""")
     recordedDate = models.DateTimeField(label="""The date on which the existence of the AdverseEvent was first recorded.""")
-    _recordedDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    category = models.ManyToManyField("CodeableConcept")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    outcome = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    recorder = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    study = models.ManyToManyField("Reference")
-    suspectEntity = models.ManyToManyField("AdverseEvent_SuspectEntity")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _recordedDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    category = models.ManyToManyField("CodeableConcept", null=True)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    outcome = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    recorder = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    study = models.ManyToManyField("Reference", null=True)
+    suspectEntity = models.ManyToManyField("AdverseEvent_SuspectEntity", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class AdverseEvent_SuspectEntity(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    causality = models.ManyToManyField("AdverseEvent_Causality")
+    causality = models.ManyToManyField("AdverseEvent_Causality", null=True)
     instance = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class AdverseEvent_Causality(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     productRelatedness = models.CharField(label="""AdverseEvent.suspectEntity.causalityProductRelatedness.""", max_length=255)
-    _productRelatedness = models.ForeignKey("Element", on_delete=models.CASCADE)
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    method = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _productRelatedness = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    method = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class AllergyIntolerance(models.Model):
@@ -1191,19 +1191,19 @@ class AllergyIntolerance(models.Model):
     onsetString = models.CharField(label="""Estimated or actual date,  date-time, or age when allergy or intolerance was identified.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     recordedDate = models.DateTimeField(label="""The recordedDate represents when this particular AllergyIntolerance record was created in the system, which is often a system-generated date.""")
     lastOccurrence = models.DateTimeField(label="""Represents the date and/or time of the last known occurrence of a reaction event.""")
-    _category = models.ManyToManyField("Element")
-    _lastOccurrence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    asserter = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    onsetAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    onsetPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    onsetRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    reaction = models.ManyToManyField("AllergyIntolerance_Reaction")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _category = models.ManyToManyField("Element", null=True)
+    _lastOccurrence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    asserter = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    onsetAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    onsetPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    onsetRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    reaction = models.ManyToManyField("AllergyIntolerance_Reaction", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class AllergyIntolerance_Reaction(models.Model):
@@ -1212,11 +1212,11 @@ class AllergyIntolerance_Reaction(models.Model):
     description = models.CharField(label="""Text description about the reaction as a whole, including details of the manifestation if required.""", max_length=255)
     onset = models.DateTimeField(label="""Record of the date and/or time of the onset of the Reaction.""")
     severity = models.CharField(label="""Clinical assessment of the severity of the reaction event as a whole, potentially considering multiple different manifestations.""", max_length=8, choices=[('mild', 'mild'), ('moderate', 'moderate'), ('severe', 'severe')])
-    _severity = models.ForeignKey("Element", on_delete=models.CASCADE)
-    exposureRoute = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _severity = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    exposureRoute = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     manifestation = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
 
 
 class Appointment(models.Model):
@@ -1235,16 +1235,16 @@ class Appointment(models.Model):
     created = models.DateTimeField(label="""The date that this appointment was initially created. This could be different to the meta.lastModified value on the initial entry, as this could have been before the resource was created on the FHIR server, and should remain unchanged over the lifespan of the appointment.""")
     comment = models.CharField(label="""Additional comments about the appointment.""", max_length=255)
     patientInstruction = models.CharField(label="""While Appointment.comment contains information for internal use, Appointment.patientInstructions is used to capture patient facing information about the Appointment (e.g. please bring your referral or fast from 8pm night before).""", max_length=255)
-    _patientInstruction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    appointmentType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    basedOn = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _patientInstruction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    appointmentType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    basedOn = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     participant = models.ManyToManyField("Appointment_Participant")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    requestedPeriod = models.ManyToManyField("Period")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    requestedPeriod = models.ManyToManyField("Period", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Appointment_Participant(models.Model):
@@ -1252,11 +1252,11 @@ class Appointment_Participant(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     required = models.CharField(label="""Whether this participant is required to be present at the meeting. This covers a use-case where two doctors need to meet to discuss the results for a specific patient, and the patient is not required to be present.""", max_length=16, choices=[('required', 'required'), ('optional', 'optional'), ('information-only', 'information-only')])
     status = models.CharField(label="""Participation status of the actor.""", max_length=12, choices=[('accepted', 'accepted'), ('declined', 'declined'), ('tentative', 'tentative'), ('needs-action', 'needs-action')])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    actor = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class AppointmentResponse(models.Model):
@@ -1270,13 +1270,13 @@ class AppointmentResponse(models.Model):
     end = models.DateTimeField(label="""This may be either the same as the appointment request to confirm the details of the appointment, or alternately a new time to request a re-negotiation of the end time.""")
     participantStatus = models.CharField(label="""Participation status of the participant. When the status is declined or tentative if the start/end times are different to the appointment, then these times should be interpreted as a requested time change. When the status is accepted, the times can either be the time of the appointment (as a confirmation of the time) or can be empty.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     comment = models.CharField(label="""Additional comments about the appointment.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    participantType = models.ManyToManyField("CodeableConcept")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    actor = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    participantType = models.ManyToManyField("CodeableConcept", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class AuditEvent(models.Model):
@@ -1290,16 +1290,16 @@ class AuditEvent(models.Model):
     recorded = models.DateTimeField(label="""The time when the event was recorded.""")
     outcome = models.CharField(label="""Indicates whether the event succeeded or failed.""", max_length=2, choices=[('0', '0'), ('4', '4'), ('8', '8'), ('12', '12')])
     outcomeDesc = models.CharField(label="""A free text description of the outcome of the event.""", max_length=255)
-    _outcomeDesc = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _outcomeDesc = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     agent = models.ManyToManyField("AuditEvent_Agent")
-    entity = models.ManyToManyField("AuditEvent_Entity")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    purposeOfEvent = models.ManyToManyField("CodeableConcept")
+    entity = models.ManyToManyField("AuditEvent_Entity", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    purposeOfEvent = models.ManyToManyField("CodeableConcept", null=True)
     source = models.ForeignKey("AuditEvent_Source", on_delete=models.CASCADE)
-    subtype = models.ManyToManyField("Coding")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    subtype = models.ManyToManyField("Coding", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
     type = models.ForeignKey("Coding", on_delete=models.CASCADE)
 
 
@@ -1310,14 +1310,14 @@ class AuditEvent_Agent(models.Model):
     name = models.CharField(label="""Human-meaningful name for the agent.""", max_length=255)
     requestor = models.BooleanField(label="""Indicator that the user is or is not the requestor, or initiator, for the event being audited.""")
     policy = JSONField(validators=[JSONSchemaValidator({'description': 'The policy or plan that authorized the activity being recorded. Typically, a single activity may have multiple applicable policies, such as patient consent, guarantor funding, etc. The policy would also indicate the security token used.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _policy = models.ManyToManyField("Element")
-    _requestor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    location = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    media = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    network = models.ForeignKey("AuditEvent_Network", on_delete=models.CASCADE)
-    purposeOfUse = models.ManyToManyField("CodeableConcept")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _policy = models.ManyToManyField("Element", null=True)
+    _requestor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    location = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    media = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    network = models.ForeignKey("AuditEvent_Network", null=True, on_delete=models.CASCADE)
+    purposeOfUse = models.ManyToManyField("CodeableConcept", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class AuditEvent_Network(models.Model):
@@ -1325,18 +1325,18 @@ class AuditEvent_Network(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     address = models.CharField(label="""An identifier for the network access point of the user device for the audit event.""", max_length=255)
     type = models.CharField(label="""An identifier for the type of network access point that originated the audit event.""", max_length=1, choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class AuditEvent_Source(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     site = models.CharField(label="""Logical source location within the healthcare enterprise network.  For example, a hospital or other provider location within a multi-entity provider group.""", max_length=255)
-    _site = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _site = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     observer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    type = models.ManyToManyField("Coding")
+    type = models.ManyToManyField("Coding", null=True)
 
 
 class AuditEvent_Entity(models.Model):
@@ -1345,12 +1345,12 @@ class AuditEvent_Entity(models.Model):
     name = models.CharField(label="""A name of the entity in the audit event.""", max_length=255)
     description = models.CharField(label="""Text that describes the entity in more detail.""", max_length=255)
     query = JSONField(validators=[JSONSchemaValidator({'description': 'The query parameters for a query-type entities.', '$ref': '#/definitions/base64Binary'})])
-    _query = models.ForeignKey("Element", on_delete=models.CASCADE)
-    detail = models.ManyToManyField("AuditEvent_Detail")
-    lifecycle = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    securityLabel = models.ManyToManyField("Coding")
-    what = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _query = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    detail = models.ManyToManyField("AuditEvent_Detail", null=True)
+    lifecycle = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    securityLabel = models.ManyToManyField("Coding", null=True)
+    what = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class AuditEvent_Detail(models.Model):
@@ -1359,8 +1359,8 @@ class AuditEvent_Detail(models.Model):
     type = models.CharField(label="""The type of extra detail provided in the value.""", max_length=255)
     valueString = models.CharField(label="""The  value of the extra detail.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     valueBase64Binary = models.CharField(label="""The  value of the extra detail.""", max_length=255, validators=[validators.RegexValidator("^(\s*([0-9a-zA-Z\+/=]){4}\s*)+$")])
-    _valueBase64Binary = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _valueBase64Binary = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Basic(models.Model):
@@ -1371,13 +1371,13 @@ class Basic(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     created = models.DateField(label="""Identifies when the resource was first created.""")
-    _created = models.ForeignKey("Element", on_delete=models.CASCADE)
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _created = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Binary(models.Model):
@@ -1388,9 +1388,9 @@ class Binary(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contentType = models.CharField(label="""MimeType of the binary content represented as a standard MimeType (BCP 13).""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     data = JSONField(validators=[JSONSchemaValidator({'description': 'The actual content, base64 encoded.', '$ref': '#/definitions/base64Binary'})])
-    _data = models.ForeignKey("Element", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    securityContext = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _data = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    securityContext = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class BiologicallyDerivedProduct(models.Model):
@@ -1403,27 +1403,27 @@ class BiologicallyDerivedProduct(models.Model):
     productCategory = models.CharField(label="""Broad category of this product.""", max_length=15, choices=[('organ', 'organ'), ('tissue', 'tissue'), ('fluid', 'fluid'), ('cells', 'cells'), ('biologicalagent', 'biologicalAgent')])
     status = models.CharField(label="""Whether the product is currently available.""", max_length=11, choices=[('available', 'available'), ('unavailable', 'unavailable')])
     quantity = models.IntegerField(validators=[], label="""Number of discrete units within this product.""")
-    _quantity = models.ForeignKey("Element", on_delete=models.CASCADE)
-    collection = models.ForeignKey("BiologicallyDerivedProduct_Collection", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    manipulation = models.ForeignKey("BiologicallyDerivedProduct_Manipulation", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    parent = models.ManyToManyField("Reference")
-    processing = models.ManyToManyField("BiologicallyDerivedProduct_Processing")
-    productCode = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    storage = models.ManyToManyField("BiologicallyDerivedProduct_Storage")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _quantity = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    collection = models.ForeignKey("BiologicallyDerivedProduct_Collection", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    manipulation = models.ForeignKey("BiologicallyDerivedProduct_Manipulation", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    parent = models.ManyToManyField("Reference", null=True)
+    processing = models.ManyToManyField("BiologicallyDerivedProduct_Processing", null=True)
+    productCode = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    storage = models.ManyToManyField("BiologicallyDerivedProduct_Storage", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class BiologicallyDerivedProduct_Collection(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     collectedDateTime = models.CharField(label="""Time of product collection.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _collectedDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    collectedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _collectedDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    collectedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class BiologicallyDerivedProduct_Processing(models.Model):
@@ -1431,11 +1431,11 @@ class BiologicallyDerivedProduct_Processing(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Description of of processing.""", max_length=255)
     timeDateTime = models.CharField(label="""Time of processing.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _timeDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    additive = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    procedure = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    timePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _timeDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    additive = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    procedure = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    timePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class BiologicallyDerivedProduct_Manipulation(models.Model):
@@ -1443,9 +1443,9 @@ class BiologicallyDerivedProduct_Manipulation(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Description of manipulation.""", max_length=255)
     timeDateTime = models.CharField(label="""Time of manipulation.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _timeDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    timePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _timeDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    timePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class BiologicallyDerivedProduct_Storage(models.Model):
@@ -1454,9 +1454,9 @@ class BiologicallyDerivedProduct_Storage(models.Model):
     description = models.CharField(label="""Description of storage.""", max_length=255)
     temperature = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Storage temperature.""")
     scale = models.CharField(label="""Temperature scale used.""", max_length=9, choices=[('farenheit', 'farenheit'), ('celsius', 'celsius'), ('kelvin', 'kelvin')])
-    _scale = models.ForeignKey("Element", on_delete=models.CASCADE)
-    duration = models.ForeignKey("Period", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _scale = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    duration = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class BodyStructure(models.Model):
@@ -1468,15 +1468,15 @@ class BodyStructure(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     active = models.BooleanField(label="""Whether this body site is in active use.""")
     description = models.CharField(label="""A summary, characterization or explanation of the body structure.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    image = models.ManyToManyField("Attachment")
-    location = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    locationQualifier = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    image = models.ManyToManyField("Attachment", null=True)
+    location = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    locationQualifier = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     patient = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Bundle(models.Model):
@@ -1488,12 +1488,12 @@ class Bundle(models.Model):
     type = models.CharField(label="""Indicates the purpose of this bundle - how it is intended to be used.""", max_length=20, choices=[('document', 'document'), ('message', 'message'), ('transaction', 'transaction'), ('transaction-response', 'transaction-response'), ('batch', 'batch'), ('batch-response', 'batch-response'), ('history', 'history'), ('searchset', 'searchset'), ('collection', 'collection')])
     timestamp = models.DateTimeField(label="""The date/time that the bundle was assembled - i.e. when the resources were placed in the bundle.""")
     total = models.IntegerField(validators=[], label="""If a set of search matches, this is the total number of entries of type 'match' across all pages in the search.  It does not include search.mode = 'include' or 'outcome' entries and it does not provide a count of the number of entries in the Bundle.""")
-    _total = models.ForeignKey("Element", on_delete=models.CASCADE)
-    entry = models.ManyToManyField("Bundle_Entry")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    link = models.ManyToManyField("Bundle_Link")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    signature = models.ForeignKey("Signature", on_delete=models.CASCADE)
+    _total = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    entry = models.ManyToManyField("Bundle_Entry", null=True)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    link = models.ManyToManyField("Bundle_Link", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    signature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
 
 
 class Bundle_Link(models.Model):
@@ -1501,8 +1501,8 @@ class Bundle_Link(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     relation = models.CharField(label="""A name which details the functional use for this link - see [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).""", max_length=255)
     url = models.CharField(label="""The reference details for the link.""")
-    _url = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _url = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Bundle_Entry(models.Model):
@@ -1512,12 +1512,12 @@ class Bundle_Entry(models.Model):
 * fullUrl can be empty on a POST (although it does not need to when specifying a temporary id for reference in the bundle)
 * Results from operations might involve resources that are not identified.""")
     resource = JSONField(validators=[JSONSchemaValidator({'description': 'The Resource for the entry. The purpose/meaning of the resource is determined by the Bundle.type.', '$ref': '#/definitions/ResourceList'})])
-    _fullUrl = models.ForeignKey("Element", on_delete=models.CASCADE)
-    link = models.ManyToManyField("Bundle_Link")
-    modifierExtension = models.ManyToManyField("Extension")
-    request = models.ForeignKey("Bundle_Request", on_delete=models.CASCADE)
-    response = models.ForeignKey("Bundle_Response", on_delete=models.CASCADE)
-    search = models.ForeignKey("Bundle_Search", on_delete=models.CASCADE)
+    _fullUrl = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    link = models.ManyToManyField("Bundle_Link", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    request = models.ForeignKey("Bundle_Request", null=True, on_delete=models.CASCADE)
+    response = models.ForeignKey("Bundle_Response", null=True, on_delete=models.CASCADE)
+    search = models.ForeignKey("Bundle_Search", null=True, on_delete=models.CASCADE)
 
 
 class Bundle_Search(models.Model):
@@ -1525,8 +1525,8 @@ class Bundle_Search(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     mode = models.CharField(label="""Why this entry is in the result set - whether it's included as a match or because of an _include requirement, or to convey information or warning information about the search process.""", max_length=7, choices=[('match', 'match'), ('include', 'include'), ('outcome', 'outcome')])
     score = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""When searching, the server's search ranking score for the entry.""")
-    _score = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _score = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Bundle_Request(models.Model):
@@ -1538,8 +1538,8 @@ class Bundle_Request(models.Model):
     ifModifiedSince = models.DateTimeField(label="""Only perform the operation if the last updated date matches. See the API documentation for ["Conditional Read"](http.html#cread).""")
     ifMatch = models.CharField(label="""Only perform the operation if the Etag value matches. For more information, see the API section ["Managing Resource Contention"](http.html#concurrency).""", max_length=255)
     ifNoneExist = models.CharField(label="""Instruct the server not to perform the create if a specified resource already exists. For further information, see the API documentation for ["Conditional Create"](http.html#ccreate). This is just the query portion of the URL - what follows the "?" (not including the "?").""", max_length=255)
-    _ifNoneExist = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _ifNoneExist = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Bundle_Response(models.Model):
@@ -1550,8 +1550,8 @@ class Bundle_Response(models.Model):
     etag = models.CharField(label="""The Etag for the resource, if the operation for the entry produced a versioned resource (see [Resource Metadata and Versioning](http.html#versioning) and [Managing Resource Contention](http.html#concurrency)).""", max_length=255)
     lastModified = models.DateTimeField(label="""The date/time that the resource was modified on the server.""")
     outcome = JSONField(validators=[JSONSchemaValidator({'description': 'An OperationOutcome containing hints and warnings produced as part of processing this entry in a batch or transaction.', '$ref': '#/definitions/ResourceList'})])
-    _lastModified = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _lastModified = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement(models.Model):
@@ -1579,19 +1579,19 @@ class CapabilityStatement(models.Model):
     format = JSONField(validators=[JSONSchemaValidator({'description': 'A list of the formats supported by this implementation using their content types.', 'items': {'pattern': '^[^\\s]+(\\s[^\\s]+)*$', 'type': 'string'}, 'type': 'array'})])
     patchFormat = JSONField(validators=[JSONSchemaValidator({'description': 'A list of the patch formats supported by this implementation using their content types.', 'items': {'pattern': '^[^\\s]+(\\s[^\\s]+)*$', 'type': 'string'}, 'type': 'array'})])
     implementationGuide = JSONField(validators=[JSONSchemaValidator({'description': 'A list of implementation guides that the server does (or should) support in their entirety.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _fhirVersion = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _patchFormat = models.ManyToManyField("Element")
-    contact = models.ManyToManyField("ContactDetail")
-    document = models.ManyToManyField("CapabilityStatement_Document")
-    implementation = models.ForeignKey("CapabilityStatement_Implementation", on_delete=models.CASCADE)
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    messaging = models.ManyToManyField("CapabilityStatement_Messaging")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    rest = models.ManyToManyField("CapabilityStatement_Rest")
-    software = models.ForeignKey("CapabilityStatement_Software", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _fhirVersion = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _patchFormat = models.ManyToManyField("Element", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    document = models.ManyToManyField("CapabilityStatement_Document", null=True)
+    implementation = models.ForeignKey("CapabilityStatement_Implementation", null=True, on_delete=models.CASCADE)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    messaging = models.ManyToManyField("CapabilityStatement_Messaging", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    rest = models.ManyToManyField("CapabilityStatement_Rest", null=True)
+    software = models.ForeignKey("CapabilityStatement_Software", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class CapabilityStatement_Software(models.Model):
@@ -1600,8 +1600,8 @@ class CapabilityStatement_Software(models.Model):
     name = models.CharField(label="""Name the software is known by.""", max_length=255)
     version = models.CharField(label="""The version identifier for the software covered by this statement.""", max_length=255)
     releaseDate = models.DateTimeField(label="""Date this version of the software was released.""")
-    _releaseDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _releaseDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement_Implementation(models.Model):
@@ -1609,9 +1609,9 @@ class CapabilityStatement_Implementation(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Information about the specific installation that this capability statement relates to.""", max_length=255)
     url = models.CharField(label="""An absolute base URL for the implementation.  This forms the base for REST interfaces as well as the mailbox and document interfaces.""")
-    _url = models.ForeignKey("Element", on_delete=models.CASCADE)
-    custodian = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _url = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    custodian = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement_Rest(models.Model):
@@ -1620,13 +1620,13 @@ class CapabilityStatement_Rest(models.Model):
     mode = models.CharField(label="""Identifies whether this portion of the statement is describing the ability to initiate or receive restful operations.""", max_length=6, choices=[('client', 'client'), ('server', 'server')])
     documentation = JSONField(validators=[JSONSchemaValidator({'description': "Information about the system's restful capabilities that apply across all applications, such as security.", '$ref': '#/definitions/markdown'})])
     compartment = JSONField(validators=[JSONSchemaValidator({'description': 'An absolute URI which is a reference to the definition of a compartment that the system supports. The reference is to a CompartmentDefinition resource by its canonical URL .', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    interaction = models.ManyToManyField("CapabilityStatement_Interaction1")
-    modifierExtension = models.ManyToManyField("Extension")
-    operation = models.ManyToManyField("CapabilityStatement_Operation")
-    resource = models.ManyToManyField("CapabilityStatement_Resource")
-    searchParam = models.ManyToManyField("CapabilityStatement_SearchParam")
-    security = models.ForeignKey("CapabilityStatement_Security", on_delete=models.CASCADE)
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    interaction = models.ManyToManyField("CapabilityStatement_Interaction1", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operation = models.ManyToManyField("CapabilityStatement_Operation", null=True)
+    resource = models.ManyToManyField("CapabilityStatement_Resource", null=True)
+    searchParam = models.ManyToManyField("CapabilityStatement_SearchParam", null=True)
+    security = models.ForeignKey("CapabilityStatement_Security", null=True, on_delete=models.CASCADE)
 
 
 class CapabilityStatement_Security(models.Model):
@@ -1634,9 +1634,9 @@ class CapabilityStatement_Security(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     cors = models.BooleanField(label="""Server adds CORS headers when responding to requests - this enables Javascript applications to use the server.""")
     description = JSONField(validators=[JSONSchemaValidator({'description': 'General description of how security works.', '$ref': '#/definitions/markdown'})])
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    service = models.ManyToManyField("CodeableConcept")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    service = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class CapabilityStatement_Resource(models.Model):
@@ -1656,12 +1656,12 @@ class CapabilityStatement_Resource(models.Model):
     referencePolicy = JSONField(validators=[JSONSchemaValidator({'description': 'A set of flags that defines how references are supported.', 'items': {'enum': ['literal', 'logical', 'resolves', 'enforced', 'local']}, 'type': 'array'})])
     searchInclude = JSONField(validators=[JSONSchemaValidator({'description': 'A list of _include values supported by the server.', 'items': {'type': 'string'}, 'type': 'array'})])
     searchRevInclude = JSONField(validators=[JSONSchemaValidator({'description': 'A list of _revinclude (reverse include) values supported by the server.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _conditionalDelete = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _searchRevInclude = models.ManyToManyField("Element")
-    interaction = models.ManyToManyField("CapabilityStatement_Interaction")
-    modifierExtension = models.ManyToManyField("Extension")
-    operation = models.ManyToManyField("CapabilityStatement_Operation")
-    searchParam = models.ManyToManyField("CapabilityStatement_SearchParam")
+    _conditionalDelete = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _searchRevInclude = models.ManyToManyField("Element", null=True)
+    interaction = models.ManyToManyField("CapabilityStatement_Interaction", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operation = models.ManyToManyField("CapabilityStatement_Operation", null=True)
+    searchParam = models.ManyToManyField("CapabilityStatement_SearchParam", null=True)
 
 
 class CapabilityStatement_Interaction(models.Model):
@@ -1669,8 +1669,8 @@ class CapabilityStatement_Interaction(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""Coded identifier of the operation, supported by the system resource.""", max_length=16, choices=[('read', 'read'), ('vread', 'vread'), ('update', 'update'), ('patch', 'patch'), ('delete', 'delete'), ('history-instance', 'history-instance'), ('history-type', 'history-type'), ('create', 'create'), ('search-type', 'search-type')])
     documentation = JSONField(validators=[JSONSchemaValidator({'description': "Guidance specific to the implementation of this operation, such as 'delete is a logical delete' or 'updates are only allowed with version id' or 'creates permitted from pre-authorized certificates only'.", '$ref': '#/definitions/markdown'})])
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement_SearchParam(models.Model):
@@ -1680,8 +1680,8 @@ class CapabilityStatement_SearchParam(models.Model):
     definition = models.CharField(label="""An absolute URI that is a formal reference to where this parameter was first defined, so that a client can be confident of the meaning of the search parameter (a reference to [[[SearchParameter.url]]]). This element SHALL be populated if the search parameter refers to a SearchParameter defined by the FHIR core specification or externally defined IGs.""")
     type = models.CharField(label="""The type of value a search parameter refers to, and how the content is interpreted.""", max_length=9, choices=[('number', 'number'), ('date', 'date'), ('string', 'string'), ('token', 'token'), ('reference', 'reference'), ('composite', 'composite'), ('quantity', 'quantity'), ('uri', 'uri'), ('special', 'special')])
     documentation = JSONField(validators=[JSONSchemaValidator({'description': 'This allows documentation of any distinct behaviors about how the search parameter is used.  For example, text matching algorithms.', '$ref': '#/definitions/markdown'})])
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement_Operation(models.Model):
@@ -1690,8 +1690,8 @@ class CapabilityStatement_Operation(models.Model):
     name = models.CharField(label="""The name of the operation or query. For an operation, this is the name  prefixed with $ and used in the URL. For a query, this is the name used in the _query parameter when the query is called.""", max_length=255)
     definition = models.CharField(primary_key=True, label="""Where the formal definition can be found. If a server references the base definition of an Operation (i.e. from the specification itself such as ```http://hl7.org/fhir/OperationDefinition/ValueSet-expand```), that means it supports the full capabilities of the operation - e.g. both GET and POST invocation.  If it only supports a subset, it must define its own custom [[[OperationDefinition]]] with a 'base' of the original OperationDefinition.  The custom definition would describe the specific subset of functionality supported.""")
     documentation = JSONField(validators=[JSONSchemaValidator({'description': 'Documentation that describes anything special about the operation behavior, possibly detailing different behavior for system, type and instance-level invocation of the operation.', '$ref': '#/definitions/markdown'})])
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement_Interaction1(models.Model):
@@ -1699,8 +1699,8 @@ class CapabilityStatement_Interaction1(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""A coded identifier of the operation, supported by the system.""", max_length=14, choices=[('transaction', 'transaction'), ('batch', 'batch'), ('search-system', 'search-system'), ('history-system', 'history-system')])
     documentation = JSONField(validators=[JSONSchemaValidator({'description': 'Guidance specific to the implementation of this operation, such as limitations on the kind of transactions allowed, or information about system wide search is implemented.', '$ref': '#/definitions/markdown'})])
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement_Messaging(models.Model):
@@ -1708,18 +1708,18 @@ class CapabilityStatement_Messaging(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     reliableCache = models.IntegerField(validators=[], label="""Length if the receiver's reliable messaging cache in minutes (if a receiver) or how long the cache length on the receiver should be (if a sender).""")
     documentation = JSONField(validators=[JSONSchemaValidator({'description': "Documentation about the system's messaging capabilities for this endpoint not otherwise documented by the capability statement.  For example, the process for becoming an authorized messaging exchange partner.", '$ref': '#/definitions/markdown'})])
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    endpoint = models.ManyToManyField("CapabilityStatement_Endpoint")
-    modifierExtension = models.ManyToManyField("Extension")
-    supportedMessage = models.ManyToManyField("CapabilityStatement_SupportedMessage")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    endpoint = models.ManyToManyField("CapabilityStatement_Endpoint", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    supportedMessage = models.ManyToManyField("CapabilityStatement_SupportedMessage", null=True)
 
 
 class CapabilityStatement_Endpoint(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     address = models.CharField(label="""The network address of the endpoint. For solutions that do not use network addresses for routing, it can be just an identifier.""")
-    _address = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _address = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     protocol = models.ForeignKey("Coding", on_delete=models.CASCADE)
 
 
@@ -1728,8 +1728,8 @@ class CapabilityStatement_SupportedMessage(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     mode = models.CharField(label="""The mode of this event declaration - whether application is sender or receiver.""", max_length=8, choices=[('sender', 'sender'), ('receiver', 'receiver')])
     definition = models.CharField(primary_key=True, label="""Points to a message definition that identifies the messaging event, message structure, allowed responses, etc.""")
-    _mode = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _mode = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CapabilityStatement_Document(models.Model):
@@ -1738,8 +1738,8 @@ class CapabilityStatement_Document(models.Model):
     mode = models.CharField(label="""Mode of this document declaration - whether an application is a producer or consumer.""", max_length=8, choices=[('producer', 'producer'), ('consumer', 'consumer')])
     documentation = JSONField(validators=[JSONSchemaValidator({'description': 'A description of how the application supports or uses the specified document profile.  For example, when documents are created, what action is taken with consumed documents, etc.', '$ref': '#/definitions/markdown'})])
     profile = models.CharField(primary_key=True, label="""A profile on the document Bundle that constrains which resources are present, and their contents.""")
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CarePlan(models.Model):
@@ -1756,29 +1756,29 @@ class CarePlan(models.Model):
     title = models.CharField(label="""Human-friendly name for the care plan.""", max_length=255)
     description = models.CharField(label="""A description of the scope and nature of the plan.""", max_length=255)
     created = models.DateTimeField(label="""Represents when this particular CarePlan record was created in the system, which is often a system-generated date.""")
-    _created = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiatesUri = models.ManyToManyField("Element")
-    activity = models.ManyToManyField("CarePlan_Activity")
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    category = models.ManyToManyField("CodeableConcept")
-    goal = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _created = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    activity = models.ManyToManyField("CarePlan_Activity", null=True)
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    category = models.ManyToManyField("CodeableConcept", null=True)
+    goal = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class CarePlan_Activity(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    detail = models.ForeignKey("CarePlan_Detail", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    outcomeCodeableConcept = models.ManyToManyField("CodeableConcept")
-    outcomeReference = models.ManyToManyField("Reference")
-    progress = models.ManyToManyField("Annotation")
-    reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    detail = models.ForeignKey("CarePlan_Detail", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    outcomeCodeableConcept = models.ManyToManyField("CodeableConcept", null=True)
+    outcomeReference = models.ManyToManyField("Reference", null=True)
+    progress = models.ManyToManyField("Annotation", null=True)
+    reference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class CarePlan_Detail(models.Model):
@@ -1791,16 +1791,16 @@ class CarePlan_Detail(models.Model):
     doNotPerform = models.BooleanField(label="""If true, indicates that the described activity is one that must NOT be engaged in when following the plan.  If false, or missing, indicates that the described activity is one that should be engaged in when following the plan.""")
     scheduledString = models.CharField(label="""The period, timing or frequency upon which the described activity is to occur.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     description = models.CharField(label="""This provides a textual description of constraints on the intended activity occurrence, including relation to other activities.  It may also include objectives, pre-conditions and end-conditions.  Finally, it may convey specifics about the activity such as body site, method, route, etc.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiatesUri = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
-    performer = models.ManyToManyField("Reference")
-    productCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    productReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    scheduledPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    scheduledTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    performer = models.ManyToManyField("Reference", null=True)
+    productCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    productReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    scheduledPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    scheduledTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
 
 
 class CareTeam(models.Model):
@@ -1812,27 +1812,27 @@ class CareTeam(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""Indicates the current state of the care team.""", max_length=16, choices=[('proposed', 'proposed'), ('active', 'active'), ('suspended', 'suspended'), ('inactive', 'inactive'), ('entered-in-error', 'entered-in-error')])
     name = models.CharField(label="""A label for human use intended to distinguish like teams.  E.g. the "red" vs. "green" trauma teams.""", max_length=255)
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    encounter = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    managingOrganization = models.ManyToManyField("Reference")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    participant = models.ManyToManyField("CareTeam_Participant")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    encounter = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    managingOrganization = models.ManyToManyField("Reference", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    participant = models.ManyToManyField("CareTeam_Participant", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class CareTeam_Participant(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    onBehalfOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    role = models.ManyToManyField("CodeableConcept")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    onBehalfOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    role = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class CatalogEntry(models.Model):
@@ -1846,25 +1846,25 @@ class CatalogEntry(models.Model):
     status = models.CharField(label="""Used to support catalog exchange even for unsupported products, e.g. getting list of medications even if not prescribable.""", max_length=7, choices=[('draft', 'draft'), ('active', 'active'), ('retired', 'retired'), ('unknown', 'unknown')])
     validTo = models.DateTimeField(label="""The date until which this catalog entry is expected to be active.""")
     lastUpdated = models.DateTimeField(label="""Typically date of issue is different from the beginning of the validity. This can be used to see when an item was last updated.""")
-    _lastUpdated = models.ForeignKey("Element", on_delete=models.CASCADE)
-    additionalClassification = models.ManyToManyField("CodeableConcept")
-    additionalIdentifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _lastUpdated = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    additionalClassification = models.ManyToManyField("CodeableConcept", null=True)
+    additionalIdentifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     referencedItem = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    relatedEntry = models.ManyToManyField("CatalogEntry_RelatedEntry")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    validityPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    relatedEntry = models.ManyToManyField("CatalogEntry_RelatedEntry", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    validityPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class CatalogEntry_RelatedEntry(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     relationtype = models.CharField(label="""The type of relation to the related item: child, parent, packageContent, containerPackage, usedIn, uses, requires, etc.""", max_length=14, choices=[('triggers', 'triggers'), ('is-replaced-by', 'is-replaced-by')])
-    _relationtype = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _relationtype = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     item = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ChargeItem(models.Model):
@@ -1881,30 +1881,30 @@ class ChargeItem(models.Model):
     factorOverride = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Factor overriding the factor determined by the rules associated with the code.""")
     overrideReason = models.CharField(label="""If the list price or the rule-based factor associated with the code is overridden, this attribute can capture a text to indicate the  reason for this action.""", max_length=255)
     enteredDate = models.DateTimeField(label="""Date the charge item was entered.""")
-    _definitionUri = models.ManyToManyField("Element")
-    _enteredDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    occurrenceTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    performer = models.ManyToManyField("ChargeItem_Performer")
-    priceOverride = models.ForeignKey("Money", on_delete=models.CASCADE)
-    productCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    productReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    reason = models.ManyToManyField("CodeableConcept")
-    supportingInformation = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _definitionUri = models.ManyToManyField("Element", null=True)
+    _enteredDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    occurrenceTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    performer = models.ManyToManyField("ChargeItem_Performer", null=True)
+    priceOverride = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    productCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    productReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    reason = models.ManyToManyField("CodeableConcept", null=True)
+    supportingInformation = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ChargeItem_Performer(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    function = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    function = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ChargeItemDefinition(models.Model):
@@ -1928,20 +1928,20 @@ class ChargeItemDefinition(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the charge item definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the charge item definition.', '$ref': '#/definitions/markdown'})])
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
-    _derivedFromUri = models.ManyToManyField("Element")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    applicability = models.ManyToManyField("ChargeItemDefinition_Applicability")
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    instance = models.ManyToManyField("Reference")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    propertyGroup = models.ManyToManyField("ChargeItemDefinition_PropertyGroup")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _derivedFromUri = models.ManyToManyField("Element", null=True)
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    applicability = models.ManyToManyField("ChargeItemDefinition_Applicability", null=True)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    instance = models.ManyToManyField("Reference", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    propertyGroup = models.ManyToManyField("ChargeItemDefinition_PropertyGroup", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ChargeItemDefinition_Applicability(models.Model):
@@ -1950,16 +1950,16 @@ class ChargeItemDefinition_Applicability(models.Model):
     description = models.CharField(label="""A brief, natural language description of the condition that effectively communicates the intended semantics.""", max_length=255)
     language = models.CharField(label="""The media type of the language for the expression, e.g. "text/cql" for Clinical Query Language expressions or "text/fhirpath" for FHIRPath expressions.""", max_length=255)
     expression = models.CharField(label="""An expression that returns true or false, indicating whether the condition is satisfied. When using FHIRPath expressions, the %context environment variable must be replaced at runtime with the ChargeItem resource to which this definition is applied.""", max_length=255)
-    _expression = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _expression = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ChargeItemDefinition_PropertyGroup(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    applicability = models.ManyToManyField("ChargeItemDefinition_Applicability")
-    modifierExtension = models.ManyToManyField("Extension")
-    priceComponent = models.ManyToManyField("ChargeItemDefinition_PriceComponent")
+    applicability = models.ManyToManyField("ChargeItemDefinition_Applicability", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    priceComponent = models.ManyToManyField("ChargeItemDefinition_PriceComponent", null=True)
 
 
 class ChargeItemDefinition_PriceComponent(models.Model):
@@ -1967,10 +1967,10 @@ class ChargeItemDefinition_PriceComponent(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""This code identifies the type of the component.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The factor that has been applied on the base price for calculating this component.""")
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Claim(models.Model):
@@ -1983,40 +1983,40 @@ class Claim(models.Model):
     status = models.CharField(label="""The status of the resource instance.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     use = models.CharField(label="""A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.""", max_length=16, choices=[('claim', 'claim'), ('preauthorization', 'preauthorization'), ('predetermination', 'predetermination')])
     created = models.DateTimeField(label="""The date this resource was created.""")
-    _created = models.ForeignKey("Element", on_delete=models.CASCADE)
-    accident = models.ForeignKey("Claim_Accident", on_delete=models.CASCADE)
-    billablePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    careTeam = models.ManyToManyField("Claim_CareTeam")
-    diagnosis = models.ManyToManyField("Claim_Diagnosis")
-    facility = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    fundsReserve = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
+    _created = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    accident = models.ForeignKey("Claim_Accident", null=True, on_delete=models.CASCADE)
+    billablePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    careTeam = models.ManyToManyField("Claim_CareTeam", null=True)
+    diagnosis = models.ManyToManyField("Claim_Diagnosis", null=True)
+    facility = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    fundsReserve = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
     insurance = models.ManyToManyField("Claim_Insurance")
-    item = models.ManyToManyField("Claim_Item")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    payee = models.ForeignKey("Claim_Payee", on_delete=models.CASCADE)
-    procedure = models.ManyToManyField("Claim_Procedure")
-    related = models.ManyToManyField("Claim_Related")
-    supportingInfo = models.ManyToManyField("Claim_SupportingInfo")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    total = models.ForeignKey("Money", on_delete=models.CASCADE)
+    item = models.ManyToManyField("Claim_Item", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    payee = models.ForeignKey("Claim_Payee", null=True, on_delete=models.CASCADE)
+    procedure = models.ManyToManyField("Claim_Procedure", null=True)
+    related = models.ManyToManyField("Claim_Related", null=True)
+    supportingInfo = models.ManyToManyField("Claim_SupportingInfo", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    total = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
 
 
 class Claim_Related(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    claim = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reference = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    relationship = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    claim = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reference = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    relationship = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Claim_Payee(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    party = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    party = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -2025,10 +2025,10 @@ class Claim_CareTeam(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify care team entries.""")
     responsible = models.BooleanField(label="""The party who is billing and/or responsible for the claimed products or services.""")
-    _responsible = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _responsible = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     provider = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    qualification = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    qualification = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Claim_SupportingInfo(models.Model):
@@ -2038,24 +2038,24 @@ class Claim_SupportingInfo(models.Model):
     timingDate = models.CharField(label="""The date when or period to which this information refers.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     valueBoolean = models.BooleanField(label="""Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.""")
     valueString = models.CharField(label="""Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _valueString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    timingPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _valueString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    timingPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Claim_Diagnosis(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify diagnosis entries.""")
-    _sequence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    diagnosisReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    packageCode = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    _sequence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    diagnosisReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    packageCode = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class Claim_Procedure(models.Model):
@@ -2063,12 +2063,12 @@ class Claim_Procedure(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify procedure entries.""")
     date = models.DateTimeField(label="""Date and optionally time the procedure was performed.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    procedureCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    procedureReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
-    udi = models.ManyToManyField("Reference")
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    procedureCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    procedureReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
+    udi = models.ManyToManyField("Reference", null=True)
 
 
 class Claim_Insurance(models.Model):
@@ -2078,22 +2078,22 @@ class Claim_Insurance(models.Model):
     focal = models.BooleanField(label="""A flag to indicate that this Coverage is to be used for adjudication of this claim when set to true.""")
     businessArrangement = models.CharField(label="""A business agreement number established between the provider and the insurer for special business processing purposes.""", max_length=255)
     preAuthRef = JSONField(validators=[JSONSchemaValidator({'description': 'Reference numbers previously provided by the insurer to the provider to be quoted on subsequent claims containing services or products related to the prior authorization.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _businessArrangement = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _preAuthRef = models.ManyToManyField("Element")
-    claimResponse = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _businessArrangement = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _preAuthRef = models.ManyToManyField("Element", null=True)
+    claimResponse = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Claim_Accident(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateField(label="""Date of an accident event  related to the products and services contained in the claim.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    locationAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    locationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    locationAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    locationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Claim_Item(models.Model):
@@ -2106,18 +2106,18 @@ class Claim_Item(models.Model):
     informationSequence = JSONField(validators=[JSONSchemaValidator({'description': 'Exceptions, special conditions and supporting information applicable for this service or product.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
     servicedDate = models.CharField(label="""The date or dates when the service or product was supplied, performed or completed.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _informationSequence = models.ManyToManyField("Element")
-    bodySite = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    detail = models.ManyToManyField("Claim_Detail")
-    encounter = models.ManyToManyField("Reference")
-    locationAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    locationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    servicedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    subSite = models.ManyToManyField("CodeableConcept")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _informationSequence = models.ManyToManyField("Element", null=True)
+    bodySite = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    detail = models.ManyToManyField("Claim_Detail", null=True)
+    encounter = models.ManyToManyField("Reference", null=True)
+    locationAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    locationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    servicedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    subSite = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class Claim_Detail(models.Model):
@@ -2125,14 +2125,14 @@ class Claim_Detail(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify item entries.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    programCode = models.ManyToManyField("CodeableConcept")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    subDetail = models.ManyToManyField("Claim_SubDetail")
-    udi = models.ManyToManyField("Reference")
+    programCode = models.ManyToManyField("CodeableConcept", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    subDetail = models.ManyToManyField("Claim_SubDetail", null=True)
+    udi = models.ManyToManyField("Reference", null=True)
 
 
 class Claim_SubDetail(models.Model):
@@ -2140,13 +2140,13 @@ class Claim_SubDetail(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify item entries.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    programCode = models.ManyToManyField("CodeableConcept")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    udi = models.ManyToManyField("Reference")
+    programCode = models.ManyToManyField("CodeableConcept", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    udi = models.ManyToManyField("Reference", null=True)
 
 
 class ClaimResponse(models.Model):
@@ -2162,24 +2162,24 @@ class ClaimResponse(models.Model):
     outcome = models.CharField(label="""The outcome of the claim, predetermination, or preauthorization processing.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     disposition = models.CharField(label="""A human readable description of the status of the adjudication.""", max_length=255)
     preAuthRef = models.CharField(label="""Reference from the Insurer which is used in later communications which refers to this adjudication.""", max_length=255)
-    _preAuthRef = models.ForeignKey("Element", on_delete=models.CASCADE)
-    addItem = models.ManyToManyField("ClaimResponse_AddItem")
-    adjudication = models.ManyToManyField("ClaimResponse_Adjudication")
-    communicationRequest = models.ManyToManyField("Reference")
-    error = models.ManyToManyField("ClaimResponse_Error")
-    form = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    formCode = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    insurance = models.ManyToManyField("ClaimResponse_Insurance")
-    item = models.ManyToManyField("ClaimResponse_Item")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    payment = models.ForeignKey("ClaimResponse_Payment", on_delete=models.CASCADE)
-    preAuthPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    processNote = models.ManyToManyField("ClaimResponse_ProcessNote")
-    request = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    total = models.ManyToManyField("ClaimResponse_Total")
+    _preAuthRef = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    addItem = models.ManyToManyField("ClaimResponse_AddItem", null=True)
+    adjudication = models.ManyToManyField("ClaimResponse_Adjudication", null=True)
+    communicationRequest = models.ManyToManyField("Reference", null=True)
+    error = models.ManyToManyField("ClaimResponse_Error", null=True)
+    form = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    formCode = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    insurance = models.ManyToManyField("ClaimResponse_Insurance", null=True)
+    item = models.ManyToManyField("ClaimResponse_Item", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    payment = models.ForeignKey("ClaimResponse_Payment", null=True, on_delete=models.CASCADE)
+    preAuthPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    processNote = models.ManyToManyField("ClaimResponse_ProcessNote", null=True)
+    request = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    total = models.ManyToManyField("ClaimResponse_Total", null=True)
 
 
 class ClaimResponse_Item(models.Model):
@@ -2187,21 +2187,21 @@ class ClaimResponse_Item(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     itemSequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely reference the claim item entries.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _itemSequence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
+    _itemSequence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
     adjudication = models.ManyToManyField("ClaimResponse_Adjudication")
-    detail = models.ManyToManyField("ClaimResponse_Detail")
-    modifierExtension = models.ManyToManyField("Extension")
+    detail = models.ManyToManyField("ClaimResponse_Detail", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClaimResponse_Adjudication(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     value = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A non-monetary value associated with the category. Mutually exclusive to the amount element above.""")
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ClaimResponse_Detail(models.Model):
@@ -2209,11 +2209,11 @@ class ClaimResponse_Detail(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     detailSequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely reference the claim detail entry.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _detailSequence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
+    _detailSequence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
     adjudication = models.ManyToManyField("ClaimResponse_Adjudication")
-    modifierExtension = models.ManyToManyField("Extension")
-    subDetail = models.ManyToManyField("ClaimResponse_SubDetail")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    subDetail = models.ManyToManyField("ClaimResponse_SubDetail", null=True)
 
 
 class ClaimResponse_SubDetail(models.Model):
@@ -2221,10 +2221,10 @@ class ClaimResponse_SubDetail(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     subDetailSequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely reference the claim sub-detail entry.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _noteNumber = models.ManyToManyField("Element")
-    _subDetailSequence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    adjudication = models.ManyToManyField("ClaimResponse_Adjudication")
-    modifierExtension = models.ManyToManyField("Extension")
+    _noteNumber = models.ManyToManyField("Element", null=True)
+    _subDetailSequence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    adjudication = models.ManyToManyField("ClaimResponse_Adjudication", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClaimResponse_AddItem(models.Model):
@@ -2236,19 +2236,19 @@ class ClaimResponse_AddItem(models.Model):
     servicedDate = models.CharField(label="""The date or dates when the service or product was supplied, performed or completed.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
     adjudication = models.ManyToManyField("ClaimResponse_Adjudication")
-    bodySite = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    detail = models.ManyToManyField("ClaimResponse_Detail1")
-    locationAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    locationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
-    provider = models.ManyToManyField("Reference")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    servicedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    subSite = models.ManyToManyField("CodeableConcept")
+    bodySite = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    detail = models.ManyToManyField("ClaimResponse_Detail1", null=True)
+    locationAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    locationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    provider = models.ManyToManyField("Reference", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    servicedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    subSite = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class ClaimResponse_Detail1(models.Model):
@@ -2256,15 +2256,15 @@ class ClaimResponse_Detail1(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
     adjudication = models.ManyToManyField("ClaimResponse_Adjudication")
-    modifier = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    modifier = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    subDetail = models.ManyToManyField("ClaimResponse_SubDetail1")
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    subDetail = models.ManyToManyField("ClaimResponse_SubDetail1", null=True)
 
 
 class ClaimResponse_SubDetail1(models.Model):
@@ -2272,14 +2272,14 @@ class ClaimResponse_SubDetail1(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
     adjudication = models.ManyToManyField("ClaimResponse_Adjudication")
-    modifier = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    modifier = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class ClaimResponse_Total(models.Model):
@@ -2287,18 +2287,18 @@ class ClaimResponse_Total(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     amount = models.ForeignKey("Money", on_delete=models.CASCADE)
     category = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClaimResponse_Payment(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateField(label="""Estimated date the payment will be issued or the actual issue date of payment.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    adjustmentReason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    adjustmentReason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClaimResponse_ProcessNote(models.Model):
@@ -2307,9 +2307,9 @@ class ClaimResponse_ProcessNote(models.Model):
     number = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify a note entry.""")
     type = models.CharField(label="""The business purpose of the note text.""", max_length=9, choices=[('display', 'display'), ('print', 'print'), ('printoper', 'printoper')])
     text = models.CharField(label="""The explanation or description associated with the processing.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    language = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    language = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClaimResponse_Insurance(models.Model):
@@ -2318,9 +2318,9 @@ class ClaimResponse_Insurance(models.Model):
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify insurance entries and provide a sequence of coverages to convey coordination of benefit order.""")
     focal = models.BooleanField(label="""A flag to indicate that this Coverage is to be used for adjudication of this claim when set to true.""")
     businessArrangement = models.CharField(label="""A business agreement number established between the provider and the insurer for special business processing purposes.""", max_length=255)
-    _businessArrangement = models.ForeignKey("Element", on_delete=models.CASCADE)
-    claimResponse = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _businessArrangement = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    claimResponse = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClaimResponse_Error(models.Model):
@@ -2329,9 +2329,9 @@ class ClaimResponse_Error(models.Model):
     itemSequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""The sequence number of the line item submitted which contains the error. This value is omitted when the error occurs outside of the item structure.""")
     detailSequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""The sequence number of the detail within the line item submitted which contains the error. This value is omitted when the error occurs outside of the item structure.""")
     subDetailSequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""The sequence number of the sub-detail within the detail within the line item submitted which contains the error. This value is omitted when the error occurs outside of the item structure.""")
-    _subDetailSequence = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _subDetailSequence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClinicalImpression(models.Model):
@@ -2347,38 +2347,38 @@ class ClinicalImpression(models.Model):
     date = models.DateTimeField(label="""Indicates when the documentation of the assessment was complete.""")
     protocol = JSONField(validators=[JSONSchemaValidator({'description': 'Reference to a specific published clinical protocol that was followed during this assessment, and/or that provides evidence in support of the diagnosis.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     summary = models.CharField(label="""A text summary of the investigations and the diagnosis.""", max_length=255)
-    _protocol = models.ManyToManyField("Element")
-    _summary = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    finding = models.ManyToManyField("ClinicalImpression_Finding")
-    identifier = models.ManyToManyField("Identifier")
-    investigation = models.ManyToManyField("ClinicalImpression_Investigation")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    previous = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    prognosisCodeableConcept = models.ManyToManyField("CodeableConcept")
-    supportingInfo = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _protocol = models.ManyToManyField("Element", null=True)
+    _summary = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    finding = models.ManyToManyField("ClinicalImpression_Finding", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    investigation = models.ManyToManyField("ClinicalImpression_Investigation", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    previous = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    prognosisCodeableConcept = models.ManyToManyField("CodeableConcept", null=True)
+    supportingInfo = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ClinicalImpression_Investigation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    item = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
+    item = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ClinicalImpression_Finding(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     basis = models.CharField(label="""Which investigations support finding or diagnosis.""", max_length=255)
-    _basis = models.ForeignKey("Element", on_delete=models.CASCADE)
-    itemCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    itemReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _basis = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    itemCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    itemReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CodeSystem(models.Model):
@@ -2407,17 +2407,17 @@ class CodeSystem(models.Model):
     content = models.CharField(label="""The extent of the content of the code system (the concepts and codes it defines) are represented in this resource instance.""", max_length=11, choices=[('not-present', 'not-present'), ('example', 'example'), ('fragment', 'fragment'), ('complete', 'complete'), ('supplement', 'supplement')])
     supplements = models.CharField(label="""The canonical URL of the code system that this code system supplement is adding designations and properties to.""")
     count = models.IntegerField(validators=[], label="""The total number of concepts defined by the code system. Where the code system has a compositional grammar, the basis of this count is defined by the system steward.""")
-    _count = models.ForeignKey("Element", on_delete=models.CASCADE)
-    concept = models.ManyToManyField("CodeSystem_Concept")
-    contact = models.ManyToManyField("ContactDetail")
-    filter = models.ManyToManyField("CodeSystem_Filter")
-    identifier = models.ManyToManyField("Identifier")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    property = models.ManyToManyField("CodeSystem_Property")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _count = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    concept = models.ManyToManyField("CodeSystem_Concept", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    filter = models.ManyToManyField("CodeSystem_Filter", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    property = models.ManyToManyField("CodeSystem_Property", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class CodeSystem_Filter(models.Model):
@@ -2427,9 +2427,9 @@ class CodeSystem_Filter(models.Model):
     description = models.CharField(label="""A description of how or why the filter is used.""", max_length=255)
     operator = JSONField(validators=[JSONSchemaValidator({'description': 'A list of operators that can be used with the filter.', 'items': {'pattern': '^[^\\s]+(\\s[^\\s]+)*$', 'type': 'string'}, 'type': 'array'})])
     value = models.CharField(label="""A description of what the value for the filter should be.""", max_length=255)
-    _operator = models.ManyToManyField("Element")
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _operator = models.ManyToManyField("Element", null=True)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CodeSystem_Property(models.Model):
@@ -2439,8 +2439,8 @@ class CodeSystem_Property(models.Model):
     uri = models.CharField(label="""Reference to the formal meaning of the property. One possible source of meaning is the [Concept Properties](codesystem-concept-properties.html) code system.""")
     description = models.CharField(label="""A description of the property- why it is defined, and how its value might be used.""", max_length=255)
     type = models.CharField(label="""The type of the property value. Properties of type "code" contain a code defined by the code system (e.g. a reference to another defined concept).""", max_length=8, choices=[('code', 'code'), ('coding', 'Coding'), ('string', 'string'), ('integer', 'integer'), ('boolean', 'boolean'), ('datetime', 'dateTime'), ('decimal', 'decimal')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CodeSystem_Concept(models.Model):
@@ -2449,11 +2449,11 @@ class CodeSystem_Concept(models.Model):
     code = models.CharField(label="""A code - a text symbol - that uniquely identifies the concept within the code system.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     display = models.CharField(label="""A human readable string that is the recommended default way to present this concept to a user.""", max_length=255)
     definition = models.CharField(label="""The formal definition of the concept. The code system resource does not make formal definitions required, because of the prevalence of legacy systems. However, they are highly recommended, as without them there is no formal meaning associated with the concept.""", max_length=255)
-    _definition = models.ForeignKey("Element", on_delete=models.CASCADE)
-    concept = models.ManyToManyField("CodeSystem_Concept")
-    designation = models.ManyToManyField("CodeSystem_Designation")
-    modifierExtension = models.ManyToManyField("Extension")
-    property = models.ManyToManyField("CodeSystem_Property1")
+    _definition = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    concept = models.ManyToManyField("CodeSystem_Concept", null=True)
+    designation = models.ManyToManyField("CodeSystem_Designation", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    property = models.ManyToManyField("CodeSystem_Property1", null=True)
 
 
 class CodeSystem_Designation(models.Model):
@@ -2461,9 +2461,9 @@ class CodeSystem_Designation(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     language = models.CharField(label="""The language this designation is defined for.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     value = models.CharField(label="""The text value for this designation.""", max_length=255)
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    use = models.ForeignKey("Coding", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    use = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
 
 
 class CodeSystem_Property1(models.Model):
@@ -2476,9 +2476,9 @@ class CodeSystem_Property1(models.Model):
     valueBoolean = models.BooleanField(label="""The value of this property.""")
     valueDateTime = models.CharField(label="""The value of this property.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     valueDecimal = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The value of this property.""")
-    _valueDecimal = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
+    _valueDecimal = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
 
 
 class Communication(models.Model):
@@ -2494,28 +2494,28 @@ class Communication(models.Model):
     priority = models.CharField(label="""Characterizes how quickly the planned or in progress communication must be addressed. Includes concepts such as stat, urgent, routine.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     sent = models.DateTimeField(label="""The time when this communication was sent.""")
     received = models.DateTimeField(label="""The time when this communication arrived at the destination.""")
-    _instantiatesUri = models.ManyToManyField("Element")
-    _received = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    payload = models.ManyToManyField("Communication_Payload")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    sender = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    _received = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    payload = models.ManyToManyField("Communication_Payload", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    sender = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Communication_Payload(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     contentString = models.CharField(label="""A communicated content (or for multi-part communications, one portion of the communication).""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _contentString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contentAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    contentReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _contentString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contentAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    contentReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CommunicationRequest(models.Model):
@@ -2530,29 +2530,29 @@ class CommunicationRequest(models.Model):
     doNotPerform = models.BooleanField(label="""If true indicates that the CommunicationRequest is asking for the specified action to *not* occur.""")
     occurrenceDateTime = models.CharField(label="""The time when this communication is to occur.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     authoredOn = models.DateTimeField(label="""For draft requests, indicates the date of initial creation.  For requests with other statuses, indicates the date of activation.""")
-    _authoredOn = models.ForeignKey("Element", on_delete=models.CASCADE)
-    groupIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    payload = models.ManyToManyField("CommunicationRequest_Payload")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    sender = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    statusReason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _authoredOn = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    groupIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    payload = models.ManyToManyField("CommunicationRequest_Payload", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    sender = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    statusReason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class CommunicationRequest_Payload(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     contentString = models.CharField(label="""The communicated content (or for multi-part communications, one portion of the communication).""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _contentString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contentAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    contentReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _contentString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contentAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    contentReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CompartmentDefinition(models.Model):
@@ -2573,13 +2573,13 @@ class CompartmentDefinition(models.Model):
     purpose = JSONField(validators=[JSONSchemaValidator({'description': 'Explanation of why this compartment definition is needed and why it has been designed as it has.', '$ref': '#/definitions/markdown'})])
     code = models.CharField(label="""Which compartment this definition describes.""", max_length=13, choices=[('patient', 'Patient'), ('encounter', 'Encounter'), ('relatedperson', 'RelatedPerson'), ('practitioner', 'Practitioner'), ('device', 'Device')])
     search = models.BooleanField(label="""Whether the search syntax is supported,.""")
-    _search = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    resource = models.ManyToManyField("CompartmentDefinition_Resource")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _search = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    resource = models.ManyToManyField("CompartmentDefinition_Resource", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class CompartmentDefinition_Resource(models.Model):
@@ -2588,9 +2588,9 @@ class CompartmentDefinition_Resource(models.Model):
     code = models.CharField(label="""The name of a resource supported by the server.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     param = JSONField(validators=[JSONSchemaValidator({'description': 'The name of a search parameter that represents the link to the compartment. More than one may be listed because a resource may be linked to a compartment in more than one way,.', 'items': {'type': 'string'}, 'type': 'array'})])
     documentation = models.CharField(label="""Additional documentation about the resource and compartment.""", max_length=255)
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _param = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _param = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Composition(models.Model):
@@ -2604,18 +2604,18 @@ class Composition(models.Model):
     date = models.DateTimeField(label="""The composition editing time, when the composition was last logically changed by the author.""")
     title = models.CharField(label="""Official human-readable label for the composition.""", max_length=255)
     confidentiality = models.CharField(label="""The code specifying the level of confidentiality of the Composition.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _confidentiality = models.ForeignKey("Element", on_delete=models.CASCADE)
-    attester = models.ManyToManyField("Composition_Attester")
+    _confidentiality = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    attester = models.ManyToManyField("Composition_Attester", null=True)
     author = models.ManyToManyField("Reference")
-    category = models.ManyToManyField("CodeableConcept")
-    custodian = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    event = models.ManyToManyField("Composition_Event")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    relatesTo = models.ManyToManyField("Composition_RelatesTo")
-    section = models.ManyToManyField("Composition_Section")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    category = models.ManyToManyField("CodeableConcept", null=True)
+    custodian = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    event = models.ManyToManyField("Composition_Event", null=True)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    relatesTo = models.ManyToManyField("Composition_RelatesTo", null=True)
+    section = models.ManyToManyField("Composition_Section", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -2624,28 +2624,28 @@ class Composition_Attester(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     mode = models.CharField(label="""The type of attestation the authenticator offers.""", max_length=12, choices=[('personal', 'personal'), ('professional', 'professional'), ('legal', 'legal'), ('official', 'official')])
     time = models.DateTimeField(label="""When the composition was attested by the party.""")
-    _time = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    party = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _time = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    party = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Composition_RelatesTo(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""The type of relationship that this composition has with anther composition or document.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    targetIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    targetReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    targetIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    targetReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Composition_Event(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    code = models.ManyToManyField("CodeableConcept")
-    detail = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    code = models.ManyToManyField("CodeableConcept", null=True)
+    detail = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class Composition_Section(models.Model):
@@ -2653,13 +2653,13 @@ class Composition_Section(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     title = models.CharField(label="""The label for this particular section.  This will be part of the rendered content for the document, and is often used to build a table of contents.""", max_length=255)
     mode = models.CharField(label="""How the entry list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _mode = models.ForeignKey("Element", on_delete=models.CASCADE)
-    emptyReason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    entry = models.ManyToManyField("Reference")
-    focus = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    section = models.ManyToManyField("Composition_Section")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _mode = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    emptyReason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    entry = models.ManyToManyField("Reference", null=True)
+    focus = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    section = models.ManyToManyField("Composition_Section", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ConceptMap(models.Model):
@@ -2684,15 +2684,15 @@ class ConceptMap(models.Model):
     sourceCanonical = models.CharField(label="""Identifier for the source value set that contains the concepts that are being mapped and provides context for the mappings.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     targetUri = models.CharField(label="""The target value set provides context for the mappings. Note that the mapping is made between concepts, not between value sets, but the value set provides important context about how the concept mapping choices are made.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     targetCanonical = models.CharField(label="""The target value set provides context for the mappings. Note that the mapping is made between concepts, not between value sets, but the value set provides important context about how the concept mapping choices are made.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
-    _targetCanonical = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    group = models.ManyToManyField("ConceptMap_Group")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _targetCanonical = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    group = models.ManyToManyField("ConceptMap_Group", null=True)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ConceptMap_Group(models.Model):
@@ -2702,10 +2702,10 @@ class ConceptMap_Group(models.Model):
     sourceVersion = models.CharField(label="""The specific version of the code system, as determined by the code system authority.""", max_length=255)
     target = models.CharField(label="""An absolute URI that identifies the target system that the concepts will be mapped to.""")
     targetVersion = models.CharField(label="""The specific version of the code system, as determined by the code system authority.""", max_length=255)
-    _targetVersion = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _targetVersion = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     element = models.ManyToManyField("ConceptMap_Element")
-    modifierExtension = models.ManyToManyField("Extension")
-    unmapped = models.ForeignKey("ConceptMap_Unmapped", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    unmapped = models.ForeignKey("ConceptMap_Unmapped", null=True, on_delete=models.CASCADE)
 
 
 class ConceptMap_Element(models.Model):
@@ -2713,9 +2713,9 @@ class ConceptMap_Element(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""Identity (code or path) or the element/item being mapped.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     display = models.CharField(label="""The display for the code. The display is only provided to help editors when editing the concept map.""", max_length=255)
-    _display = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    target = models.ManyToManyField("ConceptMap_Target")
+    _display = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    target = models.ManyToManyField("ConceptMap_Target", null=True)
 
 
 class ConceptMap_Target(models.Model):
@@ -2725,9 +2725,9 @@ class ConceptMap_Target(models.Model):
     display = models.CharField(label="""The display for the code. The display is only provided to help editors when editing the concept map.""", max_length=255)
     equivalence = models.CharField(label="""The equivalence between the source and target concepts (counting for the dependencies and products). The equivalence is read from target to source (e.g. the target is 'wider' than the source).""", max_length=11, choices=[('relatedto', 'relatedto'), ('equivalent', 'equivalent'), ('equal', 'equal'), ('wider', 'wider'), ('subsumes', 'subsumes'), ('narrower', 'narrower'), ('specializes', 'specializes'), ('inexact', 'inexact'), ('unmatched', 'unmatched'), ('disjoint', 'disjoint')])
     comment = models.CharField(label="""A description of status/issues in mapping that conveys additional information not represented in  the structured data.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    product = models.ManyToManyField("ConceptMap_DependsOn")
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    product = models.ManyToManyField("ConceptMap_DependsOn", null=True)
 
 
 class ConceptMap_DependsOn(models.Model):
@@ -2737,8 +2737,8 @@ class ConceptMap_DependsOn(models.Model):
     system = models.CharField(label="""An absolute URI that identifies the code system of the dependency code (if the source/dependency is a value set that crosses code systems).""")
     value = models.CharField(label="""Identity (code or path) or the element/item/ValueSet/text that the map depends on / refers to.""", max_length=255)
     display = models.CharField(label="""The display for the code. The display is only provided to help editors when editing the concept map.""", max_length=255)
-    _display = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _display = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ConceptMap_Unmapped(models.Model):
@@ -2748,8 +2748,8 @@ class ConceptMap_Unmapped(models.Model):
     code = models.CharField(label="""The fixed code to use when the mode = 'fixed'  - all unmapped codes are mapped to a single fixed code.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     display = models.CharField(label="""The display for the code. The display is only provided to help editors when editing the concept map.""", max_length=255)
     url = models.CharField(label="""The canonical reference to an additional ConceptMap resource instance to use for mapping if this ConceptMap resource contains no matching mapping for the source concept.""")
-    _display = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _display = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Condition(models.Model):
@@ -2764,36 +2764,36 @@ class Condition(models.Model):
     abatementDateTime = models.CharField(label="""The date or estimated date that the condition resolved or went into remission. This is called "abatement" because of the many overloaded connotations associated with "remission" or "resolution" - Conditions are never really resolved, but they can abate.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     abatementString = models.CharField(label="""The date or estimated date that the condition resolved or went into remission. This is called "abatement" because of the many overloaded connotations associated with "remission" or "resolution" - Conditions are never really resolved, but they can abate.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     recordedDate = models.DateTimeField(label="""The recordedDate represents when this particular Condition record was created in the system, which is often a system-generated date.""")
-    _recordedDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    abatementAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    abatementPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    abatementRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    asserter = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    bodySite = models.ManyToManyField("CodeableConcept")
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    evidence = models.ManyToManyField("Condition_Evidence")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    stage = models.ManyToManyField("Condition_Stage")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _recordedDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    abatementAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    abatementPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    abatementRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    asserter = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    bodySite = models.ManyToManyField("CodeableConcept", null=True)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    evidence = models.ManyToManyField("Condition_Evidence", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    stage = models.ManyToManyField("Condition_Stage", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Condition_Stage(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    assessment = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    assessment = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Condition_Evidence(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    code = models.ManyToManyField("CodeableConcept")
-    detail = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
+    code = models.ManyToManyField("CodeableConcept", null=True)
+    detail = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Consent(models.Model):
@@ -2805,19 +2805,19 @@ class Consent(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""Indicates the current state of this consent.""", max_length=16, choices=[('draft', 'draft'), ('proposed', 'proposed'), ('active', 'active'), ('rejected', 'rejected'), ('inactive', 'inactive'), ('entered-in-error', 'entered-in-error')])
     dateTime = models.DateTimeField(label="""When this  Consent was issued / created / indexed.""")
-    _dateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _dateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     category = models.ManyToManyField("CodeableConcept")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    organization = models.ManyToManyField("Reference")
-    policy = models.ManyToManyField("Consent_Policy")
-    policyRule = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    provision = models.ForeignKey("Consent_Provision", on_delete=models.CASCADE)
-    sourceAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    sourceReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    verification = models.ManyToManyField("Consent_Verification")
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    organization = models.ManyToManyField("Reference", null=True)
+    policy = models.ManyToManyField("Consent_Policy", null=True)
+    policyRule = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    provision = models.ForeignKey("Consent_Provision", null=True, on_delete=models.CASCADE)
+    sourceAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    sourceReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    verification = models.ManyToManyField("Consent_Verification", null=True)
 
 
 class Consent_Policy(models.Model):
@@ -2825,8 +2825,8 @@ class Consent_Policy(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     authority = models.CharField(label="""Entity or Organization having regulatory jurisdiction or accountability for  enforcing policies pertaining to Consent Directives.""")
     uri = models.CharField(label="""The references to the policies that are included in this consent scope. Policies may be organizational, but are often defined jurisdictionally, or in law.""")
-    _uri = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _uri = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Consent_Verification(models.Model):
@@ -2834,29 +2834,29 @@ class Consent_Verification(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     verified = models.BooleanField(label="""Has the instruction been verified.""")
     verificationDate = models.DateTimeField(label="""Date verification was collected.""")
-    _verificationDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    verifiedWith = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _verificationDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    verifiedWith = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Consent_Provision(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""Action  to take - permit or deny - when the rule conditions are met.  Not permitted in root rule, required in all nested rules.""", max_length=6, choices=[('deny', 'deny'), ('permit', 'permit')])
-    _class = models.ManyToManyField("Coding", verbose_name="class")
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    actor = models.ManyToManyField("Consent_Actor")
-    code = models.ManyToManyField("CodeableConcept")
-    data = models.ManyToManyField("Consent_Data")
-    dataPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    provision = models.ManyToManyField("Consent_Provision")
+    _class = models.ManyToManyField("Coding", null=True, verbose_name="class")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    actor = models.ManyToManyField("Consent_Actor", null=True)
+    code = models.ManyToManyField("CodeableConcept", null=True)
+    data = models.ManyToManyField("Consent_Data", null=True)
+    dataPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    provision = models.ManyToManyField("Consent_Provision", null=True)
 
 
 class Consent_Actor(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
     role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
@@ -2865,8 +2865,8 @@ class Consent_Data(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     meaning = models.CharField(label="""How the resource reference is interpreted when testing consent restrictions.""", max_length=10, choices=[('instance', 'instance'), ('related', 'related'), ('dependents', 'dependents'), ('authoredby', 'authoredby')])
-    _meaning = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _meaning = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -2886,24 +2886,24 @@ class Contract(models.Model):
     title = models.CharField(label="""A short, descriptive, user-friendly title for this Contract definition, derivative, or instance in any legal state.t giving additional information about its content.""", max_length=255)
     subtitle = models.CharField(label="""An explanatory or alternate user-friendly title for this Contract definition, derivative, or instance in any legal state.t giving additional information about its content.""", max_length=255)
     alias = JSONField(validators=[JSONSchemaValidator({'description': 'Alternative representation of the title for this Contract definition, derivative, or instance in any legal state., e.g., a domain specific contract number related to legislation.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _alias = models.ManyToManyField("Element")
-    _subtitle = models.ForeignKey("Element", on_delete=models.CASCADE)
-    applies = models.ForeignKey("Period", on_delete=models.CASCADE)
-    contentDefinition = models.ForeignKey("Contract_ContentDefinition", on_delete=models.CASCADE)
-    friendly = models.ManyToManyField("Contract_Friendly")
-    identifier = models.ManyToManyField("Identifier")
-    legal = models.ManyToManyField("Contract_Legal")
-    legallyBindingAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    legallyBindingReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    relevantHistory = models.ManyToManyField("Reference")
-    rule = models.ManyToManyField("Contract_Rule")
-    signer = models.ManyToManyField("Contract_Signer")
-    subType = models.ManyToManyField("CodeableConcept")
-    term = models.ManyToManyField("Contract_Term")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _alias = models.ManyToManyField("Element", null=True)
+    _subtitle = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    applies = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    contentDefinition = models.ForeignKey("Contract_ContentDefinition", null=True, on_delete=models.CASCADE)
+    friendly = models.ManyToManyField("Contract_Friendly", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    legal = models.ManyToManyField("Contract_Legal", null=True)
+    legallyBindingAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    legallyBindingReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    relevantHistory = models.ManyToManyField("Reference", null=True)
+    rule = models.ManyToManyField("Contract_Rule", null=True)
+    signer = models.ManyToManyField("Contract_Signer", null=True)
+    subType = models.ManyToManyField("CodeableConcept", null=True)
+    term = models.ManyToManyField("Contract_Term", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Contract_ContentDefinition(models.Model):
@@ -2912,10 +2912,10 @@ class Contract_ContentDefinition(models.Model):
     publicationDate = models.DateTimeField(label="""The date (and optionally time) when the contract was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the contract changes.""")
     publicationStatus = models.CharField(label="""amended | appended | cancelled | disputed | entered-in-error | executable | executed | negotiable | offered | policy | rejected | renewed | revoked | resolved | terminated.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to Contract precursor content. Copyright statements are generally legal restrictions on the use and publishing of the Contract precursor content.', '$ref': '#/definitions/markdown'})])
-    _copyright = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    publisher = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    subType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _copyright = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    publisher = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    subType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Contract_Term(models.Model):
@@ -2923,27 +2923,27 @@ class Contract_Term(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     issued = models.DateTimeField(label="""When this Contract Provision was issued.""")
     text = models.CharField(label="""Statement of a provision in a policy or a contract.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    action = models.ManyToManyField("Contract_Action")
-    applies = models.ForeignKey("Period", on_delete=models.CASCADE)
-    asset = models.ManyToManyField("Contract_Asset")
-    group = models.ManyToManyField("Contract_Term")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    action = models.ManyToManyField("Contract_Action", null=True)
+    applies = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    asset = models.ManyToManyField("Contract_Asset", null=True)
+    group = models.ManyToManyField("Contract_Term", null=True)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     offer = models.ForeignKey("Contract_Offer", on_delete=models.CASCADE)
-    securityLabel = models.ManyToManyField("Contract_SecurityLabel")
-    subType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    topicReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    securityLabel = models.ManyToManyField("Contract_SecurityLabel", null=True)
+    subType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    topicReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Contract_SecurityLabel(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     number = JSONField(validators=[JSONSchemaValidator({'description': 'Number used to link this term or term element to the applicable Security Label.', 'items': {'type': 'integer'}, 'type': 'array'})])
-    _number = models.ManyToManyField("Element")
+    _number = models.ManyToManyField("Element", null=True)
     classification = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    control = models.ManyToManyField("Coding")
-    modifierExtension = models.ManyToManyField("Extension")
+    control = models.ManyToManyField("Coding", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Contract_Offer(models.Model):
@@ -2952,21 +2952,21 @@ class Contract_Offer(models.Model):
     text = models.CharField(label="""Human readable form of this Contract Offer.""", max_length=255)
     linkId = JSONField(validators=[JSONSchemaValidator({'description': 'The id of the clause or question text of the offer in the referenced questionnaire/response.', 'items': {'type': 'string'}, 'type': 'array'})])
     securityLabelNumber = JSONField(validators=[JSONSchemaValidator({'description': 'Security labels that protects the offer.', 'items': {'type': 'integer'}, 'type': 'array'})])
-    _securityLabelNumber = models.ManyToManyField("Element")
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    answer = models.ManyToManyField("Contract_Answer")
-    decision = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    decisionMode = models.ManyToManyField("CodeableConcept")
-    identifier = models.ManyToManyField("Identifier")
-    modifierExtension = models.ManyToManyField("Extension")
-    party = models.ManyToManyField("Contract_Party")
-    topic = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _securityLabelNumber = models.ManyToManyField("Element", null=True)
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    answer = models.ManyToManyField("Contract_Answer", null=True)
+    decision = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    decisionMode = models.ManyToManyField("CodeableConcept", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    party = models.ManyToManyField("Contract_Party", null=True)
+    topic = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Contract_Party(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     reference = models.ManyToManyField("Reference")
     role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
@@ -2982,12 +2982,12 @@ class Contract_Answer(models.Model):
     valueTime = models.CharField(label="""Response to an offer clause or question text,  which enables selection of values to be agreed to, e.g., the period of participation, the date of occupancy of a rental, warrently duration, or whether biospecimen may be used for further research.""", max_length=255, validators=[validators.RegexValidator("^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$")])
     valueString = models.CharField(label="""Response to an offer clause or question text,  which enables selection of values to be agreed to, e.g., the period of participation, the date of occupancy of a rental, warrently duration, or whether biospecimen may be used for further research.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     valueUri = models.CharField(label="""Response to an offer clause or question text,  which enables selection of values to be agreed to, e.g., the period of participation, the date of occupancy of a rental, warrently duration, or whether biospecimen may be used for further research.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
-    _valueUri = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _valueUri = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Contract_Asset(models.Model):
@@ -2997,27 +2997,27 @@ class Contract_Asset(models.Model):
     text = models.CharField(label="""Clause or question text (Prose Object) concerning the asset in a linked form, such as a QuestionnaireResponse used in the formation of the contract.""", max_length=255)
     linkId = JSONField(validators=[JSONSchemaValidator({'description': 'Id [identifier??] of the clause or question text about the asset in the referenced form or QuestionnaireResponse.', 'items': {'type': 'string'}, 'type': 'array'})])
     securityLabelNumber = JSONField(validators=[JSONSchemaValidator({'description': 'Security labels that protects the asset.', 'items': {'type': 'integer'}, 'type': 'array'})])
-    _securityLabelNumber = models.ManyToManyField("Element")
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    answer = models.ManyToManyField("Contract_Answer")
-    context = models.ManyToManyField("Contract_Context")
-    modifierExtension = models.ManyToManyField("Extension")
-    periodType = models.ManyToManyField("CodeableConcept")
-    relationship = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    scope = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    typeReference = models.ManyToManyField("Reference")
-    usePeriod = models.ManyToManyField("Period")
-    valuedItem = models.ManyToManyField("Contract_ValuedItem")
+    _securityLabelNumber = models.ManyToManyField("Element", null=True)
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    answer = models.ManyToManyField("Contract_Answer", null=True)
+    context = models.ManyToManyField("Contract_Context", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    periodType = models.ManyToManyField("CodeableConcept", null=True)
+    relationship = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    scope = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    typeReference = models.ManyToManyField("Reference", null=True)
+    usePeriod = models.ManyToManyField("Period", null=True)
+    valuedItem = models.ManyToManyField("Contract_ValuedItem", null=True)
 
 
 class Contract_Context(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     text = models.CharField(label="""Context description.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Contract_ValuedItem(models.Model):
@@ -3030,14 +3030,14 @@ class Contract_ValuedItem(models.Model):
     paymentDate = models.DateTimeField(label="""When payment is due.""")
     linkId = JSONField(validators=[JSONSchemaValidator({'description': 'Id  of the clause or question text related to the context of this valuedItem in the referenced form or QuestionnaireResponse.', 'items': {'type': 'string'}, 'type': 'array'})])
     securityLabelNumber = JSONField(validators=[JSONSchemaValidator({'description': 'A set of security labels that define which terms are controlled by this condition.', 'items': {'type': 'integer'}, 'type': 'array'})])
-    _paymentDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _securityLabelNumber = models.ManyToManyField("Element")
-    entityCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    recipient = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _paymentDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _securityLabelNumber = models.ManyToManyField("Element", null=True)
+    entityCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    recipient = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Contract_Action(models.Model):
@@ -3052,31 +3052,31 @@ class Contract_Action(models.Model):
     reason = JSONField(validators=[JSONSchemaValidator({'description': 'Describes why the action is to be performed or not performed in textual form.', 'items': {'type': 'string'}, 'type': 'array'})])
     reasonLinkId = JSONField(validators=[JSONSchemaValidator({'description': 'Id [identifier??] of the clause or question text related to the reason type or reference of this  action in the referenced form or QuestionnaireResponse.', 'items': {'type': 'string'}, 'type': 'array'})])
     securityLabelNumber = JSONField(validators=[JSONSchemaValidator({'description': 'Security labels that protects the action.', 'items': {'type': 'integer'}, 'type': 'array'})])
-    _occurrenceDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _securityLabelNumber = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    occurrenceTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    performer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    performerRole = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    subject = models.ManyToManyField("Contract_Subject")
+    _occurrenceDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _securityLabelNumber = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    occurrenceTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    performer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    performerRole = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    subject = models.ManyToManyField("Contract_Subject", null=True)
 
 
 class Contract_Subject(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     reference = models.ManyToManyField("Reference")
-    role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    role = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Contract_Signer(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     party = models.ForeignKey("Reference", on_delete=models.CASCADE)
     signature = models.ManyToManyField("Signature")
     type = models.ForeignKey("Coding", on_delete=models.CASCADE)
@@ -3085,25 +3085,25 @@ class Contract_Signer(models.Model):
 class Contract_Friendly(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    contentAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    contentReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    contentAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    contentReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Contract_Legal(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    contentAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    contentReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    contentAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    contentReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Contract_Rule(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    contentAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    contentReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    contentAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    contentReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Coverage(models.Model):
@@ -3119,17 +3119,17 @@ class Coverage(models.Model):
     order = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""The order of applicability of this coverage relative to other coverages which are currently in force. Note, there may be gaps in the numbering and this does not imply primary, secondary etc. as the specific positioning of coverages depends upon the episode of care.""")
     network = models.CharField(label="""The insurer-specific identifier for the insurer-defined network of providers to which the beneficiary may seek treatment which will be covered at the 'in-network' rate, otherwise 'out of network' terms and conditions apply.""", max_length=255)
     subrogation = models.BooleanField(label="""When 'subrogation=true' this insurance instance has been included not for adjudication but to provide insurers with the details to recover costs.""")
-    _class = models.ManyToManyField("Coverage_Class", verbose_name="class")
-    _subrogation = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _class = models.ManyToManyField("Coverage_Class", null=True, verbose_name="class")
+    _subrogation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     beneficiary = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    contract = models.ManyToManyField("Reference")
-    costToBeneficiary = models.ManyToManyField("Coverage_CostToBeneficiary")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    relationship = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    contract = models.ManyToManyField("Reference", null=True)
+    costToBeneficiary = models.ManyToManyField("Coverage_CostToBeneficiary", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    relationship = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Coverage_Class(models.Model):
@@ -3137,26 +3137,26 @@ class Coverage_Class(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     value = models.CharField(label="""The alphanumeric string value associated with the insurer issued label.""", max_length=255)
     name = models.CharField(label="""A short description for the class.""", max_length=255)
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
 class Coverage_CostToBeneficiary(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    exception = models.ManyToManyField("Coverage_Exception")
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    exception = models.ManyToManyField("Coverage_Exception", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class Coverage_Exception(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -3171,18 +3171,18 @@ class CoverageEligibilityRequest(models.Model):
     purpose = JSONField(validators=[JSONSchemaValidator({'description': "Code to specify whether requesting: prior authorization requirements for some service categories or billing codes; benefits for coverages specified or discovered; discovery and return of coverages for the patient; and/or validation that the specified coverage is in-force at the date/period specified or 'now' if not specified.", 'items': {'enum': ['auth-requirements', 'benefits', 'discovery', 'validation']}, 'type': 'array'})])
     servicedDate = models.CharField(label="""The date or dates when the enclosed suite of services were performed or completed.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     created = models.DateTimeField(label="""The date when this resource was created.""")
-    _created = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _purpose = models.ManyToManyField("Element")
-    facility = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    insurance = models.ManyToManyField("CoverageEligibilityRequest_Insurance")
-    item = models.ManyToManyField("CoverageEligibilityRequest_Item")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    priority = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    servicedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    supportingInfo = models.ManyToManyField("CoverageEligibilityRequest_SupportingInfo")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _created = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _purpose = models.ManyToManyField("Element", null=True)
+    facility = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    insurance = models.ManyToManyField("CoverageEligibilityRequest_Insurance", null=True)
+    item = models.ManyToManyField("CoverageEligibilityRequest_Item", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    priority = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    servicedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    supportingInfo = models.ManyToManyField("CoverageEligibilityRequest_SupportingInfo", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class CoverageEligibilityRequest_SupportingInfo(models.Model):
@@ -3190,9 +3190,9 @@ class CoverageEligibilityRequest_SupportingInfo(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify supporting information entries.""")
     appliesToAll = models.BooleanField(label="""The supporting materials are applicable for all detail items, product/servce categories and specific billing codes.""")
-    _appliesToAll = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _appliesToAll = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     information = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CoverageEligibilityRequest_Insurance(models.Model):
@@ -3200,32 +3200,32 @@ class CoverageEligibilityRequest_Insurance(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     focal = models.BooleanField(label="""A flag to indicate that this Coverage is to be used for evaluation of this request when set to true.""")
     businessArrangement = models.CharField(label="""A business agreement number established between the provider and the insurer for special business processing purposes.""", max_length=255)
-    _businessArrangement = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _businessArrangement = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     coverage = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CoverageEligibilityRequest_Item(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     supportingInfoSequence = JSONField(validators=[JSONSchemaValidator({'description': 'Exceptions, special conditions and supporting information applicable for this service or product line.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _supportingInfoSequence = models.ManyToManyField("Element")
-    detail = models.ManyToManyField("Reference")
-    diagnosis = models.ManyToManyField("CoverageEligibilityRequest_Diagnosis")
-    facility = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifier = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    unitPrice = models.ForeignKey("Money", on_delete=models.CASCADE)
+    _supportingInfoSequence = models.ManyToManyField("Element", null=True)
+    detail = models.ManyToManyField("Reference", null=True)
+    diagnosis = models.ManyToManyField("CoverageEligibilityRequest_Diagnosis", null=True)
+    facility = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifier = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    productOrService = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    unitPrice = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
 
 
 class CoverageEligibilityRequest_Diagnosis(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    diagnosisCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    diagnosisReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    diagnosisCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    diagnosisReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CoverageEligibilityResponse(models.Model):
@@ -3242,28 +3242,28 @@ class CoverageEligibilityResponse(models.Model):
     outcome = models.CharField(label="""The outcome of the request processing.""", max_length=8, choices=[('queued', 'queued'), ('complete', 'complete'), ('error', 'error'), ('partial', 'partial')])
     disposition = models.CharField(label="""A human readable description of the status of the adjudication.""", max_length=255)
     preAuthRef = models.CharField(label="""A reference from the Insurer to which these services pertain to be used on further communication and as proof that the request occurred.""", max_length=255)
-    _preAuthRef = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _purpose = models.ManyToManyField("Element")
-    error = models.ManyToManyField("CoverageEligibilityResponse_Error")
-    form = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    insurance = models.ManyToManyField("CoverageEligibilityResponse_Insurance")
+    _preAuthRef = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _purpose = models.ManyToManyField("Element", null=True)
+    error = models.ManyToManyField("CoverageEligibilityResponse_Error", null=True)
+    form = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    insurance = models.ManyToManyField("CoverageEligibilityResponse_Insurance", null=True)
     insurer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    servicedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    servicedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class CoverageEligibilityResponse_Insurance(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     inforce = models.BooleanField(label="""Flag indicating if the coverage provided is inforce currently if no service date(s) specified or for the whole duration of the service dates.""")
-    _inforce = models.ForeignKey("Element", on_delete=models.CASCADE)
-    benefitPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _inforce = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    benefitPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
     coverage = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    item = models.ManyToManyField("CoverageEligibilityResponse_Item")
-    modifierExtension = models.ManyToManyField("Extension")
+    item = models.ManyToManyField("CoverageEligibilityResponse_Item", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class CoverageEligibilityResponse_Item(models.Model):
@@ -3274,12 +3274,12 @@ class CoverageEligibilityResponse_Item(models.Model):
     description = models.CharField(label="""A richer description of the benefit or services covered.""", max_length=255)
     authorizationRequired = models.BooleanField(label="""A boolean flag indicating whether a preauthorization is required prior to actual service delivery.""")
     authorizationUrl = models.CharField(label="""A web location for obtaining requirements or descriptive information regarding the preauthorization.""")
-    _authorizationUrl = models.ForeignKey("Element", on_delete=models.CASCADE)
-    authorizationSupporting = models.ManyToManyField("CodeableConcept")
-    benefit = models.ManyToManyField("CoverageEligibilityResponse_Benefit")
-    modifierExtension = models.ManyToManyField("Extension")
-    provider = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    term = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _authorizationUrl = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    authorizationSupporting = models.ManyToManyField("CodeableConcept", null=True)
+    benefit = models.ManyToManyField("CoverageEligibilityResponse_Benefit", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    provider = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    term = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class CoverageEligibilityResponse_Benefit(models.Model):
@@ -3289,17 +3289,17 @@ class CoverageEligibilityResponse_Benefit(models.Model):
     allowedString = models.CharField(label="""The quantity of the benefit which is permitted under the coverage.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     usedUnsignedInt = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The quantity of the benefit which have been consumed to date.""")
     usedString = models.CharField(label="""The quantity of the benefit which have been consumed to date.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _usedString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _usedString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    usedMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
+    usedMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
 
 
 class CoverageEligibilityResponse_Error(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DetectedIssue(models.Model):
@@ -3314,35 +3314,35 @@ class DetectedIssue(models.Model):
     identifiedDateTime = models.CharField(label="""The date or period when the detected issue was initially identified.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     detail = models.CharField(label="""A textual explanation of the detected issue.""", max_length=255)
     reference = models.CharField(label="""The literature, knowledge-base or similar reference that describes the propensity for the detected issue identified.""")
-    _reference = models.ForeignKey("Element", on_delete=models.CASCADE)
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    evidence = models.ManyToManyField("DetectedIssue_Evidence")
-    identifiedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    implicated = models.ManyToManyField("Reference")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    mitigation = models.ManyToManyField("DetectedIssue_Mitigation")
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _reference = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    evidence = models.ManyToManyField("DetectedIssue_Evidence", null=True)
+    identifiedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    implicated = models.ManyToManyField("Reference", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    mitigation = models.ManyToManyField("DetectedIssue_Mitigation", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class DetectedIssue_Evidence(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    code = models.ManyToManyField("CodeableConcept")
-    detail = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
+    code = models.ManyToManyField("CodeableConcept", null=True)
+    detail = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DetectedIssue_Mitigation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateTimeField(label="""Indicates when the mitigating action was documented.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     action = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Device(models.Model):
@@ -3362,21 +3362,21 @@ class Device(models.Model):
     modelNumber = models.CharField(label="""The model number for the device.""", max_length=255)
     partNumber = models.CharField(label="""The part number of the device.""", max_length=255)
     url = models.CharField(label="""A network address on which the device may be contacted directly.""")
-    _url = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactPoint")
-    deviceName = models.ManyToManyField("Device_DeviceName")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    parent = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    property = models.ManyToManyField("Device_Property")
-    safety = models.ManyToManyField("CodeableConcept")
-    specialization = models.ManyToManyField("Device_Specialization")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    udiCarrier = models.ManyToManyField("Device_UdiCarrier")
-    version = models.ManyToManyField("Device_Version")
+    _url = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactPoint", null=True)
+    deviceName = models.ManyToManyField("Device_DeviceName", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    parent = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    property = models.ManyToManyField("Device_Property", null=True)
+    safety = models.ManyToManyField("CodeableConcept", null=True)
+    specialization = models.ManyToManyField("Device_Specialization", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    udiCarrier = models.ManyToManyField("Device_UdiCarrier", null=True)
+    version = models.ManyToManyField("Device_Version", null=True)
 
 
 class Device_UdiCarrier(models.Model):
@@ -3396,8 +3396,8 @@ http://hl7.org/fhir/NamingSystem/iccbba-other-di.""")
     carrierAIDC = JSONField(validators=[JSONSchemaValidator({'description': 'The full UDI carrier of the Automatic Identification and Data Capture (AIDC) technology representation of the barcode string as printed on the packaging of the device - e.g., a barcode or RFID.   Because of limitations on character sets in XML and the need to round-trip JSON data through XML, AIDC Formats *SHALL* be base64 encoded.', '$ref': '#/definitions/base64Binary'})])
     carrierHRF = models.CharField(label="""The full UDI carrier as the human readable form (HRF) representation of the barcode string as printed on the packaging of the device.""", max_length=255)
     entryType = models.CharField(label="""A coded entry to indicate how the data was entered.""", max_length=13, choices=[('barcode', 'barcode'), ('rfid', 'rfid'), ('manual', 'manual'), ('card', 'card'), ('self-reported', 'self-reported'), ('unknown', 'unknown')])
-    _entryType = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _entryType = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Device_DeviceName(models.Model):
@@ -3406,16 +3406,16 @@ class Device_DeviceName(models.Model):
     name = models.CharField(label="""The name of the device.""", max_length=255)
     type = models.CharField(label="""The type of deviceName.
 UDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.""", max_length=21, choices=[('udi-label-name', 'udi-label-name'), ('user-friendly-name', 'user-friendly-name'), ('patient-reported-name', 'patient-reported-name'), ('manufacturer-name', 'manufacturer-name'), ('model-name', 'model-name'), ('other', 'other')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Device_Specialization(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     version = models.CharField(label="""The version of the standard that is used to operate and communicate.""", max_length=255)
-    _version = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _version = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     systemType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -3423,19 +3423,19 @@ class Device_Version(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     value = models.CharField(label="""The version text.""", max_length=255)
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    component = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    component = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Device_Property(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueCode = models.ManyToManyField("CodeableConcept")
-    valueQuantity = models.ManyToManyField("Quantity")
+    valueCode = models.ManyToManyField("CodeableConcept", null=True)
+    valueQuantity = models.ManyToManyField("Quantity", null=True)
 
 
 class DeviceDefinition(models.Model):
@@ -3450,26 +3450,26 @@ class DeviceDefinition(models.Model):
     version = JSONField(validators=[JSONSchemaValidator({'description': 'The available versions of the device, e.g., software versions.', 'items': {'type': 'string'}, 'type': 'array'})])
     url = models.CharField(label="""A network address on which the device may be contacted directly.""")
     onlineInformation = models.CharField(label="""Access to on-line information about the device.""")
-    _onlineInformation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _version = models.ManyToManyField("Element")
-    capability = models.ManyToManyField("DeviceDefinition_Capability")
-    contact = models.ManyToManyField("ContactPoint")
-    deviceName = models.ManyToManyField("DeviceDefinition_DeviceName")
-    identifier = models.ManyToManyField("Identifier")
-    languageCode = models.ManyToManyField("CodeableConcept")
-    material = models.ManyToManyField("DeviceDefinition_Material")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    parentDevice = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    physicalCharacteristics = models.ForeignKey("ProdCharacteristic", on_delete=models.CASCADE)
-    property = models.ManyToManyField("DeviceDefinition_Property")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    shelfLifeStorage = models.ManyToManyField("ProductShelfLife")
-    specialization = models.ManyToManyField("DeviceDefinition_Specialization")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    udiDeviceIdentifier = models.ManyToManyField("DeviceDefinition_UdiDeviceIdentifier")
+    _onlineInformation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _version = models.ManyToManyField("Element", null=True)
+    capability = models.ManyToManyField("DeviceDefinition_Capability", null=True)
+    contact = models.ManyToManyField("ContactPoint", null=True)
+    deviceName = models.ManyToManyField("DeviceDefinition_DeviceName", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    languageCode = models.ManyToManyField("CodeableConcept", null=True)
+    material = models.ManyToManyField("DeviceDefinition_Material", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    parentDevice = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    physicalCharacteristics = models.ForeignKey("ProdCharacteristic", null=True, on_delete=models.CASCADE)
+    property = models.ManyToManyField("DeviceDefinition_Property", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    shelfLifeStorage = models.ManyToManyField("ProductShelfLife", null=True)
+    specialization = models.ManyToManyField("DeviceDefinition_Specialization", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    udiDeviceIdentifier = models.ManyToManyField("DeviceDefinition_UdiDeviceIdentifier", null=True)
 
 
 class DeviceDefinition_UdiDeviceIdentifier(models.Model):
@@ -3478,8 +3478,8 @@ class DeviceDefinition_UdiDeviceIdentifier(models.Model):
     deviceIdentifier = models.CharField(label="""The identifier that is to be associated with every Device that references this DeviceDefintiion for the issuer and jurisdication porvided in the DeviceDefinition.udiDeviceIdentifier.""", max_length=255)
     issuer = models.CharField(label="""The organization that assigns the identifier algorithm.""")
     jurisdiction = models.CharField(label="""The jurisdiction to which the deviceIdentifier applies.""")
-    _jurisdiction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _jurisdiction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DeviceDefinition_DeviceName(models.Model):
@@ -3488,8 +3488,8 @@ class DeviceDefinition_DeviceName(models.Model):
     name = models.CharField(label="""The name of the device.""", max_length=255)
     type = models.CharField(label="""The type of deviceName.
 UDILabelName | UserFriendlyName | PatientReportedName | ManufactureDeviceName | ModelName.""", max_length=21, choices=[('udi-label-name', 'udi-label-name'), ('user-friendly-name', 'user-friendly-name'), ('patient-reported-name', 'patient-reported-name'), ('manufacturer-name', 'manufacturer-name'), ('model-name', 'model-name'), ('other', 'other')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DeviceDefinition_Specialization(models.Model):
@@ -3497,25 +3497,25 @@ class DeviceDefinition_Specialization(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     systemType = models.CharField(label="""The standard that is used to operate and communicate.""", max_length=255)
     version = models.CharField(label="""The version of the standard that is used to operate and communicate.""", max_length=255)
-    _version = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _version = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DeviceDefinition_Capability(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    description = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
+    description = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
 class DeviceDefinition_Property(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueCode = models.ManyToManyField("CodeableConcept")
-    valueQuantity = models.ManyToManyField("Quantity")
+    valueCode = models.ManyToManyField("CodeableConcept", null=True)
+    valueQuantity = models.ManyToManyField("Quantity", null=True)
 
 
 class DeviceDefinition_Material(models.Model):
@@ -3523,8 +3523,8 @@ class DeviceDefinition_Material(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     alternate = models.BooleanField(label="""Indicates an alternative material of the device.""")
     allergenicIndicator = models.BooleanField(label="""Whether the substance is a known or suspected allergen.""")
-    _allergenicIndicator = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _allergenicIndicator = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     substance = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -3538,15 +3538,15 @@ class DeviceMetric(models.Model):
     operationalStatus = models.CharField(label="""Indicates current operational state of the device. For example: On, Off, Standby, etc.""", max_length=16, choices=[('on', 'on'), ('off', 'off'), ('standby', 'standby'), ('entered-in-error', 'entered-in-error')])
     color = models.CharField(label="""Describes the color representation for the metric. This is often used to aid clinicians to track and identify parameter types by color. In practice, consider a Patient Monitor that has ECG/HR and Pleth for example; the parameters are displayed in different characteristic colors, such as HR-blue, BP-green, and PR and SpO2- magenta.""", max_length=7, choices=[('black', 'black'), ('red', 'red'), ('green', 'green'), ('yellow', 'yellow'), ('blue', 'blue'), ('magenta', 'magenta'), ('cyan', 'cyan'), ('white', 'white')])
     category = models.CharField(label="""Indicates the category of the observation generation process. A DeviceMetric can be for example a setting, measurement, or calculation.""", max_length=11, choices=[('measurement', 'measurement'), ('setting', 'setting'), ('calculation', 'calculation'), ('unspecified', 'unspecified')])
-    _category = models.ForeignKey("Element", on_delete=models.CASCADE)
-    calibration = models.ManyToManyField("DeviceMetric_Calibration")
-    identifier = models.ManyToManyField("Identifier")
-    measurementPeriod = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    parent = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    unit = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _category = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    calibration = models.ManyToManyField("DeviceMetric_Calibration", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    measurementPeriod = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    parent = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    unit = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class DeviceMetric_Calibration(models.Model):
@@ -3555,8 +3555,8 @@ class DeviceMetric_Calibration(models.Model):
     type = models.CharField(label="""Describes the type of the calibration method.""", max_length=11, choices=[('unspecified', 'unspecified'), ('offset', 'offset'), ('gain', 'gain'), ('two-point', 'two-point')])
     state = models.CharField(label="""Describes the state of the calibration.""", max_length=20, choices=[('not-calibrated', 'not-calibrated'), ('calibration-required', 'calibration-required'), ('calibrated', 'calibrated'), ('unspecified', 'unspecified')])
     time = models.DateTimeField(label="""Describes the time last calibration has been performed.""")
-    _time = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _time = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DeviceRequest(models.Model):
@@ -3573,32 +3573,32 @@ class DeviceRequest(models.Model):
     priority = models.CharField(label="""Indicates how quickly the {{title}} should be addressed with respect to other requests.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     occurrenceDateTime = models.CharField(label="""The timing schedule for the use of the device. The Schedule data type allows many different expressions, for example. "Every 8 hours"; "Three times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     authoredOn = models.DateTimeField(label="""When the request transitioned to being actionable.""")
-    _authoredOn = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiatesUri = models.ManyToManyField("Element")
-    groupIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    occurrenceTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    parameter = models.ManyToManyField("DeviceRequest_Parameter")
-    performer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    performerType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    relevantHistory = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _authoredOn = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    groupIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    occurrenceTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    parameter = models.ManyToManyField("DeviceRequest_Parameter", null=True)
+    performer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    performerType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    relevantHistory = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class DeviceRequest_Parameter(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     valueBoolean = models.BooleanField(label="""The value of the device detail.""")
-    _valueBoolean = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
+    _valueBoolean = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
 
 
 class DeviceUseStatement(models.Model):
@@ -3611,18 +3611,18 @@ class DeviceUseStatement(models.Model):
     status = models.CharField(label="""A code representing the patient or other source's judgment about the state of the device used that this statement is about.  Generally this will be active or completed.""", max_length=16, choices=[('active', 'active'), ('completed', 'completed'), ('entered-in-error', 'entered-in-error'), ('intended', 'intended'), ('stopped', 'stopped'), ('on-hold', 'on-hold')])
     timingDateTime = models.CharField(label="""How often the device was used.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     recordedOn = models.DateTimeField(label="""The time at which the statement was made/recorded.""")
-    _recordedOn = models.ForeignKey("Element", on_delete=models.CASCADE)
-    bodySite = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _recordedOn = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    bodySite = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     device = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    timingPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    timingTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    timingPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    timingTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
 
 
 class DiagnosticReport(models.Model):
@@ -3636,27 +3636,27 @@ class DiagnosticReport(models.Model):
     effectiveDateTime = models.CharField(label="""The time or time-period the observed values are related to. When the subject of the report is a patient, this is usually either the time of the procedure or of specimen collection(s), but very often the source of the date/time is not known, only the date/time itself.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     issued = models.DateTimeField(label="""The date and time that this version of the report was made available to providers, typically after the report was reviewed and verified.""")
     conclusion = models.CharField(label="""Concise and clinically contextualized summary conclusion (interpretation/impression) of the diagnostic report.""", max_length=255)
-    _conclusion = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _conclusion = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    conclusionCode = models.ManyToManyField("CodeableConcept")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    encounter = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    imagingStudy = models.ManyToManyField("Reference")
-    media = models.ManyToManyField("DiagnosticReport_Media")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    presentedForm = models.ManyToManyField("Attachment")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    conclusionCode = models.ManyToManyField("CodeableConcept", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    encounter = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    imagingStudy = models.ManyToManyField("Reference", null=True)
+    media = models.ManyToManyField("DiagnosticReport_Media", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    presentedForm = models.ManyToManyField("Attachment", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class DiagnosticReport_Media(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     comment = models.CharField(label="""A comment about the image. Typically, this is used to provide an explanation for why the image is included, or to draw the viewer's attention to important features.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     link = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DocumentManifest(models.Model):
@@ -3670,24 +3670,24 @@ class DocumentManifest(models.Model):
     created = models.DateTimeField(label="""When the document manifest was created for submission to the server (not necessarily the same thing as the actual resource last modified time, since it may be modified, replicated, etc.).""")
     source = models.CharField(label="""Identifies the source system, application, or software that produced the document manifest.""")
     description = models.CharField(label="""Human-readable description of the source document. This is sometimes known as the "title".""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     content = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    masterIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    related = models.ManyToManyField("DocumentManifest_Related")
-    subject = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    masterIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    related = models.ManyToManyField("DocumentManifest_Related", null=True)
+    subject = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class DocumentManifest_Related(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    ref = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    ref = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class DocumentReference(models.Model):
@@ -3701,27 +3701,27 @@ class DocumentReference(models.Model):
     docStatus = models.CharField(label="""The status of the underlying document.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     date = models.DateTimeField(label="""When the document reference was created.""")
     description = models.CharField(label="""Human-readable description of the source document.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    author = models.ManyToManyField("Reference")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    author = models.ManyToManyField("Reference", null=True)
     content = models.ManyToManyField("DocumentReference_Content")
-    context = models.ForeignKey("DocumentReference_Context", on_delete=models.CASCADE)
-    custodian = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    masterIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    relatesTo = models.ManyToManyField("DocumentReference_RelatesTo")
-    securityLabel = models.ManyToManyField("CodeableConcept")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    context = models.ForeignKey("DocumentReference_Context", null=True, on_delete=models.CASCADE)
+    custodian = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    masterIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    relatesTo = models.ManyToManyField("DocumentReference_RelatesTo", null=True)
+    securityLabel = models.ManyToManyField("CodeableConcept", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class DocumentReference_RelatesTo(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""The type of relationship that this document has with anther document.""", max_length=10, choices=[('replaces', 'replaces'), ('transforms', 'transforms'), ('signs', 'signs'), ('appends', 'appends')])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     target = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -3729,19 +3729,19 @@ class DocumentReference_Content(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     attachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    format = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    format = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class DocumentReference_Context(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    event = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    practiceSetting = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    related = models.ManyToManyField("Reference")
-    sourcePatientInfo = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    event = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    practiceSetting = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    related = models.ManyToManyField("Reference", null=True)
+    sourcePatientInfo = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class EffectEvidenceSynthesis(models.Model):
@@ -3762,23 +3762,23 @@ class EffectEvidenceSynthesis(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the effect evidence synthesis and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the effect evidence synthesis.', '$ref': '#/definitions/markdown'})])
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    certainty = models.ManyToManyField("EffectEvidenceSynthesis_Certainty")
-    effectEstimate = models.ManyToManyField("EffectEvidenceSynthesis_EffectEstimate")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    certainty = models.ManyToManyField("EffectEvidenceSynthesis_Certainty", null=True)
+    effectEstimate = models.ManyToManyField("EffectEvidenceSynthesis_EffectEstimate", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
     outcome = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    resultsByExposure = models.ManyToManyField("EffectEvidenceSynthesis_ResultsByExposure")
-    sampleSize = models.ForeignKey("EffectEvidenceSynthesis_SampleSize", on_delete=models.CASCADE)
-    studyType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    resultsByExposure = models.ManyToManyField("EffectEvidenceSynthesis_ResultsByExposure", null=True)
+    sampleSize = models.ForeignKey("EffectEvidenceSynthesis_SampleSize", null=True, on_delete=models.CASCADE)
+    studyType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class EffectEvidenceSynthesis_SampleSize(models.Model):
@@ -3787,8 +3787,8 @@ class EffectEvidenceSynthesis_SampleSize(models.Model):
     description = models.CharField(label="""Human-readable summary of sample size.""", max_length=255)
     numberOfStudies = models.IntegerField(validators=[], label="""Number of studies included in this evidence synthesis.""")
     numberOfParticipants = models.IntegerField(validators=[], label="""Number of participants included in this evidence synthesis.""")
-    _numberOfParticipants = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _numberOfParticipants = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class EffectEvidenceSynthesis_ResultsByExposure(models.Model):
@@ -3796,10 +3796,10 @@ class EffectEvidenceSynthesis_ResultsByExposure(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Human-readable summary of results by exposure state.""", max_length=255)
     exposureState = models.CharField(label="""Whether these results are for the exposure state or alternative exposure state.""", max_length=20, choices=[('exposure', 'exposure'), ('exposure-alternative', 'exposure-alternative')])
-    _exposureState = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _exposureState = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     riskEvidenceSynthesis = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    variantState = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    variantState = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class EffectEvidenceSynthesis_EffectEstimate(models.Model):
@@ -3807,10 +3807,10 @@ class EffectEvidenceSynthesis_EffectEstimate(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Human-readable summary of effect estimate.""", max_length=255)
     value = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The point estimate of the effect estimate.""")
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    precisionEstimate = models.ManyToManyField("EffectEvidenceSynthesis_PrecisionEstimate")
-    unitOfMeasure = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    precisionEstimate = models.ManyToManyField("EffectEvidenceSynthesis_PrecisionEstimate", null=True)
+    unitOfMeasure = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class EffectEvidenceSynthesis_PrecisionEstimate(models.Model):
@@ -3819,27 +3819,27 @@ class EffectEvidenceSynthesis_PrecisionEstimate(models.Model):
     level = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Use 95 for a 95% confidence interval.""")
     _from = models.DecimalField("from", validators=[], max_digits=10, decimal_places=5, label="""Lower bound of confidence interval.""")
     to = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Upper bound of confidence interval.""")
-    _to = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _to = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class EffectEvidenceSynthesis_Certainty(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    certaintySubcomponent = models.ManyToManyField("EffectEvidenceSynthesis_CertaintySubcomponent")
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    rating = models.ManyToManyField("CodeableConcept")
+    certaintySubcomponent = models.ManyToManyField("EffectEvidenceSynthesis_CertaintySubcomponent", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    rating = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class EffectEvidenceSynthesis_CertaintySubcomponent(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    rating = models.ManyToManyField("CodeableConcept")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    rating = models.ManyToManyField("CodeableConcept", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Encounter(models.Model):
@@ -3851,31 +3851,31 @@ class Encounter(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""planned | arrived | triaged | in-progress | onleave | finished | cancelled +.""", max_length=16, choices=[('planned', 'planned'), ('arrived', 'arrived'), ('triaged', 'triaged'), ('in-progress', 'in-progress'), ('onleave', 'onleave'), ('finished', 'finished'), ('cancelled', 'cancelled'), ('entered-in-error', 'entered-in-error'), ('unknown', 'unknown')])
     _class = models.ForeignKey("Coding", verbose_name="class", on_delete=models.CASCADE)
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    account = models.ManyToManyField("Reference")
-    classHistory = models.ManyToManyField("Encounter_ClassHistory")
-    diagnosis = models.ManyToManyField("Encounter_Diagnosis")
-    hospitalization = models.ForeignKey("Encounter_Hospitalization", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    length = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    location = models.ManyToManyField("Encounter_Location")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    partOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    participant = models.ManyToManyField("Encounter_Participant")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    priority = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    statusHistory = models.ManyToManyField("Encounter_StatusHistory")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    account = models.ManyToManyField("Reference", null=True)
+    classHistory = models.ManyToManyField("Encounter_ClassHistory", null=True)
+    diagnosis = models.ManyToManyField("Encounter_Diagnosis", null=True)
+    hospitalization = models.ForeignKey("Encounter_Hospitalization", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    length = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    location = models.ManyToManyField("Encounter_Location", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    partOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    participant = models.ManyToManyField("Encounter_Participant", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    priority = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    statusHistory = models.ManyToManyField("Encounter_StatusHistory", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Encounter_StatusHistory(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     status = models.CharField(label="""planned | arrived | triaged | in-progress | onleave | finished | cancelled +.""", max_length=16, choices=[('planned', 'planned'), ('arrived', 'arrived'), ('triaged', 'triaged'), ('in-progress', 'in-progress'), ('onleave', 'onleave'), ('finished', 'finished'), ('cancelled', 'cancelled'), ('entered-in-error', 'entered-in-error'), ('unknown', 'unknown')])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     period = models.ForeignKey("Period", on_delete=models.CASCADE)
 
 
@@ -3883,48 +3883,48 @@ class Encounter_ClassHistory(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     _class = models.ForeignKey("Coding", verbose_name="class", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     period = models.ForeignKey("Period", on_delete=models.CASCADE)
 
 
 class Encounter_Participant(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    individual = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    individual = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class Encounter_Diagnosis(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     rank = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Ranking of the diagnosis (for each role type).""")
-    _rank = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _rank = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     condition = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    use = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    use = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Encounter_Hospitalization(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    destination = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    dischargeDisposition = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    preAdmissionIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    specialArrangement = models.ManyToManyField("CodeableConcept")
+    destination = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    dischargeDisposition = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    preAdmissionIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    specialArrangement = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class Encounter_Location(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     status = models.CharField(label="""The status of the participants' presence at the specified location during the period specified. If the participant is no longer at the location, then the period will have an end date/time.""", max_length=9, choices=[('planned', 'planned'), ('active', 'active'), ('reserved', 'reserved'), ('completed', 'completed')])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     location = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    physicalType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    physicalType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Endpoint(models.Model):
@@ -3939,17 +3939,17 @@ class Endpoint(models.Model):
     payloadMimeType = JSONField(validators=[JSONSchemaValidator({'description': 'The mime type to send the payload in - e.g. application/fhir+xml, application/fhir+json. If the mime type is not specified, then the sender could send any content (including no content depending on the connectionType).', 'items': {'pattern': '^[^\\s]+(\\s[^\\s]+)*$', 'type': 'string'}, 'type': 'array'})])
     address = models.CharField(label="""The uri that describes the actual end-point to connect to.""")
     header = JSONField(validators=[JSONSchemaValidator({'description': 'Additional headers / information to send as part of the notification.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _address = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _header = models.ManyToManyField("Element")
+    _address = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _header = models.ManyToManyField("Element", null=True)
     connectionType = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactPoint")
-    identifier = models.ManyToManyField("Identifier")
-    managingOrganization = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    contact = models.ManyToManyField("ContactPoint", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    managingOrganization = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     payloadType = models.ManyToManyField("CodeableConcept")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class EnrollmentRequest(models.Model):
@@ -3961,12 +3961,12 @@ class EnrollmentRequest(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""The status of the resource instance.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     created = models.DateTimeField(label="""The date when this resource was created.""")
-    _created = models.ForeignKey("Element", on_delete=models.CASCADE)
-    coverage = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _created = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    coverage = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class EnrollmentResponse(models.Model):
@@ -3980,12 +3980,12 @@ class EnrollmentResponse(models.Model):
     outcome = models.CharField(label="""Processing status: error, complete.""", max_length=8, choices=[('queued', 'queued'), ('complete', 'complete'), ('error', 'error'), ('partial', 'partial')])
     disposition = models.CharField(label="""A description of the status of the adjudication.""", max_length=255)
     created = models.DateTimeField(label="""The date when the enclosed suite of services were performed or completed.""")
-    _created = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    requestProvider = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _created = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    requestProvider = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class EpisodeOfCare(models.Model):
@@ -3996,25 +3996,25 @@ class EpisodeOfCare(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""planned | waitlist | active | onhold | finished | cancelled.""", max_length=16, choices=[('planned', 'planned'), ('waitlist', 'waitlist'), ('active', 'active'), ('onhold', 'onhold'), ('finished', 'finished'), ('cancelled', 'cancelled'), ('entered-in-error', 'entered-in-error')])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    account = models.ManyToManyField("Reference")
-    careManager = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    diagnosis = models.ManyToManyField("EpisodeOfCare_Diagnosis")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    statusHistory = models.ManyToManyField("EpisodeOfCare_StatusHistory")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    account = models.ManyToManyField("Reference", null=True)
+    careManager = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    diagnosis = models.ManyToManyField("EpisodeOfCare_Diagnosis", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    statusHistory = models.ManyToManyField("EpisodeOfCare_StatusHistory", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class EpisodeOfCare_StatusHistory(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     status = models.CharField(label="""planned | waitlist | active | onhold | finished | cancelled.""", max_length=16, choices=[('planned', 'planned'), ('waitlist', 'waitlist'), ('active', 'active'), ('onhold', 'onhold'), ('finished', 'finished'), ('cancelled', 'cancelled'), ('entered-in-error', 'entered-in-error')])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     period = models.ForeignKey("Period", on_delete=models.CASCADE)
 
 
@@ -4022,10 +4022,10 @@ class EpisodeOfCare_Diagnosis(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     rank = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Ranking of the diagnosis (for each role type).""")
-    _rank = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _rank = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     condition = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    role = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class EventDefinition(models.Model):
@@ -4050,19 +4050,19 @@ class EventDefinition(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the event definition and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the event definition.', '$ref': '#/definitions/markdown'})])
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    subjectCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    subjectReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    subjectCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    subjectReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
     trigger = models.ManyToManyField("TriggerDefinition")
-    useContext = models.ManyToManyField("UsageContext")
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class Evidence(models.Model):
@@ -4085,19 +4085,19 @@ class Evidence(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the evidence and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the evidence.', '$ref': '#/definitions/markdown'})])
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
     exposureBackground = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    outcome = models.ManyToManyField("Reference")
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    outcome = models.ManyToManyField("Reference", null=True)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class EvidenceVariable(models.Model):
@@ -4121,18 +4121,18 @@ class EvidenceVariable(models.Model):
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
     type = models.CharField(label="""The type of evidence element, a population, an exposure, or an outcome.""", max_length=11, choices=[('dichotomous', 'dichotomous'), ('continuous', 'continuous'), ('descriptive', 'descriptive')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     characteristic = models.ManyToManyField("EvidenceVariable_Characteristic")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class EvidenceVariable_Characteristic(models.Model):
@@ -4143,17 +4143,17 @@ class EvidenceVariable_Characteristic(models.Model):
     exclude = models.BooleanField(label="""When true, members with this characteristic are excluded from the element.""")
     participantEffectiveDateTime = models.CharField(label="""Indicates what effective period the study covers.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     groupMeasure = models.CharField(label="""Indicates how elements are aggregated within the study effective period.""", max_length=16, choices=[('mean', 'mean'), ('median', 'median'), ('mean-of-mean', 'mean-of-mean'), ('mean-of-median', 'mean-of-median'), ('median-of-mean', 'median-of-mean'), ('median-of-median', 'median-of-median')])
-    _groupMeasure = models.ForeignKey("Element", on_delete=models.CASCADE)
-    definitionCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    definitionDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    definitionExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    definitionReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    definitionTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    participantEffectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    participantEffectiveTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    timeFromStart = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    usageContext = models.ManyToManyField("UsageContext")
+    _groupMeasure = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    definitionCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    definitionDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    definitionExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    definitionReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    definitionTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    participantEffectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    participantEffectiveTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    timeFromStart = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    usageContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ExampleScenario(models.Model):
@@ -4173,17 +4173,17 @@ class ExampleScenario(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the example scenario and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the example scenario.', '$ref': '#/definitions/markdown'})])
     purpose = JSONField(validators=[JSONSchemaValidator({'description': 'What the example scenario resource is created for. This should not be used to show the business purpose of the scenario itself, but the purpose of documenting a scenario.', '$ref': '#/definitions/markdown'})])
     workflow = JSONField(validators=[JSONSchemaValidator({'description': 'Another nested workflow.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _purpose = models.ForeignKey("Element", on_delete=models.CASCADE)
-    actor = models.ManyToManyField("ExampleScenario_Actor")
-    contact = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    instance = models.ManyToManyField("ExampleScenario_Instance")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    process = models.ManyToManyField("ExampleScenario_Process")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _purpose = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    actor = models.ManyToManyField("ExampleScenario_Actor", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    instance = models.ManyToManyField("ExampleScenario_Instance", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    process = models.ManyToManyField("ExampleScenario_Process", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ExampleScenario_Actor(models.Model):
@@ -4193,8 +4193,8 @@ class ExampleScenario_Actor(models.Model):
     type = models.CharField(label="""The type of actor - person or system.""", max_length=6, choices=[('person', 'person'), ('entity', 'entity')])
     name = models.CharField(label="""The name of the actor as shown in the page.""", max_length=255)
     description = JSONField(validators=[JSONSchemaValidator({'description': 'The description of the actor.', '$ref': '#/definitions/markdown'})])
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ExampleScenario_Instance(models.Model):
@@ -4204,10 +4204,10 @@ class ExampleScenario_Instance(models.Model):
     resourceType = models.CharField(label="""The type of the resource.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     name = models.CharField(label="""A short name for the resource instance.""", max_length=255)
     description = JSONField(validators=[JSONSchemaValidator({'description': 'Human-friendly description of the resource instance.', '$ref': '#/definitions/markdown'})])
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    containedInstance = models.ManyToManyField("ExampleScenario_ContainedInstance")
-    modifierExtension = models.ManyToManyField("Extension")
-    version = models.ManyToManyField("ExampleScenario_Version")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    containedInstance = models.ManyToManyField("ExampleScenario_ContainedInstance", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    version = models.ManyToManyField("ExampleScenario_Version", null=True)
 
 
 class ExampleScenario_Version(models.Model):
@@ -4215,8 +4215,8 @@ class ExampleScenario_Version(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     versionId = models.CharField(label="""The identifier of a specific version of a resource.""", max_length=255)
     description = JSONField(validators=[JSONSchemaValidator({'description': 'The description of the resource version.', '$ref': '#/definitions/markdown'})])
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ExampleScenario_ContainedInstance(models.Model):
@@ -4224,8 +4224,8 @@ class ExampleScenario_ContainedInstance(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     resourceId = models.CharField(label="""Each resource contained in the instance.""", max_length=255)
     versionId = models.CharField(label="""A specific version of a resource contained in the instance.""", max_length=255)
-    _versionId = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _versionId = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ExampleScenario_Process(models.Model):
@@ -4235,20 +4235,20 @@ class ExampleScenario_Process(models.Model):
     description = JSONField(validators=[JSONSchemaValidator({'description': 'A longer description of the group of operations.', '$ref': '#/definitions/markdown'})])
     preConditions = JSONField(validators=[JSONSchemaValidator({'description': 'Description of initial status before the process starts.', '$ref': '#/definitions/markdown'})])
     postConditions = JSONField(validators=[JSONSchemaValidator({'description': 'Description of final status after the process ends.', '$ref': '#/definitions/markdown'})])
-    _postConditions = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    step = models.ManyToManyField("ExampleScenario_Step")
+    _postConditions = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    step = models.ManyToManyField("ExampleScenario_Step", null=True)
 
 
 class ExampleScenario_Step(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     pause = models.BooleanField(label="""If there is a pause in the flow.""")
-    _pause = models.ForeignKey("Element", on_delete=models.CASCADE)
-    alternative = models.ManyToManyField("ExampleScenario_Alternative")
-    modifierExtension = models.ManyToManyField("Extension")
-    operation = models.ForeignKey("ExampleScenario_Operation", on_delete=models.CASCADE)
-    process = models.ManyToManyField("ExampleScenario_Process")
+    _pause = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    alternative = models.ManyToManyField("ExampleScenario_Alternative", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operation = models.ForeignKey("ExampleScenario_Operation", null=True, on_delete=models.CASCADE)
+    process = models.ManyToManyField("ExampleScenario_Process", null=True)
 
 
 class ExampleScenario_Operation(models.Model):
@@ -4262,9 +4262,9 @@ class ExampleScenario_Operation(models.Model):
     description = JSONField(validators=[JSONSchemaValidator({'description': 'A comment to be inserted in the diagram.', '$ref': '#/definitions/markdown'})])
     initiatorActive = models.BooleanField(label="""Whether the initiator is deactivated right after the transaction.""")
     receiverActive = models.BooleanField(label="""Whether the receiver is deactivated right after the transaction.""")
-    _receiverActive = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    response = models.ForeignKey("ExampleScenario_ContainedInstance", on_delete=models.CASCADE)
+    _receiverActive = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    response = models.ForeignKey("ExampleScenario_ContainedInstance", null=True, on_delete=models.CASCADE)
 
 
 class ExampleScenario_Alternative(models.Model):
@@ -4272,9 +4272,9 @@ class ExampleScenario_Alternative(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     title = models.CharField(label="""The label to display for the alternative that gives a sense of the circumstance in which the alternative should be invoked.""", max_length=255)
     description = JSONField(validators=[JSONSchemaValidator({'description': 'A human-readable description of the alternative explaining when the alternative should occur rather than the base step.', '$ref': '#/definitions/markdown'})])
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    step = models.ManyToManyField("ExampleScenario_Step")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    step = models.ManyToManyField("ExampleScenario_Step", null=True)
 
 
 class ExplanationOfBenefit(models.Model):
@@ -4291,49 +4291,49 @@ class ExplanationOfBenefit(models.Model):
     disposition = models.CharField(label="""A human readable description of the status of the adjudication.""", max_length=255)
     preAuthRef = JSONField(validators=[JSONSchemaValidator({'description': 'Reference from the Insurer which is used in later communications which refers to this adjudication.', 'items': {'type': 'string'}, 'type': 'array'})])
     precedence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""This indicates the relative order of a series of EOBs related to different coverages for the same suite of services.""")
-    _preAuthRef = models.ManyToManyField("Element")
-    _precedence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    accident = models.ForeignKey("ExplanationOfBenefit_Accident", on_delete=models.CASCADE)
-    addItem = models.ManyToManyField("ExplanationOfBenefit_AddItem")
-    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication")
-    benefitBalance = models.ManyToManyField("ExplanationOfBenefit_BenefitBalance")
-    benefitPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    careTeam = models.ManyToManyField("ExplanationOfBenefit_CareTeam")
-    claimResponse = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    diagnosis = models.ManyToManyField("ExplanationOfBenefit_Diagnosis")
-    form = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    formCode = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
+    _preAuthRef = models.ManyToManyField("Element", null=True)
+    _precedence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    accident = models.ForeignKey("ExplanationOfBenefit_Accident", null=True, on_delete=models.CASCADE)
+    addItem = models.ManyToManyField("ExplanationOfBenefit_AddItem", null=True)
+    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication", null=True)
+    benefitBalance = models.ManyToManyField("ExplanationOfBenefit_BenefitBalance", null=True)
+    benefitPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    careTeam = models.ManyToManyField("ExplanationOfBenefit_CareTeam", null=True)
+    claimResponse = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    diagnosis = models.ManyToManyField("ExplanationOfBenefit_Diagnosis", null=True)
+    form = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    formCode = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
     insurance = models.ManyToManyField("ExplanationOfBenefit_Insurance")
-    item = models.ManyToManyField("ExplanationOfBenefit_Item")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    payee = models.ForeignKey("ExplanationOfBenefit_Payee", on_delete=models.CASCADE)
-    payment = models.ForeignKey("ExplanationOfBenefit_Payment", on_delete=models.CASCADE)
-    preAuthRefPeriod = models.ManyToManyField("Period")
-    procedure = models.ManyToManyField("ExplanationOfBenefit_Procedure")
-    processNote = models.ManyToManyField("ExplanationOfBenefit_ProcessNote")
-    related = models.ManyToManyField("ExplanationOfBenefit_Related")
-    supportingInfo = models.ManyToManyField("ExplanationOfBenefit_SupportingInfo")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    total = models.ManyToManyField("ExplanationOfBenefit_Total")
+    item = models.ManyToManyField("ExplanationOfBenefit_Item", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    payee = models.ForeignKey("ExplanationOfBenefit_Payee", null=True, on_delete=models.CASCADE)
+    payment = models.ForeignKey("ExplanationOfBenefit_Payment", null=True, on_delete=models.CASCADE)
+    preAuthRefPeriod = models.ManyToManyField("Period", null=True)
+    procedure = models.ManyToManyField("ExplanationOfBenefit_Procedure", null=True)
+    processNote = models.ManyToManyField("ExplanationOfBenefit_ProcessNote", null=True)
+    related = models.ManyToManyField("ExplanationOfBenefit_Related", null=True)
+    supportingInfo = models.ManyToManyField("ExplanationOfBenefit_SupportingInfo", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    total = models.ManyToManyField("ExplanationOfBenefit_Total", null=True)
 
 
 class ExplanationOfBenefit_Related(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    claim = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reference = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    relationship = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    claim = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reference = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    relationship = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_Payee(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    party = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    party = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_CareTeam(models.Model):
@@ -4341,10 +4341,10 @@ class ExplanationOfBenefit_CareTeam(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify care team entries.""")
     responsible = models.BooleanField(label="""The party who is billing and/or responsible for the claimed products or services.""")
-    _responsible = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _responsible = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     provider = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    qualification = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    qualification = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_SupportingInfo(models.Model):
@@ -4354,25 +4354,25 @@ class ExplanationOfBenefit_SupportingInfo(models.Model):
     timingDate = models.CharField(label="""The date when or period to which this information refers.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     valueBoolean = models.BooleanField(label="""Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.""")
     valueString = models.CharField(label="""Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _valueString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reason = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    timingPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _valueString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reason = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    timingPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_Diagnosis(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify diagnosis entries.""")
-    _sequence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    diagnosisReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    packageCode = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    _sequence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    diagnosisReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    packageCode = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class ExplanationOfBenefit_Procedure(models.Model):
@@ -4380,12 +4380,12 @@ class ExplanationOfBenefit_Procedure(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify procedure entries.""")
     date = models.DateTimeField(label="""Date and optionally time the procedure was performed.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    procedureCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    procedureReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
-    udi = models.ManyToManyField("Reference")
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    procedureCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    procedureReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
+    udi = models.ManyToManyField("Reference", null=True)
 
 
 class ExplanationOfBenefit_Insurance(models.Model):
@@ -4393,21 +4393,21 @@ class ExplanationOfBenefit_Insurance(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     focal = models.BooleanField(label="""A flag to indicate that this Coverage is to be used for adjudication of this claim when set to true.""")
     preAuthRef = JSONField(validators=[JSONSchemaValidator({'description': 'Reference numbers previously provided by the insurer to the provider to be quoted on subsequent claims containing services or products related to the prior authorization.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _focal = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _preAuthRef = models.ManyToManyField("Element")
+    _focal = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _preAuthRef = models.ManyToManyField("Element", null=True)
     coverage = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ExplanationOfBenefit_Accident(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateField(label="""Date of an accident event  related to the products and services contained in the claim.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    locationAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    locationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    locationAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    locationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_Item(models.Model):
@@ -4421,29 +4421,29 @@ class ExplanationOfBenefit_Item(models.Model):
     servicedDate = models.CharField(label="""The date or dates when the service or product was supplied, performed or completed.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
-    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication")
-    bodySite = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    detail = models.ManyToManyField("ExplanationOfBenefit_Detail")
-    encounter = models.ManyToManyField("Reference")
-    locationAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    locationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    servicedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    subSite = models.ManyToManyField("CodeableConcept")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
+    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication", null=True)
+    bodySite = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    detail = models.ManyToManyField("ExplanationOfBenefit_Detail", null=True)
+    encounter = models.ManyToManyField("Reference", null=True)
+    locationAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    locationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    servicedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    subSite = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class ExplanationOfBenefit_Adjudication(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     value = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A non-monetary value associated with the category. Mutually exclusive to the amount element above.""")
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_Detail(models.Model):
@@ -4452,16 +4452,16 @@ class ExplanationOfBenefit_Detail(models.Model):
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A claim detail line. Either a simple (a product or service) or a 'group' of sub-details which are simple items.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
-    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication")
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
+    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    programCode = models.ManyToManyField("CodeableConcept")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    subDetail = models.ManyToManyField("ExplanationOfBenefit_SubDetail")
-    udi = models.ManyToManyField("Reference")
+    programCode = models.ManyToManyField("CodeableConcept", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    subDetail = models.ManyToManyField("ExplanationOfBenefit_SubDetail", null=True)
+    udi = models.ManyToManyField("Reference", null=True)
 
 
 class ExplanationOfBenefit_SubDetail(models.Model):
@@ -4470,15 +4470,15 @@ class ExplanationOfBenefit_SubDetail(models.Model):
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A claim detail line. Either a simple (a product or service) or a 'group' of sub-details which are simple items.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
-    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication")
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
+    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    programCode = models.ManyToManyField("CodeableConcept")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    udi = models.ManyToManyField("Reference")
+    programCode = models.ManyToManyField("CodeableConcept", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    udi = models.ManyToManyField("Reference", null=True)
 
 
 class ExplanationOfBenefit_AddItem(models.Model):
@@ -4490,19 +4490,19 @@ class ExplanationOfBenefit_AddItem(models.Model):
     servicedDate = models.CharField(label="""The date or dates when the service or product was supplied, performed or completed.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
-    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication")
-    bodySite = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    detail = models.ManyToManyField("ExplanationOfBenefit_Detail1")
-    locationAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    locationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
-    provider = models.ManyToManyField("Reference")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    servicedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    subSite = models.ManyToManyField("CodeableConcept")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
+    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication", null=True)
+    bodySite = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    detail = models.ManyToManyField("ExplanationOfBenefit_Detail1", null=True)
+    locationAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    locationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    provider = models.ManyToManyField("Reference", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    servicedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    subSite = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class ExplanationOfBenefit_Detail1(models.Model):
@@ -4510,15 +4510,15 @@ class ExplanationOfBenefit_Detail1(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
-    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication")
-    modifier = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
+    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication", null=True)
+    modifier = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    subDetail = models.ManyToManyField("ExplanationOfBenefit_SubDetail1")
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    subDetail = models.ManyToManyField("ExplanationOfBenefit_SubDetail1", null=True)
 
 
 class ExplanationOfBenefit_SubDetail1(models.Model):
@@ -4526,14 +4526,14 @@ class ExplanationOfBenefit_SubDetail1(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.""")
     noteNumber = JSONField(validators=[JSONSchemaValidator({'description': 'The numbers associated with notes below which apply to the adjudication of this item.', 'items': {'minimum': 1, 'type': 'number'}, 'type': 'array'})])
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _noteNumber = models.ManyToManyField("Element")
-    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication")
-    modifier = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    net = models.ForeignKey("Money", on_delete=models.CASCADE)
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _noteNumber = models.ManyToManyField("Element", null=True)
+    adjudication = models.ManyToManyField("ExplanationOfBenefit_Adjudication", null=True)
+    modifier = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    net = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
     productOrService = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_Total(models.Model):
@@ -4541,18 +4541,18 @@ class ExplanationOfBenefit_Total(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     amount = models.ForeignKey("Money", on_delete=models.CASCADE)
     category = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ExplanationOfBenefit_Payment(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateField(label="""Estimated date the payment will be issued or the actual issue date of payment.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    adjustmentReason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    adjustmentReason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ExplanationOfBenefit_ProcessNote(models.Model):
@@ -4561,9 +4561,9 @@ class ExplanationOfBenefit_ProcessNote(models.Model):
     number = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""A number to uniquely identify a note entry.""")
     type = models.CharField(label="""The business purpose of the note text.""", max_length=9, choices=[('display', 'display'), ('print', 'print'), ('printoper', 'printoper')])
     text = models.CharField(label="""The explanation or description associated with the processing.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    language = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    language = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ExplanationOfBenefit_BenefitBalance(models.Model):
@@ -4572,10 +4572,10 @@ class ExplanationOfBenefit_BenefitBalance(models.Model):
     excluded = models.BooleanField(label="""True if the indicated class of service is excluded from the plan, missing or False indicates the product or service is included in the coverage.""")
     name = models.CharField(label="""A short name or tag for the benefit.""", max_length=255)
     description = models.CharField(label="""A richer description of the benefit or services covered.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    financial = models.ManyToManyField("ExplanationOfBenefit_Financial")
-    modifierExtension = models.ManyToManyField("Extension")
-    term = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    financial = models.ManyToManyField("ExplanationOfBenefit_Financial", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    term = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ExplanationOfBenefit_Financial(models.Model):
@@ -4584,10 +4584,10 @@ class ExplanationOfBenefit_Financial(models.Model):
     allowedUnsignedInt = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The quantity of the benefit which is permitted under the coverage.""")
     allowedString = models.CharField(label="""The quantity of the benefit which is permitted under the coverage.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     usedUnsignedInt = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The quantity of the benefit which have been consumed to date.""")
-    _usedUnsignedInt = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _usedUnsignedInt = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    usedMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
+    usedMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
 
 
 class FamilyMemberHistory(models.Model):
@@ -4609,21 +4609,21 @@ class FamilyMemberHistory(models.Model):
     deceasedBoolean = models.BooleanField(label="""Deceased flag or the actual or approximate age of the relative at the time of death for the family member history record.""")
     deceasedDate = models.CharField(label="""Deceased flag or the actual or approximate age of the relative at the time of death for the family member history record.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     deceasedString = models.CharField(label="""Deceased flag or the actual or approximate age of the relative at the time of death for the family member history record.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _deceasedString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiatesUri = models.ManyToManyField("Element")
-    bornPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    condition = models.ManyToManyField("FamilyMemberHistory_Condition")
-    deceasedAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    deceasedRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
+    _deceasedString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    bornPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    condition = models.ManyToManyField("FamilyMemberHistory_Condition", null=True)
+    deceasedAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    deceasedRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
     patient = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    sex = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    sex = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class FamilyMemberHistory_Condition(models.Model):
@@ -4631,13 +4631,13 @@ class FamilyMemberHistory_Condition(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     contributedToDeath = models.BooleanField(label="""This condition contributed to the cause of death of the related person. If contributedToDeath is not populated, then it is unknown.""")
     onsetString = models.CharField(label="""Either the age of onset, range of approximate age or descriptive string can be recorded.  For conditions with multiple occurrences, this describes the first known occurrence.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _onsetString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    onsetAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    onsetPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    onsetRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    outcome = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _onsetString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    onsetAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    onsetPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    onsetRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    outcome = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Flag(models.Model):
@@ -4648,15 +4648,15 @@ class Flag(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""Supports basic workflow.""", max_length=16, choices=[('active', 'active'), ('inactive', 'inactive'), ('entered-in-error', 'entered-in-error')])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    category = models.ManyToManyField("CodeableConcept")
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    category = models.ManyToManyField("CodeableConcept", null=True)
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Goal(models.Model):
@@ -4670,17 +4670,17 @@ class Goal(models.Model):
     startDate = models.CharField(label="""The date or event after which the goal should begin being pursued.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
     statusDate = models.DateField(label="""Identifies when the current status.  I.e. When initially created, when achieved, when cancelled, etc.""")
     statusReason = models.CharField(label="""Captures the reason for the current status.""", max_length=255)
-    _statusReason = models.ForeignKey("Element", on_delete=models.CASCADE)
-    expressedBy = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    outcomeCode = models.ManyToManyField("CodeableConcept")
-    outcomeReference = models.ManyToManyField("Reference")
-    startCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    target = models.ManyToManyField("Goal_Target")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _statusReason = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    expressedBy = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    outcomeCode = models.ManyToManyField("CodeableConcept", null=True)
+    outcomeReference = models.ManyToManyField("Reference", null=True)
+    startCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    target = models.ManyToManyField("Goal_Target", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Goal_Target(models.Model):
@@ -4690,13 +4690,13 @@ class Goal_Target(models.Model):
     detailBoolean = models.BooleanField(label="""The target value of the focus to be achieved to signify the fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of the range can be specified. When a low value is missing, it indicates that the goal is achieved at any focus value at or below the high value. Similarly, if the high value is missing, it indicates that the goal is achieved at any focus value at or above the low value.""")
     detailInteger = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The target value of the focus to be achieved to signify the fulfillment of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of the range can be specified. When a low value is missing, it indicates that the goal is achieved at any focus value at or below the high value. Similarly, if the high value is missing, it indicates that the goal is achieved at any focus value at or above the low value.""")
     dueDate = models.CharField(label="""Indicates either the date or the duration after start by which the goal should be met.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$")])
-    _dueDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    detailCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    detailQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    detailRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    detailRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    dueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _dueDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    detailCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    detailQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    detailRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    detailRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    dueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class GraphDefinition(models.Model):
@@ -4717,14 +4717,14 @@ class GraphDefinition(models.Model):
     purpose = JSONField(validators=[JSONSchemaValidator({'description': 'Explanation of why this graph definition is needed and why it has been designed as it has.', '$ref': '#/definitions/markdown'})])
     start = models.CharField(label="""The type of FHIR resource at which instances of this graph start.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     profile = models.CharField(label="""The profile that describes the use of the base resource.""")
-    _start = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    link = models.ManyToManyField("GraphDefinition_Link")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _start = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    link = models.ManyToManyField("GraphDefinition_Link", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class GraphDefinition_Link(models.Model):
@@ -4735,9 +4735,9 @@ class GraphDefinition_Link(models.Model):
     min = models.IntegerField(validators=[], label="""Minimum occurrences for this link.""")
     max = models.CharField(label="""Maximum occurrences for this link.""", max_length=255)
     description = models.CharField(label="""Information about why this link is of interest in this graph definition.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    target = models.ManyToManyField("GraphDefinition_Target")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    target = models.ManyToManyField("GraphDefinition_Target", null=True)
 
 
 class GraphDefinition_Target(models.Model):
@@ -4746,10 +4746,10 @@ class GraphDefinition_Target(models.Model):
     type = models.CharField(label="""Type of resource this link refers to.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     params = models.CharField(label="""A set of parameters to look up.""", max_length=255)
     profile = models.CharField(label="""Profile for the target resource.""")
-    _params = models.ForeignKey("Element", on_delete=models.CASCADE)
-    compartment = models.ManyToManyField("GraphDefinition_Compartment")
-    link = models.ManyToManyField("GraphDefinition_Link")
-    modifierExtension = models.ManyToManyField("Extension")
+    _params = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    compartment = models.ManyToManyField("GraphDefinition_Compartment", null=True)
+    link = models.ManyToManyField("GraphDefinition_Link", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class GraphDefinition_Compartment(models.Model):
@@ -4760,8 +4760,8 @@ class GraphDefinition_Compartment(models.Model):
     rule = models.CharField(label="""identical | matching | different | no-rule | custom.""", max_length=9, choices=[('identical', 'identical'), ('matching', 'matching'), ('different', 'different'), ('custom', 'custom')])
     expression = models.CharField(label="""Custom rule, as a FHIRPath expression.""", max_length=255)
     description = models.CharField(label="""Documentation for FHIRPath expression.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Group(models.Model):
@@ -4776,15 +4776,15 @@ class Group(models.Model):
     actual = models.BooleanField(label="""If true, indicates that the resource refers to a specific group of real individuals.  If false, the group defines a set of intended individuals.""")
     name = models.CharField(label="""A label assigned to the group for human identification and communication.""", max_length=255)
     quantity = models.IntegerField(validators=[], label="""A count of the number of resource instances that are part of the group.""")
-    _quantity = models.ForeignKey("Element", on_delete=models.CASCADE)
-    characteristic = models.ManyToManyField("Group_Characteristic")
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    managingEntity = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    member = models.ManyToManyField("Group_Member")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _quantity = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    characteristic = models.ManyToManyField("Group_Characteristic", null=True)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    managingEntity = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    member = models.ManyToManyField("Group_Member", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Group_Characteristic(models.Model):
@@ -4792,23 +4792,23 @@ class Group_Characteristic(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     valueBoolean = models.BooleanField(label="""The value of the trait that holds (or does not hold - see 'exclude') for members of the group.""")
     exclude = models.BooleanField(label="""If true, indicates the characteristic is one that is NOT held by members of the group.""")
-    _exclude = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _exclude = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Group_Member(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     inactive = models.BooleanField(label="""A flag to indicate that the member is no longer in the group, but previously may have been a member.""")
-    _inactive = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _inactive = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     entity = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class GuidanceResponse(models.Model):
@@ -4822,18 +4822,18 @@ class GuidanceResponse(models.Model):
     moduleCanonical = models.CharField(label="""An identifier, CodeableConcept or canonical reference to the guidance that was requested.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     status = models.CharField(label="""The status of the response. If the evaluation is completed successfully, the status will indicate success. However, in order to complete the evaluation, the engine may require more information. In this case, the status will be data-required, and the response will contain a description of the additional required information. If the evaluation completed successfully, but the engine determines that a potentially more accurate response could be provided if more data was available, the status will be data-requested, and the response will contain a description of the additional requested information.""", max_length=16, choices=[('success', 'success'), ('data-requested', 'data-requested'), ('data-required', 'data-required'), ('in-progress', 'in-progress'), ('failure', 'failure'), ('entered-in-error', 'entered-in-error')])
     occurrenceDateTime = models.DateTimeField(label="""Indicates when the guidance response was processed.""")
-    _occurrenceDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    dataRequirement = models.ManyToManyField("DataRequirement")
-    evaluationMessage = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    moduleCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    note = models.ManyToManyField("Annotation")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    requestIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    result = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _occurrenceDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    dataRequirement = models.ManyToManyField("DataRequirement", null=True)
+    evaluationMessage = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    moduleCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    note = models.ManyToManyField("Annotation", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    requestIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    result = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class HealthcareService(models.Model):
@@ -4849,28 +4849,28 @@ class HealthcareService(models.Model):
     extraDetails = JSONField(validators=[JSONSchemaValidator({'description': "Extra details about the service that can't be placed in the other fields.", '$ref': '#/definitions/markdown'})])
     appointmentRequired = models.BooleanField(label="""Indicates whether or not a prospective consumer will require an appointment for a particular service at a site to be provided by the Organization. Indicates if an appointment is required for access to this service.""")
     availabilityExceptions = models.CharField(label="""A description of site availability exceptions, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as details in the available Times and not available Times.""", max_length=255)
-    _availabilityExceptions = models.ForeignKey("Element", on_delete=models.CASCADE)
-    availableTime = models.ManyToManyField("HealthcareService_AvailableTime")
-    eligibility = models.ManyToManyField("HealthcareService_Eligibility")
-    endpoint = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    notAvailable = models.ManyToManyField("HealthcareService_NotAvailable")
-    photo = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    providedBy = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    referralMethod = models.ManyToManyField("CodeableConcept")
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _availabilityExceptions = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    availableTime = models.ManyToManyField("HealthcareService_AvailableTime", null=True)
+    eligibility = models.ManyToManyField("HealthcareService_Eligibility", null=True)
+    endpoint = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    notAvailable = models.ManyToManyField("HealthcareService_NotAvailable", null=True)
+    photo = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    providedBy = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    referralMethod = models.ManyToManyField("CodeableConcept", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class HealthcareService_Eligibility(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     comment = JSONField(validators=[JSONSchemaValidator({'description': 'Describes the eligibility conditions for the service.', '$ref': '#/definitions/markdown'})])
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class HealthcareService_AvailableTime(models.Model):
@@ -4880,18 +4880,18 @@ class HealthcareService_AvailableTime(models.Model):
     allDay = models.BooleanField(label="""Is this always available? (hence times are irrelevant) e.g. 24 hour service.""")
     availableStartTime = models.TimeField(label="""The opening time of day. Note: If the AllDay flag is set, then this time is ignored.""")
     availableEndTime = models.TimeField(label="""The closing time of day. Note: If the AllDay flag is set, then this time is ignored.""")
-    _availableEndTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _daysOfWeek = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _availableEndTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _daysOfWeek = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class HealthcareService_NotAvailable(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""The reason that can be presented to the user as to why this time is not available.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    during = models.ForeignKey("Period", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    during = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImagingStudy(models.Model):
@@ -4906,17 +4906,17 @@ class ImagingStudy(models.Model):
     numberOfSeries = models.IntegerField(validators=[], label="""Number of Series in the Study. This value given may be larger than the number of series elements this Resource contains due to resource availability, security, or other factors. This element should be present if any series elements are present.""")
     numberOfInstances = models.IntegerField(validators=[], label="""Number of SOP Instances in Study. This value given may be larger than the number of instance elements this resource contains due to resource availability, security, or other factors. This element should be present if any instance elements are present.""")
     description = models.CharField(label="""The Imaging Manager description of the study. Institution-generated description or classification of the Study (component) performed.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    location = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modality = models.ManyToManyField("Coding")
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    series = models.ManyToManyField("ImagingStudy_Series")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    location = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modality = models.ManyToManyField("Coding", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    series = models.ManyToManyField("ImagingStudy_Series", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ImagingStudy_Series(models.Model):
@@ -4927,20 +4927,20 @@ class ImagingStudy_Series(models.Model):
     description = models.CharField(label="""A description of the series.""", max_length=255)
     numberOfInstances = models.IntegerField(validators=[], label="""Number of SOP Instances in the Study. The value given may be larger than the number of instance elements this resource contains due to resource availability, security, or other factors. This element should be present if any instance elements are present.""")
     started = models.DateTimeField(label="""The date and time the series was started.""")
-    _started = models.ForeignKey("Element", on_delete=models.CASCADE)
-    instance = models.ManyToManyField("ImagingStudy_Instance")
-    laterality = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    performer = models.ManyToManyField("ImagingStudy_Performer")
-    specimen = models.ManyToManyField("Reference")
+    _started = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    instance = models.ManyToManyField("ImagingStudy_Instance", null=True)
+    laterality = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    performer = models.ManyToManyField("ImagingStudy_Performer", null=True)
+    specimen = models.ManyToManyField("Reference", null=True)
 
 
 class ImagingStudy_Performer(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    function = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    function = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImagingStudy_Instance(models.Model):
@@ -4949,8 +4949,8 @@ class ImagingStudy_Instance(models.Model):
     uid = models.CharField(label="""The DICOM SOP Instance UID for this image or other DICOM content.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     number = models.IntegerField(validators=[], label="""The number of instance in the series.""")
     title = models.CharField(label="""The description of the instance.""", max_length=255)
-    _title = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _title = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     sopClass = models.ForeignKey("Coding", on_delete=models.CASCADE)
 
 
@@ -4969,29 +4969,29 @@ class Immunization(models.Model):
     lotNumber = models.CharField(label="""Lot number of the  vaccine product.""", max_length=255)
     expirationDate = models.DateField(label="""Date vaccine batch expires.""")
     isSubpotent = models.BooleanField(label="""Indication if a dose is considered to be subpotent. By default, a dose should be considered to be potent.""")
-    _isSubpotent = models.ForeignKey("Element", on_delete=models.CASCADE)
-    doseQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    education = models.ManyToManyField("Immunization_Education")
-    fundingSource = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    manufacturer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    performer = models.ManyToManyField("Immunization_Performer")
-    programEligibility = models.ManyToManyField("CodeableConcept")
-    protocolApplied = models.ManyToManyField("Immunization_ProtocolApplied")
-    reaction = models.ManyToManyField("Immunization_Reaction")
-    reasonReference = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _isSubpotent = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    doseQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    education = models.ManyToManyField("Immunization_Education", null=True)
+    fundingSource = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    manufacturer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    performer = models.ManyToManyField("Immunization_Performer", null=True)
+    programEligibility = models.ManyToManyField("CodeableConcept", null=True)
+    protocolApplied = models.ManyToManyField("Immunization_ProtocolApplied", null=True)
+    reaction = models.ManyToManyField("Immunization_Reaction", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Immunization_Performer(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    function = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    function = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Immunization_Education(models.Model):
@@ -5001,8 +5001,8 @@ class Immunization_Education(models.Model):
     reference = models.CharField(label="""Reference pointer to the educational material given to the patient if the information was on line.""")
     publicationDate = models.DateTimeField(label="""Date the educational material was published.""")
     presentationDate = models.DateTimeField(label="""Date the educational material was given to the patient.""")
-    _presentationDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _presentationDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Immunization_Reaction(models.Model):
@@ -5010,9 +5010,9 @@ class Immunization_Reaction(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateTimeField(label="""Date of reaction to the immunization.""")
     reported = models.BooleanField(label="""Self-reported indicator.""")
-    _reported = models.ForeignKey("Element", on_delete=models.CASCADE)
-    detail = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _reported = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    detail = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Immunization_ProtocolApplied(models.Model):
@@ -5023,10 +5023,10 @@ class Immunization_ProtocolApplied(models.Model):
     doseNumberString = models.CharField(label="""Nominal position in a series.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     seriesDosesPositiveInt = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The recommended number of doses to achieve immunity.""")
     seriesDosesString = models.CharField(label="""The recommended number of doses to achieve immunity.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _seriesDosesString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    authority = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    targetDisease = models.ManyToManyField("CodeableConcept")
+    _seriesDosesString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    authority = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    targetDisease = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class ImmunizationEvaluation(models.Model):
@@ -5044,14 +5044,14 @@ class ImmunizationEvaluation(models.Model):
     doseNumberString = models.CharField(label="""Nominal position in a series.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     seriesDosesPositiveInt = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The recommended number of doses to achieve immunity.""")
     seriesDosesString = models.CharField(label="""The recommended number of doses to achieve immunity.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _seriesDosesString = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _seriesDosesString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     doseStatus = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    doseStatusReason = models.ManyToManyField("CodeableConcept")
-    identifier = models.ManyToManyField("Identifier")
+    doseStatusReason = models.ManyToManyField("CodeableConcept", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
     immunizationEvent = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ImmunizationRecommendation(models.Model):
@@ -5062,13 +5062,13 @@ class ImmunizationRecommendation(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     date = models.DateTimeField(label="""The date the immunization recommendation(s) were created.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    authority = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    authority = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     recommendation = models.ManyToManyField("ImmunizationRecommendation_Recommendation")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ImmunizationRecommendation_Recommendation(models.Model):
@@ -5080,21 +5080,21 @@ class ImmunizationRecommendation_Recommendation(models.Model):
     doseNumberString = models.CharField(label="""Nominal position of the recommended dose in a series (e.g. dose 2 is the next recommended dose).""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     seriesDosesPositiveInt = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The recommended number of doses to achieve immunity.""")
     seriesDosesString = models.CharField(label="""The recommended number of doses to achieve immunity.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _seriesDosesString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    dateCriterion = models.ManyToManyField("ImmunizationRecommendation_DateCriterion")
-    forecastReason = models.ManyToManyField("CodeableConcept")
+    _seriesDosesString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    dateCriterion = models.ManyToManyField("ImmunizationRecommendation_DateCriterion", null=True)
+    forecastReason = models.ManyToManyField("CodeableConcept", null=True)
     forecastStatus = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    supportingPatientInformation = models.ManyToManyField("Reference")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    supportingPatientInformation = models.ManyToManyField("Reference", null=True)
 
 
 class ImmunizationRecommendation_DateCriterion(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     value = models.DateTimeField(label="""The date whose meaning is specified by dateCriterion.code.""")
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImplementationGuide(models.Model):
@@ -5117,18 +5117,18 @@ class ImplementationGuide(models.Model):
     packageId = models.CharField(label="""The NPM package name for this Implementation Guide, used in the NPM package distribution, which is the primary mechanism by which FHIR based tooling manages IG dependencies. This value must be globally unique, and should be assigned with care.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     license = models.CharField(label="""The license that applies to this Implementation Guide, using an SPDX license code, or 'not-open-source'.""", max_length=36, choices=[('not-open-source', 'not-open-source'), ('0bsd', '0BSD'), ('aal', 'AAL'), ('abstyles', 'Abstyles'), ('adobe-2006', 'Adobe-2006'), ('adobe-glyph', 'Adobe-Glyph'), ('adsl', 'ADSL'), ('afl-1.1', 'AFL-1.1'), ('afl-1.2', 'AFL-1.2'), ('afl-2.0', 'AFL-2.0'), ('afl-2.1', 'AFL-2.1'), ('afl-3.0', 'AFL-3.0'), ('afmparse', 'Afmparse'), ('agpl-1.0-only', 'AGPL-1.0-only'), ('agpl-1.0-or-later', 'AGPL-1.0-or-later'), ('agpl-3.0-only', 'AGPL-3.0-only'), ('agpl-3.0-or-later', 'AGPL-3.0-or-later'), ('aladdin', 'Aladdin'), ('amdplpa', 'AMDPLPA'), ('aml', 'AML'), ('ampas', 'AMPAS'), ('antlr-pd', 'ANTLR-PD'), ('apache-1.0', 'Apache-1.0'), ('apache-1.1', 'Apache-1.1'), ('apache-2.0', 'Apache-2.0'), ('apafml', 'APAFML'), ('apl-1.0', 'APL-1.0'), ('apsl-1.0', 'APSL-1.0'), ('apsl-1.1', 'APSL-1.1'), ('apsl-1.2', 'APSL-1.2'), ('apsl-2.0', 'APSL-2.0'), ('artistic-1.0-cl8', 'Artistic-1.0-cl8'), ('artistic-1.0-perl', 'Artistic-1.0-Perl'), ('artistic-1.0', 'Artistic-1.0'), ('artistic-2.0', 'Artistic-2.0'), ('bahyph', 'Bahyph'), ('barr', 'Barr'), ('beerware', 'Beerware'), ('bittorrent-1.0', 'BitTorrent-1.0'), ('bittorrent-1.1', 'BitTorrent-1.1'), ('borceux', 'Borceux'), ('bsd-1-clause', 'BSD-1-Clause'), ('bsd-2-clause-freebsd', 'BSD-2-Clause-FreeBSD'), ('bsd-2-clause-netbsd', 'BSD-2-Clause-NetBSD'), ('bsd-2-clause-patent', 'BSD-2-Clause-Patent'), ('bsd-2-clause', 'BSD-2-Clause'), ('bsd-3-clause-attribution', 'BSD-3-Clause-Attribution'), ('bsd-3-clause-clear', 'BSD-3-Clause-Clear'), ('bsd-3-clause-lbnl', 'BSD-3-Clause-LBNL'), ('bsd-3-clause-no-nuclear-license-2014', 'BSD-3-Clause-No-Nuclear-License-2014'), ('bsd-3-clause-no-nuclear-license', 'BSD-3-Clause-No-Nuclear-License'), ('bsd-3-clause-no-nuclear-warranty', 'BSD-3-Clause-No-Nuclear-Warranty'), ('bsd-3-clause', 'BSD-3-Clause'), ('bsd-4-clause-uc', 'BSD-4-Clause-UC'), ('bsd-4-clause', 'BSD-4-Clause'), ('bsd-protection', 'BSD-Protection'), ('bsd-source-code', 'BSD-Source-Code'), ('bsl-1.0', 'BSL-1.0'), ('bzip2-1.0.5', 'bzip2-1.0.5'), ('bzip2-1.0.6', 'bzip2-1.0.6'), ('caldera', 'Caldera'), ('catosl-1.1', 'CATOSL-1.1'), ('cc-by-1.0', 'CC-BY-1.0'), ('cc-by-2.0', 'CC-BY-2.0'), ('cc-by-2.5', 'CC-BY-2.5'), ('cc-by-3.0', 'CC-BY-3.0'), ('cc-by-4.0', 'CC-BY-4.0'), ('cc-by-nc-1.0', 'CC-BY-NC-1.0'), ('cc-by-nc-2.0', 'CC-BY-NC-2.0'), ('cc-by-nc-2.5', 'CC-BY-NC-2.5'), ('cc-by-nc-3.0', 'CC-BY-NC-3.0'), ('cc-by-nc-4.0', 'CC-BY-NC-4.0'), ('cc-by-nc-nd-1.0', 'CC-BY-NC-ND-1.0'), ('cc-by-nc-nd-2.0', 'CC-BY-NC-ND-2.0'), ('cc-by-nc-nd-2.5', 'CC-BY-NC-ND-2.5'), ('cc-by-nc-nd-3.0', 'CC-BY-NC-ND-3.0'), ('cc-by-nc-nd-4.0', 'CC-BY-NC-ND-4.0'), ('cc-by-nc-sa-1.0', 'CC-BY-NC-SA-1.0'), ('cc-by-nc-sa-2.0', 'CC-BY-NC-SA-2.0'), ('cc-by-nc-sa-2.5', 'CC-BY-NC-SA-2.5'), ('cc-by-nc-sa-3.0', 'CC-BY-NC-SA-3.0'), ('cc-by-nc-sa-4.0', 'CC-BY-NC-SA-4.0'), ('cc-by-nd-1.0', 'CC-BY-ND-1.0'), ('cc-by-nd-2.0', 'CC-BY-ND-2.0'), ('cc-by-nd-2.5', 'CC-BY-ND-2.5'), ('cc-by-nd-3.0', 'CC-BY-ND-3.0'), ('cc-by-nd-4.0', 'CC-BY-ND-4.0'), ('cc-by-sa-1.0', 'CC-BY-SA-1.0'), ('cc-by-sa-2.0', 'CC-BY-SA-2.0'), ('cc-by-sa-2.5', 'CC-BY-SA-2.5'), ('cc-by-sa-3.0', 'CC-BY-SA-3.0'), ('cc-by-sa-4.0', 'CC-BY-SA-4.0'), ('cc0-1.0', 'CC0-1.0'), ('cddl-1.0', 'CDDL-1.0'), ('cddl-1.1', 'CDDL-1.1'), ('cdla-permissive-1.0', 'CDLA-Permissive-1.0'), ('cdla-sharing-1.0', 'CDLA-Sharing-1.0'), ('cecill-1.0', 'CECILL-1.0'), ('cecill-1.1', 'CECILL-1.1'), ('cecill-2.0', 'CECILL-2.0'), ('cecill-2.1', 'CECILL-2.1'), ('cecill-b', 'CECILL-B'), ('cecill-c', 'CECILL-C'), ('clartistic', 'ClArtistic'), ('cnri-jython', 'CNRI-Jython'), ('cnri-python-gpl-compatible', 'CNRI-Python-GPL-Compatible'), ('cnri-python', 'CNRI-Python'), ('condor-1.1', 'Condor-1.1'), ('cpal-1.0', 'CPAL-1.0'), ('cpl-1.0', 'CPL-1.0'), ('cpol-1.02', 'CPOL-1.02'), ('crossword', 'Crossword'), ('crystalstacker', 'CrystalStacker'), ('cua-opl-1.0', 'CUA-OPL-1.0'), ('cube', 'Cube'), ('curl', 'curl'), ('d-fsl-1.0', 'D-FSL-1.0'), ('diffmark', 'diffmark'), ('doc', 'DOC'), ('dotseqn', 'Dotseqn'), ('dsdp', 'DSDP'), ('dvipdfm', 'dvipdfm'), ('ecl-1.0', 'ECL-1.0'), ('ecl-2.0', 'ECL-2.0'), ('efl-1.0', 'EFL-1.0'), ('efl-2.0', 'EFL-2.0'), ('egenix', 'eGenix'), ('entessa', 'Entessa'), ('epl-1.0', 'EPL-1.0'), ('epl-2.0', 'EPL-2.0'), ('erlpl-1.1', 'ErlPL-1.1'), ('eudatagrid', 'EUDatagrid'), ('eupl-1.0', 'EUPL-1.0'), ('eupl-1.1', 'EUPL-1.1'), ('eupl-1.2', 'EUPL-1.2'), ('eurosym', 'Eurosym'), ('fair', 'Fair'), ('frameworx-1.0', 'Frameworx-1.0'), ('freeimage', 'FreeImage'), ('fsfap', 'FSFAP'), ('fsful', 'FSFUL'), ('fsfullr', 'FSFULLR'), ('ftl', 'FTL'), ('gfdl-1.1-only', 'GFDL-1.1-only'), ('gfdl-1.1-or-later', 'GFDL-1.1-or-later'), ('gfdl-1.2-only', 'GFDL-1.2-only'), ('gfdl-1.2-or-later', 'GFDL-1.2-or-later'), ('gfdl-1.3-only', 'GFDL-1.3-only'), ('gfdl-1.3-or-later', 'GFDL-1.3-or-later'), ('giftware', 'Giftware'), ('gl2ps', 'GL2PS'), ('glide', 'Glide'), ('glulxe', 'Glulxe'), ('gnuplot', 'gnuplot'), ('gpl-1.0-only', 'GPL-1.0-only'), ('gpl-1.0-or-later', 'GPL-1.0-or-later'), ('gpl-2.0-only', 'GPL-2.0-only'), ('gpl-2.0-or-later', 'GPL-2.0-or-later'), ('gpl-3.0-only', 'GPL-3.0-only'), ('gpl-3.0-or-later', 'GPL-3.0-or-later'), ('gsoap-1.3b', 'gSOAP-1.3b'), ('haskellreport', 'HaskellReport'), ('hpnd', 'HPND'), ('ibm-pibs', 'IBM-pibs'), ('icu', 'ICU'), ('ijg', 'IJG'), ('imagemagick', 'ImageMagick'), ('imatix', 'iMatix'), ('imlib2', 'Imlib2'), ('info-zip', 'Info-ZIP'), ('intel-acpi', 'Intel-ACPI'), ('intel', 'Intel'), ('interbase-1.0', 'Interbase-1.0'), ('ipa', 'IPA'), ('ipl-1.0', 'IPL-1.0'), ('isc', 'ISC'), ('jasper-2.0', 'JasPer-2.0'), ('json', 'JSON'), ('lal-1.2', 'LAL-1.2'), ('lal-1.3', 'LAL-1.3'), ('latex2e', 'Latex2e'), ('leptonica', 'Leptonica'), ('lgpl-2.0-only', 'LGPL-2.0-only'), ('lgpl-2.0-or-later', 'LGPL-2.0-or-later'), ('lgpl-2.1-only', 'LGPL-2.1-only'), ('lgpl-2.1-or-later', 'LGPL-2.1-or-later'), ('lgpl-3.0-only', 'LGPL-3.0-only'), ('lgpl-3.0-or-later', 'LGPL-3.0-or-later'), ('lgpllr', 'LGPLLR'), ('libpng', 'Libpng'), ('libtiff', 'libtiff'), ('liliq-p-1.1', 'LiLiQ-P-1.1'), ('liliq-r-1.1', 'LiLiQ-R-1.1'), ('liliq-rplus-1.1', 'LiLiQ-Rplus-1.1'), ('linux-openib', 'Linux-OpenIB'), ('lpl-1.0', 'LPL-1.0'), ('lpl-1.02', 'LPL-1.02'), ('lppl-1.0', 'LPPL-1.0'), ('lppl-1.1', 'LPPL-1.1'), ('lppl-1.2', 'LPPL-1.2'), ('lppl-1.3a', 'LPPL-1.3a'), ('lppl-1.3c', 'LPPL-1.3c'), ('makeindex', 'MakeIndex'), ('miros', 'MirOS'), ('mit-0', 'MIT-0'), ('mit-advertising', 'MIT-advertising'), ('mit-cmu', 'MIT-CMU'), ('mit-enna', 'MIT-enna'), ('mit-feh', 'MIT-feh'), ('mit', 'MIT'), ('mitnfa', 'MITNFA'), ('motosoto', 'Motosoto'), ('mpich2', 'mpich2'), ('mpl-1.0', 'MPL-1.0'), ('mpl-1.1', 'MPL-1.1'), ('mpl-2.0-no-copyleft-exception', 'MPL-2.0-no-copyleft-exception'), ('mpl-2.0', 'MPL-2.0'), ('ms-pl', 'MS-PL'), ('ms-rl', 'MS-RL'), ('mtll', 'MTLL'), ('multics', 'Multics'), ('mup', 'Mup'), ('nasa-1.3', 'NASA-1.3'), ('naumen', 'Naumen'), ('nbpl-1.0', 'NBPL-1.0'), ('ncsa', 'NCSA'), ('net-snmp', 'Net-SNMP'), ('netcdf', 'NetCDF'), ('newsletr', 'Newsletr'), ('ngpl', 'NGPL'), ('nlod-1.0', 'NLOD-1.0'), ('nlpl', 'NLPL'), ('nokia', 'Nokia'), ('nosl', 'NOSL'), ('noweb', 'Noweb'), ('npl-1.0', 'NPL-1.0'), ('npl-1.1', 'NPL-1.1'), ('nposl-3.0', 'NPOSL-3.0'), ('nrl', 'NRL'), ('ntp', 'NTP'), ('occt-pl', 'OCCT-PL'), ('oclc-2.0', 'OCLC-2.0'), ('odbl-1.0', 'ODbL-1.0'), ('ofl-1.0', 'OFL-1.0'), ('ofl-1.1', 'OFL-1.1'), ('ogtsl', 'OGTSL'), ('oldap-1.1', 'OLDAP-1.1'), ('oldap-1.2', 'OLDAP-1.2'), ('oldap-1.3', 'OLDAP-1.3'), ('oldap-1.4', 'OLDAP-1.4'), ('oldap-2.0.1', 'OLDAP-2.0.1'), ('oldap-2.0', 'OLDAP-2.0'), ('oldap-2.1', 'OLDAP-2.1'), ('oldap-2.2.1', 'OLDAP-2.2.1'), ('oldap-2.2.2', 'OLDAP-2.2.2'), ('oldap-2.2', 'OLDAP-2.2'), ('oldap-2.3', 'OLDAP-2.3'), ('oldap-2.4', 'OLDAP-2.4'), ('oldap-2.5', 'OLDAP-2.5'), ('oldap-2.6', 'OLDAP-2.6'), ('oldap-2.7', 'OLDAP-2.7'), ('oldap-2.8', 'OLDAP-2.8'), ('oml', 'OML'), ('openssl', 'OpenSSL'), ('opl-1.0', 'OPL-1.0'), ('oset-pl-2.1', 'OSET-PL-2.1'), ('osl-1.0', 'OSL-1.0'), ('osl-1.1', 'OSL-1.1'), ('osl-2.0', 'OSL-2.0'), ('osl-2.1', 'OSL-2.1'), ('osl-3.0', 'OSL-3.0'), ('pddl-1.0', 'PDDL-1.0'), ('php-3.0', 'PHP-3.0'), ('php-3.01', 'PHP-3.01'), ('plexus', 'Plexus'), ('postgresql', 'PostgreSQL'), ('psfrag', 'psfrag'), ('psutils', 'psutils'), ('python-2.0', 'Python-2.0'), ('qhull', 'Qhull'), ('qpl-1.0', 'QPL-1.0'), ('rdisc', 'Rdisc'), ('rhecos-1.1', 'RHeCos-1.1'), ('rpl-1.1', 'RPL-1.1'), ('rpl-1.5', 'RPL-1.5'), ('rpsl-1.0', 'RPSL-1.0'), ('rsa-md', 'RSA-MD'), ('rscpl', 'RSCPL'), ('ruby', 'Ruby'), ('sax-pd', 'SAX-PD'), ('saxpath', 'Saxpath'), ('scea', 'SCEA'), ('sendmail', 'Sendmail'), ('sgi-b-1.0', 'SGI-B-1.0'), ('sgi-b-1.1', 'SGI-B-1.1'), ('sgi-b-2.0', 'SGI-B-2.0'), ('simpl-2.0', 'SimPL-2.0'), ('sissl-1.2', 'SISSL-1.2'), ('sissl', 'SISSL'), ('sleepycat', 'Sleepycat'), ('smlnj', 'SMLNJ'), ('smppl', 'SMPPL'), ('snia', 'SNIA'), ('spencer-86', 'Spencer-86'), ('spencer-94', 'Spencer-94'), ('spencer-99', 'Spencer-99'), ('spl-1.0', 'SPL-1.0'), ('sugarcrm-1.1.3', 'SugarCRM-1.1.3'), ('swl', 'SWL'), ('tcl', 'TCL'), ('tcp-wrappers', 'TCP-wrappers'), ('tmate', 'TMate'), ('torque-1.1', 'TORQUE-1.1'), ('tosl', 'TOSL'), ('unicode-dfs-2015', 'Unicode-DFS-2015'), ('unicode-dfs-2016', 'Unicode-DFS-2016'), ('unicode-tou', 'Unicode-TOU'), ('unlicense', 'Unlicense'), ('upl-1.0', 'UPL-1.0'), ('vim', 'Vim'), ('vostrom', 'VOSTROM'), ('vsl-1.0', 'VSL-1.0'), ('w3c-19980720', 'W3C-19980720'), ('w3c-20150513', 'W3C-20150513'), ('w3c', 'W3C'), ('watcom-1.0', 'Watcom-1.0'), ('wsuipa', 'Wsuipa'), ('wtfpl', 'WTFPL'), ('x11', 'X11'), ('xerox', 'Xerox'), ('xfree86-1.1', 'XFree86-1.1'), ('xinetd', 'xinetd'), ('xnet', 'Xnet'), ('xpp', 'xpp'), ('xskat', 'XSkat'), ('ypl-1.0', 'YPL-1.0'), ('ypl-1.1', 'YPL-1.1'), ('zed', 'Zed'), ('zend-2.0', 'Zend-2.0'), ('zimbra-1.3', 'Zimbra-1.3'), ('zimbra-1.4', 'Zimbra-1.4'), ('zlib-acknowledgement', 'zlib-acknowledgement'), ('zlib', 'Zlib'), ('zpl-1.1', 'ZPL-1.1'), ('zpl-2.0', 'ZPL-2.0'), ('zpl-2.1', 'ZPL-2.1')])
     fhirVersion = JSONField(validators=[JSONSchemaValidator({'description': 'The version(s) of the FHIR specification that this ImplementationGuide targets - e.g. describes how to use. The value of this element is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 4.0.1. for this version.', 'items': {'enum': ['0.01', '0.05', '0.06', '0.11', '0.0.80', '0.0.81', '0.0.82', '0.4.0', '0.5.0', '1.0.0', '1.0.1', '1.0.2', '1.1.0', '1.4.0', '1.6.0', '1.8.0', '3.0.0', '3.0.1', '3.3.0', '3.5.0', '4.0.0', '4.0.1']}, 'type': 'array'})])
-    _fhirVersion = models.ManyToManyField("Element")
-    _global = models.ManyToManyField("ImplementationGuide_Global", verbose_name="global")
-    _license = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    definition = models.ForeignKey("ImplementationGuide_Definition", on_delete=models.CASCADE)
-    dependsOn = models.ManyToManyField("ImplementationGuide_DependsOn")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    manifest = models.ForeignKey("ImplementationGuide_Manifest", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _fhirVersion = models.ManyToManyField("Element", null=True)
+    _global = models.ManyToManyField("ImplementationGuide_Global", null=True, verbose_name="global")
+    _license = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    definition = models.ForeignKey("ImplementationGuide_Definition", null=True, on_delete=models.CASCADE)
+    dependsOn = models.ManyToManyField("ImplementationGuide_DependsOn", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    manifest = models.ForeignKey("ImplementationGuide_Manifest", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ImplementationGuide_DependsOn(models.Model):
@@ -5137,8 +5137,8 @@ class ImplementationGuide_DependsOn(models.Model):
     uri = models.CharField(primary_key=True, label="""A canonical reference to the Implementation guide for the dependency.""")
     packageId = models.CharField(label="""The NPM package name for the Implementation Guide that this IG depends on.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     version = models.CharField(label="""The version of the IG that is depended on, when the correct version is required to understand the IG correctly.""", max_length=255)
-    _version = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _version = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImplementationGuide_Global(models.Model):
@@ -5146,19 +5146,19 @@ class ImplementationGuide_Global(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""The type of resource that all instances must conform to.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     profile = models.CharField(primary_key=True, label="""A reference to the profile that all instances must conform to.""")
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImplementationGuide_Definition(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    grouping = models.ManyToManyField("ImplementationGuide_Grouping")
-    modifierExtension = models.ManyToManyField("Extension")
-    page = models.ForeignKey("ImplementationGuide_Page", on_delete=models.CASCADE)
-    parameter = models.ManyToManyField("ImplementationGuide_Parameter")
+    grouping = models.ManyToManyField("ImplementationGuide_Grouping", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    page = models.ForeignKey("ImplementationGuide_Page", null=True, on_delete=models.CASCADE)
+    parameter = models.ManyToManyField("ImplementationGuide_Parameter", null=True)
     resource = models.ManyToManyField("ImplementationGuide_Resource")
-    template = models.ManyToManyField("ImplementationGuide_Template")
+    template = models.ManyToManyField("ImplementationGuide_Template", null=True)
 
 
 class ImplementationGuide_Grouping(models.Model):
@@ -5166,8 +5166,8 @@ class ImplementationGuide_Grouping(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""The human-readable title to display for the package of resources when rendering the implementation guide.""", max_length=255)
     description = models.CharField(label="""Human readable text describing the package.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImplementationGuide_Resource(models.Model):
@@ -5179,9 +5179,9 @@ class ImplementationGuide_Resource(models.Model):
     exampleBoolean = models.BooleanField(label="""If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.""")
     exampleCanonical = models.CharField(label="""If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     groupingId = models.CharField(label="""Reference to the id of the grouping this resource appears in.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
-    _fhirVersion = models.ManyToManyField("Element")
-    _groupingId = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _fhirVersion = models.ManyToManyField("Element", null=True)
+    _groupingId = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -5191,10 +5191,10 @@ class ImplementationGuide_Page(models.Model):
     nameUrl = models.CharField(label="""The source address for the page.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     title = models.CharField(label="""A short title used to represent this page in navigational structures such as table of contents, bread crumbs, etc.""", max_length=255)
     generation = models.CharField(label="""A code that indicates how the page is generated.""", max_length=9, choices=[('html', 'html'), ('markdown', 'markdown'), ('xml', 'xml'), ('generated', 'generated')])
-    _generation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    nameReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    page = models.ManyToManyField("ImplementationGuide_Page")
+    _generation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    nameReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    page = models.ManyToManyField("ImplementationGuide_Page", null=True)
 
 
 class ImplementationGuide_Parameter(models.Model):
@@ -5202,8 +5202,8 @@ class ImplementationGuide_Parameter(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""apply | path-resource | path-pages | path-tx-cache | expansion-parameter | rule-broken-links | generate-xml | generate-json | generate-turtle | html-template.""", max_length=19, choices=[('apply', 'apply'), ('path-resource', 'path-resource'), ('path-pages', 'path-pages'), ('path-tx-cache', 'path-tx-cache'), ('expansion-parameter', 'expansion-parameter'), ('rule-broken-links', 'rule-broken-links'), ('generate-xml', 'generate-xml'), ('generate-json', 'generate-json'), ('generate-turtle', 'generate-turtle'), ('html-template', 'html-template')])
     value = models.CharField(label="""Value for named type.""", max_length=255)
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImplementationGuide_Template(models.Model):
@@ -5212,8 +5212,8 @@ class ImplementationGuide_Template(models.Model):
     code = models.CharField(label="""Type of template specified.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     source = models.CharField(label="""The source location for the template.""", max_length=255)
     scope = models.CharField(label="""The scope in which the template applies.""", max_length=255)
-    _scope = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _scope = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ImplementationGuide_Manifest(models.Model):
@@ -5222,10 +5222,10 @@ class ImplementationGuide_Manifest(models.Model):
     rendering = models.CharField(label="""A pointer to official web page, PDF or other rendering of the implementation guide.""")
     image = JSONField(validators=[JSONSchemaValidator({'description': 'Indicates a relative path to an image that exists within the IG.', 'items': {'type': 'string'}, 'type': 'array'})])
     other = JSONField(validators=[JSONSchemaValidator({'description': 'Indicates the relative path of an additional non-page, non-image file that is part of the IG - e.g. zip, jar and similar files that could be the target of a hyperlink in a derived IG.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _other = models.ManyToManyField("Element")
-    _rendering = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    page = models.ManyToManyField("ImplementationGuide_Page1")
+    _other = models.ManyToManyField("Element", null=True)
+    _rendering = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    page = models.ManyToManyField("ImplementationGuide_Page1", null=True)
     resource = models.ManyToManyField("ImplementationGuide_Resource1")
 
 
@@ -5235,8 +5235,8 @@ class ImplementationGuide_Resource1(models.Model):
     exampleBoolean = models.BooleanField(label="""If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.""")
     exampleCanonical = models.CharField(label="""If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     relativePath = models.CharField(label="""The relative path for primary page for this resource within the IG.""")
-    _relativePath = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _relativePath = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     reference = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -5246,9 +5246,9 @@ class ImplementationGuide_Page1(models.Model):
     name = models.CharField(label="""Relative path to the page.""", max_length=255)
     title = models.CharField(label="""Label for the page intended for human display.""", max_length=255)
     anchor = JSONField(validators=[JSONSchemaValidator({'description': 'The name of an anchor available on the page.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _anchor = models.ManyToManyField("Element")
-    _title = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _anchor = models.ManyToManyField("Element", null=True)
+    _title = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class InsurancePlan(models.Model):
@@ -5261,37 +5261,37 @@ class InsurancePlan(models.Model):
     status = models.CharField(label="""The current state of the health insurance product.""", max_length=7, choices=[('draft', 'draft'), ('active', 'active'), ('retired', 'retired'), ('unknown', 'unknown')])
     name = models.CharField(label="""Official name of the health insurance product as designated by the owner.""", max_length=255)
     alias = JSONField(validators=[JSONSchemaValidator({'description': 'A list of alternate names that the product is known as, or was known as in the past.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _alias = models.ManyToManyField("Element")
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    administeredBy = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("InsurancePlan_Contact")
-    coverage = models.ManyToManyField("InsurancePlan_Coverage")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    network = models.ManyToManyField("Reference")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    plan = models.ManyToManyField("InsurancePlan_Plan")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    _alias = models.ManyToManyField("Element", null=True)
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    administeredBy = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("InsurancePlan_Contact", null=True)
+    coverage = models.ManyToManyField("InsurancePlan_Coverage", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    network = models.ManyToManyField("Reference", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    plan = models.ManyToManyField("InsurancePlan_Plan", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class InsurancePlan_Contact(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    address = models.ForeignKey("Address", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    name = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    purpose = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    telecom = models.ManyToManyField("ContactPoint")
+    address = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    name = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    purpose = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
 
 
 class InsurancePlan_Coverage(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     benefit = models.ManyToManyField("InsurancePlan_Benefit")
-    modifierExtension = models.ManyToManyField("Extension")
-    network = models.ManyToManyField("Reference")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    network = models.ManyToManyField("Reference", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -5299,29 +5299,29 @@ class InsurancePlan_Benefit(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     requirement = models.CharField(label="""The referral requirements to have access/coverage for this benefit.""", max_length=255)
-    _requirement = models.ForeignKey("Element", on_delete=models.CASCADE)
-    limit = models.ManyToManyField("InsurancePlan_Limit")
-    modifierExtension = models.ManyToManyField("Extension")
+    _requirement = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    limit = models.ManyToManyField("InsurancePlan_Limit", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
 class InsurancePlan_Limit(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    value = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    value = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class InsurancePlan_Plan(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    generalCost = models.ManyToManyField("InsurancePlan_GeneralCost")
-    identifier = models.ManyToManyField("Identifier")
-    modifierExtension = models.ManyToManyField("Extension")
-    network = models.ManyToManyField("Reference")
-    specificCost = models.ManyToManyField("InsurancePlan_SpecificCost")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    generalCost = models.ManyToManyField("InsurancePlan_GeneralCost", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    network = models.ManyToManyField("Reference", null=True)
+    specificCost = models.ManyToManyField("InsurancePlan_SpecificCost", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class InsurancePlan_GeneralCost(models.Model):
@@ -5329,35 +5329,35 @@ class InsurancePlan_GeneralCost(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     groupSize = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Number of participants enrolled in the plan.""")
     comment = models.CharField(label="""Additional information about the general costs associated with this plan.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    cost = models.ForeignKey("Money", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    cost = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class InsurancePlan_SpecificCost(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    benefit = models.ManyToManyField("InsurancePlan_Benefit1")
+    benefit = models.ManyToManyField("InsurancePlan_Benefit1", null=True)
     category = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class InsurancePlan_Benefit1(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    cost = models.ManyToManyField("InsurancePlan_Cost")
-    modifierExtension = models.ManyToManyField("Extension")
+    cost = models.ManyToManyField("InsurancePlan_Cost", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
 class InsurancePlan_Cost(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    applicability = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    qualifiers = models.ManyToManyField("CodeableConcept")
-    value = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    applicability = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    qualifiers = models.ManyToManyField("CodeableConcept", null=True)
+    value = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class Invoice(models.Model):
@@ -5371,37 +5371,37 @@ class Invoice(models.Model):
     cancelledReason = models.CharField(label="""In case of Invoice cancellation a reason must be given (entered in error, superseded by corrected invoice etc.).""", max_length=255)
     date = models.DateTimeField(label="""Date/time(s) of when this Invoice was posted.""")
     paymentTerms = JSONField(validators=[JSONSchemaValidator({'description': 'Payment details such as banking details, period of payment, deductibles, methods of payment.', '$ref': '#/definitions/markdown'})])
-    _paymentTerms = models.ForeignKey("Element", on_delete=models.CASCADE)
-    account = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    lineItem = models.ManyToManyField("Invoice_LineItem")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    participant = models.ManyToManyField("Invoice_Participant")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    totalGross = models.ForeignKey("Money", on_delete=models.CASCADE)
-    totalPriceComponent = models.ManyToManyField("Invoice_PriceComponent")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _paymentTerms = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    account = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    lineItem = models.ManyToManyField("Invoice_LineItem", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    participant = models.ManyToManyField("Invoice_Participant", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    totalGross = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    totalPriceComponent = models.ManyToManyField("Invoice_PriceComponent", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Invoice_Participant(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    role = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Invoice_LineItem(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     sequence = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Sequence in which the items appear on the invoice.""")
-    _sequence = models.ForeignKey("Element", on_delete=models.CASCADE)
-    chargeItemCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    chargeItemReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    priceComponent = models.ManyToManyField("Invoice_PriceComponent")
+    _sequence = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    chargeItemCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    chargeItemReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    priceComponent = models.ManyToManyField("Invoice_PriceComponent", null=True)
 
 
 class Invoice_PriceComponent(models.Model):
@@ -5409,10 +5409,10 @@ class Invoice_PriceComponent(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""This code identifies the type of the component.""", max_length=13, choices=[('base', 'base'), ('surcharge', 'surcharge'), ('deduction', 'deduction'), ('discount', 'discount'), ('tax', 'tax'), ('informational', 'informational')])
     factor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The factor that has been applied on the base price for calculating this component.""")
-    _factor = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _factor = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Library(models.Model):
@@ -5437,21 +5437,21 @@ class Library(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the library and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the library.', '$ref': '#/definitions/markdown'})])
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    content = models.ManyToManyField("Attachment")
-    dataRequirement = models.ManyToManyField("DataRequirement")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    parameter = models.ManyToManyField("ParameterDefinition")
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    subjectCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    subjectReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    content = models.ManyToManyField("Attachment", null=True)
+    dataRequirement = models.ManyToManyField("DataRequirement", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    parameter = models.ManyToManyField("ParameterDefinition", null=True)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    subjectCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    subjectReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class Linkage(models.Model):
@@ -5462,20 +5462,20 @@ class Linkage(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     active = models.BooleanField(label="""Indicates whether the asserted set of linkages are considered to be "in effect".""")
-    _active = models.ForeignKey("Element", on_delete=models.CASCADE)
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _active = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
     item = models.ManyToManyField("Linkage_Item")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Linkage_Item(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""Distinguishes which item is "source of truth" (if any) and which items are no longer considered to be current representations.""", max_length=10, choices=[('source', 'source'), ('alternate', 'alternate'), ('historical', 'historical')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     resource = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -5490,15 +5490,15 @@ class List(models.Model):
     mode = models.CharField(label="""How this list was prepared - whether it is a working list that is suitable for being maintained on an ongoing basis, or if it represents a snapshot of a list of items from another source, or whether it is a prepared list where items may be marked as added, modified or deleted.""", max_length=8, choices=[('working', 'working'), ('snapshot', 'snapshot'), ('changes', 'changes')])
     title = models.CharField(label="""A label for the list assigned by the author.""", max_length=255)
     date = models.DateTimeField(label="""The date that the list was prepared.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    emptyReason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    entry = models.ManyToManyField("List_Entry")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    source = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    emptyReason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    entry = models.ManyToManyField("List_Entry", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    source = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class List_Entry(models.Model):
@@ -5506,10 +5506,10 @@ class List_Entry(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     deleted = models.BooleanField(label="""True if this item is marked as deleted in the list.""")
     date = models.DateTimeField(label="""When this item was added to the list.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    flag = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    flag = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     item = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Location(models.Model):
@@ -5525,21 +5525,21 @@ class Location(models.Model):
     description = models.CharField(label="""Description of the Location, which helps in finding or referencing the place.""", max_length=255)
     mode = models.CharField(label="""Indicates whether a resource instance represents a specific location or a class of locations.""", max_length=8, choices=[('instance', 'instance'), ('kind', 'kind')])
     availabilityExceptions = models.CharField(label="""A description of when the locations opening ours are different to normal, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as detailed in the opening hours Times.""", max_length=255)
-    _alias = models.ManyToManyField("Element")
-    _availabilityExceptions = models.ForeignKey("Element", on_delete=models.CASCADE)
-    address = models.ForeignKey("Address", on_delete=models.CASCADE)
-    endpoint = models.ManyToManyField("Reference")
-    hoursOfOperation = models.ManyToManyField("Location_HoursOfOperation")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    operationalStatus = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    partOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    physicalType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    position = models.ForeignKey("Location_Position", on_delete=models.CASCADE)
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    _alias = models.ManyToManyField("Element", null=True)
+    _availabilityExceptions = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    address = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    endpoint = models.ManyToManyField("Reference", null=True)
+    hoursOfOperation = models.ManyToManyField("Location_HoursOfOperation", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operationalStatus = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    partOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    physicalType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    position = models.ForeignKey("Location_Position", null=True, on_delete=models.CASCADE)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class Location_Position(models.Model):
@@ -5548,8 +5548,8 @@ class Location_Position(models.Model):
     longitude = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Longitude. The value domain and the interpretation are the same as for the text of the longitude element in KML (see notes below).""")
     latitude = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Latitude. The value domain and the interpretation are the same as for the text of the latitude element in KML (see notes below).""")
     altitude = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Altitude. The value domain and the interpretation are the same as for the text of the altitude element in KML (see notes below).""")
-    _altitude = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _altitude = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Location_HoursOfOperation(models.Model):
@@ -5559,9 +5559,9 @@ class Location_HoursOfOperation(models.Model):
     allDay = models.BooleanField(label="""The Location is open all day.""")
     openingTime = models.TimeField(label="""Time that the Location opens.""")
     closingTime = models.TimeField(label="""Time that the Location closes.""")
-    _closingTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _daysOfWeek = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _closingTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _daysOfWeek = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Measure(models.Model):
@@ -5594,74 +5594,74 @@ class Measure(models.Model):
     clinicalRecommendationStatement = JSONField(validators=[JSONSchemaValidator({'description': 'Provides a summary of relevant clinical guidelines or other clinical recommendations supporting the measure.', '$ref': '#/definitions/markdown'})])
     definition = JSONField(validators=[JSONSchemaValidator({'description': 'Provides a description of an individual term used within the measure.', 'items': {'$ref': '#/definitions/markdown'}, 'type': 'array'})])
     guidance = JSONField(validators=[JSONSchemaValidator({'description': 'Additional guidance for the measure including how it can be used in a clinical context, and the intent of the measure.', '$ref': '#/definitions/markdown'})])
-    _definition = models.ManyToManyField("Element")
-    _guidance = models.ForeignKey("Element", on_delete=models.CASCADE)
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    group = models.ManyToManyField("Measure_Group")
-    identifier = models.ManyToManyField("Identifier")
-    improvementNotation = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    subjectReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    supplementalData = models.ManyToManyField("Measure_SupplementalData")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    _definition = models.ManyToManyField("Element", null=True)
+    _guidance = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    group = models.ManyToManyField("Measure_Group", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    improvementNotation = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    subjectReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    supplementalData = models.ManyToManyField("Measure_SupplementalData", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class Measure_Group(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""The human readable description of this population group.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    population = models.ManyToManyField("Measure_Population")
-    stratifier = models.ManyToManyField("Measure_Stratifier")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    population = models.ManyToManyField("Measure_Population", null=True)
+    stratifier = models.ManyToManyField("Measure_Stratifier", null=True)
 
 
 class Measure_Population(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""The human readable description of this population criteria.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     criteria = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Measure_Stratifier(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""The human readable description of this stratifier criteria.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    component = models.ManyToManyField("Measure_Component")
-    criteria = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    component = models.ManyToManyField("Measure_Component", null=True)
+    criteria = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Measure_Component(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""The human readable description of this stratifier criteria component.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     criteria = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Measure_SupplementalData(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""The human readable description of this supplemental data.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     criteria = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    usage = models.ManyToManyField("CodeableConcept")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    usage = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class MeasureReport(models.Model):
@@ -5675,60 +5675,60 @@ class MeasureReport(models.Model):
     type = models.CharField(label="""The type of measure report. This may be an individual report, which provides the score for the measure for an individual member of the population; a subject-listing, which returns the list of members that meet the various criteria in the measure; a summary report, which returns a population count for each of the criteria in the measure; or a data-collection, which enables the MeasureReport to be used to exchange the data-of-interest for a quality measure.""", max_length=15, choices=[('individual', 'individual'), ('subject-list', 'subject-list'), ('summary', 'summary'), ('data-collection', 'data-collection')])
     measure = models.CharField(label="""A reference to the Measure that was calculated to produce this report.""")
     date = models.DateTimeField(label="""The date this measure report was generated.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    evaluatedResource = models.ManyToManyField("Reference")
-    group = models.ManyToManyField("MeasureReport_Group")
-    identifier = models.ManyToManyField("Identifier")
-    improvementNotation = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    evaluatedResource = models.ManyToManyField("Reference", null=True)
+    group = models.ManyToManyField("MeasureReport_Group", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    improvementNotation = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    reporter = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    reporter = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MeasureReport_Group(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    measureScore = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    population = models.ManyToManyField("MeasureReport_Population")
-    stratifier = models.ManyToManyField("MeasureReport_Stratifier")
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    measureScore = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    population = models.ManyToManyField("MeasureReport_Population", null=True)
+    stratifier = models.ManyToManyField("MeasureReport_Stratifier", null=True)
 
 
 class MeasureReport_Population(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     count = models.IntegerField(validators=[], label="""The number of members of the population.""")
-    _count = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    subjectResults = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _count = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    subjectResults = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class MeasureReport_Stratifier(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    code = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    stratum = models.ManyToManyField("MeasureReport_Stratum")
+    code = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    stratum = models.ManyToManyField("MeasureReport_Stratum", null=True)
 
 
 class MeasureReport_Stratum(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    component = models.ManyToManyField("MeasureReport_Component")
-    measureScore = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    population = models.ManyToManyField("MeasureReport_Population1")
-    value = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    component = models.ManyToManyField("MeasureReport_Component", null=True)
+    measureScore = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    population = models.ManyToManyField("MeasureReport_Population1", null=True)
+    value = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MeasureReport_Component(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     value = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -5736,10 +5736,10 @@ class MeasureReport_Population1(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     count = models.IntegerField(validators=[], label="""The number of members of the population in this stratum.""")
-    _count = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    subjectResults = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _count = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    subjectResults = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Media(models.Model):
@@ -5757,18 +5757,18 @@ class Media(models.Model):
     width = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Width of the image in pixels (photo/video).""")
     frames = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""The number of frames in a photo. This is used with a multi-page fax, or an imaging acquisition context that takes multiple slices in a single image, or an animated gif. If there is more than one frame, this SHALL have a value in order to alert interface software that a multi-frame capable rendering widget is required.""")
     duration = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The duration of the recording in seconds - for audio and video.""")
-    _duration = models.ForeignKey("Element", on_delete=models.CASCADE)
-    bodySite = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _duration = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    bodySite = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     content = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    createdPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    device = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    partOf = models.ManyToManyField("Reference")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    createdPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    device = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    partOf = models.ManyToManyField("Reference", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Medication(models.Model):
@@ -5779,27 +5779,27 @@ class Medication(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""A code to indicate if the medication is in active use.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _status = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    batch = models.ForeignKey("Medication_Batch", on_delete=models.CASCADE)
-    form = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    ingredient = models.ManyToManyField("Medication_Ingredient")
-    manufacturer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _status = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    batch = models.ForeignKey("Medication_Batch", null=True, on_delete=models.CASCADE)
+    form = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    ingredient = models.ManyToManyField("Medication_Ingredient", null=True)
+    manufacturer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Medication_Ingredient(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     isActive = models.BooleanField(label="""Indication of whether this ingredient affects the therapeutic action of the drug.""")
-    _isActive = models.ForeignKey("Element", on_delete=models.CASCADE)
-    itemCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    itemReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    strength = models.ForeignKey("Ratio", on_delete=models.CASCADE)
+    _isActive = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    itemCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    itemReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    strength = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
 
 
 class Medication_Batch(models.Model):
@@ -5807,8 +5807,8 @@ class Medication_Batch(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     lotNumber = models.CharField(label="""The assigned lot number of a batch of the specified product.""", max_length=255)
     expirationDate = models.DateTimeField(label="""When this specific batch of product will expire.""")
-    _expirationDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _expirationDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicationAdministration(models.Model):
@@ -5821,39 +5821,39 @@ class MedicationAdministration(models.Model):
     instantiates = JSONField(validators=[JSONSchemaValidator({'description': 'A protocol, guideline, orderset, or other definition that was adhered to in whole or in part by this event.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     status = models.CharField(label="""Will generally be set to show that the administration has been completed.  For some long running administrations such as infusions, it is possible for an administration to be started but not completed or it may be paused while some other process is under way.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     effectiveDateTime = models.CharField(label="""A specific date/time or interval of time during which the administration took place (or did not take place, when the 'notGiven' attribute is true). For many administrations, such as swallowing a tablet the use of dateTime is more appropriate.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _effectiveDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiates = models.ManyToManyField("Element")
-    dosage = models.ForeignKey("MedicationAdministration_Dosage", on_delete=models.CASCADE)
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    eventHistory = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    medicationCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    performer = models.ManyToManyField("MedicationAdministration_Performer")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    request = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _effectiveDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiates = models.ManyToManyField("Element", null=True)
+    dosage = models.ForeignKey("MedicationAdministration_Dosage", null=True, on_delete=models.CASCADE)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    eventHistory = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    medicationCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    performer = models.ManyToManyField("MedicationAdministration_Performer", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    request = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicationAdministration_Performer(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    function = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    function = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicationAdministration_Dosage(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     text = models.CharField(label="""Free text dosage can be used for cases where the dosage administered is too complex to code. When coded dosage is present, the free text dosage may still be present for display to humans.The dosage instructions should reflect the dosage of the medication that was administered.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    method = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    rateQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    rateRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    method = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    rateQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    rateRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
 
 
 class MedicationDispense(models.Model):
@@ -5866,38 +5866,38 @@ class MedicationDispense(models.Model):
     status = models.CharField(label="""A code specifying the state of the set of dispense events.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     whenPrepared = models.DateTimeField(label="""The time when the dispensed product was packaged and reviewed.""")
     whenHandedOver = models.DateTimeField(label="""The time the dispensed product was provided to the patient or their representative.""")
-    _whenHandedOver = models.ForeignKey("Element", on_delete=models.CASCADE)
-    daysSupply = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    destination = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    dosageInstruction = models.ManyToManyField("Dosage")
-    eventHistory = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    performer = models.ManyToManyField("MedicationDispense_Performer")
-    substitution = models.ForeignKey("MedicationDispense_Substitution", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _whenHandedOver = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    daysSupply = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    destination = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    dosageInstruction = models.ManyToManyField("Dosage", null=True)
+    eventHistory = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    performer = models.ManyToManyField("MedicationDispense_Performer", null=True)
+    substitution = models.ForeignKey("MedicationDispense_Substitution", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicationDispense_Performer(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    function = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    function = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicationDispense_Substitution(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     wasSubstituted = models.BooleanField(label="""True if the dispenser dispensed a different drug or product from what was prescribed.""")
-    _wasSubstituted = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reason = models.ManyToManyField("CodeableConcept")
-    responsibleParty = models.ManyToManyField("Reference")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _wasSubstituted = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reason = models.ManyToManyField("CodeableConcept", null=True)
+    responsibleParty = models.ManyToManyField("Reference", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicationKnowledge(models.Model):
@@ -5910,33 +5910,33 @@ class MedicationKnowledge(models.Model):
     status = models.CharField(label="""A code to indicate if the medication is in active use.  The status refers to the validity about the information of the medication and not to its medicinal properties.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     synonym = JSONField(validators=[JSONSchemaValidator({'description': 'Additional names for a medication, for example, the name(s) given to a medication in different countries.  For example, acetaminophen and paracetamol or salbutamol and albuterol.', 'items': {'type': 'string'}, 'type': 'array'})])
     preparationInstruction = JSONField(validators=[JSONSchemaValidator({'description': 'The instructions for preparing the medication.', '$ref': '#/definitions/markdown'})])
-    _preparationInstruction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _synonym = models.ManyToManyField("Element")
-    administrationGuidelines = models.ManyToManyField("MedicationKnowledge_AdministrationGuidelines")
-    amount = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    contraindication = models.ManyToManyField("Reference")
-    cost = models.ManyToManyField("MedicationKnowledge_Cost")
-    doseForm = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    drugCharacteristic = models.ManyToManyField("MedicationKnowledge_DrugCharacteristic")
-    ingredient = models.ManyToManyField("MedicationKnowledge_Ingredient")
-    intendedRoute = models.ManyToManyField("CodeableConcept")
-    kinetics = models.ManyToManyField("MedicationKnowledge_Kinetics")
-    manufacturer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    medicineClassification = models.ManyToManyField("MedicationKnowledge_MedicineClassification")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    monitoringProgram = models.ManyToManyField("MedicationKnowledge_MonitoringProgram")
-    monograph = models.ManyToManyField("MedicationKnowledge_Monograph")
-    packaging = models.ForeignKey("MedicationKnowledge_Packaging", on_delete=models.CASCADE)
-    regulatory = models.ManyToManyField("MedicationKnowledge_Regulatory")
-    relatedMedicationKnowledge = models.ManyToManyField("MedicationKnowledge_RelatedMedicationKnowledge")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _preparationInstruction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _synonym = models.ManyToManyField("Element", null=True)
+    administrationGuidelines = models.ManyToManyField("MedicationKnowledge_AdministrationGuidelines", null=True)
+    amount = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    contraindication = models.ManyToManyField("Reference", null=True)
+    cost = models.ManyToManyField("MedicationKnowledge_Cost", null=True)
+    doseForm = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    drugCharacteristic = models.ManyToManyField("MedicationKnowledge_DrugCharacteristic", null=True)
+    ingredient = models.ManyToManyField("MedicationKnowledge_Ingredient", null=True)
+    intendedRoute = models.ManyToManyField("CodeableConcept", null=True)
+    kinetics = models.ManyToManyField("MedicationKnowledge_Kinetics", null=True)
+    manufacturer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    medicineClassification = models.ManyToManyField("MedicationKnowledge_MedicineClassification", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    monitoringProgram = models.ManyToManyField("MedicationKnowledge_MonitoringProgram", null=True)
+    monograph = models.ManyToManyField("MedicationKnowledge_Monograph", null=True)
+    packaging = models.ForeignKey("MedicationKnowledge_Packaging", null=True, on_delete=models.CASCADE)
+    regulatory = models.ManyToManyField("MedicationKnowledge_Regulatory", null=True)
+    relatedMedicationKnowledge = models.ManyToManyField("MedicationKnowledge_RelatedMedicationKnowledge", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_RelatedMedicationKnowledge(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     reference = models.ManyToManyField("Reference")
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
@@ -5944,29 +5944,29 @@ class MedicationKnowledge_RelatedMedicationKnowledge(models.Model):
 class MedicationKnowledge_Monograph(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_Ingredient(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     isActive = models.BooleanField(label="""Indication of whether this ingredient affects the therapeutic action of the drug.""")
-    _isActive = models.ForeignKey("Element", on_delete=models.CASCADE)
-    itemCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    itemReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    strength = models.ForeignKey("Ratio", on_delete=models.CASCADE)
+    _isActive = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    itemCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    itemReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    strength = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_Cost(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     source = models.CharField(label="""The source or owner that assigns the price to the medication.""", max_length=255)
-    _source = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _source = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     cost = models.ForeignKey("Money", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -5974,26 +5974,26 @@ class MedicationKnowledge_MonitoringProgram(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Name of the reviewing program.""", max_length=255)
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_AdministrationGuidelines(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    dosage = models.ManyToManyField("MedicationKnowledge_Dosage")
-    indicationCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    indicationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    patientCharacteristics = models.ManyToManyField("MedicationKnowledge_PatientCharacteristics")
+    dosage = models.ManyToManyField("MedicationKnowledge_Dosage", null=True)
+    indicationCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    indicationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    patientCharacteristics = models.ManyToManyField("MedicationKnowledge_PatientCharacteristics", null=True)
 
 
 class MedicationKnowledge_Dosage(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     dosage = models.ManyToManyField("Dosage")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -6001,26 +6001,26 @@ class MedicationKnowledge_PatientCharacteristics(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     value = JSONField(validators=[JSONSchemaValidator({'description': 'The specific characteristic (e.g. height, weight, gender, etc.).', 'items': {'type': 'string'}, 'type': 'array'})])
-    _value = models.ManyToManyField("Element")
-    characteristicCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    characteristicQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _value = models.ManyToManyField("Element", null=True)
+    characteristicCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    characteristicQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicationKnowledge_MedicineClassification(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    classification = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
+    classification = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_Packaging(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_DrugCharacteristic(models.Model):
@@ -6028,52 +6028,52 @@ class MedicationKnowledge_DrugCharacteristic(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     valueString = models.CharField(label="""Description of the characteristic.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     valueBase64Binary = models.CharField(label="""Description of the characteristic.""", max_length=255, validators=[validators.RegexValidator("^(\s*([0-9a-zA-Z\+/=]){4}\s*)+$")])
-    _valueBase64Binary = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    _valueBase64Binary = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_Regulatory(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    maxDispense = models.ForeignKey("MedicationKnowledge_MaxDispense", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    maxDispense = models.ForeignKey("MedicationKnowledge_MaxDispense", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     regulatoryAuthority = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    schedule = models.ManyToManyField("MedicationKnowledge_Schedule")
-    substitution = models.ManyToManyField("MedicationKnowledge_Substitution")
+    schedule = models.ManyToManyField("MedicationKnowledge_Schedule", null=True)
+    substitution = models.ManyToManyField("MedicationKnowledge_Substitution", null=True)
 
 
 class MedicationKnowledge_Substitution(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     allowed = models.BooleanField(label="""Specifies if regulation allows for changes in the medication when dispensing.""")
-    _allowed = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _allowed = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_Schedule(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     schedule = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_MaxDispense(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Duration", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
     quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
 
 
 class MedicationKnowledge_Kinetics(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    halfLifePeriod = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    lethalDose50 = models.ManyToManyField("Quantity")
-    modifierExtension = models.ManyToManyField("Extension")
+    halfLifePeriod = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    lethalDose50 = models.ManyToManyField("Quantity", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicationRequest(models.Model):
@@ -6091,51 +6091,51 @@ class MedicationRequest(models.Model):
     authoredOn = models.DateTimeField(label="""The date (and perhaps time) when the prescription was initially written or authored on.""")
     instantiatesCanonical = JSONField(validators=[JSONSchemaValidator({'description': 'The URL pointing to a protocol, guideline, orderset, or other definition that is adhered to in whole or in part by this MedicationRequest.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     instantiatesUri = JSONField(validators=[JSONSchemaValidator({'description': 'The URL pointing to an externally maintained protocol, guideline, orderset or other definition that is adhered to in whole or in part by this MedicationRequest.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _authoredOn = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiatesUri = models.ManyToManyField("Element")
-    courseOfTherapyType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    dispenseRequest = models.ForeignKey("MedicationRequest_DispenseRequest", on_delete=models.CASCADE)
-    dosageInstruction = models.ManyToManyField("Dosage")
-    eventHistory = models.ManyToManyField("Reference")
-    groupIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    priorPrescription = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    substitution = models.ForeignKey("MedicationRequest_Substitution", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _authoredOn = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    courseOfTherapyType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    dispenseRequest = models.ForeignKey("MedicationRequest_DispenseRequest", null=True, on_delete=models.CASCADE)
+    dosageInstruction = models.ManyToManyField("Dosage", null=True)
+    eventHistory = models.ManyToManyField("Reference", null=True)
+    groupIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    priorPrescription = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    substitution = models.ForeignKey("MedicationRequest_Substitution", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicationRequest_DispenseRequest(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     numberOfRepeatsAllowed = models.IntegerField(validators=[], label="""An integer indicating the number of times, in addition to the original dispense, (aka refills or repeats) that the patient can receive the prescribed medication. Usage Notes: This integer does not include the original order dispense. This means that if an order indicates dispense 30 tablets plus "3 repeats", then the order can be dispensed a total of 4 times and the patient can receive a total of 120 tablets.  A prescriber may explicitly say that zero refills are permitted after the initial dispense.""")
-    _numberOfRepeatsAllowed = models.ForeignKey("Element", on_delete=models.CASCADE)
-    expectedSupplyDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    initialFill = models.ForeignKey("MedicationRequest_InitialFill", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    performer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    validityPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _numberOfRepeatsAllowed = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    expectedSupplyDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    initialFill = models.ForeignKey("MedicationRequest_InitialFill", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    performer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    validityPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class MedicationRequest_InitialFill(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    duration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    duration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class MedicationRequest_Substitution(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     allowedBoolean = models.BooleanField(label="""True if the prescriber allows a different drug to be dispensed from what was prescribed.""")
-    _allowedBoolean = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _allowedBoolean = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicationStatement(models.Model):
@@ -6148,18 +6148,18 @@ class MedicationStatement(models.Model):
     status = models.CharField(label="""A code representing the patient or other source's judgment about the state of the medication used that this statement is about.  Generally, this will be active or completed.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     effectiveDateTime = models.CharField(label="""The interval of time during which it is being asserted that the patient is/was/will be taking the medication (or was not taking, when the MedicationStatement.taken element is No).""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     dateAsserted = models.DateTimeField(label="""The date when the medication statement was asserted by the information source.""")
-    _dateAsserted = models.ForeignKey("Element", on_delete=models.CASCADE)
-    dosage = models.ManyToManyField("Dosage")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    informationSource = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    medicationCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _dateAsserted = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    dosage = models.ManyToManyField("Dosage", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    informationSource = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    medicationCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProduct(models.Model):
@@ -6170,38 +6170,38 @@ class MedicinalProduct(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     specialMeasures = JSONField(validators=[JSONSchemaValidator({'description': 'Whether the Medicinal Product is subject to special measures for regulatory reasons.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _specialMeasures = models.ManyToManyField("Element")
-    clinicalTrial = models.ManyToManyField("Reference")
-    crossReference = models.ManyToManyField("Identifier")
-    domain = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    manufacturingBusinessOperation = models.ManyToManyField("MedicinalProduct_ManufacturingBusinessOperation")
-    marketingStatus = models.ManyToManyField("MarketingStatus")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _specialMeasures = models.ManyToManyField("Element", null=True)
+    clinicalTrial = models.ManyToManyField("Reference", null=True)
+    crossReference = models.ManyToManyField("Identifier", null=True)
+    domain = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    manufacturingBusinessOperation = models.ManyToManyField("MedicinalProduct_ManufacturingBusinessOperation", null=True)
+    marketingStatus = models.ManyToManyField("MarketingStatus", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     name = models.ManyToManyField("MedicinalProduct_Name")
-    paediatricUseIndicator = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    productClassification = models.ManyToManyField("CodeableConcept")
-    specialDesignation = models.ManyToManyField("MedicinalProduct_SpecialDesignation")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    paediatricUseIndicator = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    productClassification = models.ManyToManyField("CodeableConcept", null=True)
+    specialDesignation = models.ManyToManyField("MedicinalProduct_SpecialDesignation", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProduct_Name(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     productName = models.CharField(label="""The full product name.""", max_length=255)
-    _productName = models.ForeignKey("Element", on_delete=models.CASCADE)
-    countryLanguage = models.ManyToManyField("MedicinalProduct_CountryLanguage")
-    modifierExtension = models.ManyToManyField("Extension")
-    namePart = models.ManyToManyField("MedicinalProduct_NamePart")
+    _productName = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    countryLanguage = models.ManyToManyField("MedicinalProduct_CountryLanguage", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    namePart = models.ManyToManyField("MedicinalProduct_NamePart", null=True)
 
 
 class MedicinalProduct_NamePart(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     part = models.CharField(label="""A fragment of a product name.""", max_length=255)
-    _part = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _part = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("Coding", on_delete=models.CASCADE)
 
 
@@ -6209,30 +6209,30 @@ class MedicinalProduct_CountryLanguage(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     language = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicinalProduct_ManufacturingBusinessOperation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     effectiveDate = models.DateTimeField(label="""Regulatory authorization date.""")
-    _effectiveDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    authorisationReferenceNumber = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    confidentialityIndicator = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    manufacturer = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
-    regulator = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _effectiveDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    authorisationReferenceNumber = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    confidentialityIndicator = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    manufacturer = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    regulator = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProduct_SpecialDesignation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateTimeField(label="""Date when the designation was granted.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    indicationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    species = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    indicationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    species = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductAuthorization(models.Model):
@@ -6246,38 +6246,38 @@ class MedicinalProductAuthorization(models.Model):
     restoreDate = models.DateTimeField(label="""The date when a suspended the marketing or the marketing authorization of the product is anticipated to be restored.""")
     dateOfFirstAuthorization = models.DateTimeField(label="""The date when the first authorization was granted by a Medicines Regulatory Agency.""")
     internationalBirthDate = models.DateTimeField(label="""Date of first marketing authorization for a company's new medicinal product in any country in the World.""")
-    _internationalBirthDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    dataExclusivityPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    jurisdictionalAuthorization = models.ManyToManyField("MedicinalProductAuthorization_JurisdictionalAuthorization")
-    legalBasis = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    procedure = models.ForeignKey("MedicinalProductAuthorization_Procedure", on_delete=models.CASCADE)
-    regulator = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _internationalBirthDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    dataExclusivityPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    jurisdictionalAuthorization = models.ManyToManyField("MedicinalProductAuthorization_JurisdictionalAuthorization", null=True)
+    legalBasis = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    procedure = models.ForeignKey("MedicinalProductAuthorization_Procedure", null=True, on_delete=models.CASCADE)
+    regulator = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductAuthorization_JurisdictionalAuthorization(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    identifier = models.ManyToManyField("Identifier")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    legalStatusOfSupply = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    validityPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    legalStatusOfSupply = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    validityPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductAuthorization_Procedure(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     dateDateTime = models.CharField(label="""Date of procedure.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _dateDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    application = models.ManyToManyField("MedicinalProductAuthorization_Procedure")
-    datePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _dateDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    application = models.ManyToManyField("MedicinalProductAuthorization_Procedure", null=True)
+    datePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -6288,23 +6288,23 @@ class MedicinalProductContraindication(models.Model):
     implicitRules = models.CharField(label="""A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.""")
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    comorbidity = models.ManyToManyField("CodeableConcept")
-    diseaseStatus = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    otherTherapy = models.ManyToManyField("MedicinalProductContraindication_OtherTherapy")
-    population = models.ManyToManyField("Population")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    therapeuticIndication = models.ManyToManyField("Reference")
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    comorbidity = models.ManyToManyField("CodeableConcept", null=True)
+    diseaseStatus = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    otherTherapy = models.ManyToManyField("MedicinalProductContraindication_OtherTherapy", null=True)
+    population = models.ManyToManyField("Population", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    therapeuticIndication = models.ManyToManyField("Reference", null=True)
 
 
 class MedicinalProductContraindication_OtherTherapy(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    medicationCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    medicationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    medicationCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    medicationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicinalProductIndication(models.Model):
@@ -6314,24 +6314,24 @@ class MedicinalProductIndication(models.Model):
     implicitRules = models.CharField(label="""A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.""")
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    comorbidity = models.ManyToManyField("CodeableConcept")
-    duration = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    intendedEffect = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    otherTherapy = models.ManyToManyField("MedicinalProductIndication_OtherTherapy")
-    population = models.ManyToManyField("Population")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    undesirableEffect = models.ManyToManyField("Reference")
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    comorbidity = models.ManyToManyField("CodeableConcept", null=True)
+    duration = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    intendedEffect = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    otherTherapy = models.ManyToManyField("MedicinalProductIndication_OtherTherapy", null=True)
+    population = models.ManyToManyField("Population", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    undesirableEffect = models.ManyToManyField("Reference", null=True)
 
 
 class MedicinalProductIndication_OtherTherapy(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    medicationCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    medicationReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    medicationCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    medicationReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicinalProductIngredient(models.Model):
@@ -6342,53 +6342,53 @@ class MedicinalProductIngredient(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     allergenicIndicator = models.BooleanField(label="""If the ingredient is a known or suspected allergen.""")
-    _allergenicIndicator = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    manufacturer = models.ManyToManyField("Reference")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _allergenicIndicator = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    manufacturer = models.ManyToManyField("Reference", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    specifiedSubstance = models.ManyToManyField("MedicinalProductIngredient_SpecifiedSubstance")
-    substance = models.ForeignKey("MedicinalProductIngredient_Substance", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    specifiedSubstance = models.ManyToManyField("MedicinalProductIngredient_SpecifiedSubstance", null=True)
+    substance = models.ForeignKey("MedicinalProductIngredient_Substance", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductIngredient_SpecifiedSubstance(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    confidentiality = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    strength = models.ManyToManyField("MedicinalProductIngredient_Strength")
+    confidentiality = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    strength = models.ManyToManyField("MedicinalProductIngredient_Strength", null=True)
 
 
 class MedicinalProductIngredient_Strength(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     measurementPoint = models.CharField(label="""For when strength is measured at a particular point or distance.""", max_length=255)
-    _measurementPoint = models.ForeignKey("Element", on_delete=models.CASCADE)
-    concentrationLowLimit = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    country = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    referenceStrength = models.ManyToManyField("MedicinalProductIngredient_ReferenceStrength")
+    _measurementPoint = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    concentrationLowLimit = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    country = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    referenceStrength = models.ManyToManyField("MedicinalProductIngredient_ReferenceStrength", null=True)
 
 
 class MedicinalProductIngredient_ReferenceStrength(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     measurementPoint = models.CharField(label="""For when strength is measured at a particular point or distance.""", max_length=255)
-    _measurementPoint = models.ForeignKey("Element", on_delete=models.CASCADE)
-    country = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    strengthLowLimit = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    substance = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _measurementPoint = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    country = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    strengthLowLimit = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    substance = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductIngredient_Substance(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    strength = models.ManyToManyField("MedicinalProductIngredient_Strength")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    strength = models.ManyToManyField("MedicinalProductIngredient_Strength", null=True)
 
 
 class MedicinalProductInteraction(models.Model):
@@ -6399,21 +6399,21 @@ class MedicinalProductInteraction(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     description = models.CharField(label="""The interaction described.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    interactant = models.ManyToManyField("MedicinalProductInteraction_Interactant")
-    management = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    subject = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    interactant = models.ManyToManyField("MedicinalProductInteraction_Interactant", null=True)
+    management = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    subject = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductInteraction_Interactant(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    itemCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    itemReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    itemCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    itemReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicinalProductManufactured(models.Model):
@@ -6423,15 +6423,15 @@ class MedicinalProductManufactured(models.Model):
     implicitRules = models.CharField(label="""A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.""")
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    ingredient = models.ManyToManyField("Reference")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    otherCharacteristics = models.ManyToManyField("CodeableConcept")
-    physicalCharacteristics = models.ForeignKey("ProdCharacteristic", on_delete=models.CASCADE)
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    ingredient = models.ManyToManyField("Reference", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    otherCharacteristics = models.ManyToManyField("CodeableConcept", null=True)
+    physicalCharacteristics = models.ForeignKey("ProdCharacteristic", null=True, on_delete=models.CASCADE)
     quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    unitOfPresentation = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    unitOfPresentation = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductPackaged(models.Model):
@@ -6442,37 +6442,37 @@ class MedicinalProductPackaged(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     description = models.CharField(label="""Textual description.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    batchIdentifier = models.ManyToManyField("MedicinalProductPackaged_BatchIdentifier")
-    identifier = models.ManyToManyField("Identifier")
-    legalStatusOfSupply = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    manufacturer = models.ManyToManyField("Reference")
-    marketingAuthorization = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    marketingStatus = models.ManyToManyField("MarketingStatus")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    batchIdentifier = models.ManyToManyField("MedicinalProductPackaged_BatchIdentifier", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    legalStatusOfSupply = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    manufacturer = models.ManyToManyField("Reference", null=True)
+    marketingAuthorization = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    marketingStatus = models.ManyToManyField("MarketingStatus", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     packageItem = models.ManyToManyField("MedicinalProductPackaged_PackageItem")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductPackaged_BatchIdentifier(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    immediatePackaging = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    immediatePackaging = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MedicinalProductPackaged_PackageItem(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    identifier = models.ManyToManyField("Identifier")
-    manufacturer = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
-    otherCharacteristics = models.ManyToManyField("CodeableConcept")
-    packageItem = models.ManyToManyField("MedicinalProductPackaged_PackageItem")
-    physicalCharacteristics = models.ForeignKey("ProdCharacteristic", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    manufacturer = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    otherCharacteristics = models.ManyToManyField("CodeableConcept", null=True)
+    packageItem = models.ManyToManyField("MedicinalProductPackaged_PackageItem", null=True)
+    physicalCharacteristics = models.ForeignKey("ProdCharacteristic", null=True, on_delete=models.CASCADE)
     quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    shelfLifeStorage = models.ManyToManyField("ProductShelfLife")
+    shelfLifeStorage = models.ManyToManyField("ProductShelfLife", null=True)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -6483,49 +6483,49 @@ class MedicinalProductPharmaceutical(models.Model):
     implicitRules = models.CharField(label="""A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.""")
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    characteristics = models.ManyToManyField("MedicinalProductPharmaceutical_Characteristics")
-    device = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    characteristics = models.ManyToManyField("MedicinalProductPharmaceutical_Characteristics", null=True)
+    device = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     routeOfAdministration = models.ManyToManyField("MedicinalProductPharmaceutical_RouteOfAdministration")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    unitOfPresentation = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    unitOfPresentation = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductPharmaceutical_Characteristics(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    status = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    status = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MedicinalProductPharmaceutical_RouteOfAdministration(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    maxDosePerDay = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    maxDosePerTreatmentPeriod = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    maxTreatmentPeriod = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    targetSpecies = models.ManyToManyField("MedicinalProductPharmaceutical_TargetSpecies")
+    maxDosePerDay = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    maxDosePerTreatmentPeriod = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    maxTreatmentPeriod = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    targetSpecies = models.ManyToManyField("MedicinalProductPharmaceutical_TargetSpecies", null=True)
 
 
 class MedicinalProductPharmaceutical_TargetSpecies(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    withdrawalPeriod = models.ManyToManyField("MedicinalProductPharmaceutical_WithdrawalPeriod")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    withdrawalPeriod = models.ManyToManyField("MedicinalProductPharmaceutical_WithdrawalPeriod", null=True)
 
 
 class MedicinalProductPharmaceutical_WithdrawalPeriod(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     supportingInformation = models.CharField(label="""Extra information about the withdrawal period.""", max_length=255)
-    _supportingInformation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _supportingInformation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     tissue = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
     value = models.ForeignKey("Quantity", on_delete=models.CASCADE)
 
@@ -6537,13 +6537,13 @@ class MedicinalProductUndesirableEffect(models.Model):
     implicitRules = models.CharField(label="""A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.""")
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    frequencyOfOccurrence = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    population = models.ManyToManyField("Population")
-    subject = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    frequencyOfOccurrence = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    population = models.ManyToManyField("Population", null=True)
+    subject = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MessageDefinition(models.Model):
@@ -6571,17 +6571,17 @@ class MessageDefinition(models.Model):
     category = models.CharField(label="""The impact of the content of the message.""", max_length=12, choices=[('consequence', 'consequence'), ('currency', 'currency'), ('notification', 'notification')])
     responseRequired = models.CharField(label="""Declare at a message definition level whether a response is required or only upon error or success, or never.""", max_length=10, choices=[('always', 'always'), ('on-error', 'on-error'), ('never', 'never'), ('on-success', 'on-success')])
     graph = JSONField(validators=[JSONSchemaValidator({'description': 'Canonical reference to a GraphDefinition. If a URL is provided, it is the canonical reference to a [[[GraphDefinition]]] that it controls what resources are to be added to the bundle when building the document. The GraphDefinition can also specify profiles that apply to the various resources.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _responseRequired = models.ForeignKey("Element", on_delete=models.CASCADE)
-    allowedResponse = models.ManyToManyField("MessageDefinition_AllowedResponse")
-    contact = models.ManyToManyField("ContactDetail")
-    eventCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    focus = models.ManyToManyField("MessageDefinition_Focus")
-    identifier = models.ManyToManyField("Identifier")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _responseRequired = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    allowedResponse = models.ManyToManyField("MessageDefinition_AllowedResponse", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    eventCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    focus = models.ManyToManyField("MessageDefinition_Focus", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class MessageDefinition_Focus(models.Model):
@@ -6591,8 +6591,8 @@ class MessageDefinition_Focus(models.Model):
     profile = models.CharField(label="""A profile that reflects constraints for the focal resource (and potentially for related resources).""")
     min = models.IntegerField(validators=[], label="""Identifies the minimum number of resources of this type that must be pointed to by a message in order for it to be valid against this MessageDefinition.""")
     max = models.CharField(label="""Identifies the maximum number of resources of this type that must be pointed to by a message in order for it to be valid against this MessageDefinition.""", max_length=255)
-    _max = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _max = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MessageDefinition_AllowedResponse(models.Model):
@@ -6600,8 +6600,8 @@ class MessageDefinition_AllowedResponse(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     message = models.CharField(primary_key=True, label="""A reference to the message definition that must be adhered to by this supported response.""")
     situation = JSONField(validators=[JSONSchemaValidator({'description': 'Provides a description of the circumstances in which this response should be used (as opposed to one of the alternative responses).', '$ref': '#/definitions/markdown'})])
-    _situation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _situation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MessageHeader(models.Model):
@@ -6613,17 +6613,17 @@ class MessageHeader(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     eventUri = models.CharField(label="""Code that identifies the event this message represents and connects it with its definition. Events defined as part of the FHIR specification have the system value "http://terminology.hl7.org/CodeSystem/message-events".  Alternatively uri to the EventDefinition.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     definition = models.CharField(label="""Permanent link to the MessageDefinition for this message.""")
-    _eventUri = models.ForeignKey("Element", on_delete=models.CASCADE)
-    destination = models.ManyToManyField("MessageHeader_Destination")
-    eventCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    focus = models.ManyToManyField("Reference")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    reason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    response = models.ForeignKey("MessageHeader_Response", on_delete=models.CASCADE)
-    responsible = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _eventUri = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    destination = models.ManyToManyField("MessageHeader_Destination", null=True)
+    eventCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    focus = models.ManyToManyField("Reference", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    reason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    response = models.ForeignKey("MessageHeader_Response", null=True, on_delete=models.CASCADE)
+    responsible = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
     source = models.ForeignKey("MessageHeader_Source", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class MessageHeader_Destination(models.Model):
@@ -6631,9 +6631,9 @@ class MessageHeader_Destination(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Human-readable name for the target system.""", max_length=255)
     endpoint = models.CharField(label="""Indicates where the message should be routed to.""")
-    _endpoint = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    receiver = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _endpoint = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    receiver = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class MessageHeader_Source(models.Model):
@@ -6643,9 +6643,9 @@ class MessageHeader_Source(models.Model):
     software = models.CharField(label="""May include configuration or other information useful in debugging.""", max_length=255)
     version = models.CharField(label="""Can convey versions of multiple systems in situations where a message passes through multiple hands.""", max_length=255)
     endpoint = models.CharField(label="""Identifies the routing target to send acknowledgements to.""")
-    _endpoint = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _endpoint = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MessageHeader_Response(models.Model):
@@ -6653,9 +6653,9 @@ class MessageHeader_Response(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     identifier = models.CharField(label="""The MessageHeader.id of the message to which this message is a response.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     code = models.CharField(label="""Code that identifies the type of response to the message - whether it was successful or not, and whether it should be resent or not.""", max_length=15, choices=[('ok', 'ok'), ('transient-error', 'transient-error'), ('fatal-error', 'fatal-error')])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
-    details = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    details = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MolecularSequence(models.Model):
@@ -6669,19 +6669,19 @@ class MolecularSequence(models.Model):
     coordinateSystem = models.IntegerField(validators=[], label="""Whether the sequence is numbered starting at 0 (0-based numbering or coordinates, inclusive start, exclusive end) or starting at 1 (1-based numbering, inclusive start and inclusive end).""")
     observedSeq = models.CharField(label="""Sequence that was observed. It is the result marked by referenceSeq along with variant records on referenceSeq. This shall start from referenceSeq.windowStart and end by referenceSeq.windowEnd.""", max_length=255)
     readCoverage = models.IntegerField(validators=[], label="""Coverage (read depth or depth) is the average number of reads representing a given nucleotide in the reconstructed sequence.""")
-    _readCoverage = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    performer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    pointer = models.ManyToManyField("Reference")
-    quality = models.ManyToManyField("MolecularSequence_Quality")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    referenceSeq = models.ForeignKey("MolecularSequence_ReferenceSeq", on_delete=models.CASCADE)
-    repository = models.ManyToManyField("MolecularSequence_Repository")
-    structureVariant = models.ManyToManyField("MolecularSequence_StructureVariant")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    variant = models.ManyToManyField("MolecularSequence_Variant")
+    _readCoverage = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    performer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    pointer = models.ManyToManyField("Reference", null=True)
+    quality = models.ManyToManyField("MolecularSequence_Quality", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    referenceSeq = models.ForeignKey("MolecularSequence_ReferenceSeq", null=True, on_delete=models.CASCADE)
+    repository = models.ManyToManyField("MolecularSequence_Repository", null=True)
+    structureVariant = models.ManyToManyField("MolecularSequence_StructureVariant", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    variant = models.ManyToManyField("MolecularSequence_Variant", null=True)
 
 
 class MolecularSequence_ReferenceSeq(models.Model):
@@ -6693,10 +6693,10 @@ class MolecularSequence_ReferenceSeq(models.Model):
     strand = models.CharField(label="""An absolute reference to a strand. The Watson strand is the strand whose 5'-end is on the short arm of the chromosome, and the Crick strand as the one whose 5'-end is on the long arm.""", max_length=6, choices=[('watson', 'watson'), ('crick', 'crick')])
     windowStart = models.IntegerField(validators=[], label="""Start position of the window on the reference sequence. If the coordinate system is either 0-based or 1-based, then start position is inclusive.""")
     windowEnd = models.IntegerField(validators=[], label="""End position of the window on the reference sequence. If the coordinate system is 0-based then end is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.""")
-    _windowEnd = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    referenceSeqId = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    referenceSeqPointer = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _windowEnd = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    referenceSeqId = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    referenceSeqPointer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class MolecularSequence_Variant(models.Model):
@@ -6707,9 +6707,9 @@ class MolecularSequence_Variant(models.Model):
     observedAllele = models.CharField(label="""An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)).  Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the observed  sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.""", max_length=255)
     referenceAllele = models.CharField(label="""An allele is one of a set of coexisting sequence variants of a gene ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)). Nucleotide(s)/amino acids from start position of sequence to stop position of sequence on the positive (+) strand of the reference sequence. When the sequence  type is DNA, it should be the sequence on the positive (+) strand. This will lay in the range between variant.start and variant.end.""", max_length=255)
     cigar = models.CharField(label="""Extended CIGAR string for aligning the sequence with reference bases. See detailed documentation [here](http://support.illumina.com/help/SequencingAnalysisWorkflow/Content/Vault/Informatics/Sequencing_Analysis/CASAVA/swSEQ_mCA_ExtendedCIGARFormat.htm).""", max_length=255)
-    _cigar = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    variantPointer = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _cigar = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    variantPointer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class MolecularSequence_Quality(models.Model):
@@ -6726,11 +6726,11 @@ class MolecularSequence_Quality(models.Model):
     precision = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""QUERY.TP / (QUERY.TP + QUERY.FP).""")
     recall = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""TRUTH.TP / (TRUTH.TP + TRUTH.FN).""")
     fScore = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Harmonic mean of Recall and Precision, computed as: 2 * precision * recall / (precision + recall).""")
-    _fScore = models.ForeignKey("Element", on_delete=models.CASCADE)
-    method = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    roc = models.ForeignKey("MolecularSequence_Roc", on_delete=models.CASCADE)
-    score = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    _fScore = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    method = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    roc = models.ForeignKey("MolecularSequence_Roc", null=True, on_delete=models.CASCADE)
+    score = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class MolecularSequence_Roc(models.Model):
@@ -6743,8 +6743,8 @@ class MolecularSequence_Roc(models.Model):
     precision = JSONField(validators=[JSONSchemaValidator({'description': 'Calculated precision if the GQ score threshold was set to "score" field value.', 'items': {'type': 'number'}, 'type': 'array'})])
     sensitivity = JSONField(validators=[JSONSchemaValidator({'description': 'Calculated sensitivity if the GQ score threshold was set to "score" field value.', 'items': {'type': 'number'}, 'type': 'array'})])
     fMeasure = JSONField(validators=[JSONSchemaValidator({'description': 'Calculated fScore if the GQ score threshold was set to "score" field value.', 'items': {'type': 'number'}, 'type': 'array'})])
-    _fMeasure = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _fMeasure = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MolecularSequence_Repository(models.Model):
@@ -6756,8 +6756,8 @@ class MolecularSequence_Repository(models.Model):
     datasetId = models.CharField(label="""Id of the variant in this external repository. The server will understand how to use this id to call for more info about datasets in external repository.""", max_length=255)
     variantsetId = models.CharField(label="""Id of the variantset in this external repository. The server will understand how to use this id to call for more info about variantsets in external repository.""", max_length=255)
     readsetId = models.CharField(label="""Id of the read in this external repository.""", max_length=255)
-    _readsetId = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _readsetId = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MolecularSequence_StructureVariant(models.Model):
@@ -6765,11 +6765,11 @@ class MolecularSequence_StructureVariant(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     exact = models.BooleanField(label="""Used to indicate if the outer and inner start-end values have the same meaning.""")
     length = models.IntegerField(validators=[], label="""Length of the variant chromosome.""")
-    _length = models.ForeignKey("Element", on_delete=models.CASCADE)
-    inner = models.ForeignKey("MolecularSequence_Inner", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    outer = models.ForeignKey("MolecularSequence_Outer", on_delete=models.CASCADE)
-    variantType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _length = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    inner = models.ForeignKey("MolecularSequence_Inner", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    outer = models.ForeignKey("MolecularSequence_Outer", null=True, on_delete=models.CASCADE)
+    variantType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class MolecularSequence_Outer(models.Model):
@@ -6777,8 +6777,8 @@ class MolecularSequence_Outer(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     start = models.IntegerField(validators=[], label="""Structural variant outer start. If the coordinate system is either 0-based or 1-based, then start position is inclusive.""")
     end = models.IntegerField(validators=[], label="""Structural variant outer end. If the coordinate system is 0-based then end is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.""")
-    _end = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _end = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class MolecularSequence_Inner(models.Model):
@@ -6786,8 +6786,8 @@ class MolecularSequence_Inner(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     start = models.IntegerField(validators=[], label="""Structural variant inner start. If the coordinate system is either 0-based or 1-based, then start position is inclusive.""")
     end = models.IntegerField(validators=[], label="""Structural variant inner end. If the coordinate system is 0-based then end is exclusive and does not include the last position. If the coordinate system is 1-base, then end is inclusive and includes the last position.""")
-    _end = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _end = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class NamingSystem(models.Model):
@@ -6805,15 +6805,15 @@ class NamingSystem(models.Model):
     responsible = models.CharField(label="""The name of the organization that is responsible for issuing identifiers or codes for this namespace and ensuring their non-collision.""", max_length=255)
     description = JSONField(validators=[JSONSchemaValidator({'description': "A free text natural language description of the naming system from a consumer's perspective. Details about what the namespace identifies including scope, granularity, version labeling, etc.", '$ref': '#/definitions/markdown'})])
     usage = models.CharField(label="""Provides guidance on the use of the namespace, including the handling of formatting characters, use of upper vs. lower case, etc.""", max_length=255)
-    _usage = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _usage = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     uniqueId = models.ManyToManyField("NamingSystem_UniqueId")
-    useContext = models.ManyToManyField("UsageContext")
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class NamingSystem_UniqueId(models.Model):
@@ -6823,9 +6823,9 @@ class NamingSystem_UniqueId(models.Model):
     value = models.CharField(label="""The string that should be sent over the wire to identify the code system or identifier system.""", max_length=255)
     preferred = models.BooleanField(label="""Indicates whether this identifier is the "preferred" identifier of this type.""")
     comment = models.CharField(label="""Notes about the past or intended usage of this identifier.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class NutritionOrder(models.Model):
@@ -6841,46 +6841,46 @@ class NutritionOrder(models.Model):
     status = models.CharField(label="""The workflow status of the nutrition order/request.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     intent = models.CharField(label="""Indicates the level of authority/intentionality associated with the NutrionOrder and where the request fits into the workflow chain.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     dateTime = models.DateTimeField(label="""The date and time that this nutrition order was requested.""")
-    _dateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiates = models.ManyToManyField("Element")
-    allergyIntolerance = models.ManyToManyField("Reference")
-    enteralFormula = models.ForeignKey("NutritionOrder_EnteralFormula", on_delete=models.CASCADE)
-    excludeFoodModifier = models.ManyToManyField("CodeableConcept")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    oralDiet = models.ForeignKey("NutritionOrder_OralDiet", on_delete=models.CASCADE)
-    orderer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    supplement = models.ManyToManyField("NutritionOrder_Supplement")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _dateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiates = models.ManyToManyField("Element", null=True)
+    allergyIntolerance = models.ManyToManyField("Reference", null=True)
+    enteralFormula = models.ForeignKey("NutritionOrder_EnteralFormula", null=True, on_delete=models.CASCADE)
+    excludeFoodModifier = models.ManyToManyField("CodeableConcept", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    oralDiet = models.ForeignKey("NutritionOrder_OralDiet", null=True, on_delete=models.CASCADE)
+    orderer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    supplement = models.ManyToManyField("NutritionOrder_Supplement", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class NutritionOrder_OralDiet(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     instruction = models.CharField(label="""Free text or additional instructions or information pertaining to the oral diet.""", max_length=255)
-    _instruction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    fluidConsistencyType = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    nutrient = models.ManyToManyField("NutritionOrder_Nutrient")
-    schedule = models.ManyToManyField("Timing")
-    texture = models.ManyToManyField("NutritionOrder_Texture")
+    _instruction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    fluidConsistencyType = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    nutrient = models.ManyToManyField("NutritionOrder_Nutrient", null=True)
+    schedule = models.ManyToManyField("Timing", null=True)
+    texture = models.ManyToManyField("NutritionOrder_Texture", null=True)
 
 
 class NutritionOrder_Nutrient(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    amount = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifier = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    amount = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifier = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class NutritionOrder_Texture(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    foodType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    foodType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class NutritionOrder_Supplement(models.Model):
@@ -6888,11 +6888,11 @@ class NutritionOrder_Supplement(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     productName = models.CharField(label="""The product or brand name of the nutritional supplement such as "Acme Protein Shake".""", max_length=255)
     instruction = models.CharField(label="""Free text or additional instructions or information pertaining to the oral supplement.""", max_length=255)
-    _instruction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    schedule = models.ManyToManyField("Timing")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _instruction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    schedule = models.ManyToManyField("Timing", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class NutritionOrder_EnteralFormula(models.Model):
@@ -6901,20 +6901,20 @@ class NutritionOrder_EnteralFormula(models.Model):
     baseFormulaProductName = models.CharField(label="""The product or brand name of the enteral or infant formula product such as "ACME Adult Standard Formula".""", max_length=255)
     additiveProductName = models.CharField(label="""The product or brand name of the type of modular component to be added to the formula.""", max_length=255)
     administrationInstruction = models.CharField(label="""Free text formula administration, feeding instructions or additional instructions or information.""", max_length=255)
-    _administrationInstruction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    administration = models.ManyToManyField("NutritionOrder_Administration")
-    maxVolumeToDeliver = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    routeofAdministration = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _administrationInstruction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    administration = models.ManyToManyField("NutritionOrder_Administration", null=True)
+    maxVolumeToDeliver = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    routeofAdministration = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class NutritionOrder_Administration(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    rateQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    rateRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    schedule = models.ForeignKey("Timing", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    rateQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    rateRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    schedule = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
 
 
 class Observation(models.Model):
@@ -6933,36 +6933,36 @@ class Observation(models.Model):
     valueInteger = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The information determined as a result of making the observation, if the information has a simple value.""")
     valueTime = models.CharField(label="""The information determined as a result of making the observation, if the information has a simple value.""", max_length=255, validators=[validators.RegexValidator("^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$")])
     valueDateTime = models.CharField(label="""The information determined as a result of making the observation, if the information has a simple value.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _valueDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    component = models.ManyToManyField("Observation_Component")
-    derivedFrom = models.ManyToManyField("Reference")
-    device = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    effectiveTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    interpretation = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    method = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    referenceRange = models.ManyToManyField("Observation_ReferenceRange")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    valueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
+    _valueDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    component = models.ManyToManyField("Observation_Component", null=True)
+    derivedFrom = models.ManyToManyField("Reference", null=True)
+    device = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    effectiveTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    interpretation = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    method = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    referenceRange = models.ManyToManyField("Observation_ReferenceRange", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    valueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
 
 
 class Observation_ReferenceRange(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     text = models.CharField(label="""Text based reference range in an observation which may be used when a quantitative range is not appropriate for an observation.  An example would be a reference value of "Negative" or a list or table of "normals".""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    age = models.ForeignKey("Range", on_delete=models.CASCADE)
-    appliesTo = models.ManyToManyField("CodeableConcept")
-    high = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    age = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    appliesTo = models.ManyToManyField("CodeableConcept", null=True)
+    high = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Observation_Component(models.Model):
@@ -6973,16 +6973,16 @@ class Observation_Component(models.Model):
     valueInteger = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The information determined as a result of making the observation, if the information has a simple value.""")
     valueTime = models.CharField(label="""The information determined as a result of making the observation, if the information has a simple value.""", max_length=255, validators=[validators.RegexValidator("^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$")])
     valueDateTime = models.CharField(label="""The information determined as a result of making the observation, if the information has a simple value.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _valueDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    dataAbsentReason = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    interpretation = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    referenceRange = models.ManyToManyField("Observation_ReferenceRange")
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    valueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
+    _valueDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    dataAbsentReason = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    interpretation = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    referenceRange = models.ManyToManyField("Observation_ReferenceRange", null=True)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    valueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
 
 
 class ObservationDefinition(models.Model):
@@ -6995,17 +6995,17 @@ class ObservationDefinition(models.Model):
     permittedDataType = JSONField(validators=[JSONSchemaValidator({'description': 'The data types allowed for the value element of the instance observations conforming to this ObservationDefinition.', 'items': {'enum': ['Quantity', 'CodeableConcept', 'string', 'boolean', 'integer', 'Range', 'Ratio', 'SampledData', 'time', 'dateTime', 'Period']}, 'type': 'array'})])
     multipleResultsAllowed = models.BooleanField(label="""Multiple results allowed for observations conforming to this ObservationDefinition.""")
     preferredReportName = models.CharField(label="""The preferred name to be used when reporting the results of observations conforming to this ObservationDefinition.""", max_length=255)
-    _permittedDataType = models.ManyToManyField("Element")
-    _preferredReportName = models.ForeignKey("Element", on_delete=models.CASCADE)
-    category = models.ManyToManyField("CodeableConcept")
-    criticalCodedValueSet = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    method = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    qualifiedInterval = models.ManyToManyField("ObservationDefinition_QualifiedInterval")
-    quantitativeDetails = models.ForeignKey("ObservationDefinition_QuantitativeDetails", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _permittedDataType = models.ManyToManyField("Element", null=True)
+    _preferredReportName = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    category = models.ManyToManyField("CodeableConcept", null=True)
+    criticalCodedValueSet = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    method = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    qualifiedInterval = models.ManyToManyField("ObservationDefinition_QualifiedInterval", null=True)
+    quantitativeDetails = models.ForeignKey("ObservationDefinition_QuantitativeDetails", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ObservationDefinition_QuantitativeDetails(models.Model):
@@ -7013,9 +7013,9 @@ class ObservationDefinition_QuantitativeDetails(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     conversionFactor = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Factor for converting value expressed with SI unit to value expressed with customary unit.""")
     decimalPrecision = models.IntegerField(validators=[], label="""Number of digits after decimal separator when the results of such observations are of type Quantity.""")
-    _decimalPrecision = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    unit = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _decimalPrecision = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    unit = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ObservationDefinition_QualifiedInterval(models.Model):
@@ -7024,11 +7024,11 @@ class ObservationDefinition_QualifiedInterval(models.Model):
     category = models.CharField(label="""The category of interval of values for continuous or ordinal observations conforming to this ObservationDefinition.""", max_length=9, choices=[('reference', 'reference'), ('critical', 'critical'), ('absolute', 'absolute')])
     gender = models.CharField(label="""Sex of the population the range applies to.""", max_length=7, choices=[('male', 'male'), ('female', 'female'), ('other', 'other'), ('unknown', 'unknown')])
     condition = models.CharField(label="""Text based condition for which the reference range is valid.""", max_length=255)
-    _condition = models.ForeignKey("Element", on_delete=models.CASCADE)
-    appliesTo = models.ManyToManyField("CodeableConcept")
-    context = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    gestationalAge = models.ForeignKey("Range", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _condition = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    appliesTo = models.ManyToManyField("CodeableConcept", null=True)
+    context = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    gestationalAge = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class OperationDefinition(models.Model):
@@ -7059,16 +7059,16 @@ class OperationDefinition(models.Model):
     instance = models.BooleanField(label="""Indicates whether this operation can be invoked on a particular instance of one of the given types.""")
     inputProfile = models.CharField(label="""Additional validation information for the in parameters - a single profile that covers all the parameters. The profile is a constraint on the parameters resource as a whole.""")
     outputProfile = models.CharField(label="""Additional validation information for the out parameters - a single profile that covers all the parameters. The profile is a constraint on the parameters resource.""")
-    _instance = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _resource = models.ManyToManyField("Element")
-    contact = models.ManyToManyField("ContactDetail")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    overload = models.ManyToManyField("OperationDefinition_Overload")
-    parameter = models.ManyToManyField("OperationDefinition_Parameter")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _instance = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _resource = models.ManyToManyField("Element", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    overload = models.ManyToManyField("OperationDefinition_Overload", null=True)
+    parameter = models.ManyToManyField("OperationDefinition_Parameter", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class OperationDefinition_Parameter(models.Model):
@@ -7082,11 +7082,11 @@ class OperationDefinition_Parameter(models.Model):
     type = models.CharField(label="""The type for this parameter.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     targetProfile = JSONField(validators=[JSONSchemaValidator({'description': 'Used when the type is "Reference" or "canonical", and identifies a profile structure or implementation Guide that applies to the target of the reference this parameter refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     searchType = models.CharField(label="""How the parameter is understood as a search parameter. This is only used if the parameter type is 'string'.""", max_length=9, choices=[('number', 'number'), ('date', 'date'), ('string', 'string'), ('token', 'token'), ('reference', 'reference'), ('composite', 'composite'), ('quantity', 'quantity'), ('uri', 'uri'), ('special', 'special')])
-    _searchType = models.ForeignKey("Element", on_delete=models.CASCADE)
-    binding = models.ForeignKey("OperationDefinition_Binding", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    part = models.ManyToManyField("OperationDefinition_Parameter")
-    referencedFrom = models.ManyToManyField("OperationDefinition_ReferencedFrom")
+    _searchType = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    binding = models.ForeignKey("OperationDefinition_Binding", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    part = models.ManyToManyField("OperationDefinition_Parameter", null=True)
+    referencedFrom = models.ManyToManyField("OperationDefinition_ReferencedFrom", null=True)
 
 
 class OperationDefinition_Binding(models.Model):
@@ -7094,8 +7094,8 @@ class OperationDefinition_Binding(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     strength = models.CharField(label="""Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.""", max_length=10, choices=[('required', 'required'), ('extensible', 'extensible'), ('preferred', 'preferred'), ('example', 'example')])
     valueSet = models.CharField(primary_key=True, label="""Points to the value set or external definition (e.g. implicit value set) that identifies the set of codes to be used.""")
-    _strength = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _strength = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class OperationDefinition_ReferencedFrom(models.Model):
@@ -7103,8 +7103,8 @@ class OperationDefinition_ReferencedFrom(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     source = models.CharField(label="""The name of the parameter or dot-separated path of parameter names pointing to the resource parameter that is expected to contain a reference to this resource.""", max_length=255)
     sourceId = models.CharField(label="""The id of the element in the referencing resource that is expected to resolve to this resource.""", max_length=255)
-    _sourceId = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _sourceId = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class OperationDefinition_Overload(models.Model):
@@ -7112,9 +7112,9 @@ class OperationDefinition_Overload(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     parameterName = JSONField(validators=[JSONSchemaValidator({'description': 'Name of parameter to include in overload.', 'items': {'type': 'string'}, 'type': 'array'})])
     comment = models.CharField(label="""Comments to go on overload.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _parameterName = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _parameterName = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class OperationOutcome(models.Model):
@@ -7124,11 +7124,11 @@ class OperationOutcome(models.Model):
     implicitRules = models.CharField(label="""A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.""")
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     issue = models.ManyToManyField("OperationOutcome_Issue")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class OperationOutcome_Issue(models.Model):
@@ -7139,10 +7139,10 @@ class OperationOutcome_Issue(models.Model):
     diagnostics = models.CharField(label="""Additional diagnostic information about the issue.""", max_length=255)
     location = JSONField(validators=[JSONSchemaValidator({'description': 'This element is deprecated because it is XML specific. It is replaced by issue.expression, which is format independent, and simpler to parse. \n\nFor resource issues, this will be a simple XPath limited to element names, repetition indicators and the default child accessor that identifies one of the elements in the resource that caused this issue to be raised.  For HTTP errors, will be "http." + the parameter name.', 'items': {'type': 'string'}, 'type': 'array'})])
     expression = JSONField(validators=[JSONSchemaValidator({'description': 'A [simple subset of FHIRPath](fhirpath.html#simple) limited to element names, repetition indicators and the default child accessor that identifies one of the elements in the resource that caused this issue to be raised.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _diagnostics = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _expression = models.ManyToManyField("Element")
-    details = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _diagnostics = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _expression = models.ManyToManyField("Element", null=True)
+    details = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Organization(models.Model):
@@ -7155,28 +7155,28 @@ class Organization(models.Model):
     active = models.BooleanField(label="""Whether the organization's record is still in active use.""")
     name = models.CharField(label="""A name associated with the organization.""", max_length=255)
     alias = JSONField(validators=[JSONSchemaValidator({'description': 'A list of alternate names that the organization is known as, or was known as in the past.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _alias = models.ManyToManyField("Element")
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    address = models.ManyToManyField("Address")
-    contact = models.ManyToManyField("Organization_Contact")
-    endpoint = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    partOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ManyToManyField("CodeableConcept")
+    _alias = models.ManyToManyField("Element", null=True)
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    address = models.ManyToManyField("Address", null=True)
+    contact = models.ManyToManyField("Organization_Contact", null=True)
+    endpoint = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    partOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class Organization_Contact(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    address = models.ForeignKey("Address", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    name = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    purpose = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    telecom = models.ManyToManyField("ContactPoint")
+    address = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    name = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    purpose = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
 
 
 class OrganizationAffiliation(models.Model):
@@ -7187,16 +7187,16 @@ class OrganizationAffiliation(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     active = models.BooleanField(label="""Whether this organization affiliation record is in active use.""")
-    _active = models.ForeignKey("Element", on_delete=models.CASCADE)
-    endpoint = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    participatingOrganization = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    specialty = models.ManyToManyField("CodeableConcept")
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _active = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    endpoint = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    participatingOrganization = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    specialty = models.ManyToManyField("CodeableConcept", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Parameters(models.Model):
@@ -7205,9 +7205,9 @@ class Parameters(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.""")
     implicitRules = models.CharField(label="""A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.""")
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    parameter = models.ManyToManyField("Parameters_Parameter")
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    parameter = models.ManyToManyField("Parameters_Parameter", null=True)
 
 
 class Parameters_Parameter(models.Model):
@@ -7234,40 +7234,40 @@ class Parameters_Parameter(models.Model):
     valueUrl = models.CharField(label="""If the parameter is a data type.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUuid = models.CharField(label="""If the parameter is a data type.""", max_length=255, validators=[validators.RegexValidator("^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")])
     resource = JSONField(validators=[JSONSchemaValidator({'description': 'If the parameter is a whole resource.', '$ref': '#/definitions/ResourceList'})])
-    _valueUuid = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    part = models.ManyToManyField("Parameters_Parameter")
-    valueAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    valueAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    valueAnnotation = models.ForeignKey("Annotation", on_delete=models.CASCADE)
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueContactDetail = models.ForeignKey("ContactDetail", on_delete=models.CASCADE)
-    valueContactPoint = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    valueContributor = models.ForeignKey("Contributor", on_delete=models.CASCADE)
-    valueCount = models.ForeignKey("Count", on_delete=models.CASCADE)
-    valueDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    valueDistance = models.ForeignKey("Distance", on_delete=models.CASCADE)
-    valueDosage = models.ForeignKey("Dosage", on_delete=models.CASCADE)
-    valueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    valueExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    valueHumanName = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    valueIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    valueMeta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    valueMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    valueParameterDefinition = models.ForeignKey("ParameterDefinition", on_delete=models.CASCADE)
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", on_delete=models.CASCADE)
-    valueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
-    valueSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    valueTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    valueUsageContext = models.ForeignKey("UsageContext", on_delete=models.CASCADE)
+    _valueUuid = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    part = models.ManyToManyField("Parameters_Parameter", null=True)
+    valueAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    valueAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    valueAnnotation = models.ForeignKey("Annotation", null=True, on_delete=models.CASCADE)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueContactDetail = models.ForeignKey("ContactDetail", null=True, on_delete=models.CASCADE)
+    valueContactPoint = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    valueContributor = models.ForeignKey("Contributor", null=True, on_delete=models.CASCADE)
+    valueCount = models.ForeignKey("Count", null=True, on_delete=models.CASCADE)
+    valueDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    valueDistance = models.ForeignKey("Distance", null=True, on_delete=models.CASCADE)
+    valueDosage = models.ForeignKey("Dosage", null=True, on_delete=models.CASCADE)
+    valueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    valueExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    valueHumanName = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    valueIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    valueMeta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    valueMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    valueParameterDefinition = models.ForeignKey("ParameterDefinition", null=True, on_delete=models.CASCADE)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", null=True, on_delete=models.CASCADE)
+    valueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
+    valueSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    valueTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    valueUsageContext = models.ForeignKey("UsageContext", null=True, on_delete=models.CASCADE)
 
 
 class Patient(models.Model):
@@ -7289,52 +7289,52 @@ Deceased patients may also be marked as inactive for the same reasons, but may b
     deceasedDateTime = models.CharField(label="""Indicates if the individual is deceased or not.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     multipleBirthBoolean = models.BooleanField(label="""Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer).""")
     multipleBirthInteger = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Indicates whether the patient is part of a multiple (boolean) or indicates the actual birth order (integer).""")
-    _multipleBirthInteger = models.ForeignKey("Element", on_delete=models.CASCADE)
-    address = models.ManyToManyField("Address")
-    communication = models.ManyToManyField("Patient_Communication")
-    contact = models.ManyToManyField("Patient_Contact")
-    generalPractitioner = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    link = models.ManyToManyField("Patient_Link")
-    managingOrganization = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    maritalStatus = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    name = models.ManyToManyField("HumanName")
-    photo = models.ManyToManyField("Attachment")
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _multipleBirthInteger = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    address = models.ManyToManyField("Address", null=True)
+    communication = models.ManyToManyField("Patient_Communication", null=True)
+    contact = models.ManyToManyField("Patient_Contact", null=True)
+    generalPractitioner = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    link = models.ManyToManyField("Patient_Link", null=True)
+    managingOrganization = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    maritalStatus = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    name = models.ManyToManyField("HumanName", null=True)
+    photo = models.ManyToManyField("Attachment", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Patient_Contact(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     gender = models.CharField(label="""Administrative Gender - the gender that the contact person is considered to have for administration and record keeping purposes.""", max_length=7, choices=[('male', 'male'), ('female', 'female'), ('other', 'other'), ('unknown', 'unknown')])
-    _gender = models.ForeignKey("Element", on_delete=models.CASCADE)
-    address = models.ForeignKey("Address", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    name = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    organization = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    relationship = models.ManyToManyField("CodeableConcept")
-    telecom = models.ManyToManyField("ContactPoint")
+    _gender = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    address = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    name = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    organization = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    relationship = models.ManyToManyField("CodeableConcept", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
 
 
 class Patient_Communication(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     preferred = models.BooleanField(label="""Indicates whether or not the patient prefers this language (over other languages he masters up a certain level).""")
-    _preferred = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _preferred = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     language = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Patient_Link(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""The type of link between this patient resource and another patient resource.""", max_length=11, choices=[('replaced-by', 'replaced-by'), ('replaces', 'replaces'), ('refer', 'refer'), ('seealso', 'seealso')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     other = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -7348,14 +7348,14 @@ class PaymentNotice(models.Model):
     status = models.CharField(label="""The status of the resource instance.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     created = models.DateTimeField(label="""The date when this resource was created.""")
     paymentDate = models.DateField(label="""The date when the above payment action occurred.""")
-    _paymentDate = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _paymentDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    paymentStatus = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    paymentStatus = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     recipient = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class PaymentReconciliation(models.Model):
@@ -7370,29 +7370,29 @@ class PaymentReconciliation(models.Model):
     outcome = models.CharField(label="""The outcome of a request for a reconciliation.""", max_length=8, choices=[('queued', 'queued'), ('complete', 'complete'), ('error', 'error'), ('partial', 'partial')])
     disposition = models.CharField(label="""A human readable description of the status of the request for the reconciliation.""", max_length=255)
     paymentDate = models.DateField(label="""The date of payment as indicated on the financial instrument.""")
-    _paymentDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    detail = models.ManyToManyField("PaymentReconciliation_Detail")
-    formCode = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _paymentDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    detail = models.ManyToManyField("PaymentReconciliation_Detail", null=True)
+    formCode = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     paymentAmount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    paymentIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    processNote = models.ManyToManyField("PaymentReconciliation_ProcessNote")
-    requestor = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    paymentIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    processNote = models.ManyToManyField("PaymentReconciliation_ProcessNote", null=True)
+    requestor = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class PaymentReconciliation_Detail(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateField(label="""The date from the response resource containing a commitment to pay.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("Money", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    payee = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    predecessor = models.ForeignKey("Identifier", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    payee = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    predecessor = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
     type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -7401,8 +7401,8 @@ class PaymentReconciliation_ProcessNote(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""The business purpose of the note text.""", max_length=9, choices=[('display', 'display'), ('print', 'print'), ('printoper', 'printoper')])
     text = models.CharField(label="""The explanation or description associated with the processing.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Person(models.Model):
@@ -7415,25 +7415,25 @@ class Person(models.Model):
     gender = models.CharField(label="""Administrative Gender.""", max_length=7, choices=[('male', 'male'), ('female', 'female'), ('other', 'other'), ('unknown', 'unknown')])
     birthDate = models.DateField(label="""The birth date for the person.""")
     active = models.BooleanField(label="""Whether this person's record is in active use.""")
-    _active = models.ForeignKey("Element", on_delete=models.CASCADE)
-    address = models.ManyToManyField("Address")
-    identifier = models.ManyToManyField("Identifier")
-    link = models.ManyToManyField("Person_Link")
-    managingOrganization = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    name = models.ManyToManyField("HumanName")
-    photo = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _active = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    address = models.ManyToManyField("Address", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    link = models.ManyToManyField("Person_Link", null=True)
+    managingOrganization = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    name = models.ManyToManyField("HumanName", null=True)
+    photo = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Person_Link(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     assurance = models.CharField(label="""Level of assurance that this link is associated with the target resource.""", max_length=6, choices=[('level1', 'level1'), ('level2', 'level2'), ('level3', 'level3'), ('level4', 'level4')])
-    _assurance = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _assurance = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     target = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -7460,40 +7460,40 @@ class PlanDefinition(models.Model):
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
     library = JSONField(validators=[JSONSchemaValidator({'description': 'A reference to a Library resource containing any formal logic used by the plan definition.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    action = models.ManyToManyField("PlanDefinition_Action")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    goal = models.ManyToManyField("PlanDefinition_Goal")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    subjectCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    subjectReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    action = models.ManyToManyField("PlanDefinition_Action", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    goal = models.ManyToManyField("PlanDefinition_Goal", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    subjectCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    subjectReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class PlanDefinition_Goal(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    addresses = models.ManyToManyField("CodeableConcept")
-    documentation = models.ManyToManyField("RelatedArtifact")
-    modifierExtension = models.ManyToManyField("Extension")
-    start = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    target = models.ManyToManyField("PlanDefinition_Target")
+    addresses = models.ManyToManyField("CodeableConcept", null=True)
+    documentation = models.ManyToManyField("RelatedArtifact", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    start = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    target = models.ManyToManyField("PlanDefinition_Target", null=True)
 
 
 class PlanDefinition_Target(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    detailCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    detailQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    detailRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    due = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    detailCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    detailQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    detailRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    due = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class PlanDefinition_Action(models.Model):
@@ -7514,34 +7514,34 @@ class PlanDefinition_Action(models.Model):
     definitionCanonical = models.CharField(label="""A reference to an ActivityDefinition that describes the action to be taken in detail, or a PlanDefinition that describes a series of actions to be taken.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     definitionUri = models.CharField(label="""A reference to an ActivityDefinition that describes the action to be taken in detail, or a PlanDefinition that describes a series of actions to be taken.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     transform = models.CharField(label="""A reference to a StructureMap resource that defines a transform that can be executed to produce the intent resource using the ActivityDefinition instance as the input.""")
-    _definitionUri = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _goalId = models.ManyToManyField("Element")
-    action = models.ManyToManyField("PlanDefinition_Action")
-    condition = models.ManyToManyField("PlanDefinition_Condition")
-    documentation = models.ManyToManyField("RelatedArtifact")
-    dynamicValue = models.ManyToManyField("PlanDefinition_DynamicValue")
-    modifierExtension = models.ManyToManyField("Extension")
-    output = models.ManyToManyField("DataRequirement")
-    participant = models.ManyToManyField("PlanDefinition_Participant")
-    reason = models.ManyToManyField("CodeableConcept")
-    relatedAction = models.ManyToManyField("PlanDefinition_RelatedAction")
-    subjectReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    timingAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    timingDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    timingPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    timingRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    timingTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    trigger = models.ManyToManyField("TriggerDefinition")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _definitionUri = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _goalId = models.ManyToManyField("Element", null=True)
+    action = models.ManyToManyField("PlanDefinition_Action", null=True)
+    condition = models.ManyToManyField("PlanDefinition_Condition", null=True)
+    documentation = models.ManyToManyField("RelatedArtifact", null=True)
+    dynamicValue = models.ManyToManyField("PlanDefinition_DynamicValue", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    output = models.ManyToManyField("DataRequirement", null=True)
+    participant = models.ManyToManyField("PlanDefinition_Participant", null=True)
+    reason = models.ManyToManyField("CodeableConcept", null=True)
+    relatedAction = models.ManyToManyField("PlanDefinition_RelatedAction", null=True)
+    subjectReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    timingAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    timingDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    timingPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    timingRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    timingTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    trigger = models.ManyToManyField("TriggerDefinition", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class PlanDefinition_Condition(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     kind = models.CharField(label="""The kind of condition.""", max_length=13, choices=[('applicability', 'applicability'), ('start', 'start'), ('stop', 'stop')])
-    _kind = models.ForeignKey("Element", on_delete=models.CASCADE)
-    expression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _kind = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    expression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class PlanDefinition_RelatedAction(models.Model):
@@ -7549,28 +7549,28 @@ class PlanDefinition_RelatedAction(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actionId = models.CharField(label="""The element id of the related action.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     relationship = models.CharField(label="""The relationship of this action to the related action.""", max_length=21, choices=[('before-start', 'before-start'), ('before', 'before'), ('before-end', 'before-end'), ('concurrent-with-start', 'concurrent-with-start'), ('concurrent', 'concurrent'), ('concurrent-with-end', 'concurrent-with-end'), ('after-start', 'after-start'), ('after', 'after'), ('after-end', 'after-end')])
-    _relationship = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    offsetDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    offsetRange = models.ForeignKey("Range", on_delete=models.CASCADE)
+    _relationship = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    offsetDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    offsetRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
 
 
 class PlanDefinition_Participant(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""The type of participant in the action.""", max_length=14, choices=[('patient', 'patient'), ('practitioner', 'practitioner'), ('related-person', 'related-person'), ('device', 'device')])
-    _type = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    role = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _type = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    role = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class PlanDefinition_DynamicValue(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     path = models.CharField(label="""The path to the element to be customized. This is the path on the resource that will hold the result of the calculation defined by the expression. The specified path SHALL be a FHIRPath resolveable on the specified target type of the ActivityDefinition, and SHALL consist only of identifiers, constant indexers, and a restricted subset of functions. The path is allowed to contain qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to traverse multiple-cardinality sub-elements (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full details).""", max_length=255)
-    _path = models.ForeignKey("Element", on_delete=models.CASCADE)
-    expression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _path = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    expression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Practitioner(models.Model):
@@ -7583,27 +7583,27 @@ class Practitioner(models.Model):
     active = models.BooleanField(label="""Whether this practitioner's record is in active use.""")
     gender = models.CharField(label="""Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.""", max_length=7, choices=[('male', 'male'), ('female', 'female'), ('other', 'other'), ('unknown', 'unknown')])
     birthDate = models.DateField(label="""The date of birth for the practitioner.""")
-    _birthDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    address = models.ManyToManyField("Address")
-    communication = models.ManyToManyField("CodeableConcept")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    name = models.ManyToManyField("HumanName")
-    photo = models.ManyToManyField("Attachment")
-    qualification = models.ManyToManyField("Practitioner_Qualification")
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _birthDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    address = models.ManyToManyField("Address", null=True)
+    communication = models.ManyToManyField("CodeableConcept", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    name = models.ManyToManyField("HumanName", null=True)
+    photo = models.ManyToManyField("Attachment", null=True)
+    qualification = models.ManyToManyField("Practitioner_Qualification", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Practitioner_Qualification(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    issuer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    issuer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class PractitionerRole(models.Model):
@@ -7615,18 +7615,18 @@ class PractitionerRole(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     active = models.BooleanField(label="""Whether this practitioner role record is in active use.""")
     availabilityExceptions = models.CharField(label="""A description of site availability exceptions, e.g. public holiday availability. Succinctly describing all possible exceptions to normal site availability as details in the available Times and not available Times.""", max_length=255)
-    _availabilityExceptions = models.ForeignKey("Element", on_delete=models.CASCADE)
-    availableTime = models.ManyToManyField("PractitionerRole_AvailableTime")
-    endpoint = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    notAvailable = models.ManyToManyField("PractitionerRole_NotAvailable")
-    organization = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    specialty = models.ManyToManyField("CodeableConcept")
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _availabilityExceptions = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    availableTime = models.ManyToManyField("PractitionerRole_AvailableTime", null=True)
+    endpoint = models.ManyToManyField("Reference", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    notAvailable = models.ManyToManyField("PractitionerRole_NotAvailable", null=True)
+    organization = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    specialty = models.ManyToManyField("CodeableConcept", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class PractitionerRole_AvailableTime(models.Model):
@@ -7636,18 +7636,18 @@ class PractitionerRole_AvailableTime(models.Model):
     allDay = models.BooleanField(label="""Is this always available? (hence times are irrelevant) e.g. 24 hour service.""")
     availableStartTime = models.TimeField(label="""The opening time of day. Note: If the AllDay flag is set, then this time is ignored.""")
     availableEndTime = models.TimeField(label="""The closing time of day. Note: If the AllDay flag is set, then this time is ignored.""")
-    _availableEndTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _daysOfWeek = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _availableEndTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _daysOfWeek = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class PractitionerRole_NotAvailable(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""The reason that can be presented to the user as to why this time is not available.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    during = models.ForeignKey("Period", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    during = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Procedure(models.Model):
@@ -7662,38 +7662,38 @@ class Procedure(models.Model):
     status = models.CharField(label="""A code specifying the state of the procedure. Generally, this will be the in-progress or completed state.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     performedDateTime = models.CharField(label="""Estimated or actual date, date-time, period, or age when the procedure was performed.  Allows a period to support complex procedures that span more than one date, and also allows for the length of the procedure to be captured.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     performedString = models.CharField(label="""Estimated or actual date, date-time, period, or age when the procedure was performed.  Allows a period to support complex procedures that span more than one date, and also allows for the length of the procedure to be captured.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _instantiatesUri = models.ManyToManyField("Element")
-    _performedString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    focalDevice = models.ManyToManyField("Procedure_FocalDevice")
-    identifier = models.ManyToManyField("Identifier")
-    location = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    outcome = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    performedAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    performedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    performedRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    performer = models.ManyToManyField("Procedure_Performer")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    usedCode = models.ManyToManyField("CodeableConcept")
-    usedReference = models.ManyToManyField("Reference")
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    _performedString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    focalDevice = models.ManyToManyField("Procedure_FocalDevice", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    location = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    outcome = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    performedAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    performedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    performedRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    performer = models.ManyToManyField("Procedure_Performer", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    usedCode = models.ManyToManyField("CodeableConcept", null=True)
+    usedReference = models.ManyToManyField("Reference", null=True)
 
 
 class Procedure_Performer(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    function = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    onBehalfOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    function = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    onBehalfOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Procedure_FocalDevice(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    action = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    action = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     manipulated = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Provenance(models.Model):
@@ -7706,37 +7706,37 @@ class Provenance(models.Model):
     occurredDateTime = models.CharField(label="""The period during which the activity occurred.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     recorded = models.DateTimeField(label="""The instant of time at which the activity was recorded.""")
     policy = JSONField(validators=[JSONSchemaValidator({'description': 'Policy or plan the activity was defined by. Typically, a single activity may have multiple applicable policy documents, such as patient consent, guarantor funding, etc.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _policy = models.ManyToManyField("Element")
-    _recorded = models.ForeignKey("Element", on_delete=models.CASCADE)
-    activity = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _policy = models.ManyToManyField("Element", null=True)
+    _recorded = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    activity = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
     agent = models.ManyToManyField("Provenance_Agent")
-    entity = models.ManyToManyField("Provenance_Entity")
-    location = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    occurredPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    reason = models.ManyToManyField("CodeableConcept")
-    signature = models.ManyToManyField("Signature")
+    entity = models.ManyToManyField("Provenance_Entity", null=True)
+    location = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    occurredPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    reason = models.ManyToManyField("CodeableConcept", null=True)
+    signature = models.ManyToManyField("Signature", null=True)
     target = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Provenance_Agent(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    onBehalfOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    role = models.ManyToManyField("CodeableConcept")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    onBehalfOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    role = models.ManyToManyField("CodeableConcept", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Provenance_Entity(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     role = models.CharField(label="""How the entity was used during the activity.""", max_length=10, choices=[('derivation', 'derivation'), ('revision', 'revision'), ('quotation', 'quotation'), ('source', 'source'), ('removal', 'removal')])
-    _role = models.ForeignKey("Element", on_delete=models.CASCADE)
-    agent = models.ManyToManyField("Provenance_Agent")
-    modifierExtension = models.ManyToManyField("Extension")
+    _role = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    agent = models.ManyToManyField("Provenance_Agent", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     what = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -7762,18 +7762,18 @@ class Questionnaire(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the questionnaire and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the questionnaire.', '$ref': '#/definitions/markdown'})])
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _subjectType = models.ManyToManyField("Element")
-    code = models.ManyToManyField("Coding")
-    contact = models.ManyToManyField("ContactDetail")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    item = models.ManyToManyField("Questionnaire_Item")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _subjectType = models.ManyToManyField("Element", null=True)
+    code = models.ManyToManyField("Coding", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    item = models.ManyToManyField("Questionnaire_Item", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class Questionnaire_Item(models.Model):
@@ -7798,13 +7798,13 @@ class Questionnaire_Item(models.Model):
     readOnly = models.BooleanField(label="""An indication, when true, that the value cannot be changed by a human respondent to the Questionnaire.""")
     maxLength = models.IntegerField(validators=[], label="""The maximum number of characters that are permitted in the answer to be considered a "valid" QuestionnaireResponse.""")
     answerValueSet = models.CharField(label="""A reference to a value set containing a list of codes representing permitted answers for a "choice" or "open-choice" question.""")
-    _maxLength = models.ForeignKey("Element", on_delete=models.CASCADE)
-    answerOption = models.ManyToManyField("Questionnaire_AnswerOption")
-    code = models.ManyToManyField("Coding")
-    enableWhen = models.ManyToManyField("Questionnaire_EnableWhen")
-    initial = models.ManyToManyField("Questionnaire_Initial")
-    item = models.ManyToManyField("Questionnaire_Item")
-    modifierExtension = models.ManyToManyField("Extension")
+    _maxLength = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    answerOption = models.ManyToManyField("Questionnaire_AnswerOption", null=True)
+    code = models.ManyToManyField("Coding", null=True)
+    enableWhen = models.ManyToManyField("Questionnaire_EnableWhen", null=True)
+    initial = models.ManyToManyField("Questionnaire_Initial", null=True)
+    item = models.ManyToManyField("Questionnaire_Item", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Questionnaire_EnableWhen(models.Model):
@@ -7819,11 +7819,11 @@ class Questionnaire_EnableWhen(models.Model):
     answerDateTime = models.CharField(label="""A value that the referenced question is tested using the specified operator in order for the item to be enabled.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     answerTime = models.CharField(label="""A value that the referenced question is tested using the specified operator in order for the item to be enabled.""", max_length=255, validators=[validators.RegexValidator("^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$")])
     answerString = models.CharField(label="""A value that the referenced question is tested using the specified operator in order for the item to be enabled.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _answerString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    answerCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    answerQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    answerReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _answerString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    answerCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    answerQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    answerReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Questionnaire_AnswerOption(models.Model):
@@ -7834,10 +7834,10 @@ class Questionnaire_AnswerOption(models.Model):
     valueTime = models.CharField(label="""A potential answer that's allowed as the answer to this question.""", max_length=255, validators=[validators.RegexValidator("^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$")])
     valueString = models.CharField(label="""A potential answer that's allowed as the answer to this question.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     initialSelected = models.BooleanField(label="""Indicates whether the answer value is selected when the list of possible answers is initially shown.""")
-    _initialSelected = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _initialSelected = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class Questionnaire_Initial(models.Model):
@@ -7851,12 +7851,12 @@ class Questionnaire_Initial(models.Model):
     valueTime = models.CharField(label="""The actual value to for an initial answer.""", max_length=255, validators=[validators.RegexValidator("^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$")])
     valueString = models.CharField(label="""The actual value to for an initial answer.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     valueUri = models.CharField(label="""The actual value to for an initial answer.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
-    _valueUri = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _valueUri = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class QuestionnaireResponse(models.Model):
@@ -7869,14 +7869,14 @@ class QuestionnaireResponse(models.Model):
     questionnaire = models.CharField(label="""The Questionnaire that defines and organizes the questions for which answers are being provided.""")
     status = models.CharField(label="""The position of the questionnaire response within its overall lifecycle.""", max_length=16, choices=[('in-progress', 'in-progress'), ('completed', 'completed'), ('amended', 'amended'), ('entered-in-error', 'entered-in-error'), ('stopped', 'stopped')])
     authored = models.DateTimeField(label="""The date and/or time that this set of answers were last changed.""")
-    _authored = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    item = models.ManyToManyField("QuestionnaireResponse_Item")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    partOf = models.ManyToManyField("Reference")
-    source = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _authored = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    item = models.ManyToManyField("QuestionnaireResponse_Item", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    partOf = models.ManyToManyField("Reference", null=True)
+    source = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class QuestionnaireResponse_Item(models.Model):
@@ -7885,10 +7885,10 @@ class QuestionnaireResponse_Item(models.Model):
     linkId = models.CharField(label="""The item from the Questionnaire that corresponds to this item in the QuestionnaireResponse resource.""", max_length=255)
     definition = models.CharField(label="""A reference to an [[[ElementDefinition]]] that provides the details for the item.""")
     text = models.CharField(label="""Text that is displayed above the contents of the group or as the text of the question being answered.""", max_length=255)
-    _text = models.ForeignKey("Element", on_delete=models.CASCADE)
-    answer = models.ManyToManyField("QuestionnaireResponse_Answer")
-    item = models.ManyToManyField("QuestionnaireResponse_Item")
-    modifierExtension = models.ManyToManyField("Extension")
+    _text = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    answer = models.ManyToManyField("QuestionnaireResponse_Answer", null=True)
+    item = models.ManyToManyField("QuestionnaireResponse_Item", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class QuestionnaireResponse_Answer(models.Model):
@@ -7902,13 +7902,13 @@ class QuestionnaireResponse_Answer(models.Model):
     valueTime = models.CharField(label="""The answer (or one of the answers) provided by the respondent to the question.""", max_length=255, validators=[validators.RegexValidator("^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?$")])
     valueString = models.CharField(label="""The answer (or one of the answers) provided by the respondent to the question.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     valueUri = models.CharField(label="""The answer (or one of the answers) provided by the respondent to the question.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
-    _valueUri = models.ForeignKey("Element", on_delete=models.CASCADE)
-    item = models.ManyToManyField("QuestionnaireResponse_Item")
-    modifierExtension = models.ManyToManyField("Extension")
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _valueUri = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    item = models.ManyToManyField("QuestionnaireResponse_Item", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class RelatedPerson(models.Model):
@@ -7921,28 +7921,28 @@ class RelatedPerson(models.Model):
     active = models.BooleanField(label="""Whether this related person record is in active use.""")
     gender = models.CharField(label="""Administrative Gender - the gender that the person is considered to have for administration and record keeping purposes.""", max_length=7, choices=[('male', 'male'), ('female', 'female'), ('other', 'other'), ('unknown', 'unknown')])
     birthDate = models.DateField(label="""The date on which the related person was born.""")
-    _birthDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    address = models.ManyToManyField("Address")
-    communication = models.ManyToManyField("RelatedPerson_Communication")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    name = models.ManyToManyField("HumanName")
+    _birthDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    address = models.ManyToManyField("Address", null=True)
+    communication = models.ManyToManyField("RelatedPerson_Communication", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    name = models.ManyToManyField("HumanName", null=True)
     patient = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    photo = models.ManyToManyField("Attachment")
-    relationship = models.ManyToManyField("CodeableConcept")
-    telecom = models.ManyToManyField("ContactPoint")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    photo = models.ManyToManyField("Attachment", null=True)
+    relationship = models.ManyToManyField("CodeableConcept", null=True)
+    telecom = models.ManyToManyField("ContactPoint", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class RelatedPerson_Communication(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     preferred = models.BooleanField(label="""Indicates whether or not the patient prefers this language (over other languages he masters up a certain level).""")
-    _preferred = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _preferred = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     language = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class RequestGroup(models.Model):
@@ -7958,19 +7958,19 @@ class RequestGroup(models.Model):
     intent = models.CharField(label="""Indicates the level of authority/intentionality associated with the request and where the request fits into the workflow chain.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     priority = models.CharField(label="""Indicates how quickly the request should be addressed with respect to other requests.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     authoredOn = models.DateTimeField(label="""Indicates when the request group was created.""")
-    _authoredOn = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _instantiatesUri = models.ManyToManyField("Element")
-    action = models.ManyToManyField("RequestGroup_Action")
-    author = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    groupIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _authoredOn = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    action = models.ManyToManyField("RequestGroup_Action", null=True)
+    author = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    groupIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class RequestGroup_Action(models.Model):
@@ -7987,30 +7987,30 @@ class RequestGroup_Action(models.Model):
     requiredBehavior = models.CharField(label="""Defines expectations around whether an action is required.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     precheckBehavior = models.CharField(label="""Defines whether the action should usually be preselected.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     cardinalityBehavior = models.CharField(label="""Defines whether the action can be selected multiple times.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _cardinalityBehavior = models.ForeignKey("Element", on_delete=models.CASCADE)
-    action = models.ManyToManyField("RequestGroup_Action")
-    code = models.ManyToManyField("CodeableConcept")
-    condition = models.ManyToManyField("RequestGroup_Condition")
-    documentation = models.ManyToManyField("RelatedArtifact")
-    modifierExtension = models.ManyToManyField("Extension")
-    participant = models.ManyToManyField("Reference")
-    relatedAction = models.ManyToManyField("RequestGroup_RelatedAction")
-    resource = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    timingAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    timingDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    timingPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    timingRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    timingTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _cardinalityBehavior = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    action = models.ManyToManyField("RequestGroup_Action", null=True)
+    code = models.ManyToManyField("CodeableConcept", null=True)
+    condition = models.ManyToManyField("RequestGroup_Condition", null=True)
+    documentation = models.ManyToManyField("RelatedArtifact", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    participant = models.ManyToManyField("Reference", null=True)
+    relatedAction = models.ManyToManyField("RequestGroup_RelatedAction", null=True)
+    resource = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    timingAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    timingDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    timingPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    timingRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    timingTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class RequestGroup_Condition(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     kind = models.CharField(label="""The kind of condition.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _kind = models.ForeignKey("Element", on_delete=models.CASCADE)
-    expression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _kind = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    expression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class RequestGroup_RelatedAction(models.Model):
@@ -8018,10 +8018,10 @@ class RequestGroup_RelatedAction(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     actionId = models.CharField(label="""The element id of the action this is related to.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     relationship = models.CharField(label="""The relationship of this action to the related action.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
-    _relationship = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    offsetDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    offsetRange = models.ForeignKey("Range", on_delete=models.CASCADE)
+    _relationship = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    offsetDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    offsetRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
 
 
 class ResearchDefinition(models.Model):
@@ -8049,19 +8049,19 @@ class ResearchDefinition(models.Model):
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
     library = JSONField(validators=[JSONSchemaValidator({'description': 'A reference to a Library resource containing the formal logic used by the ResearchDefinition.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _comment = models.ManyToManyField("Element")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    outcome = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    subjectCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    _comment = models.ManyToManyField("Element", null=True)
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    outcome = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    subjectCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ResearchElementDefinition(models.Model):
@@ -8091,20 +8091,20 @@ class ResearchElementDefinition(models.Model):
     library = JSONField(validators=[JSONSchemaValidator({'description': 'A reference to a Library resource containing the formal logic used by the ResearchElementDefinition.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     type = models.CharField(label="""The type of research element, a population, an exposure, or an outcome.""", max_length=10, choices=[('population', 'population'), ('exposure', 'exposure'), ('outcome', 'outcome')])
     variableType = models.CharField(label="""The type of the outcome (e.g. Dichotomous, Continuous, or Descriptive).""", max_length=11, choices=[('dichotomous', 'dichotomous'), ('continuous', 'continuous'), ('descriptive', 'descriptive')])
-    _comment = models.ManyToManyField("Element")
-    _variableType = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _comment = models.ManyToManyField("Element", null=True)
+    _variableType = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     characteristic = models.ManyToManyField("ResearchElementDefinition_Characteristic")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    subjectCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    subjectReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    subjectCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    subjectReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ResearchElementDefinition_Characteristic(models.Model):
@@ -8118,15 +8118,15 @@ class ResearchElementDefinition_Characteristic(models.Model):
     participantEffectiveDescription = models.CharField(label="""A narrative description of the time period the study covers.""", max_length=255)
     participantEffectiveDateTime = models.CharField(label="""Indicates what effective period the study covers.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     participantEffectiveGroupMeasure = models.CharField(label="""Indicates how elements are aggregated within the study effective period.""", max_length=16, choices=[('mean', 'mean'), ('median', 'median'), ('mean-of-mean', 'mean-of-mean'), ('mean-of-median', 'mean-of-median'), ('median-of-mean', 'median-of-mean'), ('median-of-median', 'median-of-median')])
-    _participantEffectiveGroupMeasure = models.ForeignKey("Element", on_delete=models.CASCADE)
-    definitionDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    definitionExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    participantEffectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    participantEffectiveTimeFromStart = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    participantEffectiveTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    unitOfMeasure = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    usageContext = models.ManyToManyField("UsageContext")
+    _participantEffectiveGroupMeasure = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    definitionDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    definitionExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    participantEffectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    participantEffectiveTimeFromStart = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    participantEffectiveTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    unitOfMeasure = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    usageContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ResearchStudy(models.Model):
@@ -8139,21 +8139,21 @@ class ResearchStudy(models.Model):
     title = models.CharField(label="""A short, descriptive user-friendly label for the study.""", max_length=255)
     status = models.CharField(label="""The current state of the study.""", max_length=46, choices=[('active', 'active'), ('administratively-completed', 'administratively-completed'), ('approved', 'approved'), ('closed-to-accrual', 'closed-to-accrual'), ('closed-to-accrual-and-intervention', 'closed-to-accrual-and-intervention'), ('completed', 'completed'), ('disapproved', 'disapproved'), ('in-review', 'in-review'), ('temporarily-closed-to-accrual', 'temporarily-closed-to-accrual'), ('temporarily-closed-to-accrual-and-intervention', 'temporarily-closed-to-accrual-and-intervention'), ('withdrawn', 'withdrawn')])
     description = JSONField(validators=[JSONSchemaValidator({'description': 'A full description of how the study is being conducted.', '$ref': '#/definitions/markdown'})])
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    arm = models.ManyToManyField("ResearchStudy_Arm")
-    contact = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    location = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    objective = models.ManyToManyField("ResearchStudy_Objective")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    principalInvestigator = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    reasonStopped = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    site = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    arm = models.ManyToManyField("ResearchStudy_Arm", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    location = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    objective = models.ManyToManyField("ResearchStudy_Objective", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    principalInvestigator = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    reasonStopped = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    site = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class ResearchStudy_Arm(models.Model):
@@ -8161,18 +8161,18 @@ class ResearchStudy_Arm(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Unique, human-readable label for this arm of the study.""", max_length=255)
     description = models.CharField(label="""A succinct description of the path through the study that would be followed by a subject adhering to this arm.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ResearchStudy_Objective(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Unique, human-readable label for this objective of the study.""", max_length=255)
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class ResearchSubject(models.Model):
@@ -8185,13 +8185,13 @@ class ResearchSubject(models.Model):
     status = models.CharField(label="""The current state of the subject.""", max_length=21, choices=[('candidate', 'candidate'), ('eligible', 'eligible'), ('follow-up', 'follow-up'), ('ineligible', 'ineligible'), ('not-registered', 'not-registered'), ('off-study', 'off-study'), ('on-study', 'on-study'), ('on-study-intervention', 'on-study-intervention'), ('on-study-observation', 'on-study-observation'), ('pending-on-study', 'pending-on-study'), ('potential-candidate', 'potential-candidate'), ('screening', 'screening'), ('withdrawn', 'withdrawn')])
     assignedArm = models.CharField(label="""The name of the arm in the study the subject is expected to follow as part of this study.""", max_length=255)
     actualArm = models.CharField(label="""The name of the arm in the study the subject actually followed as part of this study.""", max_length=255)
-    _actualArm = models.ForeignKey("Element", on_delete=models.CASCADE)
-    consent = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _actualArm = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    consent = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class RiskAssessment(models.Model):
@@ -8204,18 +8204,18 @@ class RiskAssessment(models.Model):
     status = models.CharField(label="""The status of the RiskAssessment, using the same statuses as an Observation.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     occurrenceDateTime = models.CharField(label="""The date (and possibly time) the risk assessment was performed.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     mitigation = models.CharField(label="""A description of the steps that might be taken to reduce the identified risk(s).""", max_length=255)
-    _mitigation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    basis = models.ManyToManyField("Reference")
-    code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    performer = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    prediction = models.ManyToManyField("RiskAssessment_Prediction")
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _mitigation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    basis = models.ManyToManyField("Reference", null=True)
+    code = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    performer = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    prediction = models.ManyToManyField("RiskAssessment_Prediction", null=True)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class RiskAssessment_Prediction(models.Model):
@@ -8224,11 +8224,11 @@ class RiskAssessment_Prediction(models.Model):
     probabilityDecimal = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Indicates how likely the outcome is (in the specified timeframe).""")
     relativeRisk = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Indicates the risk for this particular subject (with their specific characteristics) divided by the risk of the population in general.  (Numbers greater than 1 = higher risk than the population, numbers less than 1 = lower risk.).""")
     rationale = models.CharField(label="""Additional information explaining the basis for the prediction.""", max_length=255)
-    _rationale = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    qualitativeRisk = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    whenPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    whenRange = models.ForeignKey("Range", on_delete=models.CASCADE)
+    _rationale = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    qualitativeRisk = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    whenPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    whenRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
 
 
 class RiskEvidenceSynthesis(models.Model):
@@ -8249,22 +8249,22 @@ class RiskEvidenceSynthesis(models.Model):
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the risk evidence synthesis and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the risk evidence synthesis.', '$ref': '#/definitions/markdown'})])
     approvalDate = models.DateField(label="""The date on which the resource content was approved by the publisher. Approval happens once when the content is officially approved for usage.""")
     lastReviewDate = models.DateField(label="""The date on which the resource content was last reviewed. Review happens periodically after approval but does not change the original approval date.""")
-    _lastReviewDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    certainty = models.ManyToManyField("RiskEvidenceSynthesis_Certainty")
-    effectivePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    endorser = models.ManyToManyField("ContactDetail")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
+    _lastReviewDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    certainty = models.ManyToManyField("RiskEvidenceSynthesis_Certainty", null=True)
+    effectivePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    endorser = models.ManyToManyField("ContactDetail", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
     outcome = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    relatedArtifact = models.ManyToManyField("RelatedArtifact")
-    riskEstimate = models.ForeignKey("RiskEvidenceSynthesis_RiskEstimate", on_delete=models.CASCADE)
-    sampleSize = models.ForeignKey("RiskEvidenceSynthesis_SampleSize", on_delete=models.CASCADE)
-    studyType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    topic = models.ManyToManyField("CodeableConcept")
-    useContext = models.ManyToManyField("UsageContext")
+    relatedArtifact = models.ManyToManyField("RelatedArtifact", null=True)
+    riskEstimate = models.ForeignKey("RiskEvidenceSynthesis_RiskEstimate", null=True, on_delete=models.CASCADE)
+    sampleSize = models.ForeignKey("RiskEvidenceSynthesis_SampleSize", null=True, on_delete=models.CASCADE)
+    studyType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    topic = models.ManyToManyField("CodeableConcept", null=True)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class RiskEvidenceSynthesis_SampleSize(models.Model):
@@ -8273,8 +8273,8 @@ class RiskEvidenceSynthesis_SampleSize(models.Model):
     description = models.CharField(label="""Human-readable summary of sample size.""", max_length=255)
     numberOfStudies = models.IntegerField(validators=[], label="""Number of studies included in this evidence synthesis.""")
     numberOfParticipants = models.IntegerField(validators=[], label="""Number of participants included in this evidence synthesis.""")
-    _numberOfParticipants = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _numberOfParticipants = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class RiskEvidenceSynthesis_RiskEstimate(models.Model):
@@ -8284,10 +8284,10 @@ class RiskEvidenceSynthesis_RiskEstimate(models.Model):
     value = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The point estimate of the risk estimate.""")
     denominatorCount = models.IntegerField(validators=[], label="""The sample size for the group that was measured for this risk estimate.""")
     numeratorCount = models.IntegerField(validators=[], label="""The number of group members with the outcome of interest.""")
-    _numeratorCount = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    precisionEstimate = models.ManyToManyField("RiskEvidenceSynthesis_PrecisionEstimate")
-    unitOfMeasure = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _numeratorCount = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    precisionEstimate = models.ManyToManyField("RiskEvidenceSynthesis_PrecisionEstimate", null=True)
+    unitOfMeasure = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class RiskEvidenceSynthesis_PrecisionEstimate(models.Model):
@@ -8296,27 +8296,27 @@ class RiskEvidenceSynthesis_PrecisionEstimate(models.Model):
     level = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Use 95 for a 95% confidence interval.""")
     _from = models.DecimalField("from", validators=[], max_digits=10, decimal_places=5, label="""Lower bound of confidence interval.""")
     to = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Upper bound of confidence interval.""")
-    _to = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _to = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class RiskEvidenceSynthesis_Certainty(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    certaintySubcomponent = models.ManyToManyField("RiskEvidenceSynthesis_CertaintySubcomponent")
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    rating = models.ManyToManyField("CodeableConcept")
+    certaintySubcomponent = models.ManyToManyField("RiskEvidenceSynthesis_CertaintySubcomponent", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    rating = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class RiskEvidenceSynthesis_CertaintySubcomponent(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    rating = models.ManyToManyField("CodeableConcept")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    rating = models.ManyToManyField("CodeableConcept", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Schedule(models.Model):
@@ -8328,14 +8328,14 @@ class Schedule(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     active = models.BooleanField(label="""Whether this schedule record is in active use or should not be used (such as was entered in error).""")
     comment = models.CharField(label="""Comments on the availability to describe any extended information. Such as custom constraints on the slots that may be associated.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     actor = models.ManyToManyField("Reference")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    planningHorizon = models.ForeignKey("Period", on_delete=models.CASCADE)
-    specialty = models.ManyToManyField("CodeableConcept")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    planningHorizon = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    specialty = models.ManyToManyField("CodeableConcept", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SearchParameter(models.Model):
@@ -8367,15 +8367,15 @@ class SearchParameter(models.Model):
     comparator = JSONField(validators=[JSONSchemaValidator({'description': 'Comparators supported for the search parameter.', 'items': {'enum': ['eq', 'ne', 'gt', 'lt', 'ge', 'le', 'sa', 'eb', 'ap']}, 'type': 'array'})])
     modifier = JSONField(validators=[JSONSchemaValidator({'description': 'A modifier supported for the search parameter.', 'items': {'enum': ['missing', 'exact', 'contains', 'not', 'text', 'in', 'not-in', 'below', 'above', 'type', 'identifier', 'ofType']}, 'type': 'array'})])
     chain = JSONField(validators=[JSONSchemaValidator({'description': 'Contains the names of any search parameters which may be chained to the containing search parameter. Chained parameters may be added to search parameters of type reference and specify that resources will only be returned if they contain a reference to a resource which matches the chained parameter value. Values for this field should be drawn from SearchParameter.code for a parameter on the target resource type.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _chain = models.ManyToManyField("Element")
-    _multipleAnd = models.ForeignKey("Element", on_delete=models.CASCADE)
-    component = models.ManyToManyField("SearchParameter_Component")
-    contact = models.ManyToManyField("ContactDetail")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _chain = models.ManyToManyField("Element", null=True)
+    _multipleAnd = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    component = models.ManyToManyField("SearchParameter_Component", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class SearchParameter_Component(models.Model):
@@ -8383,8 +8383,8 @@ class SearchParameter_Component(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     definition = models.CharField(primary_key=True, label="""The definition of the search parameter that describes this part.""")
     expression = models.CharField(label="""A sub-expression that defines how to extract values for this component from the output of the main SearchParameter.expression.""", max_length=255)
-    _expression = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _expression = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ServiceRequest(models.Model):
@@ -8404,23 +8404,23 @@ class ServiceRequest(models.Model):
     asNeededBoolean = models.BooleanField(label="""If a CodeableConcept is present, it indicates the pre-condition for performing the service.  For example "pain", "on flare-up", etc.""")
     authoredOn = models.DateTimeField(label="""When the request transitioned to being actionable.""")
     patientInstruction = models.CharField(label="""Instructions in terms that are understood by the patient or consumer.""", max_length=255)
-    _instantiatesUri = models.ManyToManyField("Element")
-    _patientInstruction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    bodySite = models.ManyToManyField("CodeableConcept")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    occurrenceTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    performerType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    quantityQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    quantityRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    quantityRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    relevantHistory = models.ManyToManyField("Reference")
-    requester = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    requisition = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _instantiatesUri = models.ManyToManyField("Element", null=True)
+    _patientInstruction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    bodySite = models.ManyToManyField("CodeableConcept", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    occurrenceTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    performerType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    quantityQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    quantityRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    quantityRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    relevantHistory = models.ManyToManyField("Reference", null=True)
+    requester = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    requisition = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Slot(models.Model):
@@ -8435,14 +8435,14 @@ class Slot(models.Model):
     end = models.DateTimeField(label="""Date/Time that the slot is to conclude.""")
     overbooked = models.BooleanField(label="""This slot has already been overbooked, appointments are unlikely to be accepted for this time.""")
     comment = models.CharField(label="""Comments on the slot to describe any extended information. Such as custom constraints on the slot.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    appointmentType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    appointmentType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     schedule = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    specialty = models.ManyToManyField("CodeableConcept")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    specialty = models.ManyToManyField("CodeableConcept", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Specimen(models.Model):
@@ -8454,33 +8454,33 @@ class Specimen(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""The availability of the specimen.""", max_length=16, choices=[('available', 'available'), ('unavailable', 'unavailable'), ('unsatisfactory', 'unsatisfactory'), ('entered-in-error', 'entered-in-error')])
     receivedTime = models.DateTimeField(label="""Time when specimen was received for processing or testing.""")
-    _receivedTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    accessionIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    collection = models.ForeignKey("Specimen_Collection", on_delete=models.CASCADE)
-    condition = models.ManyToManyField("CodeableConcept")
-    container = models.ManyToManyField("Specimen_Container")
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    processing = models.ManyToManyField("Specimen_Processing")
-    request = models.ManyToManyField("Reference")
-    subject = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _receivedTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    accessionIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    collection = models.ForeignKey("Specimen_Collection", null=True, on_delete=models.CASCADE)
+    condition = models.ManyToManyField("CodeableConcept", null=True)
+    container = models.ManyToManyField("Specimen_Container", null=True)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    processing = models.ManyToManyField("Specimen_Processing", null=True)
+    request = models.ManyToManyField("Reference", null=True)
+    subject = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class Specimen_Collection(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     collectedDateTime = models.CharField(label="""Time when specimen was collected from subject - the physiologically relevant time.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _collectedDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    collectedPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    collector = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    fastingStatusCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    fastingStatusDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    _collectedDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    collectedPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    collector = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    fastingStatusCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    fastingStatusDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class Specimen_Processing(models.Model):
@@ -8488,23 +8488,23 @@ class Specimen_Processing(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Textual description of procedure.""", max_length=255)
     timeDateTime = models.CharField(label="""A record of the time or period when the specimen processing occurred.  For example the time of sample fixation or the period of time the sample was in formalin.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _timeDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    additive = models.ManyToManyField("Reference")
-    modifierExtension = models.ManyToManyField("Extension")
-    procedure = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    timePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
+    _timeDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    additive = models.ManyToManyField("Reference", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    procedure = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    timePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
 
 
 class Specimen_Container(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Textual description of the container.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    additiveCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    additiveReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    modifierExtension = models.ManyToManyField("Extension")
-    specimenQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    additiveCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    additiveReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    specimenQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class SpecimenDefinition(models.Model):
@@ -8515,14 +8515,14 @@ class SpecimenDefinition(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     timeAspect = models.CharField(label="""Time aspect of specimen collection (duration or offset).""", max_length=255)
-    _timeAspect = models.ForeignKey("Element", on_delete=models.CASCADE)
-    collection = models.ManyToManyField("CodeableConcept")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    typeCollected = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    typeTested = models.ManyToManyField("SpecimenDefinition_TypeTested")
+    _timeAspect = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    collection = models.ManyToManyField("CodeableConcept", null=True)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    typeCollected = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    typeTested = models.ManyToManyField("SpecimenDefinition_TypeTested", null=True)
 
 
 class SpecimenDefinition_TypeTested(models.Model):
@@ -8531,13 +8531,13 @@ class SpecimenDefinition_TypeTested(models.Model):
     isDerived = models.BooleanField(label="""Primary of secondary specimen.""")
     preference = models.CharField(label="""The preference for this type of conditioned specimen.""", max_length=9, choices=[('preferred', 'preferred'), ('alternate', 'alternate')])
     requirement = models.CharField(label="""Requirements for delivery and special handling of this kind of conditioned specimen.""", max_length=255)
-    _requirement = models.ForeignKey("Element", on_delete=models.CASCADE)
-    container = models.ForeignKey("SpecimenDefinition_Container", on_delete=models.CASCADE)
-    handling = models.ManyToManyField("SpecimenDefinition_Handling")
-    modifierExtension = models.ManyToManyField("Extension")
-    rejectionCriterion = models.ManyToManyField("CodeableConcept")
-    retentionTime = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _requirement = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    container = models.ForeignKey("SpecimenDefinition_Container", null=True, on_delete=models.CASCADE)
+    handling = models.ManyToManyField("SpecimenDefinition_Handling", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    rejectionCriterion = models.ManyToManyField("CodeableConcept", null=True)
+    retentionTime = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SpecimenDefinition_Container(models.Model):
@@ -8546,30 +8546,30 @@ class SpecimenDefinition_Container(models.Model):
     description = models.CharField(label="""The textual description of the kind of container.""", max_length=255)
     minimumVolumeString = models.CharField(label="""The minimum volume to be conditioned in the container.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
     preparation = models.CharField(label="""Special processing that should be applied to the container for this kind of specimen.""", max_length=255)
-    _preparation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    additive = models.ManyToManyField("SpecimenDefinition_Additive")
-    cap = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    minimumVolumeQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _preparation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    additive = models.ManyToManyField("SpecimenDefinition_Additive", null=True)
+    cap = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    minimumVolumeQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SpecimenDefinition_Additive(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    additiveCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    additiveReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    additiveCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    additiveReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SpecimenDefinition_Handling(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     instruction = models.CharField(label="""Additional textual instructions for the preservation or transport of the specimen. For instance, 'Protect from light exposure'.""", max_length=255)
-    _instruction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    maxDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    temperatureQualifier = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    temperatureRange = models.ForeignKey("Range", on_delete=models.CASCADE)
+    _instruction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    maxDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    temperatureQualifier = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    temperatureRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
 
 
 class StructureDefinition(models.Model):
@@ -8597,20 +8597,20 @@ class StructureDefinition(models.Model):
     type = models.CharField(label="""The type this structure describes. If the derivation kind is 'specialization' then this is the master definition for a type, and there is always one of these (a data type, an extension, a resource, including abstract ones). Otherwise the structure definition is a constraint on the stated type (and in this case, the type cannot be an abstract type).  References are URLs that are relative to http://hl7.org/fhir/StructureDefinition e.g. "string" is a reference to http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only allowed in logical models.""")
     baseDefinition = models.CharField(label="""An absolute URI that is the base structure from which this type is derived, either by specialization or constraint.""")
     derivation = models.CharField(label="""How the type relates to the baseDefinition.""", max_length=14, choices=[('specialization', 'specialization'), ('constraint', 'constraint')])
-    _contextInvariant = models.ManyToManyField("Element")
-    _derivation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    context = models.ManyToManyField("StructureDefinition_Context")
-    differential = models.ForeignKey("StructureDefinition_Differential", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    keyword = models.ManyToManyField("Coding")
-    mapping = models.ManyToManyField("StructureDefinition_Mapping")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    snapshot = models.ForeignKey("StructureDefinition_Snapshot", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _contextInvariant = models.ManyToManyField("Element", null=True)
+    _derivation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    context = models.ManyToManyField("StructureDefinition_Context", null=True)
+    differential = models.ForeignKey("StructureDefinition_Differential", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    keyword = models.ManyToManyField("Coding", null=True)
+    mapping = models.ManyToManyField("StructureDefinition_Mapping", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    snapshot = models.ForeignKey("StructureDefinition_Snapshot", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class StructureDefinition_Mapping(models.Model):
@@ -8620,8 +8620,8 @@ class StructureDefinition_Mapping(models.Model):
     uri = models.CharField(label="""An absolute URI that identifies the specification that this mapping is expressed to.""")
     name = models.CharField(label="""A name for the specification that is being mapped to.""", max_length=255)
     comment = models.CharField(label="""Comments about this mapping, including version notes, issues, scope limitations, and other important notes for usage.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureDefinition_Context(models.Model):
@@ -8629,22 +8629,22 @@ class StructureDefinition_Context(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     type = models.CharField(label="""Defines how to interpret the expression that defines what the context of the extension is.""", max_length=9, choices=[('fhirpath', 'fhirpath'), ('element', 'element'), ('extension', 'extension')])
     expression = models.CharField(label="""An expression that defines where an extension can be used in resources.""", max_length=255)
-    _expression = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _expression = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureDefinition_Snapshot(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     element = models.ManyToManyField("ElementDefinition")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureDefinition_Differential(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     element = models.ManyToManyField("ElementDefinition")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureMap(models.Model):
@@ -8666,16 +8666,16 @@ class StructureMap(models.Model):
     purpose = JSONField(validators=[JSONSchemaValidator({'description': 'Explanation of why this structure map is needed and why it has been designed as it has.', '$ref': '#/definitions/markdown'})])
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the structure map and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the structure map.', '$ref': '#/definitions/markdown'})])
     _import = JSONField("import", validators=[JSONSchemaValidator({'description': 'Other maps used by this map (canonical URLs).', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _copyright = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
+    _copyright = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
     group = models.ManyToManyField("StructureMap_Group")
-    identifier = models.ManyToManyField("Identifier")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    structure = models.ManyToManyField("StructureMap_Structure")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    identifier = models.ManyToManyField("Identifier", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    structure = models.ManyToManyField("StructureMap_Structure", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class StructureMap_Structure(models.Model):
@@ -8685,8 +8685,8 @@ class StructureMap_Structure(models.Model):
     mode = models.CharField(label="""How the referenced structure is used in this mapping.""", max_length=8, choices=[('source', 'source'), ('queried', 'queried'), ('target', 'target'), ('produced', 'produced')])
     alias = models.CharField(label="""The name used for this type in the map.""", max_length=255)
     documentation = models.CharField(label="""Documentation that describes how the structure is used in the mapping.""", max_length=255)
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureMap_Group(models.Model):
@@ -8696,9 +8696,9 @@ class StructureMap_Group(models.Model):
     extends = models.CharField(label="""Another group that this group adds rules to.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     typeMode = models.CharField(label="""If this is the default rule set to apply for the source type or this combination of types.""", max_length=14, choices=[('none', 'none'), ('types', 'types'), ('type-and-types', 'type-and-types')])
     documentation = models.CharField(label="""Additional supporting documentation that explains the purpose of the group and the types of mappings within it.""", max_length=255)
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     input = models.ManyToManyField("StructureMap_Input")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     rule = models.ManyToManyField("StructureMap_Rule")
 
 
@@ -8709,8 +8709,8 @@ class StructureMap_Input(models.Model):
     type = models.CharField(label="""Type for this instance of data.""", max_length=255)
     mode = models.CharField(label="""Mode for this instance of data.""", max_length=6, choices=[('source', 'source'), ('target', 'target')])
     documentation = models.CharField(label="""Documentation for this instance of data.""", max_length=255)
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureMap_Rule(models.Model):
@@ -8718,12 +8718,12 @@ class StructureMap_Rule(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Name of the rule for internal references.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     documentation = models.CharField(label="""Documentation for this instance of data.""", max_length=255)
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    dependent = models.ManyToManyField("StructureMap_Dependent")
-    modifierExtension = models.ManyToManyField("Extension")
-    rule = models.ManyToManyField("StructureMap_Rule")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    dependent = models.ManyToManyField("StructureMap_Dependent", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    rule = models.ManyToManyField("StructureMap_Rule", null=True)
     source = models.ManyToManyField("StructureMap_Source")
-    target = models.ManyToManyField("StructureMap_Target")
+    target = models.ManyToManyField("StructureMap_Target", null=True)
 
 
 class StructureMap_Source(models.Model):
@@ -8758,39 +8758,39 @@ class StructureMap_Source(models.Model):
     condition = models.CharField(label="""FHIRPath expression  - must be true or the rule does not apply.""", max_length=255)
     check = models.CharField(label="""FHIRPath expression  - must be true or the mapping engine throws an error instead of completing.""", max_length=255)
     logMessage = models.CharField(label="""A FHIRPath expression which specifies a message to put in the transform log when content matching the source rule is found.""", max_length=255)
-    _logMessage = models.ForeignKey("Element", on_delete=models.CASCADE)
-    defaultValueAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    defaultValueAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    defaultValueAnnotation = models.ForeignKey("Annotation", on_delete=models.CASCADE)
-    defaultValueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    defaultValueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    defaultValueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    defaultValueContactDetail = models.ForeignKey("ContactDetail", on_delete=models.CASCADE)
-    defaultValueContactPoint = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    defaultValueContributor = models.ForeignKey("Contributor", on_delete=models.CASCADE)
-    defaultValueCount = models.ForeignKey("Count", on_delete=models.CASCADE)
-    defaultValueDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    defaultValueDistance = models.ForeignKey("Distance", on_delete=models.CASCADE)
-    defaultValueDosage = models.ForeignKey("Dosage", on_delete=models.CASCADE)
-    defaultValueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    defaultValueExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    defaultValueHumanName = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    defaultValueIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    defaultValueMeta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    defaultValueMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    defaultValueParameterDefinition = models.ForeignKey("ParameterDefinition", on_delete=models.CASCADE)
-    defaultValuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    defaultValueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    defaultValueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    defaultValueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    defaultValueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    defaultValueRelatedArtifact = models.ForeignKey("RelatedArtifact", on_delete=models.CASCADE)
-    defaultValueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
-    defaultValueSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    defaultValueTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    defaultValueTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    defaultValueUsageContext = models.ForeignKey("UsageContext", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _logMessage = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    defaultValueAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    defaultValueAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    defaultValueAnnotation = models.ForeignKey("Annotation", null=True, on_delete=models.CASCADE)
+    defaultValueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    defaultValueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    defaultValueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    defaultValueContactDetail = models.ForeignKey("ContactDetail", null=True, on_delete=models.CASCADE)
+    defaultValueContactPoint = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    defaultValueContributor = models.ForeignKey("Contributor", null=True, on_delete=models.CASCADE)
+    defaultValueCount = models.ForeignKey("Count", null=True, on_delete=models.CASCADE)
+    defaultValueDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    defaultValueDistance = models.ForeignKey("Distance", null=True, on_delete=models.CASCADE)
+    defaultValueDosage = models.ForeignKey("Dosage", null=True, on_delete=models.CASCADE)
+    defaultValueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    defaultValueExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    defaultValueHumanName = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    defaultValueIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    defaultValueMeta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    defaultValueMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    defaultValueParameterDefinition = models.ForeignKey("ParameterDefinition", null=True, on_delete=models.CASCADE)
+    defaultValuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    defaultValueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    defaultValueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    defaultValueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    defaultValueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    defaultValueRelatedArtifact = models.ForeignKey("RelatedArtifact", null=True, on_delete=models.CASCADE)
+    defaultValueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
+    defaultValueSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    defaultValueTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    defaultValueTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    defaultValueUsageContext = models.ForeignKey("UsageContext", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureMap_Target(models.Model):
@@ -8803,10 +8803,10 @@ class StructureMap_Target(models.Model):
     listMode = JSONField(validators=[JSONSchemaValidator({'description': 'If field is a list, how to manage the list.', 'items': {'enum': ['first', 'share', 'last', 'collate']}, 'type': 'array'})])
     listRuleId = models.CharField(label="""Internal rule reference for shared list items.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     transform = models.CharField(label="""How the data is copied / created.""", max_length=9, choices=[('create', 'create'), ('copy', 'copy'), ('truncate', 'truncate'), ('escape', 'escape'), ('cast', 'cast'), ('append', 'append'), ('translate', 'translate'), ('reference', 'reference'), ('dateop', 'dateOp'), ('uuid', 'uuid'), ('pointer', 'pointer'), ('evaluate', 'evaluate'), ('cc', 'cc'), ('c', 'c'), ('qty', 'qty'), ('id', 'id'), ('cp', 'cp')])
-    _listMode = models.ManyToManyField("Element")
-    _transform = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    parameter = models.ManyToManyField("StructureMap_Parameter")
+    _listMode = models.ManyToManyField("Element", null=True)
+    _transform = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    parameter = models.ManyToManyField("StructureMap_Parameter", null=True)
 
 
 class StructureMap_Parameter(models.Model):
@@ -8817,8 +8817,8 @@ class StructureMap_Parameter(models.Model):
     valueBoolean = models.BooleanField(label="""Parameter value - variable or literal.""")
     valueInteger = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Parameter value - variable or literal.""")
     valueDecimal = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Parameter value - variable or literal.""")
-    _valueDecimal = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _valueDecimal = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class StructureMap_Dependent(models.Model):
@@ -8826,9 +8826,9 @@ class StructureMap_Dependent(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Name of a rule or group to apply.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     variable = JSONField(validators=[JSONSchemaValidator({'description': 'Variable to pass to the rule or group.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _name = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _variable = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _name = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _variable = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Subscription(models.Model):
@@ -8843,12 +8843,12 @@ class Subscription(models.Model):
     reason = models.CharField(label="""A description of why this subscription is defined.""", max_length=255)
     criteria = models.CharField(label="""The rules that the server should use to determine when to generate notifications for this subscription.""", max_length=255)
     error = models.CharField(label="""A record of the last error that occurred when the server processed a notification.""", max_length=255)
-    _error = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _error = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     channel = models.ForeignKey("Subscription_Channel", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactPoint")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactPoint", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Subscription_Channel(models.Model):
@@ -8858,9 +8858,9 @@ class Subscription_Channel(models.Model):
     endpoint = models.CharField(label="""The url that describes the actual end-point to send messages to.""")
     payload = models.CharField(label="""The mime type to send the payload in - either application/fhir+xml, or application/fhir+json. If the payload is not present, then there is no payload in the notification, just a notification. The mime type "text/plain" may also be used for Email and SMS subscriptions.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     header = JSONField(validators=[JSONSchemaValidator({'description': 'Additional headers / information to send as part of the notification.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _header = models.ManyToManyField("Element")
-    _payload = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _header = models.ManyToManyField("Element", null=True)
+    _payload = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class Substance(models.Model):
@@ -8872,34 +8872,34 @@ class Substance(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""A code to indicate if the substance is actively used.""", max_length=16, choices=[('active', 'active'), ('inactive', 'inactive'), ('entered-in-error', 'entered-in-error')])
     description = models.CharField(label="""A description of the substance - its appearance, handling requirements, and other usage notes.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    category = models.ManyToManyField("CodeableConcept")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    category = models.ManyToManyField("CodeableConcept", null=True)
     code = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    ingredient = models.ManyToManyField("Substance_Ingredient")
-    instance = models.ManyToManyField("Substance_Instance")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    ingredient = models.ManyToManyField("Substance_Ingredient", null=True)
+    instance = models.ManyToManyField("Substance_Instance", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Substance_Instance(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     expiry = models.DateTimeField(label="""When the substance is no longer valid to use. For some substances, a single arbitrary date is used for expiry.""")
-    _expiry = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    _expiry = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class Substance_Ingredient(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    quantity = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    substanceCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    substanceReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    quantity = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    substanceCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    substanceReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceNucleicAcid(models.Model):
@@ -8911,12 +8911,12 @@ class SubstanceNucleicAcid(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     numberOfSubunits = models.IntegerField(validators=[], label="""The number of linear sequences of nucleotides linked through phosphodiester bonds shall be described. Subunits would be strands of nucleic acids that are tightly associated typically through Watson-Crick base pairing. NOTE: If not specified in the reference source, the assumption is that there is 1 subunit.""")
     areaOfHybridisation = models.CharField(label="""The area of hybridisation shall be described if applicable for double stranded RNA or DNA. The number associated with the subunit followed by the number associated to the residue shall be specified in increasing order. The underscore “” shall be used as separator as follows: “Subunitnumber Residue”.""", max_length=255)
-    _areaOfHybridisation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    oligoNucleotideType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    subunit = models.ManyToManyField("SubstanceNucleicAcid_Subunit")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _areaOfHybridisation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    oligoNucleotideType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    subunit = models.ManyToManyField("SubstanceNucleicAcid_Subunit", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceNucleicAcid_Subunit(models.Model):
@@ -8925,12 +8925,12 @@ class SubstanceNucleicAcid_Subunit(models.Model):
     subunit = models.IntegerField(validators=[], label="""Index of linear sequences of nucleic acids in order of decreasing length. Sequences of the same length will be ordered by molecular weight. Subunits that have identical sequences will be repeated and have sequential subscripts.""")
     sequence = models.CharField(label="""Actual nucleotide sequence notation from 5' to 3' end using standard single letter codes. In addition to the base sequence, sugar and type of phosphate or non-phosphate linkage should also be captured.""", max_length=255)
     length = models.IntegerField(validators=[], label="""The length of the sequence shall be captured.""")
-    _length = models.ForeignKey("Element", on_delete=models.CASCADE)
-    linkage = models.ManyToManyField("SubstanceNucleicAcid_Linkage")
-    modifierExtension = models.ManyToManyField("Extension")
-    sequenceAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    sugar = models.ManyToManyField("SubstanceNucleicAcid_Sugar")
-    threePrime = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _length = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    linkage = models.ManyToManyField("SubstanceNucleicAcid_Linkage", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    sequenceAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    sugar = models.ManyToManyField("SubstanceNucleicAcid_Sugar", null=True)
+    threePrime = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceNucleicAcid_Linkage(models.Model):
@@ -8939,9 +8939,9 @@ class SubstanceNucleicAcid_Linkage(models.Model):
     connectivity = models.CharField(label="""The entity that links the sugar residues together should also be captured for nearly all naturally occurring nucleic acid the linkage is a phosphate group. For many synthetic oligonucleotides phosphorothioate linkages are often seen. Linkage connectivity is assumed to be 3’-5’. If the linkage is either 3’-3’ or 5’-5’ this should be specified.""", max_length=255)
     name = models.CharField(label="""Each linkage will be registered as a fragment and have at least one name. A single name shall be assigned to each linkage.""", max_length=255)
     residueSite = models.CharField(label="""Residues shall be captured as described in 5.3.6.8.3.""", max_length=255)
-    _residueSite = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _residueSite = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SubstanceNucleicAcid_Sugar(models.Model):
@@ -8949,9 +8949,9 @@ class SubstanceNucleicAcid_Sugar(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""The name of the sugar or sugar-like component that make up the nucleotide.""", max_length=255)
     residueSite = models.CharField(label="""The residues that contain a given sugar will be captured. The order of given residues will be captured in the 5‘-3‘direction consistent with the base sequences listed above.""", max_length=255)
-    _residueSite = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _residueSite = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SubstancePolymer(models.Model):
@@ -8962,33 +8962,33 @@ class SubstancePolymer(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     modification = JSONField(validators=[JSONSchemaValidator({'description': 'Todo.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _language = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _modification = models.ManyToManyField("Element")
-    copolymerConnectivity = models.ManyToManyField("CodeableConcept")
-    geometry = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    monomerSet = models.ManyToManyField("SubstancePolymer_MonomerSet")
-    repeat = models.ManyToManyField("SubstancePolymer_Repeat")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _language = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _modification = models.ManyToManyField("Element", null=True)
+    copolymerConnectivity = models.ManyToManyField("CodeableConcept", null=True)
+    geometry = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    monomerSet = models.ManyToManyField("SubstancePolymer_MonomerSet", null=True)
+    repeat = models.ManyToManyField("SubstancePolymer_Repeat", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SubstancePolymer_MonomerSet(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    ratioType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    startingMaterial = models.ManyToManyField("SubstancePolymer_StartingMaterial")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    ratioType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    startingMaterial = models.ManyToManyField("SubstancePolymer_StartingMaterial", null=True)
 
 
 class SubstancePolymer_StartingMaterial(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     isDefining = models.BooleanField(label="""Todo.""")
-    _isDefining = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("SubstanceAmount", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _isDefining = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("SubstanceAmount", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstancePolymer_Repeat(models.Model):
@@ -8996,40 +8996,40 @@ class SubstancePolymer_Repeat(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     numberOfUnits = models.IntegerField(validators=[], label="""Todo.""")
     averageMolecularFormula = models.CharField(label="""Todo.""", max_length=255)
-    _averageMolecularFormula = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    repeatUnit = models.ManyToManyField("SubstancePolymer_RepeatUnit")
-    repeatUnitAmountType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _averageMolecularFormula = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    repeatUnit = models.ManyToManyField("SubstancePolymer_RepeatUnit", null=True)
+    repeatUnitAmountType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstancePolymer_RepeatUnit(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     repeatUnit = models.CharField(label="""Todo.""", max_length=255)
-    _repeatUnit = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amount = models.ForeignKey("SubstanceAmount", on_delete=models.CASCADE)
-    degreeOfPolymerisation = models.ManyToManyField("SubstancePolymer_DegreeOfPolymerisation")
-    modifierExtension = models.ManyToManyField("Extension")
-    orientationOfPolymerisation = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    structuralRepresentation = models.ManyToManyField("SubstancePolymer_StructuralRepresentation")
+    _repeatUnit = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amount = models.ForeignKey("SubstanceAmount", null=True, on_delete=models.CASCADE)
+    degreeOfPolymerisation = models.ManyToManyField("SubstancePolymer_DegreeOfPolymerisation", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    orientationOfPolymerisation = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    structuralRepresentation = models.ManyToManyField("SubstancePolymer_StructuralRepresentation", null=True)
 
 
 class SubstancePolymer_DegreeOfPolymerisation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    amount = models.ForeignKey("SubstanceAmount", on_delete=models.CASCADE)
-    degree = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    amount = models.ForeignKey("SubstanceAmount", null=True, on_delete=models.CASCADE)
+    degree = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SubstancePolymer_StructuralRepresentation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     representation = models.CharField(label="""Todo.""", max_length=255)
-    _representation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    attachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _representation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    attachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceProtein(models.Model):
@@ -9041,13 +9041,13 @@ class SubstanceProtein(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     numberOfSubunits = models.IntegerField(validators=[], label="""Number of linear sequences of amino acids linked through peptide bonds. The number of subunits constituting the SubstanceProtein shall be described. It is possible that the number of subunits can be variable.""")
     disulfideLinkage = JSONField(validators=[JSONSchemaValidator({'description': 'The disulphide bond between two cysteine residues either on the same subunit or on two different subunits shall be described. The position of the disulfide bonds in the SubstanceProtein shall be listed in increasing order of subunit number and position within subunit followed by the abbreviation of the amino acids involved. The disulfide linkage positions shall actually contain the amino acid Cysteine at the respective positions.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _disulfideLinkage = models.ManyToManyField("Element")
-    _numberOfSubunits = models.ForeignKey("Element", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    sequenceType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    subunit = models.ManyToManyField("SubstanceProtein_Subunit")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _disulfideLinkage = models.ManyToManyField("Element", null=True)
+    _numberOfSubunits = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    sequenceType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    subunit = models.ManyToManyField("SubstanceProtein_Subunit", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceProtein_Subunit(models.Model):
@@ -9058,10 +9058,10 @@ class SubstanceProtein_Subunit(models.Model):
     length = models.IntegerField(validators=[], label="""Length of linear sequences of amino acids contained in the subunit.""")
     nTerminalModification = models.CharField(label="""The name of the fragment modified at the N-terminal of the SubstanceProtein shall be specified.""", max_length=255)
     cTerminalModification = models.CharField(label="""The modification at the C-terminal shall be specified.""", max_length=255)
-    _cTerminalModification = models.ForeignKey("Element", on_delete=models.CASCADE)
-    cTerminalModificationId = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    sequenceAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
+    _cTerminalModification = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    cTerminalModificationId = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    sequenceAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceReferenceInformation(models.Model):
@@ -9072,53 +9072,53 @@ class SubstanceReferenceInformation(models.Model):
     language = models.CharField(label="""The base language in which the resource is written.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     comment = models.CharField(label="""Todo.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    classification = models.ManyToManyField("SubstanceReferenceInformation_Classification")
-    gene = models.ManyToManyField("SubstanceReferenceInformation_Gene")
-    geneElement = models.ManyToManyField("SubstanceReferenceInformation_GeneElement")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    target = models.ManyToManyField("SubstanceReferenceInformation_Target")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    classification = models.ManyToManyField("SubstanceReferenceInformation_Classification", null=True)
+    gene = models.ManyToManyField("SubstanceReferenceInformation_Gene", null=True)
+    geneElement = models.ManyToManyField("SubstanceReferenceInformation_GeneElement", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    target = models.ManyToManyField("SubstanceReferenceInformation_Target", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceReferenceInformation_Gene(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    gene = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ManyToManyField("Reference")
+    gene = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ManyToManyField("Reference", null=True)
 
 
 class SubstanceReferenceInformation_GeneElement(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    element = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ManyToManyField("Reference")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    element = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ManyToManyField("Reference", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceReferenceInformation_Classification(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    classification = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ManyToManyField("Reference")
-    subtype = models.ManyToManyField("CodeableConcept")
+    classification = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ManyToManyField("Reference", null=True)
+    subtype = models.ManyToManyField("CodeableConcept", null=True)
 
 
 class SubstanceReferenceInformation_Target(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     amountString = models.CharField(label="""Todo.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _amountString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amountQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    amountRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    amountType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ManyToManyField("Reference")
-    target = models.ForeignKey("Identifier", on_delete=models.CASCADE)
+    _amountString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amountQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    amountRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    amountType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ManyToManyField("Reference", null=True)
+    target = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSourceMaterial(models.Model):
@@ -9131,48 +9131,48 @@ class SubstanceSourceMaterial(models.Model):
     organismName = models.CharField(label="""The organism accepted Scientific name shall be provided based on the organism taxonomy.""", max_length=255)
     parentSubstanceName = JSONField(validators=[JSONSchemaValidator({'description': 'The parent substance of the Herbal Drug, or Herbal preparation.', 'items': {'type': 'string'}, 'type': 'array'})])
     geographicalLocation = JSONField(validators=[JSONSchemaValidator({'description': 'The place/region where the plant is harvested or the places/regions where the animal source material has its habitat.', 'items': {'type': 'string'}, 'type': 'array'})])
-    _geographicalLocation = models.ManyToManyField("Element")
-    _organismName = models.ForeignKey("Element", on_delete=models.CASCADE)
-    countryOfOrigin = models.ManyToManyField("CodeableConcept")
-    developmentStage = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    fractionDescription = models.ManyToManyField("SubstanceSourceMaterial_FractionDescription")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    organism = models.ForeignKey("SubstanceSourceMaterial_Organism", on_delete=models.CASCADE)
-    organismId = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    parentSubstanceId = models.ManyToManyField("Identifier")
-    partDescription = models.ManyToManyField("SubstanceSourceMaterial_PartDescription")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _geographicalLocation = models.ManyToManyField("Element", null=True)
+    _organismName = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    countryOfOrigin = models.ManyToManyField("CodeableConcept", null=True)
+    developmentStage = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    fractionDescription = models.ManyToManyField("SubstanceSourceMaterial_FractionDescription", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    organism = models.ForeignKey("SubstanceSourceMaterial_Organism", null=True, on_delete=models.CASCADE)
+    organismId = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    parentSubstanceId = models.ManyToManyField("Identifier", null=True)
+    partDescription = models.ManyToManyField("SubstanceSourceMaterial_PartDescription", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSourceMaterial_FractionDescription(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     fraction = models.CharField(label="""This element is capturing information about the fraction of a plant part, or human plasma for fractionation.""", max_length=255)
-    _fraction = models.ForeignKey("Element", on_delete=models.CASCADE)
-    materialType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _fraction = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    materialType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SubstanceSourceMaterial_Organism(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     intraspecificDescription = models.CharField(label="""The intraspecific description of an organism shall be specified based on a controlled vocabulary. For Influenza Vaccine, the intraspecific description shall contain the syntax of the antigen in line with the WHO convention.""", max_length=255)
-    _intraspecificDescription = models.ForeignKey("Element", on_delete=models.CASCADE)
-    author = models.ManyToManyField("SubstanceSourceMaterial_Author")
-    hybrid = models.ForeignKey("SubstanceSourceMaterial_Hybrid", on_delete=models.CASCADE)
-    intraspecificType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    organismGeneral = models.ForeignKey("SubstanceSourceMaterial_OrganismGeneral", on_delete=models.CASCADE)
+    _intraspecificDescription = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    author = models.ManyToManyField("SubstanceSourceMaterial_Author", null=True)
+    hybrid = models.ForeignKey("SubstanceSourceMaterial_Hybrid", null=True, on_delete=models.CASCADE)
+    intraspecificType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    organismGeneral = models.ForeignKey("SubstanceSourceMaterial_OrganismGeneral", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSourceMaterial_Author(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     authorDescription = models.CharField(label="""The author of an organism species shall be specified. The author year of an organism shall also be specified when applicable; refers to the year in which the first author(s) published the infraspecific plant/animal name (of any rank).""", max_length=255)
-    _authorDescription = models.ForeignKey("Element", on_delete=models.CASCADE)
-    authorType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _authorDescription = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    authorType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SubstanceSourceMaterial_Hybrid(models.Model):
@@ -9182,23 +9182,23 @@ class SubstanceSourceMaterial_Hybrid(models.Model):
     maternalOrganismName = models.CharField(label="""The name of the maternal species constituting the hybrid organism shall be specified. For plants, the parents aren’t always known, and it is unlikely that it will be known which is maternal and which is paternal.""", max_length=255)
     paternalOrganismId = models.CharField(label="""The identifier of the paternal species constituting the hybrid organism shall be specified based on a controlled vocabulary.""", max_length=255)
     paternalOrganismName = models.CharField(label="""The name of the paternal species constituting the hybrid organism shall be specified.""", max_length=255)
-    _paternalOrganismName = models.ForeignKey("Element", on_delete=models.CASCADE)
-    hybridType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _paternalOrganismName = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    hybridType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SubstanceSourceMaterial_OrganismGeneral(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    order = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    order = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSourceMaterial_PartDescription(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
-    partLocation = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    partLocation = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification(models.Model):
@@ -9210,21 +9210,21 @@ class SubstanceSpecification(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     description = models.CharField(label="""Textual description of the substance.""", max_length=255)
     comment = models.CharField(label="""Textual comment about this record of a substance.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    code = models.ManyToManyField("SubstanceSpecification_Code")
-    domain = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    moiety = models.ManyToManyField("SubstanceSpecification_Moiety")
-    molecularWeight = models.ManyToManyField("SubstanceSpecification_MolecularWeight")
-    name = models.ManyToManyField("SubstanceSpecification_Name")
-    property = models.ManyToManyField("SubstanceSpecification_Property")
-    relationship = models.ManyToManyField("SubstanceSpecification_Relationship")
-    source = models.ManyToManyField("Reference")
-    sourceMaterial = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    structure = models.ForeignKey("SubstanceSpecification_Structure", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    code = models.ManyToManyField("SubstanceSpecification_Code", null=True)
+    domain = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    moiety = models.ManyToManyField("SubstanceSpecification_Moiety", null=True)
+    molecularWeight = models.ManyToManyField("SubstanceSpecification_MolecularWeight", null=True)
+    name = models.ManyToManyField("SubstanceSpecification_Name", null=True)
+    property = models.ManyToManyField("SubstanceSpecification_Property", null=True)
+    relationship = models.ManyToManyField("SubstanceSpecification_Relationship", null=True)
+    source = models.ManyToManyField("Reference", null=True)
+    sourceMaterial = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    structure = models.ForeignKey("SubstanceSpecification_Structure", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification_Moiety(models.Model):
@@ -9233,11 +9233,11 @@ class SubstanceSpecification_Moiety(models.Model):
     name = models.CharField(label="""Textual name for this moiety substance.""", max_length=255)
     molecularFormula = models.CharField(label="""Molecular formula.""", max_length=255)
     amountString = models.CharField(label="""Quantitative value for this moiety.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _amountString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amountQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    opticalActivity = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _amountString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amountQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    opticalActivity = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification_Property(models.Model):
@@ -9245,11 +9245,11 @@ class SubstanceSpecification_Property(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     parameters = models.CharField(label="""Parameters that were used in the measurement of a property (e.g. for viscosity: measured at 20C with a pH of 7.1).""", max_length=255)
     amountString = models.CharField(label="""Quantitative value for this property.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _amountString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amountQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    definingSubstanceCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    definingSubstanceReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _amountString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amountQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    definingSubstanceCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    definingSubstanceReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class SubstanceSpecification_Structure(models.Model):
@@ -9257,41 +9257,41 @@ class SubstanceSpecification_Structure(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     molecularFormula = models.CharField(label="""Molecular formula.""", max_length=255)
     molecularFormulaByMoiety = models.CharField(label="""Specified per moiety according to the Hill system, i.e. first C, then H, then alphabetical, each moiety separated by a dot.""", max_length=255)
-    _molecularFormulaByMoiety = models.ForeignKey("Element", on_delete=models.CASCADE)
-    isotope = models.ManyToManyField("SubstanceSpecification_Isotope")
-    modifierExtension = models.ManyToManyField("Extension")
-    molecularWeight = models.ForeignKey("SubstanceSpecification_MolecularWeight", on_delete=models.CASCADE)
-    opticalActivity = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    representation = models.ManyToManyField("SubstanceSpecification_Representation")
-    source = models.ManyToManyField("Reference")
+    _molecularFormulaByMoiety = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    isotope = models.ManyToManyField("SubstanceSpecification_Isotope", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    molecularWeight = models.ForeignKey("SubstanceSpecification_MolecularWeight", null=True, on_delete=models.CASCADE)
+    opticalActivity = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    representation = models.ManyToManyField("SubstanceSpecification_Representation", null=True)
+    source = models.ManyToManyField("Reference", null=True)
 
 
 class SubstanceSpecification_Isotope(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    halfLife = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    molecularWeight = models.ForeignKey("SubstanceSpecification_MolecularWeight", on_delete=models.CASCADE)
-    substitution = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    halfLife = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    molecularWeight = models.ForeignKey("SubstanceSpecification_MolecularWeight", null=True, on_delete=models.CASCADE)
+    substitution = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification_MolecularWeight(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    amount = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    amount = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification_Representation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     representation = models.CharField(label="""The structural representation as text string in a format e.g. InChI, SMILES, MOLFILE, CDX.""", max_length=255)
-    _representation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    attachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _representation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    attachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification_Code(models.Model):
@@ -9299,10 +9299,10 @@ class SubstanceSpecification_Code(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     statusDate = models.DateTimeField(label="""The date at which the code status is changed as part of the terminology maintenance.""")
     comment = models.CharField(label="""Any comment can be provided in this field, if necessary.""", max_length=255)
-    _comment = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ManyToManyField("Reference")
-    status = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _comment = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ManyToManyField("Reference", null=True)
+    status = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification_Name(models.Model):
@@ -9310,22 +9310,22 @@ class SubstanceSpecification_Name(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""The actual name.""", max_length=255)
     preferred = models.BooleanField(label="""If this is the preferred name for this substance.""")
-    _preferred = models.ForeignKey("Element", on_delete=models.CASCADE)
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    modifierExtension = models.ManyToManyField("Extension")
-    official = models.ManyToManyField("SubstanceSpecification_Official")
-    source = models.ManyToManyField("Reference")
-    status = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    translation = models.ManyToManyField("SubstanceSpecification_Name")
+    _preferred = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    official = models.ManyToManyField("SubstanceSpecification_Official", null=True)
+    source = models.ManyToManyField("Reference", null=True)
+    status = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    translation = models.ManyToManyField("SubstanceSpecification_Name", null=True)
 
 
 class SubstanceSpecification_Official(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     date = models.DateTimeField(label="""Date of official name change.""")
-    _date = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    status = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _date = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    status = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SubstanceSpecification_Relationship(models.Model):
@@ -9333,14 +9333,14 @@ class SubstanceSpecification_Relationship(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     isDefining = models.BooleanField(label="""For example where an enzyme strongly bonds with a particular substance, this is a defining relationship for that enzyme, out of several possible substance relationships.""")
     amountString = models.CharField(label="""A numeric factor for the relationship, for instance to express that the salt of a substance has some percentage of the active substance in relation to some other.""", max_length=255, validators=[validators.RegexValidator("^[ \r\n\t\S]+$")])
-    _amountString = models.ForeignKey("Element", on_delete=models.CASCADE)
-    amountQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    amountRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    amountRatioLowLimit = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    amountType = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    source = models.ManyToManyField("Reference")
-    substanceReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _amountString = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    amountQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    amountRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    amountRatioLowLimit = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    amountType = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    source = models.ManyToManyField("Reference", null=True)
+    substanceReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class SupplyDelivery(models.Model):
@@ -9352,26 +9352,26 @@ class SupplyDelivery(models.Model):
     contained = JSONField(validators=[JSONSchemaValidator({'description': 'These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.', 'items': {'$ref': '#/definitions/ResourceList'}, 'type': 'array'})])
     status = models.CharField(label="""A code specifying the state of the dispense event.""", max_length=16, choices=[('in-progress', 'in-progress'), ('completed', 'completed'), ('abandoned', 'abandoned'), ('entered-in-error', 'entered-in-error')])
     occurrenceDateTime = models.CharField(label="""The date or time(s) the activity occurred.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _occurrenceDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    destination = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    occurrenceTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    receiver = models.ManyToManyField("Reference")
-    suppliedItem = models.ForeignKey("SupplyDelivery_SuppliedItem", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    type = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
+    _occurrenceDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    destination = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    occurrenceTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    receiver = models.ManyToManyField("Reference", null=True)
+    suppliedItem = models.ForeignKey("SupplyDelivery_SuppliedItem", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    type = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
 
 
 class SupplyDelivery_SuppliedItem(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    itemCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    itemReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
+    itemCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    itemReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    quantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
 
 
 class SupplyRequest(models.Model):
@@ -9385,30 +9385,30 @@ class SupplyRequest(models.Model):
     priority = models.CharField(label="""Indicates how quickly this SupplyRequest should be addressed with respect to other requests.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     occurrenceDateTime = models.CharField(label="""When the request should be fulfilled.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
     authoredOn = models.DateTimeField(label="""When the request was made.""")
-    _authoredOn = models.ForeignKey("Element", on_delete=models.CASCADE)
-    deliverTo = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    itemCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    occurrencePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    occurrenceTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    parameter = models.ManyToManyField("SupplyRequest_Parameter")
+    _authoredOn = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    deliverTo = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    itemCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    occurrencePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    occurrenceTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    parameter = models.ManyToManyField("SupplyRequest_Parameter", null=True)
     quantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    reasonCode = models.ManyToManyField("CodeableConcept")
-    reasonReference = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    reasonCode = models.ManyToManyField("CodeableConcept", null=True)
+    reasonReference = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class SupplyRequest_Parameter(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     valueBoolean = models.BooleanField(label="""The value of the device detail.""")
-    _valueBoolean = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
+    _valueBoolean = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
 
 
 class Task(models.Model):
@@ -9426,31 +9426,31 @@ class Task(models.Model):
     description = models.CharField(label="""A free-text description of what is to be performed.""", max_length=255)
     authoredOn = models.DateTimeField(label="""The date and time this task was created.""")
     lastModified = models.DateTimeField(label="""The date and time of last modification to this task.""")
-    _lastModified = models.ForeignKey("Element", on_delete=models.CASCADE)
-    executionPeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    groupIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    input = models.ManyToManyField("Task_Input")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    output = models.ManyToManyField("Task_Output")
-    performerType = models.ManyToManyField("CodeableConcept")
-    reasonCode = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    reasonReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    relevantHistory = models.ManyToManyField("Reference")
-    restriction = models.ForeignKey("Task_Restriction", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    _lastModified = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    executionPeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    groupIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    input = models.ManyToManyField("Task_Input", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    output = models.ManyToManyField("Task_Output", null=True)
+    performerType = models.ManyToManyField("CodeableConcept", null=True)
+    reasonCode = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    reasonReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    relevantHistory = models.ManyToManyField("Reference", null=True)
+    restriction = models.ForeignKey("Task_Restriction", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class Task_Restriction(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     repetitions = models.DecimalField(validators=[validators.MinValueValidator(1)], max_digits=10, decimal_places=5, label="""Indicates the number of times the requested action should occur.""")
-    _repetitions = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    period = models.ForeignKey("Period", on_delete=models.CASCADE)
-    recipient = models.ManyToManyField("Reference")
+    _repetitions = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    period = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    recipient = models.ManyToManyField("Reference", null=True)
 
 
 class Task_Input(models.Model):
@@ -9475,39 +9475,39 @@ class Task_Input(models.Model):
     valueUri = models.CharField(label="""The value of the input parameter as a basic type.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUrl = models.CharField(label="""The value of the input parameter as a basic type.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUuid = models.CharField(label="""The value of the input parameter as a basic type.""", max_length=255, validators=[validators.RegexValidator("^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")])
-    _valueUuid = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    valueAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    valueAnnotation = models.ForeignKey("Annotation", on_delete=models.CASCADE)
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueContactDetail = models.ForeignKey("ContactDetail", on_delete=models.CASCADE)
-    valueContactPoint = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    valueContributor = models.ForeignKey("Contributor", on_delete=models.CASCADE)
-    valueCount = models.ForeignKey("Count", on_delete=models.CASCADE)
-    valueDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    valueDistance = models.ForeignKey("Distance", on_delete=models.CASCADE)
-    valueDosage = models.ForeignKey("Dosage", on_delete=models.CASCADE)
-    valueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    valueExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    valueHumanName = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    valueIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    valueMeta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    valueMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    valueParameterDefinition = models.ForeignKey("ParameterDefinition", on_delete=models.CASCADE)
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", on_delete=models.CASCADE)
-    valueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
-    valueSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    valueTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    valueUsageContext = models.ForeignKey("UsageContext", on_delete=models.CASCADE)
+    _valueUuid = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    valueAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    valueAnnotation = models.ForeignKey("Annotation", null=True, on_delete=models.CASCADE)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueContactDetail = models.ForeignKey("ContactDetail", null=True, on_delete=models.CASCADE)
+    valueContactPoint = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    valueContributor = models.ForeignKey("Contributor", null=True, on_delete=models.CASCADE)
+    valueCount = models.ForeignKey("Count", null=True, on_delete=models.CASCADE)
+    valueDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    valueDistance = models.ForeignKey("Distance", null=True, on_delete=models.CASCADE)
+    valueDosage = models.ForeignKey("Dosage", null=True, on_delete=models.CASCADE)
+    valueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    valueExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    valueHumanName = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    valueIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    valueMeta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    valueMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    valueParameterDefinition = models.ForeignKey("ParameterDefinition", null=True, on_delete=models.CASCADE)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", null=True, on_delete=models.CASCADE)
+    valueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
+    valueSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    valueTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    valueUsageContext = models.ForeignKey("UsageContext", null=True, on_delete=models.CASCADE)
 
 
 class Task_Output(models.Model):
@@ -9532,39 +9532,39 @@ class Task_Output(models.Model):
     valueUri = models.CharField(label="""The value of the Output parameter as a basic type.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUrl = models.CharField(label="""The value of the Output parameter as a basic type.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueUuid = models.CharField(label="""The value of the Output parameter as a basic type.""", max_length=255, validators=[validators.RegexValidator("^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")])
-    _valueUuid = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    valueAddress = models.ForeignKey("Address", on_delete=models.CASCADE)
-    valueAge = models.ForeignKey("Age", on_delete=models.CASCADE)
-    valueAnnotation = models.ForeignKey("Annotation", on_delete=models.CASCADE)
-    valueAttachment = models.ForeignKey("Attachment", on_delete=models.CASCADE)
-    valueCodeableConcept = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    valueCoding = models.ForeignKey("Coding", on_delete=models.CASCADE)
-    valueContactDetail = models.ForeignKey("ContactDetail", on_delete=models.CASCADE)
-    valueContactPoint = models.ForeignKey("ContactPoint", on_delete=models.CASCADE)
-    valueContributor = models.ForeignKey("Contributor", on_delete=models.CASCADE)
-    valueCount = models.ForeignKey("Count", on_delete=models.CASCADE)
-    valueDataRequirement = models.ForeignKey("DataRequirement", on_delete=models.CASCADE)
-    valueDistance = models.ForeignKey("Distance", on_delete=models.CASCADE)
-    valueDosage = models.ForeignKey("Dosage", on_delete=models.CASCADE)
-    valueDuration = models.ForeignKey("Duration", on_delete=models.CASCADE)
-    valueExpression = models.ForeignKey("Expression", on_delete=models.CASCADE)
-    valueHumanName = models.ForeignKey("HumanName", on_delete=models.CASCADE)
-    valueIdentifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    valueMeta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    valueMoney = models.ForeignKey("Money", on_delete=models.CASCADE)
-    valueParameterDefinition = models.ForeignKey("ParameterDefinition", on_delete=models.CASCADE)
-    valuePeriod = models.ForeignKey("Period", on_delete=models.CASCADE)
-    valueQuantity = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    valueRange = models.ForeignKey("Range", on_delete=models.CASCADE)
-    valueRatio = models.ForeignKey("Ratio", on_delete=models.CASCADE)
-    valueReference = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", on_delete=models.CASCADE)
-    valueSampledData = models.ForeignKey("SampledData", on_delete=models.CASCADE)
-    valueSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    valueTiming = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", on_delete=models.CASCADE)
-    valueUsageContext = models.ForeignKey("UsageContext", on_delete=models.CASCADE)
+    _valueUuid = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    valueAddress = models.ForeignKey("Address", null=True, on_delete=models.CASCADE)
+    valueAge = models.ForeignKey("Age", null=True, on_delete=models.CASCADE)
+    valueAnnotation = models.ForeignKey("Annotation", null=True, on_delete=models.CASCADE)
+    valueAttachment = models.ForeignKey("Attachment", null=True, on_delete=models.CASCADE)
+    valueCodeableConcept = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    valueCoding = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
+    valueContactDetail = models.ForeignKey("ContactDetail", null=True, on_delete=models.CASCADE)
+    valueContactPoint = models.ForeignKey("ContactPoint", null=True, on_delete=models.CASCADE)
+    valueContributor = models.ForeignKey("Contributor", null=True, on_delete=models.CASCADE)
+    valueCount = models.ForeignKey("Count", null=True, on_delete=models.CASCADE)
+    valueDataRequirement = models.ForeignKey("DataRequirement", null=True, on_delete=models.CASCADE)
+    valueDistance = models.ForeignKey("Distance", null=True, on_delete=models.CASCADE)
+    valueDosage = models.ForeignKey("Dosage", null=True, on_delete=models.CASCADE)
+    valueDuration = models.ForeignKey("Duration", null=True, on_delete=models.CASCADE)
+    valueExpression = models.ForeignKey("Expression", null=True, on_delete=models.CASCADE)
+    valueHumanName = models.ForeignKey("HumanName", null=True, on_delete=models.CASCADE)
+    valueIdentifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    valueMeta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    valueMoney = models.ForeignKey("Money", null=True, on_delete=models.CASCADE)
+    valueParameterDefinition = models.ForeignKey("ParameterDefinition", null=True, on_delete=models.CASCADE)
+    valuePeriod = models.ForeignKey("Period", null=True, on_delete=models.CASCADE)
+    valueQuantity = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    valueRange = models.ForeignKey("Range", null=True, on_delete=models.CASCADE)
+    valueRatio = models.ForeignKey("Ratio", null=True, on_delete=models.CASCADE)
+    valueReference = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    valueRelatedArtifact = models.ForeignKey("RelatedArtifact", null=True, on_delete=models.CASCADE)
+    valueSampledData = models.ForeignKey("SampledData", null=True, on_delete=models.CASCADE)
+    valueSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    valueTiming = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    valueTriggerDefinition = models.ForeignKey("TriggerDefinition", null=True, on_delete=models.CASCADE)
+    valueUsageContext = models.ForeignKey("UsageContext", null=True, on_delete=models.CASCADE)
 
 
 class TerminologyCapabilities(models.Model):
@@ -9588,20 +9588,20 @@ class TerminologyCapabilities(models.Model):
     kind = models.CharField(label="""The way that this statement is intended to be used, to describe an actual running instance of software, a particular product (kind, not instance of software) or a class of implementation (e.g. a desired purchase).""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     lockedDate = models.BooleanField(label="""Whether the server supports lockedDate.""")
     codeSearch = models.CharField(label="""The degree to which the server supports the code search parameter on ValueSet, if it is supported.""", max_length=8, choices=[('explicit', 'explicit'), ('all', 'all')])
-    _codeSearch = models.ForeignKey("Element", on_delete=models.CASCADE)
-    closure = models.ForeignKey("TerminologyCapabilities_Closure", on_delete=models.CASCADE)
-    codeSystem = models.ManyToManyField("TerminologyCapabilities_CodeSystem")
-    contact = models.ManyToManyField("ContactDetail")
-    expansion = models.ForeignKey("TerminologyCapabilities_Expansion", on_delete=models.CASCADE)
-    implementation = models.ForeignKey("TerminologyCapabilities_Implementation", on_delete=models.CASCADE)
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    software = models.ForeignKey("TerminologyCapabilities_Software", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    translation = models.ForeignKey("TerminologyCapabilities_Translation", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
-    validateCode = models.ForeignKey("TerminologyCapabilities_ValidateCode", on_delete=models.CASCADE)
+    _codeSearch = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    closure = models.ForeignKey("TerminologyCapabilities_Closure", null=True, on_delete=models.CASCADE)
+    codeSystem = models.ManyToManyField("TerminologyCapabilities_CodeSystem", null=True)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    expansion = models.ForeignKey("TerminologyCapabilities_Expansion", null=True, on_delete=models.CASCADE)
+    implementation = models.ForeignKey("TerminologyCapabilities_Implementation", null=True, on_delete=models.CASCADE)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    software = models.ForeignKey("TerminologyCapabilities_Software", null=True, on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    translation = models.ForeignKey("TerminologyCapabilities_Translation", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
+    validateCode = models.ForeignKey("TerminologyCapabilities_ValidateCode", null=True, on_delete=models.CASCADE)
 
 
 class TerminologyCapabilities_Software(models.Model):
@@ -9609,8 +9609,8 @@ class TerminologyCapabilities_Software(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Name the software is known by.""", max_length=255)
     version = models.CharField(label="""The version identifier for the software covered by this statement.""", max_length=255)
-    _version = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _version = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TerminologyCapabilities_Implementation(models.Model):
@@ -9618,8 +9618,8 @@ class TerminologyCapabilities_Implementation(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     description = models.CharField(label="""Information about the specific installation that this terminology capability statement relates to.""", max_length=255)
     url = models.CharField(label="""An absolute base URL for the implementation.""")
-    _url = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _url = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TerminologyCapabilities_CodeSystem(models.Model):
@@ -9627,9 +9627,9 @@ class TerminologyCapabilities_CodeSystem(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     uri = models.CharField(label="""URI for the Code System.""")
     subsumption = models.BooleanField(label="""True if subsumption is supported for this version of the code system.""")
-    _subsumption = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    version = models.ManyToManyField("TerminologyCapabilities_Version")
+    _subsumption = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    version = models.ManyToManyField("TerminologyCapabilities_Version", null=True)
 
 
 class TerminologyCapabilities_Version(models.Model):
@@ -9640,10 +9640,10 @@ class TerminologyCapabilities_Version(models.Model):
     compositional = models.BooleanField(label="""If the compositional grammar defined by the code system is supported.""")
     language = JSONField(validators=[JSONSchemaValidator({'description': 'Language Displays supported.', 'items': {'pattern': '^[^\\s]+(\\s[^\\s]+)*$', 'type': 'string'}, 'type': 'array'})])
     property = JSONField(validators=[JSONSchemaValidator({'description': 'Properties supported for $lookup.', 'items': {'pattern': '^[^\\s]+(\\s[^\\s]+)*$', 'type': 'string'}, 'type': 'array'})])
-    _compositional = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _property = models.ManyToManyField("Element")
-    filter = models.ManyToManyField("TerminologyCapabilities_Filter")
-    modifierExtension = models.ManyToManyField("Extension")
+    _compositional = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _property = models.ManyToManyField("Element", null=True)
+    filter = models.ManyToManyField("TerminologyCapabilities_Filter", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TerminologyCapabilities_Filter(models.Model):
@@ -9651,9 +9651,9 @@ class TerminologyCapabilities_Filter(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""Code of the property supported.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     op = JSONField(validators=[JSONSchemaValidator({'description': 'Operations supported for the property.', 'items': {'pattern': '^[^\\s]+(\\s[^\\s]+)*$', 'type': 'string'}, 'type': 'array'})])
-    _code = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _op = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _code = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _op = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TerminologyCapabilities_Expansion(models.Model):
@@ -9663,9 +9663,9 @@ class TerminologyCapabilities_Expansion(models.Model):
     paging = models.BooleanField(label="""Whether the server supports paging on expansion.""")
     incomplete = models.BooleanField(label="""Allow request for incomplete expansions?""")
     textFilter = JSONField(validators=[JSONSchemaValidator({'description': 'Documentation about text searching works.', '$ref': '#/definitions/markdown'})])
-    _textFilter = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    parameter = models.ManyToManyField("TerminologyCapabilities_Parameter")
+    _textFilter = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    parameter = models.ManyToManyField("TerminologyCapabilities_Parameter", null=True)
 
 
 class TerminologyCapabilities_Parameter(models.Model):
@@ -9673,32 +9673,32 @@ class TerminologyCapabilities_Parameter(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""Expansion Parameter name.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     documentation = models.CharField(label="""Description of support for parameter.""", max_length=255)
-    _documentation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _documentation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TerminologyCapabilities_ValidateCode(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     translations = models.BooleanField(label="""Whether translations are validated.""")
-    _translations = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _translations = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TerminologyCapabilities_Translation(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     needsMap = models.BooleanField(label="""Whether the client must identify the map.""")
-    _needsMap = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _needsMap = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TerminologyCapabilities_Closure(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     translation = models.BooleanField(label="""If cross-system closure is supported.""")
-    _translation = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _translation = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestReport(models.Model):
@@ -9714,16 +9714,16 @@ class TestReport(models.Model):
     score = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""The final score (percentage of tests passed) resulting from the execution of the TestScript.""")
     tester = models.CharField(label="""Name of the tester producing this report (Organization or individual).""", max_length=255)
     issued = models.DateTimeField(label="""When the TestScript was executed and this TestReport was generated.""")
-    _issued = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    participant = models.ManyToManyField("TestReport_Participant")
-    setup = models.ForeignKey("TestReport_Setup", on_delete=models.CASCADE)
-    teardown = models.ForeignKey("TestReport_Teardown", on_delete=models.CASCADE)
-    test = models.ManyToManyField("TestReport_Test")
+    _issued = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    participant = models.ManyToManyField("TestReport_Participant", null=True)
+    setup = models.ForeignKey("TestReport_Setup", null=True, on_delete=models.CASCADE)
+    teardown = models.ForeignKey("TestReport_Teardown", null=True, on_delete=models.CASCADE)
+    test = models.ManyToManyField("TestReport_Test", null=True)
     testScript = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class TestReport_Participant(models.Model):
@@ -9732,23 +9732,23 @@ class TestReport_Participant(models.Model):
     type = models.CharField(label="""The type of participant.""", max_length=11, choices=[('test-engine', 'test-engine'), ('client', 'client'), ('server', 'server')])
     uri = models.CharField(label="""The uri of the participant. An absolute URL is preferred.""")
     display = models.CharField(label="""The display name of the participant.""", max_length=255)
-    _display = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _display = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestReport_Setup(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     action = models.ManyToManyField("TestReport_Action")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestReport_Action(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    _assert = models.ForeignKey("TestReport_Assert", verbose_name="assert", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    operation = models.ForeignKey("TestReport_Operation", on_delete=models.CASCADE)
+    _assert = models.ForeignKey("TestReport_Assert", null=True, verbose_name="assert", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operation = models.ForeignKey("TestReport_Operation", null=True, on_delete=models.CASCADE)
 
 
 class TestReport_Operation(models.Model):
@@ -9757,8 +9757,8 @@ class TestReport_Operation(models.Model):
     result = models.CharField(label="""The result of this operation.""", max_length=7, choices=[('pass', 'pass'), ('skip', 'skip'), ('fail', 'fail'), ('warning', 'warning'), ('error', 'error')])
     message = JSONField(validators=[JSONSchemaValidator({'description': 'An explanatory message associated with the result.', '$ref': '#/definitions/markdown'})])
     detail = models.CharField(label="""A link to further details on the result.""")
-    _detail = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _detail = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestReport_Assert(models.Model):
@@ -9767,8 +9767,8 @@ class TestReport_Assert(models.Model):
     result = models.CharField(label="""The result of this assertion.""", max_length=7, choices=[('pass', 'pass'), ('skip', 'skip'), ('fail', 'fail'), ('warning', 'warning'), ('error', 'error')])
     message = JSONField(validators=[JSONSchemaValidator({'description': 'An explanatory message associated with the result.', '$ref': '#/definitions/markdown'})])
     detail = models.CharField(label="""A link to further details on the result.""", max_length=255)
-    _detail = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _detail = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestReport_Test(models.Model):
@@ -9776,30 +9776,30 @@ class TestReport_Test(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""The name of this test used for tracking/logging purposes by test engines.""", max_length=255)
     description = models.CharField(label="""A short description of the test used by test engines for tracking and reporting purposes.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     action = models.ManyToManyField("TestReport_Action1")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestReport_Action1(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    _assert = models.ForeignKey("TestReport_Assert", verbose_name="assert", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    operation = models.ForeignKey("TestReport_Operation", on_delete=models.CASCADE)
+    _assert = models.ForeignKey("TestReport_Assert", null=True, verbose_name="assert", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operation = models.ForeignKey("TestReport_Operation", null=True, on_delete=models.CASCADE)
 
 
 class TestReport_Teardown(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     action = models.ManyToManyField("TestReport_Action2")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestReport_Action2(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     operation = models.ForeignKey("TestReport_Operation", on_delete=models.CASCADE)
 
 
@@ -9821,31 +9821,31 @@ class TestScript(models.Model):
     description = JSONField(validators=[JSONSchemaValidator({'description': "A free text natural language description of the test script from a consumer's perspective.", '$ref': '#/definitions/markdown'})])
     purpose = JSONField(validators=[JSONSchemaValidator({'description': 'Explanation of why this test script is needed and why it has been designed as it has.', '$ref': '#/definitions/markdown'})])
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the test script and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the test script.', '$ref': '#/definitions/markdown'})])
-    _copyright = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    destination = models.ManyToManyField("TestScript_Destination")
-    fixture = models.ManyToManyField("TestScript_Fixture")
-    identifier = models.ForeignKey("Identifier", on_delete=models.CASCADE)
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    metadata = models.ForeignKey("TestScript_Metadata", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    origin = models.ManyToManyField("TestScript_Origin")
-    profile = models.ManyToManyField("Reference")
-    setup = models.ForeignKey("TestScript_Setup", on_delete=models.CASCADE)
-    teardown = models.ForeignKey("TestScript_Teardown", on_delete=models.CASCADE)
-    test = models.ManyToManyField("TestScript_Test")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
-    variable = models.ManyToManyField("TestScript_Variable")
+    _copyright = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    destination = models.ManyToManyField("TestScript_Destination", null=True)
+    fixture = models.ManyToManyField("TestScript_Fixture", null=True)
+    identifier = models.ForeignKey("Identifier", null=True, on_delete=models.CASCADE)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    metadata = models.ForeignKey("TestScript_Metadata", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    origin = models.ManyToManyField("TestScript_Origin", null=True)
+    profile = models.ManyToManyField("Reference", null=True)
+    setup = models.ForeignKey("TestScript_Setup", null=True, on_delete=models.CASCADE)
+    teardown = models.ForeignKey("TestScript_Teardown", null=True, on_delete=models.CASCADE)
+    test = models.ManyToManyField("TestScript_Test", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
+    variable = models.ManyToManyField("TestScript_Variable", null=True)
 
 
 class TestScript_Origin(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     index = models.IntegerField(validators=[], label="""Abstract name given to an origin server in this test script.  The name is provided as a number starting at 1.""")
-    _index = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _index = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     profile = models.ForeignKey("Coding", on_delete=models.CASCADE)
 
 
@@ -9853,8 +9853,8 @@ class TestScript_Destination(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     index = models.IntegerField(validators=[], label="""Abstract name given to a destination server in this test script.  The name is provided as a number starting at 1.""")
-    _index = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _index = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     profile = models.ForeignKey("Coding", on_delete=models.CASCADE)
 
 
@@ -9862,8 +9862,8 @@ class TestScript_Metadata(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     capability = models.ManyToManyField("TestScript_Capability")
-    link = models.ManyToManyField("TestScript_Link")
-    modifierExtension = models.ManyToManyField("Extension")
+    link = models.ManyToManyField("TestScript_Link", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Link(models.Model):
@@ -9871,8 +9871,8 @@ class TestScript_Link(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     url = models.CharField(label="""URL to a particular requirement or feature within the FHIR specification.""")
     description = models.CharField(label="""Short description of the link.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Capability(models.Model):
@@ -9885,9 +9885,9 @@ class TestScript_Capability(models.Model):
     destination = models.IntegerField(validators=[], label="""Which server these requirements apply to.""")
     link = JSONField(validators=[JSONSchemaValidator({'description': 'Links to the FHIR specification that describes this interaction and the resources involved in more detail.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
     capabilities = models.CharField(primary_key=True, label="""Minimum capabilities required of server for test script to execute successfully.   If server does not meet at a minimum the referenced capability statement, then all tests in this script are skipped.""")
-    _destination = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _link = models.ManyToManyField("Element")
-    modifierExtension = models.ManyToManyField("Extension")
+    _destination = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _link = models.ManyToManyField("Element", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Fixture(models.Model):
@@ -9895,9 +9895,9 @@ class TestScript_Fixture(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     autocreate = models.BooleanField(label="""Whether or not to implicitly create the fixture during setup. If true, the fixture is automatically created on each server being tested during setup, therefore no create operation is required for this fixture in the TestScript.setup section.""")
     autodelete = models.BooleanField(label="""Whether or not to implicitly delete the fixture during teardown. If true, the fixture is automatically deleted on each server being tested during teardown, therefore no delete operation is required for this fixture in the TestScript.teardown section.""")
-    _autodelete = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    resource = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _autodelete = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    resource = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class TestScript_Variable(models.Model):
@@ -9911,23 +9911,23 @@ class TestScript_Variable(models.Model):
     hint = models.CharField(label="""Displayable text string with hint help information to the user when entering a default value.""", max_length=255)
     path = models.CharField(label="""XPath or JSONPath to evaluate against the fixture body.  When variables are defined, only one of either expression, headerField or path must be specified.""", max_length=255)
     sourceId = models.CharField(label="""Fixture to evaluate the XPath/JSONPath expression or the headerField  against within this variable.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
-    _sourceId = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _sourceId = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Setup(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     action = models.ManyToManyField("TestScript_Action")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Action(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    _assert = models.ForeignKey("TestScript_Assert", verbose_name="assert", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    operation = models.ForeignKey("TestScript_Operation", on_delete=models.CASCADE)
+    _assert = models.ForeignKey("TestScript_Assert", null=True, verbose_name="assert", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operation = models.ForeignKey("TestScript_Operation", null=True, on_delete=models.CASCADE)
 
 
 class TestScript_Operation(models.Model):
@@ -9948,10 +9948,10 @@ class TestScript_Operation(models.Model):
     sourceId = models.CharField(label="""The id of the fixture used as the body of a PUT or POST request.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     targetId = models.CharField(label="""Id of fixture used for extracting the [id],  [type], and [vid] for GET requests.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     url = models.CharField(label="""Complete request URL.""", max_length=255)
-    _url = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    requestHeader = models.ManyToManyField("TestScript_RequestHeader")
-    type = models.ForeignKey("Coding", on_delete=models.CASCADE)
+    _url = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    requestHeader = models.ManyToManyField("TestScript_RequestHeader", null=True)
+    type = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
 
 
 class TestScript_RequestHeader(models.Model):
@@ -9959,8 +9959,8 @@ class TestScript_RequestHeader(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     field = models.CharField(label="""The HTTP header field e.g. "Accept".""", max_length=255)
     value = models.CharField(label="""The value of the header e.g. "application/fhir+xml".""", max_length=255)
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Assert(models.Model):
@@ -9988,8 +9988,8 @@ class TestScript_Assert(models.Model):
     validateProfileId = models.CharField(label="""The ID of the Profile to validate against.""", max_length=255, validators=[validators.RegexValidator("^[A-Za-z0-9\-\.]{1,64}$")])
     value = models.CharField(label="""The value to compare to.""", max_length=255)
     warningOnly = models.BooleanField(label="""Whether or not the test execution will produce a warning only on error for this assert.""")
-    _warningOnly = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _warningOnly = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Test(models.Model):
@@ -9997,30 +9997,30 @@ class TestScript_Test(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     name = models.CharField(label="""The name of this test used for tracking/logging purposes by test engines.""", max_length=255)
     description = models.CharField(label="""A short description of the test used by test engines for tracking and reporting purposes.""", max_length=255)
-    _description = models.ForeignKey("Element", on_delete=models.CASCADE)
+    _description = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
     action = models.ManyToManyField("TestScript_Action1")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Action1(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    _assert = models.ForeignKey("TestScript_Assert", verbose_name="assert", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    operation = models.ForeignKey("TestScript_Operation", on_delete=models.CASCADE)
+    _assert = models.ForeignKey("TestScript_Assert", null=True, verbose_name="assert", on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    operation = models.ForeignKey("TestScript_Operation", null=True, on_delete=models.CASCADE)
 
 
 class TestScript_Teardown(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     action = models.ManyToManyField("TestScript_Action2")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class TestScript_Action2(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
-    modifierExtension = models.ManyToManyField("Extension")
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     operation = models.ForeignKey("TestScript_Operation", on_delete=models.CASCADE)
 
 
@@ -10043,16 +10043,16 @@ class ValueSet(models.Model):
     immutable = models.BooleanField(label="""If this is set to 'true', then no new versions of the content logical definition can be created.  Note: Other metadata might still change.""")
     purpose = JSONField(validators=[JSONSchemaValidator({'description': 'Explanation of why this value set is needed and why it has been designed as it has.', '$ref': '#/definitions/markdown'})])
     copyright = JSONField(validators=[JSONSchemaValidator({'description': 'A copyright statement relating to the value set and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the value set.', '$ref': '#/definitions/markdown'})])
-    _copyright = models.ForeignKey("Element", on_delete=models.CASCADE)
-    compose = models.ForeignKey("ValueSet_Compose", on_delete=models.CASCADE)
-    contact = models.ManyToManyField("ContactDetail")
-    expansion = models.ForeignKey("ValueSet_Expansion", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
-    jurisdiction = models.ManyToManyField("CodeableConcept")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    useContext = models.ManyToManyField("UsageContext")
+    _copyright = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    compose = models.ForeignKey("ValueSet_Compose", null=True, on_delete=models.CASCADE)
+    contact = models.ManyToManyField("ContactDetail", null=True)
+    expansion = models.ForeignKey("ValueSet_Expansion", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
+    jurisdiction = models.ManyToManyField("CodeableConcept", null=True)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    useContext = models.ManyToManyField("UsageContext", null=True)
 
 
 class ValueSet_Compose(models.Model):
@@ -10060,9 +10060,9 @@ class ValueSet_Compose(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     lockedDate = models.DateField(label="""The Locked Date is  the effective date that is used to determine the version of all referenced Code Systems and Value Set Definitions included in the compose that are not already tied to a specific version.""")
     inactive = models.BooleanField(label="""Whether inactive codes - codes that are not approved for current use - are in the value set. If inactive = true, inactive codes are to be included in the expansion, if inactive = false, the inactive codes will not be included in the expansion. If absent, the behavior is determined by the implementation, or by the applicable $expand parameters (but generally, inactive codes would be expected to be included).""")
-    _inactive = models.ForeignKey("Element", on_delete=models.CASCADE)
-    exclude = models.ManyToManyField("ValueSet_Include")
-    modifierExtension = models.ManyToManyField("Extension")
+    _inactive = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    exclude = models.ManyToManyField("ValueSet_Include", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ValueSet_Include(models.Model):
@@ -10071,10 +10071,10 @@ class ValueSet_Include(models.Model):
     system = models.CharField(label="""An absolute URI which is the code system from which the selected codes come from.""")
     version = models.CharField(label="""The version of the code system that the codes are selected from, or the special version '*' for all versions.""", max_length=255)
     valueSet = JSONField(validators=[JSONSchemaValidator({'description': 'Selects the concepts found in this value set (based on its value set definition). This is an absolute URI that is a reference to ValueSet.url.  If multiple value sets are specified this includes the union of the contents of all of the referenced value sets.', 'items': {'format': 'uri', 'type': 'string'}, 'type': 'array'})])
-    _version = models.ForeignKey("Element", on_delete=models.CASCADE)
-    concept = models.ManyToManyField("ValueSet_Concept")
-    filter = models.ManyToManyField("ValueSet_Filter")
-    modifierExtension = models.ManyToManyField("Extension")
+    _version = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    concept = models.ManyToManyField("ValueSet_Concept", null=True)
+    filter = models.ManyToManyField("ValueSet_Filter", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ValueSet_Concept(models.Model):
@@ -10082,9 +10082,9 @@ class ValueSet_Concept(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     code = models.CharField(label="""Specifies a code for the concept to be included or excluded.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     display = models.CharField(label="""The text to display to the user for this concept in the context of this valueset. If no display is provided, then applications using the value set use the display specified for the code by the system.""", max_length=255)
-    _display = models.ForeignKey("Element", on_delete=models.CASCADE)
-    designation = models.ManyToManyField("ValueSet_Designation")
-    modifierExtension = models.ManyToManyField("Extension")
+    _display = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    designation = models.ManyToManyField("ValueSet_Designation", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ValueSet_Designation(models.Model):
@@ -10092,9 +10092,9 @@ class ValueSet_Designation(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     language = models.CharField(label="""The language this designation is defined for.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     value = models.CharField(label="""The text value for this designation.""", max_length=255)
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    use = models.ForeignKey("Coding", on_delete=models.CASCADE)
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    use = models.ForeignKey("Coding", null=True, on_delete=models.CASCADE)
 
 
 class ValueSet_Filter(models.Model):
@@ -10103,8 +10103,8 @@ class ValueSet_Filter(models.Model):
     property = models.CharField(label="""A code that identifies a property or a filter defined in the code system.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     op = models.CharField(label="""The kind of operation to perform as a part of the filter criteria.""", max_length=13, choices=[('=', '='), ('is-a', 'is-a'), ('descendent-of', 'descendent-of'), ('is-not-a', 'is-not-a'), ('regex', 'regex'), ('in', 'in'), ('not-in', 'not-in'), ('generalizes', 'generalizes'), ('exists', 'exists')])
     value = models.CharField(label="""The match value may be either a code defined by the system, or a string value, which is a regex match on the literal string of the property value  (if the filter represents a property defined in CodeSystem) or of the system filter value (if the filter represents a filter defined in CodeSystem) when the operation is 'regex', or one of the values (true and false), when the operation is 'exists'.""", max_length=255)
-    _value = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _value = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ValueSet_Expansion(models.Model):
@@ -10114,10 +10114,10 @@ class ValueSet_Expansion(models.Model):
     timestamp = models.DateTimeField(label="""The time at which the expansion was produced by the expanding system.""")
     total = models.IntegerField(validators=[], label="""The total number of concepts in the expansion. If the number of concept nodes in this resource is less than the stated number, then the server can return more using the offset parameter.""")
     offset = models.IntegerField(validators=[], label="""If paging is being used, the offset at which this resource starts.  I.e. this resource is a partial view into the expansion. If paging is not being used, this element SHALL NOT be present.""")
-    _offset = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contains = models.ManyToManyField("ValueSet_Contains")
-    modifierExtension = models.ManyToManyField("Extension")
-    parameter = models.ManyToManyField("ValueSet_Parameter")
+    _offset = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contains = models.ManyToManyField("ValueSet_Contains", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    parameter = models.ManyToManyField("ValueSet_Parameter", null=True)
 
 
 class ValueSet_Parameter(models.Model):
@@ -10131,8 +10131,8 @@ class ValueSet_Parameter(models.Model):
     valueUri = models.CharField(label="""The value of the parameter.""", max_length=255, validators=[validators.RegexValidator("^\S*$")])
     valueCode = models.CharField(label="""The value of the parameter.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     valueDateTime = models.CharField(label="""The value of the parameter.""", max_length=255, validators=[validators.RegexValidator("^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\.[0-9]+)?(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$")])
-    _valueDateTime = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _valueDateTime = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class ValueSet_Contains(models.Model):
@@ -10144,10 +10144,10 @@ class ValueSet_Contains(models.Model):
     version = models.CharField(label="""The version of the code system from this code was taken. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured, and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged.""", max_length=255)
     code = models.CharField(label="""The code for this item in the expansion hierarchy. If this code is missing the entry in the hierarchy is a place holder (abstract) and does not represent a valid code in the value set.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     display = models.CharField(label="""The recommended display for this item in the expansion.""", max_length=255)
-    _display = models.ForeignKey("Element", on_delete=models.CASCADE)
-    contains = models.ManyToManyField("ValueSet_Contains")
-    designation = models.ManyToManyField("ValueSet_Designation")
-    modifierExtension = models.ManyToManyField("Extension")
+    _display = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    contains = models.ManyToManyField("ValueSet_Contains", null=True)
+    designation = models.ManyToManyField("ValueSet_Designation", null=True)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
 
 
 class VerificationResult(models.Model):
@@ -10162,29 +10162,29 @@ class VerificationResult(models.Model):
     statusDate = models.DateTimeField(label="""When the validation status was updated.""")
     lastPerformed = models.DateTimeField(label="""The date/time validation was last completed (including failed validations).""")
     nextScheduled = models.DateField(label="""The date when target is next validated, if appropriate.""")
-    _nextScheduled = models.ForeignKey("Element", on_delete=models.CASCADE)
-    _targetLocation = models.ManyToManyField("Element")
-    attestation = models.ForeignKey("VerificationResult_Attestation", on_delete=models.CASCADE)
-    failureAction = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    frequency = models.ForeignKey("Timing", on_delete=models.CASCADE)
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    primarySource = models.ManyToManyField("VerificationResult_PrimarySource")
-    target = models.ManyToManyField("Reference")
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
-    validationProcess = models.ManyToManyField("CodeableConcept")
-    validator = models.ManyToManyField("VerificationResult_Validator")
+    _nextScheduled = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    _targetLocation = models.ManyToManyField("Element", null=True)
+    attestation = models.ForeignKey("VerificationResult_Attestation", null=True, on_delete=models.CASCADE)
+    failureAction = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    frequency = models.ForeignKey("Timing", null=True, on_delete=models.CASCADE)
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    primarySource = models.ManyToManyField("VerificationResult_PrimarySource", null=True)
+    target = models.ManyToManyField("Reference", null=True)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
+    validationProcess = models.ManyToManyField("CodeableConcept", null=True)
+    validator = models.ManyToManyField("VerificationResult_Validator", null=True)
 
 
 class VerificationResult_PrimarySource(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     validationDate = models.DateTimeField(label="""When the target was validated against the primary source.""")
-    _validationDate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    canPushUpdates = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    pushTypeAvailable = models.ManyToManyField("CodeableConcept")
-    who = models.ForeignKey("Reference", on_delete=models.CASCADE)
+    _validationDate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    canPushUpdates = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    pushTypeAvailable = models.ManyToManyField("CodeableConcept", null=True)
+    who = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
 
 
 class VerificationResult_Attestation(models.Model):
@@ -10193,20 +10193,20 @@ class VerificationResult_Attestation(models.Model):
     date = models.DateField(label="""The date the information was attested to.""")
     sourceIdentityCertificate = models.CharField(label="""A digital identity certificate associated with the attestation source.""", max_length=255)
     proxyIdentityCertificate = models.CharField(label="""A digital identity certificate associated with the proxy entity submitting attested information on behalf of the attestation source.""", max_length=255)
-    _proxyIdentityCertificate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    communicationMethod = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    onBehalfOf = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    sourceSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
+    _proxyIdentityCertificate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    communicationMethod = models.ForeignKey("CodeableConcept", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    onBehalfOf = models.ForeignKey("Reference", null=True, on_delete=models.CASCADE)
+    sourceSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
 
 
 class VerificationResult_Validator(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     identityCertificate = models.CharField(label="""A digital identity certificate associated with the validator.""", max_length=255)
-    _identityCertificate = models.ForeignKey("Element", on_delete=models.CASCADE)
-    attestationSignature = models.ForeignKey("Signature", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _identityCertificate = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    attestationSignature = models.ForeignKey("Signature", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     organization = models.ForeignKey("Reference", on_delete=models.CASCADE)
 
 
@@ -10220,13 +10220,13 @@ class VisionPrescription(models.Model):
     status = models.CharField(label="""The status of the resource instance.""", max_length=255, validators=[validators.RegexValidator("^[^\s]+(\s[^\s]+)*$")])
     created = models.DateTimeField(label="""The date this resource was created.""")
     dateWritten = models.DateTimeField(label="""The date (and perhaps time) when the prescription was written.""")
-    _dateWritten = models.ForeignKey("Element", on_delete=models.CASCADE)
-    identifier = models.ManyToManyField("Identifier")
+    _dateWritten = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    identifier = models.ManyToManyField("Identifier", null=True)
     lensSpecification = models.ManyToManyField("VisionPrescription_LensSpecification")
-    meta = models.ForeignKey("Meta", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    meta = models.ForeignKey("Meta", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
     prescriber = models.ForeignKey("Reference", on_delete=models.CASCADE)
-    text = models.ForeignKey("Narrative", on_delete=models.CASCADE)
+    text = models.ForeignKey("Narrative", null=True, on_delete=models.CASCADE)
 
 
 class VisionPrescription_LensSpecification(models.Model):
@@ -10242,11 +10242,11 @@ class VisionPrescription_LensSpecification(models.Model):
     diameter = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Contact lens diameter measured in millimetres.""")
     color = models.CharField(label="""Special color or pattern.""", max_length=255)
     brand = models.CharField(label="""Brand recommendations or restrictions.""", max_length=255)
-    _brand = models.ForeignKey("Element", on_delete=models.CASCADE)
-    duration = models.ForeignKey("Quantity", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
-    note = models.ManyToManyField("Annotation")
-    prism = models.ManyToManyField("VisionPrescription_Prism")
+    _brand = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    duration = models.ForeignKey("Quantity", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)
+    note = models.ManyToManyField("Annotation", null=True)
+    prism = models.ManyToManyField("VisionPrescription_Prism", null=True)
     product = models.ForeignKey("CodeableConcept", on_delete=models.CASCADE)
 
 
@@ -10255,5 +10255,5 @@ class VisionPrescription_Prism(models.Model):
     id = models.UUIDField(default=uuid.uuid4, label="""Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.""")
     amount = models.DecimalField(validators=[], max_digits=10, decimal_places=5, label="""Amount of prism to compensate for eye alignment in fractional units.""")
     base = models.CharField(label="""The relative base, or reference lens edge, for the prism.""", max_length=4, choices=[('up', 'up'), ('down', 'down'), ('in', 'in'), ('out', 'out')])
-    _base = models.ForeignKey("Element", on_delete=models.CASCADE)
-    modifierExtension = models.ManyToManyField("Extension")
+    _base = models.ForeignKey("Element", null=True, on_delete=models.CASCADE)
+    modifierExtension = models.ManyToManyField("Extension", null=True)

@@ -10,25 +10,25 @@ except ImportError:
 
 class A(models.Model):
 
-    b = models.OneToOneField("B", on_delete=models.CASCADE)
+    b = models.OneToOneField("B", null=True, on_delete=models.CASCADE)
 
 
 class B(models.Model):
 
-    a = models.OneToOneField("A", on_delete=models.CASCADE)
-    c = models.ForeignKey("C", on_delete=models.CASCADE)
+    a = models.OneToOneField("A", null=True, on_delete=models.CASCADE)
+    c = models.ForeignKey("C", null=True, on_delete=models.CASCADE)
 
 
 class C(models.Model):
 
-    d = models.ForeignKey("D", on_delete=models.CASCADE)
+    d = models.ForeignKey("D", null=True, on_delete=models.CASCADE)
 
 
 class D(models.Model):
 
-    e = models.ManyToManyField("E")
+    e = models.ManyToManyField("E", null=True)
 
 
 class E(models.Model):
 
-    d = models.ManyToManyField("D")
+    d = models.ManyToManyField("D", null=True)

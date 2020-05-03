@@ -31,8 +31,8 @@ def test_extract_relationships():
         "Address": ({}, {}),
         "Doctor": ({}, {}),
         "Patient": (
-            {"Address": ("address", False), "Doctor": ("doctor", True)},
-            {"Prescription": ("prescription", False)},
+            {"Address": ("address", True), "Doctor": ("doctor", True)},
+            {"Prescription": ("prescription", True)},
         ),
         "Prescription": ({}, {}),
     }

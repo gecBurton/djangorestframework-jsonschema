@@ -17,8 +17,8 @@ class Hospital(models.Model):
 class Doctor(models.Model):
 
     name = models.CharField(max_length=255)
-    hospital = models.ForeignKey("Hospital", on_delete=models.CASCADE)
-    patient = models.ManyToManyField("Patient")
+    hospital = models.ForeignKey("Hospital", null=True, on_delete=models.CASCADE)
+    patient = models.ManyToManyField("Patient", null=True)
 
 
 class Patient(models.Model):

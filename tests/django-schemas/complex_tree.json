@@ -40,10 +40,12 @@
     },
     "relations": {
       "hospital": {
+        "null": true,
         "type": "ForeignKey",
         "to": "Hospital"
       },
       "patient": {
+        "null": true,
         "type": "ManyToManyField",
         "to": "Patient"
       }

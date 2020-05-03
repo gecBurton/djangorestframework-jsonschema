@@ -13,7 +13,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     pages = models.IntegerField(validators=[validators.MinValueValidator(0)])
     genre = models.CharField(max_length=25, choices=[('celebrity_autobiographies', 'celebrity autobiographies'), ('military-history', 'military-history'), ('other', 'other')])
-    author = models.ForeignKey("Author", on_delete=models.CASCADE)
+    author = models.ForeignKey("Author", null=True, on_delete=models.CASCADE)
 
 
 class Author(models.Model):

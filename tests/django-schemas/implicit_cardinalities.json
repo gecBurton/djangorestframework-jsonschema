@@ -4,6 +4,7 @@
     "fields": {},
     "relations": {
       "b": {
+        "null": true,
         "type": "OneToOneField",
         "to": "B"
       }
@@ -14,10 +15,12 @@
     "fields": {},
     "relations": {
       "a": {
+        "null": true,
         "type": "OneToOneField",
         "to": "A"
       },
       "c": {
+        "null": true,
         "type": "ForeignKey",
         "to": "C"
       }
@@ -28,6 +31,7 @@
     "fields": {},
     "relations": {
       "d": {
+        "null": true,
         "type": "ForeignKey",
         "to": "D"
       }
@@ -38,6 +42,7 @@
     "fields": {},
     "relations": {
       "e": {
+        "null": true,
         "type": "ManyToManyField",
         "to": "E"
       }

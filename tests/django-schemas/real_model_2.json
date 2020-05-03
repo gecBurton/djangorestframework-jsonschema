@@ -33,6 +33,7 @@
     "name": "Book",
     "relations": {
       "author": {
+        "null": true,
         "to": "Author",
         "type": "ForeignKey"
       }

@@ -9,6 +9,7 @@
     "fields": {},
     "relations": {
       "f": {
+        "null": true,
         "type": "ForeignKey",
         "to": "F"
       }
@@ -24,6 +25,7 @@
     "fields": {},
     "relations": {
       "d": {
+        "null": true,
         "type": "ForeignKey",
         "to": "D"
       }
@@ -34,10 +36,12 @@
     "fields": {},
     "relations": {
       "c": {
+        "null": true,
         "type": "ForeignKey",
         "to": "C"
       },
       "e": {
+        "null": true,
         "type": "ForeignKey",
         "to": "E"
       }
@@ -48,6 +52,7 @@
     "fields": {},
     "relations": {
       "b": {
+        "null": true,
         "type": "ForeignKey",
         "to": "B"
       }
