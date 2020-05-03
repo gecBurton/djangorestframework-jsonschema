@@ -2,6 +2,7 @@
 """
 from typing import List, Dict, Any, Tuple
 import keyword
+import warnings
 
 
 def stringify(key, value):
@@ -166,19 +167,20 @@ def build_string_field(
             "ipv6": "GenericIPAddressField",
             "uuid": "UUIDField",
         }
-        try:
-            return Field(
-                formats[sch["format"]],
-                name,
-                null=options.get("null", False),
-                primary_key=primary_key,
-                default=default,
-                label=description,
-            )
-        except KeyError:
-            raise NotImplementedError(
+        if sch["format"] not in formats:
+            warnings.warn(
                 f"no code written to handle format: {sch.get('format')}"
             )
+
+        return Field(
+            formats.get(sch["format"], "CharField"),
+            name,
+            null=options.get("null", False),
+            primary_key=primary_key,
+            default=default,
+            label=description,
+        )
+
 
     return Field("CharField", name, **options)
 

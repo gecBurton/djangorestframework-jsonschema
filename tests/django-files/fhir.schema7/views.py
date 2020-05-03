@@ -20,6 +20,7 @@ class Extension(viewsets.ModelViewSet):
     filterset_class = filters.Extension
     ordering_fields = "__all__"
     search_fields = [
+        "$url",
         "$valueBase64Binary",
         "$valueCanonical",
         "$valueCode",
@@ -62,6 +63,12 @@ class Attachment(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Attachment
     ordering_fields = "__all__"
+    search_fields = [
+        "$contentType",
+        "$language",
+        "$url",
+        "$title",
+    ]
 
 
 class Identifier(viewsets.ModelViewSet):
@@ -70,6 +77,10 @@ class Identifier(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Identifier
     ordering_fields = "__all__"
+    search_fields = [
+        "$system",
+        "$value",
+    ]
 
 
 class CodeableConcept(viewsets.ModelViewSet):
@@ -78,6 +89,9 @@ class CodeableConcept(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CodeableConcept
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class Coding(viewsets.ModelViewSet):
@@ -86,6 +100,12 @@ class Coding(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Coding
     ordering_fields = "__all__"
+    search_fields = [
+        "$system",
+        "$version",
+        "$code",
+        "$display",
+    ]
 
 
 class Quantity(viewsets.ModelViewSet):
@@ -94,6 +114,11 @@ class Quantity(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Quantity
     ordering_fields = "__all__"
+    search_fields = [
+        "$unit",
+        "$system",
+        "$code",
+    ]
 
 
 class Duration(viewsets.ModelViewSet):
@@ -102,6 +127,11 @@ class Duration(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Duration
     ordering_fields = "__all__"
+    search_fields = [
+        "$unit",
+        "$system",
+        "$code",
+    ]
 
 
 class Distance(viewsets.ModelViewSet):
@@ -110,6 +140,11 @@ class Distance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Distance
     ordering_fields = "__all__"
+    search_fields = [
+        "$unit",
+        "$system",
+        "$code",
+    ]
 
 
 class Count(viewsets.ModelViewSet):
@@ -118,6 +153,11 @@ class Count(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Count
     ordering_fields = "__all__"
+    search_fields = [
+        "$unit",
+        "$system",
+        "$code",
+    ]
 
 
 class Money(viewsets.ModelViewSet):
@@ -126,6 +166,9 @@ class Money(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Money
     ordering_fields = "__all__"
+    search_fields = [
+        "$currency",
+    ]
 
 
 class Age(viewsets.ModelViewSet):
@@ -134,6 +177,11 @@ class Age(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Age
     ordering_fields = "__all__"
+    search_fields = [
+        "$unit",
+        "$system",
+        "$code",
+    ]
 
 
 class Range(viewsets.ModelViewSet):
@@ -166,6 +214,11 @@ class Reference(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Reference
     ordering_fields = "__all__"
+    search_fields = [
+        "$reference",
+        "$type",
+        "$display",
+    ]
 
 
 class SampledData(viewsets.ModelViewSet):
@@ -174,6 +227,9 @@ class SampledData(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SampledData
     ordering_fields = "__all__"
+    search_fields = [
+        "$data",
+    ]
 
 
 class Signature(viewsets.ModelViewSet):
@@ -182,6 +238,10 @@ class Signature(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Signature
     ordering_fields = "__all__"
+    search_fields = [
+        "$targetFormat",
+        "$sigFormat",
+    ]
 
 
 class HumanName(viewsets.ModelViewSet):
@@ -190,6 +250,10 @@ class HumanName(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.HumanName
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+        "$family",
+    ]
 
 
 class Address(viewsets.ModelViewSet):
@@ -198,6 +262,14 @@ class Address(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Address
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+        "$city",
+        "$district",
+        "$state",
+        "$postalCode",
+        "$country",
+    ]
 
 
 class ContactPoint(viewsets.ModelViewSet):
@@ -206,6 +278,9 @@ class ContactPoint(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ContactPoint
     ordering_fields = "__all__"
+    search_fields = [
+        "$value",
+    ]
 
 
 class Timing(viewsets.ModelViewSet):
@@ -230,6 +305,10 @@ class Meta(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Meta
     ordering_fields = "__all__"
+    search_fields = [
+        "$versionId",
+        "$source",
+    ]
 
 
 class ContactDetail(viewsets.ModelViewSet):
@@ -238,6 +317,9 @@ class ContactDetail(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ContactDetail
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class Contributor(viewsets.ModelViewSet):
@@ -246,6 +328,9 @@ class Contributor(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contributor
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class DataRequirement(viewsets.ModelViewSet):
@@ -254,6 +339,9 @@ class DataRequirement(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DataRequirement
     ordering_fields = "__all__"
+    search_fields = [
+        "$type",
+    ]
 
 
 class DataRequirement_CodeFilter(viewsets.ModelViewSet):
@@ -262,6 +350,11 @@ class DataRequirement_CodeFilter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DataRequirement_CodeFilter
     ordering_fields = "__all__"
+    search_fields = [
+        "$path",
+        "$searchParam",
+        "$valueSet",
+    ]
 
 
 class DataRequirement_DateFilter(viewsets.ModelViewSet):
@@ -271,6 +364,8 @@ class DataRequirement_DateFilter(viewsets.ModelViewSet):
     filterset_class = filters.DataRequirement_DateFilter
     ordering_fields = "__all__"
     search_fields = [
+        "$path",
+        "$searchParam",
         "$valueDateTime",
     ]
 
@@ -281,6 +376,9 @@ class DataRequirement_Sort(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DataRequirement_Sort
     ordering_fields = "__all__"
+    search_fields = [
+        "$path",
+    ]
 
 
 class ParameterDefinition(viewsets.ModelViewSet):
@@ -289,6 +387,14 @@ class ParameterDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ParameterDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$use",
+        "$max",
+        "$documentation",
+        "$type",
+        "$profile",
+    ]
 
 
 class RelatedArtifact(viewsets.ModelViewSet):
@@ -297,6 +403,12 @@ class RelatedArtifact(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RelatedArtifact
     ordering_fields = "__all__"
+    search_fields = [
+        "$label",
+        "$display",
+        "$url",
+        "$resource",
+    ]
 
 
 class TriggerDefinition(viewsets.ModelViewSet):
@@ -306,6 +418,7 @@ class TriggerDefinition(viewsets.ModelViewSet):
     filterset_class = filters.TriggerDefinition
     ordering_fields = "__all__"
     search_fields = [
+        "$name",
         "$timingDate",
         "$timingDateTime",
     ]
@@ -325,6 +438,10 @@ class Dosage(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Dosage
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+        "$patientInstruction",
+    ]
 
 
 class Dosage_DoseAndRate(viewsets.ModelViewSet):
@@ -357,6 +474,9 @@ class ProdCharacteristic(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ProdCharacteristic
     ordering_fields = "__all__"
+    search_fields = [
+        "$shape",
+    ]
 
 
 class MarketingStatus(viewsets.ModelViewSet):
@@ -375,6 +495,7 @@ class SubstanceAmount(viewsets.ModelViewSet):
     ordering_fields = "__all__"
     search_fields = [
         "$amountString",
+        "$amountText",
     ]
 
 
@@ -392,6 +513,12 @@ class Expression(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Expression
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+        "$name",
+        "$expression",
+        "$reference",
+    ]
 
 
 class ElementDefinition(viewsets.ModelViewSet):
@@ -401,6 +528,12 @@ class ElementDefinition(viewsets.ModelViewSet):
     filterset_class = filters.ElementDefinition
     ordering_fields = "__all__"
     search_fields = [
+        "$path",
+        "$sliceName",
+        "$label",
+        "$short",
+        "$max",
+        "$contentReference",
         "$defaultValueBase64Binary",
         "$defaultValueCanonical",
         "$defaultValueCode",
@@ -415,6 +548,7 @@ class ElementDefinition(viewsets.ModelViewSet):
         "$defaultValueUri",
         "$defaultValueUrl",
         "$defaultValueUuid",
+        "$orderMeaning",
         "$fixedBase64Binary",
         "$fixedCanonical",
         "$fixedCode",
@@ -451,6 +585,7 @@ class ElementDefinition(viewsets.ModelViewSet):
         "$maxValueDateTime",
         "$maxValueInstant",
         "$maxValueTime",
+        "$isModifierReason",
     ]
 
 
@@ -460,6 +595,9 @@ class ElementDefinition_Slicing(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ElementDefinition_Slicing
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class ElementDefinition_Discriminator(viewsets.ModelViewSet):
@@ -468,6 +606,9 @@ class ElementDefinition_Discriminator(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ElementDefinition_Discriminator
     ordering_fields = "__all__"
+    search_fields = [
+        "$path",
+    ]
 
 
 class ElementDefinition_Base(viewsets.ModelViewSet):
@@ -476,6 +617,10 @@ class ElementDefinition_Base(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ElementDefinition_Base
     ordering_fields = "__all__"
+    search_fields = [
+        "$path",
+        "$max",
+    ]
 
 
 class ElementDefinition_Type(viewsets.ModelViewSet):
@@ -484,6 +629,9 @@ class ElementDefinition_Type(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ElementDefinition_Type
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+    ]
 
 
 class ElementDefinition_Example(viewsets.ModelViewSet):
@@ -493,6 +641,7 @@ class ElementDefinition_Example(viewsets.ModelViewSet):
     filterset_class = filters.ElementDefinition_Example
     ordering_fields = "__all__"
     search_fields = [
+        "$label",
         "$valueBase64Binary",
         "$valueCanonical",
         "$valueCode",
@@ -516,6 +665,14 @@ class ElementDefinition_Constraint(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ElementDefinition_Constraint
     ordering_fields = "__all__"
+    search_fields = [
+        "$key",
+        "$requirements",
+        "$human",
+        "$expression",
+        "$xpath",
+        "$source",
+    ]
 
 
 class ElementDefinition_Binding(viewsets.ModelViewSet):
@@ -524,6 +681,10 @@ class ElementDefinition_Binding(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ElementDefinition_Binding
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+        "$valueSet",
+    ]
 
 
 class ElementDefinition_Mapping(viewsets.ModelViewSet):
@@ -532,6 +693,12 @@ class ElementDefinition_Mapping(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ElementDefinition_Mapping
     ordering_fields = "__all__"
+    search_fields = [
+        "$identity",
+        "$language",
+        "$map",
+        "$comment",
+    ]
 
 
 class Account(viewsets.ModelViewSet):
@@ -540,6 +707,12 @@ class Account(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Account
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+        "$description",
+    ]
 
 
 class Account_Coverage(viewsets.ModelViewSet):
@@ -565,7 +738,21 @@ class ActivityDefinition(viewsets.ModelViewSet):
     filterset_class = filters.ActivityDefinition
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$subtitle",
+        "$publisher",
+        "$usage",
+        "$kind",
+        "$profile",
+        "$intent",
+        "$priority",
         "$timingDateTime",
+        "$transform",
     ]
 
 
@@ -575,6 +762,9 @@ class ActivityDefinition_Participant(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ActivityDefinition_Participant
     ordering_fields = "__all__"
+    search_fields = [
+        "$type",
+    ]
 
 
 class ActivityDefinition_DynamicValue(viewsets.ModelViewSet):
@@ -583,6 +773,9 @@ class ActivityDefinition_DynamicValue(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ActivityDefinition_DynamicValue
     ordering_fields = "__all__"
+    search_fields = [
+        "$path",
+    ]
 
 
 class AdverseEvent(viewsets.ModelViewSet):
@@ -591,6 +784,10 @@ class AdverseEvent(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AdverseEvent
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class AdverseEvent_SuspectEntity(viewsets.ModelViewSet):
@@ -607,6 +804,9 @@ class AdverseEvent_Causality(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AdverseEvent_Causality
     ordering_fields = "__all__"
+    search_fields = [
+        "$productRelatedness",
+    ]
 
 
 class AllergyIntolerance(viewsets.ModelViewSet):
@@ -616,6 +816,8 @@ class AllergyIntolerance(viewsets.ModelViewSet):
     filterset_class = filters.AllergyIntolerance
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$onsetDateTime",
         "$onsetString",
     ]
@@ -627,6 +829,9 @@ class AllergyIntolerance_Reaction(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AllergyIntolerance_Reaction
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class Appointment(viewsets.ModelViewSet):
@@ -635,6 +840,13 @@ class Appointment(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Appointment
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$description",
+        "$comment",
+        "$patientInstruction",
+    ]
 
 
 class Appointment_Participant(viewsets.ModelViewSet):
@@ -651,6 +863,12 @@ class AppointmentResponse(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AppointmentResponse
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$participantStatus",
+        "$comment",
+    ]
 
 
 class AuditEvent(viewsets.ModelViewSet):
@@ -659,6 +877,11 @@ class AuditEvent(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AuditEvent
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$outcomeDesc",
+    ]
 
 
 class AuditEvent_Agent(viewsets.ModelViewSet):
@@ -667,6 +890,10 @@ class AuditEvent_Agent(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AuditEvent_Agent
     ordering_fields = "__all__"
+    search_fields = [
+        "$altId",
+        "$name",
+    ]
 
 
 class AuditEvent_Network(viewsets.ModelViewSet):
@@ -675,6 +902,9 @@ class AuditEvent_Network(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AuditEvent_Network
     ordering_fields = "__all__"
+    search_fields = [
+        "$address",
+    ]
 
 
 class AuditEvent_Source(viewsets.ModelViewSet):
@@ -683,6 +913,9 @@ class AuditEvent_Source(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AuditEvent_Source
     ordering_fields = "__all__"
+    search_fields = [
+        "$site",
+    ]
 
 
 class AuditEvent_Entity(viewsets.ModelViewSet):
@@ -691,6 +924,10 @@ class AuditEvent_Entity(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.AuditEvent_Entity
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$description",
+    ]
 
 
 class AuditEvent_Detail(viewsets.ModelViewSet):
@@ -700,6 +937,7 @@ class AuditEvent_Detail(viewsets.ModelViewSet):
     filterset_class = filters.AuditEvent_Detail
     ordering_fields = "__all__"
     search_fields = [
+        "$type",
         "$valueString",
         "$valueBase64Binary",
     ]
@@ -711,6 +949,10 @@ class Basic(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Basic
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Binary(viewsets.ModelViewSet):
@@ -719,6 +961,11 @@ class Binary(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Binary
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$contentType",
+    ]
 
 
 class BiologicallyDerivedProduct(viewsets.ModelViewSet):
@@ -727,6 +974,10 @@ class BiologicallyDerivedProduct(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.BiologicallyDerivedProduct
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class BiologicallyDerivedProduct_Collection(viewsets.ModelViewSet):
@@ -747,6 +998,7 @@ class BiologicallyDerivedProduct_Processing(viewsets.ModelViewSet):
     filterset_class = filters.BiologicallyDerivedProduct_Processing
     ordering_fields = "__all__"
     search_fields = [
+        "$description",
         "$timeDateTime",
     ]
 
@@ -758,6 +1010,7 @@ class BiologicallyDerivedProduct_Manipulation(viewsets.ModelViewSet):
     filterset_class = filters.BiologicallyDerivedProduct_Manipulation
     ordering_fields = "__all__"
     search_fields = [
+        "$description",
         "$timeDateTime",
     ]
 
@@ -768,6 +1021,9 @@ class BiologicallyDerivedProduct_Storage(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.BiologicallyDerivedProduct_Storage
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class BodyStructure(viewsets.ModelViewSet):
@@ -776,6 +1032,11 @@ class BodyStructure(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.BodyStructure
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$description",
+    ]
 
 
 class Bundle(viewsets.ModelViewSet):
@@ -784,6 +1045,10 @@ class Bundle(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Bundle
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Bundle_Link(viewsets.ModelViewSet):
@@ -792,6 +1057,10 @@ class Bundle_Link(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Bundle_Link
     ordering_fields = "__all__"
+    search_fields = [
+        "$relation",
+        "$url",
+    ]
 
 
 class Bundle_Entry(viewsets.ModelViewSet):
@@ -800,6 +1069,9 @@ class Bundle_Entry(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Bundle_Entry
     ordering_fields = "__all__"
+    search_fields = [
+        "$fullUrl",
+    ]
 
 
 class Bundle_Search(viewsets.ModelViewSet):
@@ -816,6 +1088,12 @@ class Bundle_Request(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Bundle_Request
     ordering_fields = "__all__"
+    search_fields = [
+        "$url",
+        "$ifNoneMatch",
+        "$ifMatch",
+        "$ifNoneExist",
+    ]
 
 
 class Bundle_Response(viewsets.ModelViewSet):
@@ -824,6 +1102,11 @@ class Bundle_Response(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Bundle_Response
     ordering_fields = "__all__"
+    search_fields = [
+        "$status",
+        "$location",
+        "$etag",
+    ]
 
 
 class CapabilityStatement(viewsets.ModelViewSet):
@@ -832,6 +1115,15 @@ class CapabilityStatement(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+    ]
 
 
 class CapabilityStatement_Software(viewsets.ModelViewSet):
@@ -840,6 +1132,10 @@ class CapabilityStatement_Software(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_Software
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$version",
+    ]
 
 
 class CapabilityStatement_Implementation(viewsets.ModelViewSet):
@@ -848,6 +1144,10 @@ class CapabilityStatement_Implementation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_Implementation
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+        "$url",
+    ]
 
 
 class CapabilityStatement_Rest(viewsets.ModelViewSet):
@@ -872,6 +1172,10 @@ class CapabilityStatement_Resource(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_Resource
     ordering_fields = "__all__"
+    search_fields = [
+        "$type",
+        "$profile",
+    ]
 
 
 class CapabilityStatement_Interaction(viewsets.ModelViewSet):
@@ -888,6 +1192,10 @@ class CapabilityStatement_SearchParam(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_SearchParam
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$definition",
+    ]
 
 
 class CapabilityStatement_Operation(viewsets.ModelViewSet):
@@ -896,6 +1204,10 @@ class CapabilityStatement_Operation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_Operation
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$definition",
+    ]
 
 
 class CapabilityStatement_Interaction1(viewsets.ModelViewSet):
@@ -920,6 +1232,9 @@ class CapabilityStatement_Endpoint(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_Endpoint
     ordering_fields = "__all__"
+    search_fields = [
+        "$address",
+    ]
 
 
 class CapabilityStatement_SupportedMessage(viewsets.ModelViewSet):
@@ -928,6 +1243,9 @@ class CapabilityStatement_SupportedMessage(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_SupportedMessage
     ordering_fields = "__all__"
+    search_fields = [
+        "$definition",
+    ]
 
 
 class CapabilityStatement_Document(viewsets.ModelViewSet):
@@ -936,6 +1254,9 @@ class CapabilityStatement_Document(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CapabilityStatement_Document
     ordering_fields = "__all__"
+    search_fields = [
+        "$profile",
+    ]
 
 
 class CarePlan(viewsets.ModelViewSet):
@@ -944,6 +1265,14 @@ class CarePlan(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CarePlan
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$intent",
+        "$title",
+        "$description",
+    ]
 
 
 class CarePlan_Activity(viewsets.ModelViewSet):
@@ -961,7 +1290,9 @@ class CarePlan_Detail(viewsets.ModelViewSet):
     filterset_class = filters.CarePlan_Detail
     ordering_fields = "__all__"
     search_fields = [
+        "$kind",
         "$scheduledString",
+        "$description",
     ]
 
 
@@ -971,6 +1302,11 @@ class CareTeam(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CareTeam
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+    ]
 
 
 class CareTeam_Participant(viewsets.ModelViewSet):
@@ -987,6 +1323,10 @@ class CatalogEntry(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CatalogEntry
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class CatalogEntry_RelatedEntry(viewsets.ModelViewSet):
@@ -1004,7 +1344,10 @@ class ChargeItem(viewsets.ModelViewSet):
     filterset_class = filters.ChargeItem
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$occurrenceDateTime",
+        "$overrideReason",
     ]
 
 
@@ -1022,6 +1365,14 @@ class ChargeItemDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ChargeItemDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$title",
+        "$publisher",
+    ]
 
 
 class ChargeItemDefinition_Applicability(viewsets.ModelViewSet):
@@ -1030,6 +1381,11 @@ class ChargeItemDefinition_Applicability(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ChargeItemDefinition_Applicability
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+        "$language",
+        "$expression",
+    ]
 
 
 class ChargeItemDefinition_PropertyGroup(viewsets.ModelViewSet):
@@ -1046,6 +1402,9 @@ class ChargeItemDefinition_PriceComponent(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ChargeItemDefinition_PriceComponent
     ordering_fields = "__all__"
+    search_fields = [
+        "$type",
+    ]
 
 
 class Claim(viewsets.ModelViewSet):
@@ -1054,6 +1413,11 @@ class Claim(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Claim
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class Claim_Related(viewsets.ModelViewSet):
@@ -1114,6 +1478,9 @@ class Claim_Insurance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Claim_Insurance
     ordering_fields = "__all__"
+    search_fields = [
+        "$businessArrangement",
+    ]
 
 
 class Claim_Accident(viewsets.ModelViewSet):
@@ -1157,6 +1524,15 @@ class ClaimResponse(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ClaimResponse
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$use",
+        "$outcome",
+        "$disposition",
+        "$preAuthRef",
+    ]
 
 
 class ClaimResponse_Item(viewsets.ModelViewSet):
@@ -1240,6 +1616,9 @@ class ClaimResponse_ProcessNote(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ClaimResponse_ProcessNote
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class ClaimResponse_Insurance(viewsets.ModelViewSet):
@@ -1248,6 +1627,9 @@ class ClaimResponse_Insurance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ClaimResponse_Insurance
     ordering_fields = "__all__"
+    search_fields = [
+        "$businessArrangement",
+    ]
 
 
 class ClaimResponse_Error(viewsets.ModelViewSet):
@@ -1265,7 +1647,12 @@ class ClinicalImpression(viewsets.ModelViewSet):
     filterset_class = filters.ClinicalImpression
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$description",
         "$effectiveDateTime",
+        "$summary",
     ]
 
 
@@ -1283,6 +1670,9 @@ class ClinicalImpression_Finding(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ClinicalImpression_Finding
     ordering_fields = "__all__"
+    search_fields = [
+        "$basis",
+    ]
 
 
 class CodeSystem(viewsets.ModelViewSet):
@@ -1291,6 +1681,17 @@ class CodeSystem(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CodeSystem
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+        "$valueSet",
+        "$supplements",
+    ]
 
 
 class CodeSystem_Filter(viewsets.ModelViewSet):
@@ -1299,6 +1700,11 @@ class CodeSystem_Filter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CodeSystem_Filter
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$description",
+        "$value",
+    ]
 
 
 class CodeSystem_Property(viewsets.ModelViewSet):
@@ -1307,6 +1713,11 @@ class CodeSystem_Property(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CodeSystem_Property
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$uri",
+        "$description",
+    ]
 
 
 class CodeSystem_Concept(viewsets.ModelViewSet):
@@ -1315,6 +1726,11 @@ class CodeSystem_Concept(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CodeSystem_Concept
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$display",
+        "$definition",
+    ]
 
 
 class CodeSystem_Designation(viewsets.ModelViewSet):
@@ -1323,6 +1739,10 @@ class CodeSystem_Designation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CodeSystem_Designation
     ordering_fields = "__all__"
+    search_fields = [
+        "$language",
+        "$value",
+    ]
 
 
 class CodeSystem_Property1(viewsets.ModelViewSet):
@@ -1332,6 +1752,7 @@ class CodeSystem_Property1(viewsets.ModelViewSet):
     filterset_class = filters.CodeSystem_Property1
     ordering_fields = "__all__"
     search_fields = [
+        "$code",
         "$valueCode",
         "$valueString",
         "$valueDateTime",
@@ -1344,6 +1765,12 @@ class Communication(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Communication
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$priority",
+    ]
 
 
 class Communication_Payload(viewsets.ModelViewSet):
@@ -1364,6 +1791,10 @@ class CommunicationRequest(viewsets.ModelViewSet):
     filterset_class = filters.CommunicationRequest
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$priority",
         "$occurrenceDateTime",
     ]
 
@@ -1385,6 +1816,14 @@ class CompartmentDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CompartmentDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$publisher",
+    ]
 
 
 class CompartmentDefinition_Resource(viewsets.ModelViewSet):
@@ -1393,6 +1832,10 @@ class CompartmentDefinition_Resource(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CompartmentDefinition_Resource
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$documentation",
+    ]
 
 
 class Composition(viewsets.ModelViewSet):
@@ -1401,6 +1844,12 @@ class Composition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Composition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$title",
+        "$confidentiality",
+    ]
 
 
 class Composition_Attester(viewsets.ModelViewSet):
@@ -1417,6 +1866,9 @@ class Composition_RelatesTo(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Composition_RelatesTo
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+    ]
 
 
 class Composition_Event(viewsets.ModelViewSet):
@@ -1433,6 +1885,10 @@ class Composition_Section(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Composition_Section
     ordering_fields = "__all__"
+    search_fields = [
+        "$title",
+        "$mode",
+    ]
 
 
 class ConceptMap(viewsets.ModelViewSet):
@@ -1442,6 +1898,13 @@ class ConceptMap(viewsets.ModelViewSet):
     filterset_class = filters.ConceptMap
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
         "$sourceUri",
         "$sourceCanonical",
         "$targetUri",
@@ -1455,6 +1918,12 @@ class ConceptMap_Group(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ConceptMap_Group
     ordering_fields = "__all__"
+    search_fields = [
+        "$source",
+        "$sourceVersion",
+        "$target",
+        "$targetVersion",
+    ]
 
 
 class ConceptMap_Element(viewsets.ModelViewSet):
@@ -1463,6 +1932,10 @@ class ConceptMap_Element(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ConceptMap_Element
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$display",
+    ]
 
 
 class ConceptMap_Target(viewsets.ModelViewSet):
@@ -1471,6 +1944,11 @@ class ConceptMap_Target(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ConceptMap_Target
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$display",
+        "$comment",
+    ]
 
 
 class ConceptMap_DependsOn(viewsets.ModelViewSet):
@@ -1479,6 +1957,12 @@ class ConceptMap_DependsOn(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ConceptMap_DependsOn
     ordering_fields = "__all__"
+    search_fields = [
+        "$property",
+        "$system",
+        "$value",
+        "$display",
+    ]
 
 
 class ConceptMap_Unmapped(viewsets.ModelViewSet):
@@ -1487,6 +1971,11 @@ class ConceptMap_Unmapped(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ConceptMap_Unmapped
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$display",
+        "$url",
+    ]
 
 
 class Condition(viewsets.ModelViewSet):
@@ -1496,6 +1985,8 @@ class Condition(viewsets.ModelViewSet):
     filterset_class = filters.Condition
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$onsetDateTime",
         "$onsetString",
         "$abatementDateTime",
@@ -1525,6 +2016,10 @@ class Consent(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Consent
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Consent_Policy(viewsets.ModelViewSet):
@@ -1533,6 +2028,10 @@ class Consent_Policy(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Consent_Policy
     ordering_fields = "__all__"
+    search_fields = [
+        "$authority",
+        "$uri",
+    ]
 
 
 class Consent_Verification(viewsets.ModelViewSet):
@@ -1573,6 +2072,17 @@ class Contract(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contract
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$status",
+        "$instantiatesUri",
+        "$name",
+        "$title",
+        "$subtitle",
+    ]
 
 
 class Contract_ContentDefinition(viewsets.ModelViewSet):
@@ -1581,6 +2091,9 @@ class Contract_ContentDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contract_ContentDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$publicationStatus",
+    ]
 
 
 class Contract_Term(viewsets.ModelViewSet):
@@ -1589,6 +2102,9 @@ class Contract_Term(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contract_Term
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class Contract_SecurityLabel(viewsets.ModelViewSet):
@@ -1605,6 +2121,9 @@ class Contract_Offer(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contract_Offer
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class Contract_Party(viewsets.ModelViewSet):
@@ -1636,6 +2155,10 @@ class Contract_Asset(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contract_Asset
     ordering_fields = "__all__"
+    search_fields = [
+        "$condition",
+        "$text",
+    ]
 
 
 class Contract_Context(viewsets.ModelViewSet):
@@ -1644,6 +2167,9 @@ class Contract_Context(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contract_Context
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class Contract_ValuedItem(viewsets.ModelViewSet):
@@ -1652,6 +2178,9 @@ class Contract_ValuedItem(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Contract_ValuedItem
     ordering_fields = "__all__"
+    search_fields = [
+        "$payment",
+    ]
 
 
 class Contract_Action(viewsets.ModelViewSet):
@@ -1711,6 +2240,14 @@ class Coverage(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Coverage
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$subscriberId",
+        "$dependent",
+        "$network",
+    ]
 
 
 class Coverage_Class(viewsets.ModelViewSet):
@@ -1719,6 +2256,10 @@ class Coverage_Class(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Coverage_Class
     ordering_fields = "__all__"
+    search_fields = [
+        "$value",
+        "$name",
+    ]
 
 
 class Coverage_CostToBeneficiary(viewsets.ModelViewSet):
@@ -1744,6 +2285,9 @@ class CoverageEligibilityRequest(viewsets.ModelViewSet):
     filterset_class = filters.CoverageEligibilityRequest
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$servicedDate",
     ]
 
@@ -1762,6 +2306,9 @@ class CoverageEligibilityRequest_Insurance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CoverageEligibilityRequest_Insurance
     ordering_fields = "__all__"
+    search_fields = [
+        "$businessArrangement",
+    ]
 
 
 class CoverageEligibilityRequest_Item(viewsets.ModelViewSet):
@@ -1787,7 +2334,12 @@ class CoverageEligibilityResponse(viewsets.ModelViewSet):
     filterset_class = filters.CoverageEligibilityResponse
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$servicedDate",
+        "$disposition",
+        "$preAuthRef",
     ]
 
 
@@ -1805,6 +2357,11 @@ class CoverageEligibilityResponse_Item(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.CoverageEligibilityResponse_Item
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$description",
+        "$authorizationUrl",
+    ]
 
 
 class CoverageEligibilityResponse_Benefit(viewsets.ModelViewSet):
@@ -1834,7 +2391,12 @@ class DetectedIssue(viewsets.ModelViewSet):
     filterset_class = filters.DetectedIssue
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$identifiedDateTime",
+        "$detail",
+        "$reference",
     ]
 
 
@@ -1860,6 +2422,17 @@ class Device(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Device
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$distinctIdentifier",
+        "$manufacturer",
+        "$lotNumber",
+        "$serialNumber",
+        "$modelNumber",
+        "$partNumber",
+        "$url",
+    ]
 
 
 class Device_UdiCarrier(viewsets.ModelViewSet):
@@ -1868,6 +2441,12 @@ class Device_UdiCarrier(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Device_UdiCarrier
     ordering_fields = "__all__"
+    search_fields = [
+        "$deviceIdentifier",
+        "$issuer",
+        "$jurisdiction",
+        "$carrierHRF",
+    ]
 
 
 class Device_DeviceName(viewsets.ModelViewSet):
@@ -1876,6 +2455,9 @@ class Device_DeviceName(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Device_DeviceName
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class Device_Specialization(viewsets.ModelViewSet):
@@ -1884,6 +2466,9 @@ class Device_Specialization(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Device_Specialization
     ordering_fields = "__all__"
+    search_fields = [
+        "$version",
+    ]
 
 
 class Device_Version(viewsets.ModelViewSet):
@@ -1892,6 +2477,9 @@ class Device_Version(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Device_Version
     ordering_fields = "__all__"
+    search_fields = [
+        "$value",
+    ]
 
 
 class Device_Property(viewsets.ModelViewSet):
@@ -1909,7 +2497,12 @@ class DeviceDefinition(viewsets.ModelViewSet):
     filterset_class = filters.DeviceDefinition
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$manufacturerString",
+        "$modelNumber",
+        "$url",
+        "$onlineInformation",
     ]
 
 
@@ -1919,6 +2512,11 @@ class DeviceDefinition_UdiDeviceIdentifier(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DeviceDefinition_UdiDeviceIdentifier
     ordering_fields = "__all__"
+    search_fields = [
+        "$deviceIdentifier",
+        "$issuer",
+        "$jurisdiction",
+    ]
 
 
 class DeviceDefinition_DeviceName(viewsets.ModelViewSet):
@@ -1927,6 +2525,9 @@ class DeviceDefinition_DeviceName(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DeviceDefinition_DeviceName
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class DeviceDefinition_Specialization(viewsets.ModelViewSet):
@@ -1935,6 +2536,10 @@ class DeviceDefinition_Specialization(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DeviceDefinition_Specialization
     ordering_fields = "__all__"
+    search_fields = [
+        "$systemType",
+        "$version",
+    ]
 
 
 class DeviceDefinition_Capability(viewsets.ModelViewSet):
@@ -1967,6 +2572,10 @@ class DeviceMetric(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DeviceMetric
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class DeviceMetric_Calibration(viewsets.ModelViewSet):
@@ -1984,6 +2593,11 @@ class DeviceRequest(viewsets.ModelViewSet):
     filterset_class = filters.DeviceRequest
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$intent",
+        "$priority",
         "$occurrenceDateTime",
     ]
 
@@ -2003,6 +2617,8 @@ class DeviceUseStatement(viewsets.ModelViewSet):
     filterset_class = filters.DeviceUseStatement
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$timingDateTime",
     ]
 
@@ -2014,7 +2630,10 @@ class DiagnosticReport(viewsets.ModelViewSet):
     filterset_class = filters.DiagnosticReport
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$effectiveDateTime",
+        "$conclusion",
     ]
 
 
@@ -2024,6 +2643,9 @@ class DiagnosticReport_Media(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DiagnosticReport_Media
     ordering_fields = "__all__"
+    search_fields = [
+        "$comment",
+    ]
 
 
 class DocumentManifest(viewsets.ModelViewSet):
@@ -2032,6 +2654,12 @@ class DocumentManifest(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DocumentManifest
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$source",
+        "$description",
+    ]
 
 
 class DocumentManifest_Related(viewsets.ModelViewSet):
@@ -2048,6 +2676,12 @@ class DocumentReference(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.DocumentReference
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$docStatus",
+        "$description",
+    ]
 
 
 class DocumentReference_RelatesTo(viewsets.ModelViewSet):
@@ -2080,6 +2714,15 @@ class EffectEvidenceSynthesis(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EffectEvidenceSynthesis
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+    ]
 
 
 class EffectEvidenceSynthesis_SampleSize(viewsets.ModelViewSet):
@@ -2088,6 +2731,9 @@ class EffectEvidenceSynthesis_SampleSize(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EffectEvidenceSynthesis_SampleSize
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class EffectEvidenceSynthesis_ResultsByExposure(viewsets.ModelViewSet):
@@ -2096,6 +2742,9 @@ class EffectEvidenceSynthesis_ResultsByExposure(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EffectEvidenceSynthesis_ResultsByExposure
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class EffectEvidenceSynthesis_EffectEstimate(viewsets.ModelViewSet):
@@ -2104,6 +2753,9 @@ class EffectEvidenceSynthesis_EffectEstimate(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EffectEvidenceSynthesis_EffectEstimate
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class EffectEvidenceSynthesis_PrecisionEstimate(viewsets.ModelViewSet):
@@ -2136,6 +2788,10 @@ class Encounter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Encounter
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Encounter_StatusHistory(viewsets.ModelViewSet):
@@ -2192,6 +2848,12 @@ class Endpoint(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Endpoint
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+        "$address",
+    ]
 
 
 class EnrollmentRequest(viewsets.ModelViewSet):
@@ -2200,6 +2862,11 @@ class EnrollmentRequest(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EnrollmentRequest
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class EnrollmentResponse(viewsets.ModelViewSet):
@@ -2208,6 +2875,12 @@ class EnrollmentResponse(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EnrollmentResponse
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$disposition",
+    ]
 
 
 class EpisodeOfCare(viewsets.ModelViewSet):
@@ -2216,6 +2889,10 @@ class EpisodeOfCare(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EpisodeOfCare
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class EpisodeOfCare_StatusHistory(viewsets.ModelViewSet):
@@ -2240,6 +2917,17 @@ class EventDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EventDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$subtitle",
+        "$publisher",
+        "$usage",
+    ]
 
 
 class Evidence(viewsets.ModelViewSet):
@@ -2248,6 +2936,17 @@ class Evidence(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Evidence
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$shortTitle",
+        "$subtitle",
+        "$publisher",
+    ]
 
 
 class EvidenceVariable(viewsets.ModelViewSet):
@@ -2256,6 +2955,17 @@ class EvidenceVariable(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.EvidenceVariable
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$shortTitle",
+        "$subtitle",
+        "$publisher",
+    ]
 
 
 class EvidenceVariable_Characteristic(viewsets.ModelViewSet):
@@ -2265,6 +2975,7 @@ class EvidenceVariable_Characteristic(viewsets.ModelViewSet):
     filterset_class = filters.EvidenceVariable_Characteristic
     ordering_fields = "__all__"
     search_fields = [
+        "$description",
         "$definitionCanonical",
         "$participantEffectiveDateTime",
     ]
@@ -2276,6 +2987,14 @@ class ExampleScenario(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$publisher",
+    ]
 
 
 class ExampleScenario_Actor(viewsets.ModelViewSet):
@@ -2284,6 +3003,10 @@ class ExampleScenario_Actor(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario_Actor
     ordering_fields = "__all__"
+    search_fields = [
+        "$actorId",
+        "$name",
+    ]
 
 
 class ExampleScenario_Instance(viewsets.ModelViewSet):
@@ -2292,6 +3015,11 @@ class ExampleScenario_Instance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario_Instance
     ordering_fields = "__all__"
+    search_fields = [
+        "$resourceId",
+        "$resourceType",
+        "$name",
+    ]
 
 
 class ExampleScenario_Version(viewsets.ModelViewSet):
@@ -2300,6 +3028,9 @@ class ExampleScenario_Version(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario_Version
     ordering_fields = "__all__"
+    search_fields = [
+        "$versionId",
+    ]
 
 
 class ExampleScenario_ContainedInstance(viewsets.ModelViewSet):
@@ -2308,6 +3039,10 @@ class ExampleScenario_ContainedInstance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario_ContainedInstance
     ordering_fields = "__all__"
+    search_fields = [
+        "$resourceId",
+        "$versionId",
+    ]
 
 
 class ExampleScenario_Process(viewsets.ModelViewSet):
@@ -2316,6 +3051,9 @@ class ExampleScenario_Process(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario_Process
     ordering_fields = "__all__"
+    search_fields = [
+        "$title",
+    ]
 
 
 class ExampleScenario_Step(viewsets.ModelViewSet):
@@ -2332,6 +3070,13 @@ class ExampleScenario_Operation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario_Operation
     ordering_fields = "__all__"
+    search_fields = [
+        "$number",
+        "$type",
+        "$name",
+        "$initiator",
+        "$receiver",
+    ]
 
 
 class ExampleScenario_Alternative(viewsets.ModelViewSet):
@@ -2340,6 +3085,9 @@ class ExampleScenario_Alternative(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExampleScenario_Alternative
     ordering_fields = "__all__"
+    search_fields = [
+        "$title",
+    ]
 
 
 class ExplanationOfBenefit(viewsets.ModelViewSet):
@@ -2348,6 +3096,13 @@ class ExplanationOfBenefit(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExplanationOfBenefit
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$use",
+        "$outcome",
+        "$disposition",
+    ]
 
 
 class ExplanationOfBenefit_Related(viewsets.ModelViewSet):
@@ -2502,6 +3257,9 @@ class ExplanationOfBenefit_ProcessNote(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExplanationOfBenefit_ProcessNote
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class ExplanationOfBenefit_BenefitBalance(viewsets.ModelViewSet):
@@ -2510,6 +3268,10 @@ class ExplanationOfBenefit_BenefitBalance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ExplanationOfBenefit_BenefitBalance
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$description",
+    ]
 
 
 class ExplanationOfBenefit_Financial(viewsets.ModelViewSet):
@@ -2530,6 +3292,9 @@ class FamilyMemberHistory(viewsets.ModelViewSet):
     filterset_class = filters.FamilyMemberHistory
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
         "$bornDate",
         "$bornString",
         "$ageString",
@@ -2555,6 +3320,10 @@ class Flag(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Flag
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Goal(viewsets.ModelViewSet):
@@ -2564,7 +3333,10 @@ class Goal(viewsets.ModelViewSet):
     filterset_class = filters.Goal
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$startDate",
+        "$statusReason",
     ]
 
 
@@ -2586,6 +3358,16 @@ class GraphDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.GraphDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$publisher",
+        "$start",
+        "$profile",
+    ]
 
 
 class GraphDefinition_Link(viewsets.ModelViewSet):
@@ -2594,6 +3376,12 @@ class GraphDefinition_Link(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.GraphDefinition_Link
     ordering_fields = "__all__"
+    search_fields = [
+        "$path",
+        "$sliceName",
+        "$max",
+        "$description",
+    ]
 
 
 class GraphDefinition_Target(viewsets.ModelViewSet):
@@ -2602,6 +3390,11 @@ class GraphDefinition_Target(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.GraphDefinition_Target
     ordering_fields = "__all__"
+    search_fields = [
+        "$type",
+        "$params",
+        "$profile",
+    ]
 
 
 class GraphDefinition_Compartment(viewsets.ModelViewSet):
@@ -2610,6 +3403,11 @@ class GraphDefinition_Compartment(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.GraphDefinition_Compartment
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$expression",
+        "$description",
+    ]
 
 
 class Group(viewsets.ModelViewSet):
@@ -2618,6 +3416,11 @@ class Group(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Group
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+    ]
 
 
 class Group_Characteristic(viewsets.ModelViewSet):
@@ -2643,6 +3446,8 @@ class GuidanceResponse(viewsets.ModelViewSet):
     filterset_class = filters.GuidanceResponse
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$moduleUri",
         "$moduleCanonical",
     ]
@@ -2654,6 +3459,13 @@ class HealthcareService(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.HealthcareService
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+        "$comment",
+        "$availabilityExceptions",
+    ]
 
 
 class HealthcareService_Eligibility(viewsets.ModelViewSet):
@@ -2678,6 +3490,9 @@ class HealthcareService_NotAvailable(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.HealthcareService_NotAvailable
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class ImagingStudy(viewsets.ModelViewSet):
@@ -2686,6 +3501,11 @@ class ImagingStudy(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImagingStudy
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$description",
+    ]
 
 
 class ImagingStudy_Series(viewsets.ModelViewSet):
@@ -2694,6 +3514,10 @@ class ImagingStudy_Series(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImagingStudy_Series
     ordering_fields = "__all__"
+    search_fields = [
+        "$uid",
+        "$description",
+    ]
 
 
 class ImagingStudy_Performer(viewsets.ModelViewSet):
@@ -2710,6 +3534,10 @@ class ImagingStudy_Instance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImagingStudy_Instance
     ordering_fields = "__all__"
+    search_fields = [
+        "$uid",
+        "$title",
+    ]
 
 
 class Immunization(viewsets.ModelViewSet):
@@ -2719,8 +3547,12 @@ class Immunization(viewsets.ModelViewSet):
     filterset_class = filters.Immunization
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$occurrenceDateTime",
         "$occurrenceString",
+        "$lotNumber",
     ]
 
 
@@ -2738,6 +3570,10 @@ class Immunization_Education(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Immunization_Education
     ordering_fields = "__all__"
+    search_fields = [
+        "$documentType",
+        "$reference",
+    ]
 
 
 class Immunization_Reaction(viewsets.ModelViewSet):
@@ -2755,6 +3591,7 @@ class Immunization_ProtocolApplied(viewsets.ModelViewSet):
     filterset_class = filters.Immunization_ProtocolApplied
     ordering_fields = "__all__"
     search_fields = [
+        "$series",
         "$doseNumberString",
         "$seriesDosesString",
     ]
@@ -2767,6 +3604,11 @@ class ImmunizationEvaluation(viewsets.ModelViewSet):
     filterset_class = filters.ImmunizationEvaluation
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$description",
+        "$series",
         "$doseNumberString",
         "$seriesDosesString",
     ]
@@ -2778,6 +3620,10 @@ class ImmunizationRecommendation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImmunizationRecommendation
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class ImmunizationRecommendation_Recommendation(viewsets.ModelViewSet):
@@ -2787,6 +3633,8 @@ class ImmunizationRecommendation_Recommendation(viewsets.ModelViewSet):
     filterset_class = filters.ImmunizationRecommendation_Recommendation
     ordering_fields = "__all__"
     search_fields = [
+        "$description",
+        "$series",
         "$doseNumberString",
         "$seriesDosesString",
     ]
@@ -2806,6 +3654,16 @@ class ImplementationGuide(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+        "$packageId",
+    ]
 
 
 class ImplementationGuide_DependsOn(viewsets.ModelViewSet):
@@ -2814,6 +3672,11 @@ class ImplementationGuide_DependsOn(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide_DependsOn
     ordering_fields = "__all__"
+    search_fields = [
+        "$uri",
+        "$packageId",
+        "$version",
+    ]
 
 
 class ImplementationGuide_Global(viewsets.ModelViewSet):
@@ -2822,6 +3685,10 @@ class ImplementationGuide_Global(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide_Global
     ordering_fields = "__all__"
+    search_fields = [
+        "$type",
+        "$profile",
+    ]
 
 
 class ImplementationGuide_Definition(viewsets.ModelViewSet):
@@ -2838,6 +3705,10 @@ class ImplementationGuide_Grouping(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide_Grouping
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$description",
+    ]
 
 
 class ImplementationGuide_Resource(viewsets.ModelViewSet):
@@ -2847,7 +3718,10 @@ class ImplementationGuide_Resource(viewsets.ModelViewSet):
     filterset_class = filters.ImplementationGuide_Resource
     ordering_fields = "__all__"
     search_fields = [
+        "$name",
+        "$description",
         "$exampleCanonical",
+        "$groupingId",
     ]
 
 
@@ -2859,6 +3733,7 @@ class ImplementationGuide_Page(viewsets.ModelViewSet):
     ordering_fields = "__all__"
     search_fields = [
         "$nameUrl",
+        "$title",
     ]
 
 
@@ -2868,6 +3743,9 @@ class ImplementationGuide_Parameter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide_Parameter
     ordering_fields = "__all__"
+    search_fields = [
+        "$value",
+    ]
 
 
 class ImplementationGuide_Template(viewsets.ModelViewSet):
@@ -2876,6 +3754,11 @@ class ImplementationGuide_Template(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide_Template
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$source",
+        "$scope",
+    ]
 
 
 class ImplementationGuide_Manifest(viewsets.ModelViewSet):
@@ -2884,6 +3767,9 @@ class ImplementationGuide_Manifest(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide_Manifest
     ordering_fields = "__all__"
+    search_fields = [
+        "$rendering",
+    ]
 
 
 class ImplementationGuide_Resource1(viewsets.ModelViewSet):
@@ -2894,6 +3780,7 @@ class ImplementationGuide_Resource1(viewsets.ModelViewSet):
     ordering_fields = "__all__"
     search_fields = [
         "$exampleCanonical",
+        "$relativePath",
     ]
 
 
@@ -2903,6 +3790,10 @@ class ImplementationGuide_Page1(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ImplementationGuide_Page1
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$title",
+    ]
 
 
 class InsurancePlan(viewsets.ModelViewSet):
@@ -2911,6 +3802,11 @@ class InsurancePlan(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.InsurancePlan
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+    ]
 
 
 class InsurancePlan_Contact(viewsets.ModelViewSet):
@@ -2935,6 +3831,9 @@ class InsurancePlan_Benefit(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.InsurancePlan_Benefit
     ordering_fields = "__all__"
+    search_fields = [
+        "$requirement",
+    ]
 
 
 class InsurancePlan_Limit(viewsets.ModelViewSet):
@@ -2959,6 +3858,9 @@ class InsurancePlan_GeneralCost(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.InsurancePlan_GeneralCost
     ordering_fields = "__all__"
+    search_fields = [
+        "$comment",
+    ]
 
 
 class InsurancePlan_SpecificCost(viewsets.ModelViewSet):
@@ -2991,6 +3893,11 @@ class Invoice(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Invoice
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$cancelledReason",
+    ]
 
 
 class Invoice_Participant(viewsets.ModelViewSet):
@@ -3023,6 +3930,17 @@ class Library(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Library
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$subtitle",
+        "$publisher",
+        "$usage",
+    ]
 
 
 class Linkage(viewsets.ModelViewSet):
@@ -3031,6 +3949,10 @@ class Linkage(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Linkage
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Linkage_Item(viewsets.ModelViewSet):
@@ -3047,6 +3969,11 @@ class List(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.List
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$title",
+    ]
 
 
 class List_Entry(viewsets.ModelViewSet):
@@ -3063,6 +3990,13 @@ class Location(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Location
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+        "$description",
+        "$availabilityExceptions",
+    ]
 
 
 class Location_Position(viewsets.ModelViewSet):
@@ -3087,6 +4021,19 @@ class Measure(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Measure
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$subtitle",
+        "$publisher",
+        "$usage",
+        "$riskAdjustment",
+        "$rateAggregation",
+    ]
 
 
 class Measure_Group(viewsets.ModelViewSet):
@@ -3095,6 +4042,9 @@ class Measure_Group(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Measure_Group
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class Measure_Population(viewsets.ModelViewSet):
@@ -3103,6 +4053,9 @@ class Measure_Population(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Measure_Population
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class Measure_Stratifier(viewsets.ModelViewSet):
@@ -3111,6 +4064,9 @@ class Measure_Stratifier(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Measure_Stratifier
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class Measure_Component(viewsets.ModelViewSet):
@@ -3119,6 +4075,9 @@ class Measure_Component(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Measure_Component
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class Measure_SupplementalData(viewsets.ModelViewSet):
@@ -3127,6 +4086,9 @@ class Measure_SupplementalData(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Measure_SupplementalData
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class MeasureReport(viewsets.ModelViewSet):
@@ -3135,6 +4097,11 @@ class MeasureReport(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MeasureReport
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$measure",
+    ]
 
 
 class MeasureReport_Group(viewsets.ModelViewSet):
@@ -3192,7 +4159,11 @@ class Media(viewsets.ModelViewSet):
     filterset_class = filters.Media
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$createdDateTime",
+        "$deviceName",
     ]
 
 
@@ -3202,6 +4173,11 @@ class Medication(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Medication
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class Medication_Ingredient(viewsets.ModelViewSet):
@@ -3218,6 +4194,9 @@ class Medication_Batch(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Medication_Batch
     ordering_fields = "__all__"
+    search_fields = [
+        "$lotNumber",
+    ]
 
 
 class MedicationAdministration(viewsets.ModelViewSet):
@@ -3227,6 +4206,9 @@ class MedicationAdministration(viewsets.ModelViewSet):
     filterset_class = filters.MedicationAdministration
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$effectiveDateTime",
     ]
 
@@ -3245,6 +4227,9 @@ class MedicationAdministration_Dosage(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicationAdministration_Dosage
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class MedicationDispense(viewsets.ModelViewSet):
@@ -3253,6 +4238,11 @@ class MedicationDispense(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicationDispense
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class MedicationDispense_Performer(viewsets.ModelViewSet):
@@ -3277,6 +4267,11 @@ class MedicationKnowledge(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicationKnowledge
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class MedicationKnowledge_RelatedMedicationKnowledge(viewsets.ModelViewSet):
@@ -3309,6 +4304,9 @@ class MedicationKnowledge_Cost(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicationKnowledge_Cost
     ordering_fields = "__all__"
+    search_fields = [
+        "$source",
+    ]
 
 
 class MedicationKnowledge_MonitoringProgram(viewsets.ModelViewSet):
@@ -3317,6 +4315,9 @@ class MedicationKnowledge_MonitoringProgram(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicationKnowledge_MonitoringProgram
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class MedicationKnowledge_AdministrationGuidelines(viewsets.ModelViewSet):
@@ -3417,6 +4418,13 @@ class MedicationRequest(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicationRequest
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$intent",
+        "$priority",
+    ]
 
 
 class MedicationRequest_DispenseRequest(viewsets.ModelViewSet):
@@ -3450,6 +4458,9 @@ class MedicationStatement(viewsets.ModelViewSet):
     filterset_class = filters.MedicationStatement
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$effectiveDateTime",
     ]
 
@@ -3460,6 +4471,10 @@ class MedicinalProduct(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProduct
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MedicinalProduct_Name(viewsets.ModelViewSet):
@@ -3468,6 +4483,9 @@ class MedicinalProduct_Name(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProduct_Name
     ordering_fields = "__all__"
+    search_fields = [
+        "$productName",
+    ]
 
 
 class MedicinalProduct_NamePart(viewsets.ModelViewSet):
@@ -3476,6 +4494,9 @@ class MedicinalProduct_NamePart(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProduct_NamePart
     ordering_fields = "__all__"
+    search_fields = [
+        "$part",
+    ]
 
 
 class MedicinalProduct_CountryLanguage(viewsets.ModelViewSet):
@@ -3508,6 +4529,10 @@ class MedicinalProductAuthorization(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductAuthorization
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MedicinalProductAuthorization_JurisdictionalAuthorization(viewsets.ModelViewSet):
@@ -3535,6 +4560,10 @@ class MedicinalProductContraindication(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductContraindication
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MedicinalProductContraindication_OtherTherapy(viewsets.ModelViewSet):
@@ -3551,6 +4580,10 @@ class MedicinalProductIndication(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductIndication
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MedicinalProductIndication_OtherTherapy(viewsets.ModelViewSet):
@@ -3567,6 +4600,10 @@ class MedicinalProductIngredient(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductIngredient
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MedicinalProductIngredient_SpecifiedSubstance(viewsets.ModelViewSet):
@@ -3583,6 +4620,9 @@ class MedicinalProductIngredient_Strength(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductIngredient_Strength
     ordering_fields = "__all__"
+    search_fields = [
+        "$measurementPoint",
+    ]
 
 
 class MedicinalProductIngredient_ReferenceStrength(viewsets.ModelViewSet):
@@ -3591,6 +4631,9 @@ class MedicinalProductIngredient_ReferenceStrength(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductIngredient_ReferenceStrength
     ordering_fields = "__all__"
+    search_fields = [
+        "$measurementPoint",
+    ]
 
 
 class MedicinalProductIngredient_Substance(viewsets.ModelViewSet):
@@ -3607,6 +4650,11 @@ class MedicinalProductInteraction(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductInteraction
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$description",
+    ]
 
 
 class MedicinalProductInteraction_Interactant(viewsets.ModelViewSet):
@@ -3623,6 +4671,10 @@ class MedicinalProductManufactured(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductManufactured
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MedicinalProductPackaged(viewsets.ModelViewSet):
@@ -3631,6 +4683,11 @@ class MedicinalProductPackaged(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductPackaged
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$description",
+    ]
 
 
 class MedicinalProductPackaged_BatchIdentifier(viewsets.ModelViewSet):
@@ -3655,6 +4712,10 @@ class MedicinalProductPharmaceutical(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductPharmaceutical
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MedicinalProductPharmaceutical_Characteristics(viewsets.ModelViewSet):
@@ -3687,6 +4748,9 @@ class MedicinalProductPharmaceutical_WithdrawalPeriod(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductPharmaceutical_WithdrawalPeriod
     ordering_fields = "__all__"
+    search_fields = [
+        "$supportingInformation",
+    ]
 
 
 class MedicinalProductUndesirableEffect(viewsets.ModelViewSet):
@@ -3695,6 +4759,10 @@ class MedicinalProductUndesirableEffect(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MedicinalProductUndesirableEffect
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class MessageDefinition(viewsets.ModelViewSet):
@@ -3704,6 +4772,14 @@ class MessageDefinition(viewsets.ModelViewSet):
     filterset_class = filters.MessageDefinition
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+        "$base",
         "$eventUri",
     ]
 
@@ -3714,6 +4790,11 @@ class MessageDefinition_Focus(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MessageDefinition_Focus
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$profile",
+        "$max",
+    ]
 
 
 class MessageDefinition_AllowedResponse(viewsets.ModelViewSet):
@@ -3722,6 +4803,9 @@ class MessageDefinition_AllowedResponse(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MessageDefinition_AllowedResponse
     ordering_fields = "__all__"
+    search_fields = [
+        "$message",
+    ]
 
 
 class MessageHeader(viewsets.ModelViewSet):
@@ -3731,7 +4815,10 @@ class MessageHeader(viewsets.ModelViewSet):
     filterset_class = filters.MessageHeader
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$eventUri",
+        "$definition",
     ]
 
 
@@ -3741,6 +4828,10 @@ class MessageHeader_Destination(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MessageHeader_Destination
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$endpoint",
+    ]
 
 
 class MessageHeader_Source(viewsets.ModelViewSet):
@@ -3749,6 +4840,12 @@ class MessageHeader_Source(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MessageHeader_Source
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$software",
+        "$version",
+        "$endpoint",
+    ]
 
 
 class MessageHeader_Response(viewsets.ModelViewSet):
@@ -3757,6 +4854,9 @@ class MessageHeader_Response(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MessageHeader_Response
     ordering_fields = "__all__"
+    search_fields = [
+        "$identifier",
+    ]
 
 
 class MolecularSequence(viewsets.ModelViewSet):
@@ -3765,6 +4865,11 @@ class MolecularSequence(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MolecularSequence
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$observedSeq",
+    ]
 
 
 class MolecularSequence_ReferenceSeq(viewsets.ModelViewSet):
@@ -3773,6 +4878,10 @@ class MolecularSequence_ReferenceSeq(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MolecularSequence_ReferenceSeq
     ordering_fields = "__all__"
+    search_fields = [
+        "$genomeBuild",
+        "$referenceSeqString",
+    ]
 
 
 class MolecularSequence_Variant(viewsets.ModelViewSet):
@@ -3781,6 +4890,11 @@ class MolecularSequence_Variant(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MolecularSequence_Variant
     ordering_fields = "__all__"
+    search_fields = [
+        "$observedAllele",
+        "$referenceAllele",
+        "$cigar",
+    ]
 
 
 class MolecularSequence_Quality(viewsets.ModelViewSet):
@@ -3805,6 +4919,13 @@ class MolecularSequence_Repository(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.MolecularSequence_Repository
     ordering_fields = "__all__"
+    search_fields = [
+        "$url",
+        "$name",
+        "$datasetId",
+        "$variantsetId",
+        "$readsetId",
+    ]
 
 
 class MolecularSequence_StructureVariant(viewsets.ModelViewSet):
@@ -3837,6 +4958,14 @@ class NamingSystem(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.NamingSystem
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+        "$publisher",
+        "$responsible",
+        "$usage",
+    ]
 
 
 class NamingSystem_UniqueId(viewsets.ModelViewSet):
@@ -3845,6 +4974,10 @@ class NamingSystem_UniqueId(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.NamingSystem_UniqueId
     ordering_fields = "__all__"
+    search_fields = [
+        "$value",
+        "$comment",
+    ]
 
 
 class NutritionOrder(viewsets.ModelViewSet):
@@ -3853,6 +4986,12 @@ class NutritionOrder(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.NutritionOrder
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$intent",
+    ]
 
 
 class NutritionOrder_OralDiet(viewsets.ModelViewSet):
@@ -3861,6 +5000,9 @@ class NutritionOrder_OralDiet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.NutritionOrder_OralDiet
     ordering_fields = "__all__"
+    search_fields = [
+        "$instruction",
+    ]
 
 
 class NutritionOrder_Nutrient(viewsets.ModelViewSet):
@@ -3885,6 +5027,10 @@ class NutritionOrder_Supplement(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.NutritionOrder_Supplement
     ordering_fields = "__all__"
+    search_fields = [
+        "$productName",
+        "$instruction",
+    ]
 
 
 class NutritionOrder_EnteralFormula(viewsets.ModelViewSet):
@@ -3893,6 +5039,11 @@ class NutritionOrder_EnteralFormula(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.NutritionOrder_EnteralFormula
     ordering_fields = "__all__"
+    search_fields = [
+        "$baseFormulaProductName",
+        "$additiveProductName",
+        "$administrationInstruction",
+    ]
 
 
 class NutritionOrder_Administration(viewsets.ModelViewSet):
@@ -3910,6 +5061,8 @@ class Observation(viewsets.ModelViewSet):
     filterset_class = filters.Observation
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$effectiveDateTime",
         "$effectiveInstant",
         "$valueString",
@@ -3924,6 +5077,9 @@ class Observation_ReferenceRange(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Observation_ReferenceRange
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class Observation_Component(viewsets.ModelViewSet):
@@ -3945,6 +5101,11 @@ class ObservationDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ObservationDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$preferredReportName",
+    ]
 
 
 class ObservationDefinition_QuantitativeDetails(viewsets.ModelViewSet):
@@ -3961,6 +5122,9 @@ class ObservationDefinition_QualifiedInterval(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ObservationDefinition_QualifiedInterval
     ordering_fields = "__all__"
+    search_fields = [
+        "$condition",
+    ]
 
 
 class OperationDefinition(viewsets.ModelViewSet):
@@ -3969,6 +5133,19 @@ class OperationDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OperationDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+        "$code",
+        "$base",
+        "$inputProfile",
+        "$outputProfile",
+    ]
 
 
 class OperationDefinition_Parameter(viewsets.ModelViewSet):
@@ -3977,6 +5154,12 @@ class OperationDefinition_Parameter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OperationDefinition_Parameter
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$max",
+        "$documentation",
+        "$type",
+    ]
 
 
 class OperationDefinition_Binding(viewsets.ModelViewSet):
@@ -3985,6 +5168,9 @@ class OperationDefinition_Binding(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OperationDefinition_Binding
     ordering_fields = "__all__"
+    search_fields = [
+        "$valueSet",
+    ]
 
 
 class OperationDefinition_ReferencedFrom(viewsets.ModelViewSet):
@@ -3993,6 +5179,10 @@ class OperationDefinition_ReferencedFrom(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OperationDefinition_ReferencedFrom
     ordering_fields = "__all__"
+    search_fields = [
+        "$source",
+        "$sourceId",
+    ]
 
 
 class OperationDefinition_Overload(viewsets.ModelViewSet):
@@ -4001,6 +5191,9 @@ class OperationDefinition_Overload(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OperationDefinition_Overload
     ordering_fields = "__all__"
+    search_fields = [
+        "$comment",
+    ]
 
 
 class OperationOutcome(viewsets.ModelViewSet):
@@ -4009,6 +5202,10 @@ class OperationOutcome(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OperationOutcome
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class OperationOutcome_Issue(viewsets.ModelViewSet):
@@ -4017,6 +5214,9 @@ class OperationOutcome_Issue(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OperationOutcome_Issue
     ordering_fields = "__all__"
+    search_fields = [
+        "$diagnostics",
+    ]
 
 
 class Organization(viewsets.ModelViewSet):
@@ -4025,6 +5225,11 @@ class Organization(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Organization
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+    ]
 
 
 class Organization_Contact(viewsets.ModelViewSet):
@@ -4041,6 +5246,10 @@ class OrganizationAffiliation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.OrganizationAffiliation
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Parameters(viewsets.ModelViewSet):
@@ -4049,6 +5258,10 @@ class Parameters(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Parameters
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Parameters_Parameter(viewsets.ModelViewSet):
@@ -4058,6 +5271,7 @@ class Parameters_Parameter(viewsets.ModelViewSet):
     filterset_class = filters.Parameters_Parameter
     ordering_fields = "__all__"
     search_fields = [
+        "$name",
         "$valueBase64Binary",
         "$valueCanonical",
         "$valueCode",
@@ -4082,6 +5296,8 @@ class Patient(viewsets.ModelViewSet):
     filterset_class = filters.Patient
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$deceasedDateTime",
     ]
 
@@ -4116,6 +5332,11 @@ class PaymentNotice(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PaymentNotice
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class PaymentReconciliation(viewsets.ModelViewSet):
@@ -4124,6 +5345,12 @@ class PaymentReconciliation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PaymentReconciliation
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$disposition",
+    ]
 
 
 class PaymentReconciliation_Detail(viewsets.ModelViewSet):
@@ -4140,6 +5367,9 @@ class PaymentReconciliation_ProcessNote(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PaymentReconciliation_ProcessNote
     ordering_fields = "__all__"
+    search_fields = [
+        "$text",
+    ]
 
 
 class Person(viewsets.ModelViewSet):
@@ -4148,6 +5378,10 @@ class Person(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Person
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Person_Link(viewsets.ModelViewSet):
@@ -4164,6 +5398,17 @@ class PlanDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PlanDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$subtitle",
+        "$publisher",
+        "$usage",
+    ]
 
 
 class PlanDefinition_Goal(viewsets.ModelViewSet):
@@ -4189,9 +5434,15 @@ class PlanDefinition_Action(viewsets.ModelViewSet):
     filterset_class = filters.PlanDefinition_Action
     ordering_fields = "__all__"
     search_fields = [
+        "$prefix",
+        "$title",
+        "$description",
+        "$textEquivalent",
+        "$priority",
         "$timingDateTime",
         "$definitionCanonical",
         "$definitionUri",
+        "$transform",
     ]
 
 
@@ -4209,6 +5460,9 @@ class PlanDefinition_RelatedAction(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PlanDefinition_RelatedAction
     ordering_fields = "__all__"
+    search_fields = [
+        "$actionId",
+    ]
 
 
 class PlanDefinition_Participant(viewsets.ModelViewSet):
@@ -4225,6 +5479,9 @@ class PlanDefinition_DynamicValue(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PlanDefinition_DynamicValue
     ordering_fields = "__all__"
+    search_fields = [
+        "$path",
+    ]
 
 
 class Practitioner(viewsets.ModelViewSet):
@@ -4233,6 +5490,10 @@ class Practitioner(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Practitioner
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Practitioner_Qualification(viewsets.ModelViewSet):
@@ -4249,6 +5510,11 @@ class PractitionerRole(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PractitionerRole
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$availabilityExceptions",
+    ]
 
 
 class PractitionerRole_AvailableTime(viewsets.ModelViewSet):
@@ -4265,6 +5531,9 @@ class PractitionerRole_NotAvailable(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.PractitionerRole_NotAvailable
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class Procedure(viewsets.ModelViewSet):
@@ -4274,6 +5543,9 @@ class Procedure(viewsets.ModelViewSet):
     filterset_class = filters.Procedure
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$performedDateTime",
         "$performedString",
     ]
@@ -4302,6 +5574,8 @@ class Provenance(viewsets.ModelViewSet):
     filterset_class = filters.Provenance
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$occurredDateTime",
     ]
 
@@ -4328,6 +5602,15 @@ class Questionnaire(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Questionnaire
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+    ]
 
 
 class Questionnaire_Item(viewsets.ModelViewSet):
@@ -4336,6 +5619,13 @@ class Questionnaire_Item(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Questionnaire_Item
     ordering_fields = "__all__"
+    search_fields = [
+        "$linkId",
+        "$definition",
+        "$prefix",
+        "$text",
+        "$answerValueSet",
+    ]
 
 
 class Questionnaire_EnableWhen(viewsets.ModelViewSet):
@@ -4345,6 +5635,7 @@ class Questionnaire_EnableWhen(viewsets.ModelViewSet):
     filterset_class = filters.Questionnaire_EnableWhen
     ordering_fields = "__all__"
     search_fields = [
+        "$question",
         "$answerDate",
         "$answerDateTime",
         "$answerTime",
@@ -4386,6 +5677,11 @@ class QuestionnaireResponse(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.QuestionnaireResponse
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$questionnaire",
+    ]
 
 
 class QuestionnaireResponse_Item(viewsets.ModelViewSet):
@@ -4394,6 +5690,11 @@ class QuestionnaireResponse_Item(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.QuestionnaireResponse_Item
     ordering_fields = "__all__"
+    search_fields = [
+        "$linkId",
+        "$definition",
+        "$text",
+    ]
 
 
 class QuestionnaireResponse_Answer(viewsets.ModelViewSet):
@@ -4417,6 +5718,10 @@ class RelatedPerson(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RelatedPerson
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class RelatedPerson_Communication(viewsets.ModelViewSet):
@@ -4433,6 +5738,13 @@ class RequestGroup(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RequestGroup
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$intent",
+        "$priority",
+    ]
 
 
 class RequestGroup_Action(viewsets.ModelViewSet):
@@ -4442,7 +5754,17 @@ class RequestGroup_Action(viewsets.ModelViewSet):
     filterset_class = filters.RequestGroup_Action
     ordering_fields = "__all__"
     search_fields = [
+        "$prefix",
+        "$title",
+        "$description",
+        "$textEquivalent",
+        "$priority",
         "$timingDateTime",
+        "$groupingBehavior",
+        "$selectionBehavior",
+        "$requiredBehavior",
+        "$precheckBehavior",
+        "$cardinalityBehavior",
     ]
 
 
@@ -4452,6 +5774,9 @@ class RequestGroup_Condition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RequestGroup_Condition
     ordering_fields = "__all__"
+    search_fields = [
+        "$kind",
+    ]
 
 
 class RequestGroup_RelatedAction(viewsets.ModelViewSet):
@@ -4460,6 +5785,10 @@ class RequestGroup_RelatedAction(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RequestGroup_RelatedAction
     ordering_fields = "__all__"
+    search_fields = [
+        "$actionId",
+        "$relationship",
+    ]
 
 
 class ResearchDefinition(viewsets.ModelViewSet):
@@ -4468,6 +5797,18 @@ class ResearchDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ResearchDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$shortTitle",
+        "$subtitle",
+        "$publisher",
+        "$usage",
+    ]
 
 
 class ResearchElementDefinition(viewsets.ModelViewSet):
@@ -4476,6 +5817,18 @@ class ResearchElementDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ResearchElementDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$shortTitle",
+        "$subtitle",
+        "$publisher",
+        "$usage",
+    ]
 
 
 class ResearchElementDefinition_Characteristic(viewsets.ModelViewSet):
@@ -4486,7 +5839,9 @@ class ResearchElementDefinition_Characteristic(viewsets.ModelViewSet):
     ordering_fields = "__all__"
     search_fields = [
         "$definitionCanonical",
+        "$studyEffectiveDescription",
         "$studyEffectiveDateTime",
+        "$participantEffectiveDescription",
         "$participantEffectiveDateTime",
     ]
 
@@ -4497,6 +5852,11 @@ class ResearchStudy(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ResearchStudy
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$title",
+    ]
 
 
 class ResearchStudy_Arm(viewsets.ModelViewSet):
@@ -4505,6 +5865,10 @@ class ResearchStudy_Arm(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ResearchStudy_Arm
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$description",
+    ]
 
 
 class ResearchStudy_Objective(viewsets.ModelViewSet):
@@ -4513,6 +5877,9 @@ class ResearchStudy_Objective(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ResearchStudy_Objective
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class ResearchSubject(viewsets.ModelViewSet):
@@ -4521,6 +5888,12 @@ class ResearchSubject(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ResearchSubject
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$assignedArm",
+        "$actualArm",
+    ]
 
 
 class RiskAssessment(viewsets.ModelViewSet):
@@ -4530,7 +5903,11 @@ class RiskAssessment(viewsets.ModelViewSet):
     filterset_class = filters.RiskAssessment
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
         "$occurrenceDateTime",
+        "$mitigation",
     ]
 
 
@@ -4540,6 +5917,9 @@ class RiskAssessment_Prediction(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RiskAssessment_Prediction
     ordering_fields = "__all__"
+    search_fields = [
+        "$rationale",
+    ]
 
 
 class RiskEvidenceSynthesis(viewsets.ModelViewSet):
@@ -4548,6 +5928,15 @@ class RiskEvidenceSynthesis(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RiskEvidenceSynthesis
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+    ]
 
 
 class RiskEvidenceSynthesis_SampleSize(viewsets.ModelViewSet):
@@ -4556,6 +5945,9 @@ class RiskEvidenceSynthesis_SampleSize(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RiskEvidenceSynthesis_SampleSize
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class RiskEvidenceSynthesis_RiskEstimate(viewsets.ModelViewSet):
@@ -4564,6 +5956,9 @@ class RiskEvidenceSynthesis_RiskEstimate(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.RiskEvidenceSynthesis_RiskEstimate
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class RiskEvidenceSynthesis_PrecisionEstimate(viewsets.ModelViewSet):
@@ -4596,6 +5991,11 @@ class Schedule(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Schedule
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$comment",
+    ]
 
 
 class SearchParameter(viewsets.ModelViewSet):
@@ -4604,6 +6004,18 @@ class SearchParameter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SearchParameter
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$derivedFrom",
+        "$publisher",
+        "$code",
+        "$expression",
+        "$xpath",
+    ]
 
 
 class SearchParameter_Component(viewsets.ModelViewSet):
@@ -4612,6 +6024,10 @@ class SearchParameter_Component(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SearchParameter_Component
     ordering_fields = "__all__"
+    search_fields = [
+        "$definition",
+        "$expression",
+    ]
 
 
 class ServiceRequest(viewsets.ModelViewSet):
@@ -4621,7 +6037,13 @@ class ServiceRequest(viewsets.ModelViewSet):
     filterset_class = filters.ServiceRequest
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+        "$intent",
+        "$priority",
         "$occurrenceDateTime",
+        "$patientInstruction",
     ]
 
 
@@ -4631,6 +6053,11 @@ class Slot(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Slot
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$comment",
+    ]
 
 
 class Specimen(viewsets.ModelViewSet):
@@ -4639,6 +6066,10 @@ class Specimen(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Specimen
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class Specimen_Collection(viewsets.ModelViewSet):
@@ -4659,6 +6090,7 @@ class Specimen_Processing(viewsets.ModelViewSet):
     filterset_class = filters.Specimen_Processing
     ordering_fields = "__all__"
     search_fields = [
+        "$description",
         "$timeDateTime",
     ]
 
@@ -4669,6 +6101,9 @@ class Specimen_Container(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Specimen_Container
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+    ]
 
 
 class SpecimenDefinition(viewsets.ModelViewSet):
@@ -4677,6 +6112,11 @@ class SpecimenDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SpecimenDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$timeAspect",
+    ]
 
 
 class SpecimenDefinition_TypeTested(viewsets.ModelViewSet):
@@ -4685,6 +6125,9 @@ class SpecimenDefinition_TypeTested(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SpecimenDefinition_TypeTested
     ordering_fields = "__all__"
+    search_fields = [
+        "$requirement",
+    ]
 
 
 class SpecimenDefinition_Container(viewsets.ModelViewSet):
@@ -4694,7 +6137,9 @@ class SpecimenDefinition_Container(viewsets.ModelViewSet):
     filterset_class = filters.SpecimenDefinition_Container
     ordering_fields = "__all__"
     search_fields = [
+        "$description",
         "$minimumVolumeString",
+        "$preparation",
     ]
 
 
@@ -4712,6 +6157,9 @@ class SpecimenDefinition_Handling(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SpecimenDefinition_Handling
     ordering_fields = "__all__"
+    search_fields = [
+        "$instruction",
+    ]
 
 
 class StructureDefinition(viewsets.ModelViewSet):
@@ -4720,6 +6168,17 @@ class StructureDefinition(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureDefinition
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+        "$type",
+        "$baseDefinition",
+    ]
 
 
 class StructureDefinition_Mapping(viewsets.ModelViewSet):
@@ -4728,6 +6187,12 @@ class StructureDefinition_Mapping(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureDefinition_Mapping
     ordering_fields = "__all__"
+    search_fields = [
+        "$identity",
+        "$uri",
+        "$name",
+        "$comment",
+    ]
 
 
 class StructureDefinition_Context(viewsets.ModelViewSet):
@@ -4736,6 +6201,9 @@ class StructureDefinition_Context(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureDefinition_Context
     ordering_fields = "__all__"
+    search_fields = [
+        "$expression",
+    ]
 
 
 class StructureDefinition_Snapshot(viewsets.ModelViewSet):
@@ -4760,6 +6228,15 @@ class StructureMap(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureMap
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+    ]
 
 
 class StructureMap_Structure(viewsets.ModelViewSet):
@@ -4768,6 +6245,11 @@ class StructureMap_Structure(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureMap_Structure
     ordering_fields = "__all__"
+    search_fields = [
+        "$url",
+        "$alias",
+        "$documentation",
+    ]
 
 
 class StructureMap_Group(viewsets.ModelViewSet):
@@ -4776,6 +6258,11 @@ class StructureMap_Group(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureMap_Group
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$extends",
+        "$documentation",
+    ]
 
 
 class StructureMap_Input(viewsets.ModelViewSet):
@@ -4784,6 +6271,11 @@ class StructureMap_Input(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureMap_Input
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$type",
+        "$documentation",
+    ]
 
 
 class StructureMap_Rule(viewsets.ModelViewSet):
@@ -4792,6 +6284,10 @@ class StructureMap_Rule(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureMap_Rule
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$documentation",
+    ]
 
 
 class StructureMap_Source(viewsets.ModelViewSet):
@@ -4801,6 +6297,9 @@ class StructureMap_Source(viewsets.ModelViewSet):
     filterset_class = filters.StructureMap_Source
     ordering_fields = "__all__"
     search_fields = [
+        "$context",
+        "$max",
+        "$type",
         "$defaultValueBase64Binary",
         "$defaultValueCanonical",
         "$defaultValueCode",
@@ -4815,6 +6314,11 @@ class StructureMap_Source(viewsets.ModelViewSet):
         "$defaultValueUri",
         "$defaultValueUrl",
         "$defaultValueUuid",
+        "$element",
+        "$variable",
+        "$condition",
+        "$check",
+        "$logMessage",
     ]
 
 
@@ -4824,6 +6328,12 @@ class StructureMap_Target(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureMap_Target
     ordering_fields = "__all__"
+    search_fields = [
+        "$context",
+        "$element",
+        "$variable",
+        "$listRuleId",
+    ]
 
 
 class StructureMap_Parameter(viewsets.ModelViewSet):
@@ -4844,6 +6354,9 @@ class StructureMap_Dependent(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.StructureMap_Dependent
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class Subscription(viewsets.ModelViewSet):
@@ -4852,6 +6365,13 @@ class Subscription(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Subscription
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$reason",
+        "$criteria",
+        "$error",
+    ]
 
 
 class Subscription_Channel(viewsets.ModelViewSet):
@@ -4860,6 +6380,10 @@ class Subscription_Channel(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Subscription_Channel
     ordering_fields = "__all__"
+    search_fields = [
+        "$endpoint",
+        "$payload",
+    ]
 
 
 class Substance(viewsets.ModelViewSet):
@@ -4868,6 +6392,11 @@ class Substance(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Substance
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$description",
+    ]
 
 
 class Substance_Instance(viewsets.ModelViewSet):
@@ -4892,6 +6421,11 @@ class SubstanceNucleicAcid(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceNucleicAcid
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$areaOfHybridisation",
+    ]
 
 
 class SubstanceNucleicAcid_Subunit(viewsets.ModelViewSet):
@@ -4900,6 +6434,9 @@ class SubstanceNucleicAcid_Subunit(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceNucleicAcid_Subunit
     ordering_fields = "__all__"
+    search_fields = [
+        "$sequence",
+    ]
 
 
 class SubstanceNucleicAcid_Linkage(viewsets.ModelViewSet):
@@ -4908,6 +6445,11 @@ class SubstanceNucleicAcid_Linkage(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceNucleicAcid_Linkage
     ordering_fields = "__all__"
+    search_fields = [
+        "$connectivity",
+        "$name",
+        "$residueSite",
+    ]
 
 
 class SubstanceNucleicAcid_Sugar(viewsets.ModelViewSet):
@@ -4916,6 +6458,10 @@ class SubstanceNucleicAcid_Sugar(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceNucleicAcid_Sugar
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$residueSite",
+    ]
 
 
 class SubstancePolymer(viewsets.ModelViewSet):
@@ -4924,6 +6470,10 @@ class SubstancePolymer(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstancePolymer
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class SubstancePolymer_MonomerSet(viewsets.ModelViewSet):
@@ -4948,6 +6498,9 @@ class SubstancePolymer_Repeat(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstancePolymer_Repeat
     ordering_fields = "__all__"
+    search_fields = [
+        "$averageMolecularFormula",
+    ]
 
 
 class SubstancePolymer_RepeatUnit(viewsets.ModelViewSet):
@@ -4956,6 +6509,9 @@ class SubstancePolymer_RepeatUnit(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstancePolymer_RepeatUnit
     ordering_fields = "__all__"
+    search_fields = [
+        "$repeatUnit",
+    ]
 
 
 class SubstancePolymer_DegreeOfPolymerisation(viewsets.ModelViewSet):
@@ -4972,6 +6528,9 @@ class SubstancePolymer_StructuralRepresentation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstancePolymer_StructuralRepresentation
     ordering_fields = "__all__"
+    search_fields = [
+        "$representation",
+    ]
 
 
 class SubstanceProtein(viewsets.ModelViewSet):
@@ -4980,6 +6539,10 @@ class SubstanceProtein(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceProtein
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+    ]
 
 
 class SubstanceProtein_Subunit(viewsets.ModelViewSet):
@@ -4988,6 +6551,11 @@ class SubstanceProtein_Subunit(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceProtein_Subunit
     ordering_fields = "__all__"
+    search_fields = [
+        "$sequence",
+        "$nTerminalModification",
+        "$cTerminalModification",
+    ]
 
 
 class SubstanceReferenceInformation(viewsets.ModelViewSet):
@@ -4996,6 +6564,11 @@ class SubstanceReferenceInformation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceReferenceInformation
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$comment",
+    ]
 
 
 class SubstanceReferenceInformation_Gene(viewsets.ModelViewSet):
@@ -5039,6 +6612,11 @@ class SubstanceSourceMaterial(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSourceMaterial
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$organismName",
+    ]
 
 
 class SubstanceSourceMaterial_FractionDescription(viewsets.ModelViewSet):
@@ -5047,6 +6625,9 @@ class SubstanceSourceMaterial_FractionDescription(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSourceMaterial_FractionDescription
     ordering_fields = "__all__"
+    search_fields = [
+        "$fraction",
+    ]
 
 
 class SubstanceSourceMaterial_Organism(viewsets.ModelViewSet):
@@ -5055,6 +6636,9 @@ class SubstanceSourceMaterial_Organism(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSourceMaterial_Organism
     ordering_fields = "__all__"
+    search_fields = [
+        "$intraspecificDescription",
+    ]
 
 
 class SubstanceSourceMaterial_Author(viewsets.ModelViewSet):
@@ -5063,6 +6647,9 @@ class SubstanceSourceMaterial_Author(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSourceMaterial_Author
     ordering_fields = "__all__"
+    search_fields = [
+        "$authorDescription",
+    ]
 
 
 class SubstanceSourceMaterial_Hybrid(viewsets.ModelViewSet):
@@ -5071,6 +6658,12 @@ class SubstanceSourceMaterial_Hybrid(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSourceMaterial_Hybrid
     ordering_fields = "__all__"
+    search_fields = [
+        "$maternalOrganismId",
+        "$maternalOrganismName",
+        "$paternalOrganismId",
+        "$paternalOrganismName",
+    ]
 
 
 class SubstanceSourceMaterial_OrganismGeneral(viewsets.ModelViewSet):
@@ -5095,6 +6688,12 @@ class SubstanceSpecification(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSpecification
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$description",
+        "$comment",
+    ]
 
 
 class SubstanceSpecification_Moiety(viewsets.ModelViewSet):
@@ -5104,6 +6703,8 @@ class SubstanceSpecification_Moiety(viewsets.ModelViewSet):
     filterset_class = filters.SubstanceSpecification_Moiety
     ordering_fields = "__all__"
     search_fields = [
+        "$name",
+        "$molecularFormula",
         "$amountString",
     ]
 
@@ -5115,6 +6716,7 @@ class SubstanceSpecification_Property(viewsets.ModelViewSet):
     filterset_class = filters.SubstanceSpecification_Property
     ordering_fields = "__all__"
     search_fields = [
+        "$parameters",
         "$amountString",
     ]
 
@@ -5125,6 +6727,10 @@ class SubstanceSpecification_Structure(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSpecification_Structure
     ordering_fields = "__all__"
+    search_fields = [
+        "$molecularFormula",
+        "$molecularFormulaByMoiety",
+    ]
 
 
 class SubstanceSpecification_Isotope(viewsets.ModelViewSet):
@@ -5149,6 +6755,9 @@ class SubstanceSpecification_Representation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSpecification_Representation
     ordering_fields = "__all__"
+    search_fields = [
+        "$representation",
+    ]
 
 
 class SubstanceSpecification_Code(viewsets.ModelViewSet):
@@ -5157,6 +6766,9 @@ class SubstanceSpecification_Code(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSpecification_Code
     ordering_fields = "__all__"
+    search_fields = [
+        "$comment",
+    ]
 
 
 class SubstanceSpecification_Name(viewsets.ModelViewSet):
@@ -5165,6 +6777,9 @@ class SubstanceSpecification_Name(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.SubstanceSpecification_Name
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+    ]
 
 
 class SubstanceSpecification_Official(viewsets.ModelViewSet):
@@ -5193,6 +6808,8 @@ class SupplyDelivery(viewsets.ModelViewSet):
     filterset_class = filters.SupplyDelivery
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
         "$occurrenceDateTime",
     ]
 
@@ -5212,6 +6829,9 @@ class SupplyRequest(viewsets.ModelViewSet):
     filterset_class = filters.SupplyRequest
     ordering_fields = "__all__"
     search_fields = [
+        "$implicitRules",
+        "$language",
+        "$priority",
         "$occurrenceDateTime",
     ]
 
@@ -5230,6 +6850,14 @@ class Task(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.Task
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$instantiatesCanonical",
+        "$instantiatesUri",
+        "$priority",
+        "$description",
+    ]
 
 
 class Task_Restriction(viewsets.ModelViewSet):
@@ -5294,6 +6922,16 @@ class TerminologyCapabilities(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TerminologyCapabilities
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+        "$kind",
+    ]
 
 
 class TerminologyCapabilities_Software(viewsets.ModelViewSet):
@@ -5302,6 +6940,10 @@ class TerminologyCapabilities_Software(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TerminologyCapabilities_Software
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$version",
+    ]
 
 
 class TerminologyCapabilities_Implementation(viewsets.ModelViewSet):
@@ -5310,6 +6952,10 @@ class TerminologyCapabilities_Implementation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TerminologyCapabilities_Implementation
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+        "$url",
+    ]
 
 
 class TerminologyCapabilities_CodeSystem(viewsets.ModelViewSet):
@@ -5318,6 +6964,9 @@ class TerminologyCapabilities_CodeSystem(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TerminologyCapabilities_CodeSystem
     ordering_fields = "__all__"
+    search_fields = [
+        "$uri",
+    ]
 
 
 class TerminologyCapabilities_Version(viewsets.ModelViewSet):
@@ -5326,6 +6975,9 @@ class TerminologyCapabilities_Version(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TerminologyCapabilities_Version
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+    ]
 
 
 class TerminologyCapabilities_Filter(viewsets.ModelViewSet):
@@ -5334,6 +6986,9 @@ class TerminologyCapabilities_Filter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TerminologyCapabilities_Filter
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+    ]
 
 
 class TerminologyCapabilities_Expansion(viewsets.ModelViewSet):
@@ -5350,6 +7005,10 @@ class TerminologyCapabilities_Parameter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TerminologyCapabilities_Parameter
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$documentation",
+    ]
 
 
 class TerminologyCapabilities_ValidateCode(viewsets.ModelViewSet):
@@ -5382,6 +7041,12 @@ class TestReport(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestReport
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$name",
+        "$tester",
+    ]
 
 
 class TestReport_Participant(viewsets.ModelViewSet):
@@ -5390,6 +7055,10 @@ class TestReport_Participant(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestReport_Participant
     ordering_fields = "__all__"
+    search_fields = [
+        "$uri",
+        "$display",
+    ]
 
 
 class TestReport_Setup(viewsets.ModelViewSet):
@@ -5414,6 +7083,9 @@ class TestReport_Operation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestReport_Operation
     ordering_fields = "__all__"
+    search_fields = [
+        "$detail",
+    ]
 
 
 class TestReport_Assert(viewsets.ModelViewSet):
@@ -5422,6 +7094,9 @@ class TestReport_Assert(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestReport_Assert
     ordering_fields = "__all__"
+    search_fields = [
+        "$detail",
+    ]
 
 
 class TestReport_Test(viewsets.ModelViewSet):
@@ -5430,6 +7105,10 @@ class TestReport_Test(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestReport_Test
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$description",
+    ]
 
 
 class TestReport_Action1(viewsets.ModelViewSet):
@@ -5462,6 +7141,15 @@ class TestScript(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+    ]
 
 
 class TestScript_Origin(viewsets.ModelViewSet):
@@ -5494,6 +7182,10 @@ class TestScript_Link(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript_Link
     ordering_fields = "__all__"
+    search_fields = [
+        "$url",
+        "$description",
+    ]
 
 
 class TestScript_Capability(viewsets.ModelViewSet):
@@ -5502,6 +7194,10 @@ class TestScript_Capability(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript_Capability
     ordering_fields = "__all__"
+    search_fields = [
+        "$description",
+        "$capabilities",
+    ]
 
 
 class TestScript_Fixture(viewsets.ModelViewSet):
@@ -5518,6 +7214,16 @@ class TestScript_Variable(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript_Variable
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$defaultValue",
+        "$description",
+        "$expression",
+        "$headerField",
+        "$hint",
+        "$path",
+        "$sourceId",
+    ]
 
 
 class TestScript_Setup(viewsets.ModelViewSet):
@@ -5542,6 +7248,19 @@ class TestScript_Operation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript_Operation
     ordering_fields = "__all__"
+    search_fields = [
+        "$resource",
+        "$label",
+        "$description",
+        "$accept",
+        "$contentType",
+        "$params",
+        "$requestId",
+        "$responseId",
+        "$sourceId",
+        "$targetId",
+        "$url",
+    ]
 
 
 class TestScript_RequestHeader(viewsets.ModelViewSet):
@@ -5550,6 +7269,10 @@ class TestScript_RequestHeader(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript_RequestHeader
     ordering_fields = "__all__"
+    search_fields = [
+        "$field",
+        "$value",
+    ]
 
 
 class TestScript_Assert(viewsets.ModelViewSet):
@@ -5558,6 +7281,24 @@ class TestScript_Assert(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript_Assert
     ordering_fields = "__all__"
+    search_fields = [
+        "$label",
+        "$description",
+        "$compareToSourceId",
+        "$compareToSourceExpression",
+        "$compareToSourcePath",
+        "$contentType",
+        "$expression",
+        "$headerField",
+        "$minimumId",
+        "$path",
+        "$requestURL",
+        "$resource",
+        "$responseCode",
+        "$sourceId",
+        "$validateProfileId",
+        "$value",
+    ]
 
 
 class TestScript_Test(viewsets.ModelViewSet):
@@ -5566,6 +7307,10 @@ class TestScript_Test(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.TestScript_Test
     ordering_fields = "__all__"
+    search_fields = [
+        "$name",
+        "$description",
+    ]
 
 
 class TestScript_Action1(viewsets.ModelViewSet):
@@ -5598,6 +7343,15 @@ class ValueSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ValueSet
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$url",
+        "$version",
+        "$name",
+        "$title",
+        "$publisher",
+    ]
 
 
 class ValueSet_Compose(viewsets.ModelViewSet):
@@ -5614,6 +7368,10 @@ class ValueSet_Include(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ValueSet_Include
     ordering_fields = "__all__"
+    search_fields = [
+        "$system",
+        "$version",
+    ]
 
 
 class ValueSet_Concept(viewsets.ModelViewSet):
@@ -5622,6 +7380,10 @@ class ValueSet_Concept(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ValueSet_Concept
     ordering_fields = "__all__"
+    search_fields = [
+        "$code",
+        "$display",
+    ]
 
 
 class ValueSet_Designation(viewsets.ModelViewSet):
@@ -5630,6 +7392,10 @@ class ValueSet_Designation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ValueSet_Designation
     ordering_fields = "__all__"
+    search_fields = [
+        "$language",
+        "$value",
+    ]
 
 
 class ValueSet_Filter(viewsets.ModelViewSet):
@@ -5638,6 +7404,10 @@ class ValueSet_Filter(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ValueSet_Filter
     ordering_fields = "__all__"
+    search_fields = [
+        "$property",
+        "$value",
+    ]
 
 
 class ValueSet_Expansion(viewsets.ModelViewSet):
@@ -5646,6 +7416,9 @@ class ValueSet_Expansion(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ValueSet_Expansion
     ordering_fields = "__all__"
+    search_fields = [
+        "$identifier",
+    ]
 
 
 class ValueSet_Parameter(viewsets.ModelViewSet):
@@ -5655,6 +7428,7 @@ class ValueSet_Parameter(viewsets.ModelViewSet):
     filterset_class = filters.ValueSet_Parameter
     ordering_fields = "__all__"
     search_fields = [
+        "$name",
         "$valueString",
         "$valueUri",
         "$valueCode",
@@ -5668,6 +7442,12 @@ class ValueSet_Contains(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.ValueSet_Contains
     ordering_fields = "__all__"
+    search_fields = [
+        "$system",
+        "$version",
+        "$code",
+        "$display",
+    ]
 
 
 class VerificationResult(viewsets.ModelViewSet):
@@ -5676,6 +7456,11 @@ class VerificationResult(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.VerificationResult
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class VerificationResult_PrimarySource(viewsets.ModelViewSet):
@@ -5692,6 +7477,10 @@ class VerificationResult_Attestation(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.VerificationResult_Attestation
     ordering_fields = "__all__"
+    search_fields = [
+        "$sourceIdentityCertificate",
+        "$proxyIdentityCertificate",
+    ]
 
 
 class VerificationResult_Validator(viewsets.ModelViewSet):
@@ -5700,6 +7489,9 @@ class VerificationResult_Validator(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.VerificationResult_Validator
     ordering_fields = "__all__"
+    search_fields = [
+        "$identityCertificate",
+    ]
 
 
 class VisionPrescription(viewsets.ModelViewSet):
@@ -5708,6 +7500,11 @@ class VisionPrescription(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.VisionPrescription
     ordering_fields = "__all__"
+    search_fields = [
+        "$implicitRules",
+        "$language",
+        "$status",
+    ]
 
 
 class VisionPrescription_LensSpecification(viewsets.ModelViewSet):
@@ -5716,6 +7513,10 @@ class VisionPrescription_LensSpecification(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
     filterset_class = filters.VisionPrescription_LensSpecification
     ordering_fields = "__all__"
+    search_fields = [
+        "$color",
+        "$brand",
+    ]
 
 
 class VisionPrescription_Prism(viewsets.ModelViewSet):

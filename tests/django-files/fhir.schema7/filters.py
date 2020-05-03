@@ -30,13 +30,18 @@ class Narrative(filters.FilterSet):
 class Annotation(filters.FilterSet):
     class Meta:
         model = models.Annotation
-        fields = []
+        fields = {
+            "time": ["exact", "gte", "lte"],
+        }
 
 
 class Attachment(filters.FilterSet):
     class Meta:
         model = models.Attachment
-        fields = []
+        fields = {
+            "size": ["exact", "gte", "lte"],
+            "creation": ["exact", "gte", "lte"],
+        }
 
 
 class Identifier(filters.FilterSet):
@@ -63,6 +68,7 @@ class Quantity(filters.FilterSet):
     class Meta:
         model = models.Quantity
         fields = {
+            "value": ["exact", "gte", "lte"],
             "comparator": ["exact", "in"],
         }
 
@@ -71,6 +77,7 @@ class Duration(filters.FilterSet):
     class Meta:
         model = models.Duration
         fields = {
+            "value": ["exact", "gte", "lte"],
             "comparator": ["exact", "in"],
         }
 
@@ -79,6 +86,7 @@ class Distance(filters.FilterSet):
     class Meta:
         model = models.Distance
         fields = {
+            "value": ["exact", "gte", "lte"],
             "comparator": ["exact", "in"],
         }
 
@@ -87,6 +95,7 @@ class Count(filters.FilterSet):
     class Meta:
         model = models.Count
         fields = {
+            "value": ["exact", "gte", "lte"],
             "comparator": ["exact", "in"],
         }
 
@@ -94,13 +103,16 @@ class Count(filters.FilterSet):
 class Money(filters.FilterSet):
     class Meta:
         model = models.Money
-        fields = []
+        fields = {
+            "value": ["exact", "gte", "lte"],
+        }
 
 
 class Age(filters.FilterSet):
     class Meta:
         model = models.Age
         fields = {
+            "value": ["exact", "gte", "lte"],
             "comparator": ["exact", "in"],
         }
 
@@ -114,7 +126,10 @@ class Range(filters.FilterSet):
 class Period(filters.FilterSet):
     class Meta:
         model = models.Period
-        fields = []
+        fields = {
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
+        }
 
 
 class Ratio(filters.FilterSet):
@@ -132,13 +147,21 @@ class Reference(filters.FilterSet):
 class SampledData(filters.FilterSet):
     class Meta:
         model = models.SampledData
-        fields = []
+        fields = {
+            "period": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+            "lowerLimit": ["exact", "gte", "lte"],
+            "upperLimit": ["exact", "gte", "lte"],
+            "dimensions": ["exact", "gte", "lte"],
+        }
 
 
 class Signature(filters.FilterSet):
     class Meta:
         model = models.Signature
-        fields = []
+        fields = {
+            "when": ["exact", "gte", "lte"],
+        }
 
 
 class HumanName(filters.FilterSet):
@@ -164,6 +187,7 @@ class ContactPoint(filters.FilterSet):
         fields = {
             "system": ["exact", "in"],
             "use": ["exact", "in"],
+            "rank": ["exact", "gte", "lte"],
         }
 
 
@@ -177,15 +201,26 @@ class Timing_Repeat(filters.FilterSet):
     class Meta:
         model = models.Timing_Repeat
         fields = {
+            "count": ["exact", "gte", "lte"],
+            "countMax": ["exact", "gte", "lte"],
+            "duration": ["exact", "gte", "lte"],
+            "durationMax": ["exact", "gte", "lte"],
             "durationUnit": ["exact", "in"],
+            "frequency": ["exact", "gte", "lte"],
+            "frequencyMax": ["exact", "gte", "lte"],
+            "period": ["exact", "gte", "lte"],
+            "periodMax": ["exact", "gte", "lte"],
             "periodUnit": ["exact", "in"],
+            "offset": ["exact", "gte", "lte"],
         }
 
 
 class Meta(filters.FilterSet):
     class Meta:
         model = models.Meta
-        fields = []
+        fields = {
+            "lastUpdated": ["exact", "gte", "lte"],
+        }
 
 
 class ContactDetail(filters.FilterSet):
@@ -205,7 +240,9 @@ class Contributor(filters.FilterSet):
 class DataRequirement(filters.FilterSet):
     class Meta:
         model = models.DataRequirement
-        fields = []
+        fields = {
+            "limit": ["exact", "gte", "lte"],
+        }
 
 
 class DataRequirement_CodeFilter(filters.FilterSet):
@@ -231,7 +268,9 @@ class DataRequirement_Sort(filters.FilterSet):
 class ParameterDefinition(filters.FilterSet):
     class Meta:
         model = models.ParameterDefinition
-        fields = []
+        fields = {
+            "min": ["exact", "gte", "lte"],
+        }
 
 
 class RelatedArtifact(filters.FilterSet):
@@ -259,7 +298,9 @@ class UsageContext(filters.FilterSet):
 class Dosage(filters.FilterSet):
     class Meta:
         model = models.Dosage
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class Dosage_DoseAndRate(filters.FilterSet):
@@ -289,7 +330,9 @@ class ProdCharacteristic(filters.FilterSet):
 class MarketingStatus(filters.FilterSet):
     class Meta:
         model = models.MarketingStatus
-        fields = []
+        fields = {
+            "restoreDate": ["exact", "gte", "lte"],
+        }
 
 
 class SubstanceAmount(filters.FilterSet):
@@ -316,6 +359,7 @@ class ElementDefinition(filters.FilterSet):
     class Meta:
         model = models.ElementDefinition
         fields = {
+            "min": ["exact", "gte", "lte"],
             "defaultValueDecimal": ["exact", "gte", "lte"],
             "defaultValueInteger": ["exact", "gte", "lte"],
             "defaultValuePositiveInt": ["exact", "gte", "lte"],
@@ -336,6 +380,7 @@ class ElementDefinition(filters.FilterSet):
             "maxValueInteger": ["exact", "gte", "lte"],
             "maxValuePositiveInt": ["exact", "gte", "lte"],
             "maxValueUnsignedInt": ["exact", "gte", "lte"],
+            "maxLength": ["exact", "gte", "lte"],
         }
 
 
@@ -358,7 +403,9 @@ class ElementDefinition_Discriminator(filters.FilterSet):
 class ElementDefinition_Base(filters.FilterSet):
     class Meta:
         model = models.ElementDefinition_Base
-        fields = []
+        fields = {
+            "min": ["exact", "gte", "lte"],
+        }
 
 
 class ElementDefinition_Type(filters.FilterSet):
@@ -413,7 +460,9 @@ class Account(filters.FilterSet):
 class Account_Coverage(filters.FilterSet):
     class Meta:
         model = models.Account_Coverage
-        fields = []
+        fields = {
+            "priority": ["exact", "gte", "lte"],
+        }
 
 
 class Account_Guarantor(filters.FilterSet):
@@ -427,6 +476,9 @@ class ActivityDefinition(filters.FilterSet):
         model = models.ActivityDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -447,6 +499,9 @@ class AdverseEvent(filters.FilterSet):
         model = models.AdverseEvent
         fields = {
             "actuality": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "detected": ["exact", "gte", "lte"],
+            "recordedDate": ["exact", "gte", "lte"],
         }
 
 
@@ -468,6 +523,8 @@ class AllergyIntolerance(filters.FilterSet):
         fields = {
             "type": ["exact", "in"],
             "criticality": ["exact", "in"],
+            "recordedDate": ["exact", "gte", "lte"],
+            "lastOccurrence": ["exact", "gte", "lte"],
         }
 
 
@@ -475,6 +532,7 @@ class AllergyIntolerance_Reaction(filters.FilterSet):
     class Meta:
         model = models.AllergyIntolerance_Reaction
         fields = {
+            "onset": ["exact", "gte", "lte"],
             "severity": ["exact", "in"],
         }
 
@@ -484,6 +542,11 @@ class Appointment(filters.FilterSet):
         model = models.Appointment
         fields = {
             "status": ["exact", "in"],
+            "priority": ["exact", "gte", "lte"],
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
+            "minutesDuration": ["exact", "gte", "lte"],
+            "created": ["exact", "gte", "lte"],
         }
 
 
@@ -499,7 +562,10 @@ class Appointment_Participant(filters.FilterSet):
 class AppointmentResponse(filters.FilterSet):
     class Meta:
         model = models.AppointmentResponse
-        fields = []
+        fields = {
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
+        }
 
 
 class AuditEvent(filters.FilterSet):
@@ -507,6 +573,7 @@ class AuditEvent(filters.FilterSet):
         model = models.AuditEvent
         fields = {
             "action": ["exact", "in"],
+            "recorded": ["exact", "gte", "lte"],
             "outcome": ["exact", "in"],
         }
 
@@ -546,7 +613,9 @@ class AuditEvent_Detail(filters.FilterSet):
 class Basic(filters.FilterSet):
     class Meta:
         model = models.Basic
-        fields = []
+        fields = {
+            "created": ["exact", "gte", "lte"],
+        }
 
 
 class Binary(filters.FilterSet):
@@ -561,6 +630,7 @@ class BiologicallyDerivedProduct(filters.FilterSet):
         fields = {
             "productCategory": ["exact", "in"],
             "status": ["exact", "in"],
+            "quantity": ["exact", "gte", "lte"],
         }
 
 
@@ -586,6 +656,7 @@ class BiologicallyDerivedProduct_Storage(filters.FilterSet):
     class Meta:
         model = models.BiologicallyDerivedProduct_Storage
         fields = {
+            "temperature": ["exact", "gte", "lte"],
             "scale": ["exact", "in"],
         }
 
@@ -601,6 +672,8 @@ class Bundle(filters.FilterSet):
         model = models.Bundle
         fields = {
             "type": ["exact", "in"],
+            "timestamp": ["exact", "gte", "lte"],
+            "total": ["exact", "gte", "lte"],
         }
 
 
@@ -621,6 +694,7 @@ class Bundle_Search(filters.FilterSet):
         model = models.Bundle_Search
         fields = {
             "mode": ["exact", "in"],
+            "score": ["exact", "gte", "lte"],
         }
 
 
@@ -629,13 +703,16 @@ class Bundle_Request(filters.FilterSet):
         model = models.Bundle_Request
         fields = {
             "method": ["exact", "in"],
+            "ifModifiedSince": ["exact", "gte", "lte"],
         }
 
 
 class Bundle_Response(filters.FilterSet):
     class Meta:
         model = models.Bundle_Response
-        fields = []
+        fields = {
+            "lastModified": ["exact", "gte", "lte"],
+        }
 
 
 class CapabilityStatement(filters.FilterSet):
@@ -643,6 +720,7 @@ class CapabilityStatement(filters.FilterSet):
         model = models.CapabilityStatement
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "kind": ["exact", "in"],
             "fhirVersion": ["exact", "in"],
         }
@@ -651,7 +729,9 @@ class CapabilityStatement(filters.FilterSet):
 class CapabilityStatement_Software(filters.FilterSet):
     class Meta:
         model = models.CapabilityStatement_Software
-        fields = []
+        fields = {
+            "releaseDate": ["exact", "gte", "lte"],
+        }
 
 
 class CapabilityStatement_Implementation(filters.FilterSet):
@@ -717,7 +797,9 @@ class CapabilityStatement_Interaction1(filters.FilterSet):
 class CapabilityStatement_Messaging(filters.FilterSet):
     class Meta:
         model = models.CapabilityStatement_Messaging
-        fields = []
+        fields = {
+            "reliableCache": ["exact", "gte", "lte"],
+        }
 
 
 class CapabilityStatement_Endpoint(filters.FilterSet):
@@ -745,7 +827,9 @@ class CapabilityStatement_Document(filters.FilterSet):
 class CarePlan(filters.FilterSet):
     class Meta:
         model = models.CarePlan
-        fields = []
+        fields = {
+            "created": ["exact", "gte", "lte"],
+        }
 
 
 class CarePlan_Activity(filters.FilterSet):
@@ -781,6 +865,8 @@ class CatalogEntry(filters.FilterSet):
         model = models.CatalogEntry
         fields = {
             "status": ["exact", "in"],
+            "validTo": ["exact", "gte", "lte"],
+            "lastUpdated": ["exact", "gte", "lte"],
         }
 
 
@@ -797,6 +883,8 @@ class ChargeItem(filters.FilterSet):
         model = models.ChargeItem
         fields = {
             "status": ["exact", "in"],
+            "factorOverride": ["exact", "gte", "lte"],
+            "enteredDate": ["exact", "gte", "lte"],
         }
 
 
@@ -811,6 +899,9 @@ class ChargeItemDefinition(filters.FilterSet):
         model = models.ChargeItemDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -829,7 +920,9 @@ class ChargeItemDefinition_PropertyGroup(filters.FilterSet):
 class ChargeItemDefinition_PriceComponent(filters.FilterSet):
     class Meta:
         model = models.ChargeItemDefinition_PriceComponent
-        fields = []
+        fields = {
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class Claim(filters.FilterSet):
@@ -837,6 +930,7 @@ class Claim(filters.FilterSet):
         model = models.Claim
         fields = {
             "use": ["exact", "in"],
+            "created": ["exact", "gte", "lte"],
         }
 
 
@@ -855,103 +949,141 @@ class Claim_Payee(filters.FilterSet):
 class Claim_CareTeam(filters.FilterSet):
     class Meta:
         model = models.Claim_CareTeam
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_SupportingInfo(filters.FilterSet):
     class Meta:
         model = models.Claim_SupportingInfo
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_Diagnosis(filters.FilterSet):
     class Meta:
         model = models.Claim_Diagnosis
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_Procedure(filters.FilterSet):
     class Meta:
         model = models.Claim_Procedure
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_Insurance(filters.FilterSet):
     class Meta:
         model = models.Claim_Insurance
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_Accident(filters.FilterSet):
     class Meta:
         model = models.Claim_Accident
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_Item(filters.FilterSet):
     class Meta:
         model = models.Claim_Item
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_Detail(filters.FilterSet):
     class Meta:
         model = models.Claim_Detail
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class Claim_SubDetail(filters.FilterSet):
     class Meta:
         model = models.Claim_SubDetail
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse
-        fields = []
+        fields = {
+            "created": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_Item(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_Item
-        fields = []
+        fields = {
+            "itemSequence": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_Adjudication(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_Adjudication
-        fields = []
+        fields = {
+            "value": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_Detail(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_Detail
-        fields = []
+        fields = {
+            "detailSequence": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_SubDetail(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_SubDetail
-        fields = []
+        fields = {
+            "subDetailSequence": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_AddItem(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_AddItem
-        fields = []
+        fields = {
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_Detail1(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_Detail1
-        fields = []
+        fields = {
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_SubDetail1(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_SubDetail1
-        fields = []
+        fields = {
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_Total(filters.FilterSet):
@@ -963,13 +1095,16 @@ class ClaimResponse_Total(filters.FilterSet):
 class ClaimResponse_Payment(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_Payment
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_ProcessNote(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_ProcessNote
         fields = {
+            "number": ["exact", "gte", "lte"],
             "type": ["exact", "in"],
         }
 
@@ -977,19 +1112,27 @@ class ClaimResponse_ProcessNote(filters.FilterSet):
 class ClaimResponse_Insurance(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_Insurance
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class ClaimResponse_Error(filters.FilterSet):
     class Meta:
         model = models.ClaimResponse_Error
-        fields = []
+        fields = {
+            "itemSequence": ["exact", "gte", "lte"],
+            "detailSequence": ["exact", "gte", "lte"],
+            "subDetailSequence": ["exact", "gte", "lte"],
+        }
 
 
 class ClinicalImpression(filters.FilterSet):
     class Meta:
         model = models.ClinicalImpression
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class ClinicalImpression_Investigation(filters.FilterSet):
@@ -1009,8 +1152,10 @@ class CodeSystem(filters.FilterSet):
         model = models.CodeSystem
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "hierarchyMeaning": ["exact", "in"],
             "content": ["exact", "in"],
+            "count": ["exact", "gte", "lte"],
         }
 
 
@@ -1052,7 +1197,10 @@ class CodeSystem_Property1(filters.FilterSet):
 class Communication(filters.FilterSet):
     class Meta:
         model = models.Communication
-        fields = []
+        fields = {
+            "sent": ["exact", "gte", "lte"],
+            "received": ["exact", "gte", "lte"],
+        }
 
 
 class Communication_Payload(filters.FilterSet):
@@ -1064,7 +1212,9 @@ class Communication_Payload(filters.FilterSet):
 class CommunicationRequest(filters.FilterSet):
     class Meta:
         model = models.CommunicationRequest
-        fields = []
+        fields = {
+            "authoredOn": ["exact", "gte", "lte"],
+        }
 
 
 class CommunicationRequest_Payload(filters.FilterSet):
@@ -1078,6 +1228,7 @@ class CompartmentDefinition(filters.FilterSet):
         model = models.CompartmentDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "code": ["exact", "in"],
         }
 
@@ -1093,6 +1244,7 @@ class Composition(filters.FilterSet):
         model = models.Composition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -1101,6 +1253,7 @@ class Composition_Attester(filters.FilterSet):
         model = models.Composition_Attester
         fields = {
             "mode": ["exact", "in"],
+            "time": ["exact", "gte", "lte"],
         }
 
 
@@ -1127,6 +1280,7 @@ class ConceptMap(filters.FilterSet):
         model = models.ConceptMap
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -1167,7 +1321,9 @@ class ConceptMap_Unmapped(filters.FilterSet):
 class Condition(filters.FilterSet):
     class Meta:
         model = models.Condition
-        fields = []
+        fields = {
+            "recordedDate": ["exact", "gte", "lte"],
+        }
 
 
 class Condition_Stage(filters.FilterSet):
@@ -1187,6 +1343,7 @@ class Consent(filters.FilterSet):
         model = models.Consent
         fields = {
             "status": ["exact", "in"],
+            "dateTime": ["exact", "gte", "lte"],
         }
 
 
@@ -1199,7 +1356,9 @@ class Consent_Policy(filters.FilterSet):
 class Consent_Verification(filters.FilterSet):
     class Meta:
         model = models.Consent_Verification
-        fields = []
+        fields = {
+            "verificationDate": ["exact", "gte", "lte"],
+        }
 
 
 class Consent_Provision(filters.FilterSet):
@@ -1227,19 +1386,25 @@ class Consent_Data(filters.FilterSet):
 class Contract(filters.FilterSet):
     class Meta:
         model = models.Contract
-        fields = []
+        fields = {
+            "issued": ["exact", "gte", "lte"],
+        }
 
 
 class Contract_ContentDefinition(filters.FilterSet):
     class Meta:
         model = models.Contract_ContentDefinition
-        fields = []
+        fields = {
+            "publicationDate": ["exact", "gte", "lte"],
+        }
 
 
 class Contract_Term(filters.FilterSet):
     class Meta:
         model = models.Contract_Term
-        fields = []
+        fields = {
+            "issued": ["exact", "gte", "lte"],
+        }
 
 
 class Contract_SecurityLabel(filters.FilterSet):
@@ -1284,7 +1449,12 @@ class Contract_Context(filters.FilterSet):
 class Contract_ValuedItem(filters.FilterSet):
     class Meta:
         model = models.Contract_ValuedItem
-        fields = []
+        fields = {
+            "effectiveTime": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+            "points": ["exact", "gte", "lte"],
+            "paymentDate": ["exact", "gte", "lte"],
+        }
 
 
 class Contract_Action(filters.FilterSet):
@@ -1326,7 +1496,9 @@ class Contract_Rule(filters.FilterSet):
 class Coverage(filters.FilterSet):
     class Meta:
         model = models.Coverage
-        fields = []
+        fields = {
+            "order": ["exact", "gte", "lte"],
+        }
 
 
 class Coverage_Class(filters.FilterSet):
@@ -1350,13 +1522,17 @@ class Coverage_Exception(filters.FilterSet):
 class CoverageEligibilityRequest(filters.FilterSet):
     class Meta:
         model = models.CoverageEligibilityRequest
-        fields = []
+        fields = {
+            "created": ["exact", "gte", "lte"],
+        }
 
 
 class CoverageEligibilityRequest_SupportingInfo(filters.FilterSet):
     class Meta:
         model = models.CoverageEligibilityRequest_SupportingInfo
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class CoverageEligibilityRequest_Insurance(filters.FilterSet):
@@ -1381,6 +1557,7 @@ class CoverageEligibilityResponse(filters.FilterSet):
     class Meta:
         model = models.CoverageEligibilityResponse
         fields = {
+            "created": ["exact", "gte", "lte"],
             "outcome": ["exact", "in"],
         }
 
@@ -1429,7 +1606,9 @@ class DetectedIssue_Evidence(filters.FilterSet):
 class DetectedIssue_Mitigation(filters.FilterSet):
     class Meta:
         model = models.DetectedIssue_Mitigation
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class Device(filters.FilterSet):
@@ -1437,6 +1616,8 @@ class Device(filters.FilterSet):
         model = models.Device
         fields = {
             "status": ["exact", "in"],
+            "manufactureDate": ["exact", "gte", "lte"],
+            "expirationDate": ["exact", "gte", "lte"],
         }
 
 
@@ -1534,13 +1715,16 @@ class DeviceMetric_Calibration(filters.FilterSet):
         fields = {
             "type": ["exact", "in"],
             "state": ["exact", "in"],
+            "time": ["exact", "gte", "lte"],
         }
 
 
 class DeviceRequest(filters.FilterSet):
     class Meta:
         model = models.DeviceRequest
-        fields = []
+        fields = {
+            "authoredOn": ["exact", "gte", "lte"],
+        }
 
 
 class DeviceRequest_Parameter(filters.FilterSet):
@@ -1554,6 +1738,7 @@ class DeviceUseStatement(filters.FilterSet):
         model = models.DeviceUseStatement
         fields = {
             "status": ["exact", "in"],
+            "recordedOn": ["exact", "gte", "lte"],
         }
 
 
@@ -1562,6 +1747,7 @@ class DiagnosticReport(filters.FilterSet):
         model = models.DiagnosticReport
         fields = {
             "status": ["exact", "in"],
+            "issued": ["exact", "gte", "lte"],
         }
 
 
@@ -1576,6 +1762,7 @@ class DocumentManifest(filters.FilterSet):
         model = models.DocumentManifest
         fields = {
             "status": ["exact", "in"],
+            "created": ["exact", "gte", "lte"],
         }
 
 
@@ -1590,6 +1777,7 @@ class DocumentReference(filters.FilterSet):
         model = models.DocumentReference
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -1618,13 +1806,19 @@ class EffectEvidenceSynthesis(filters.FilterSet):
         model = models.EffectEvidenceSynthesis
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
 class EffectEvidenceSynthesis_SampleSize(filters.FilterSet):
     class Meta:
         model = models.EffectEvidenceSynthesis_SampleSize
-        fields = []
+        fields = {
+            "numberOfStudies": ["exact", "gte", "lte"],
+            "numberOfParticipants": ["exact", "gte", "lte"],
+        }
 
 
 class EffectEvidenceSynthesis_ResultsByExposure(filters.FilterSet):
@@ -1638,13 +1832,19 @@ class EffectEvidenceSynthesis_ResultsByExposure(filters.FilterSet):
 class EffectEvidenceSynthesis_EffectEstimate(filters.FilterSet):
     class Meta:
         model = models.EffectEvidenceSynthesis_EffectEstimate
-        fields = []
+        fields = {
+            "value": ["exact", "gte", "lte"],
+        }
 
 
 class EffectEvidenceSynthesis_PrecisionEstimate(filters.FilterSet):
     class Meta:
         model = models.EffectEvidenceSynthesis_PrecisionEstimate
-        fields = []
+        fields = {
+            "level": ["exact", "gte", "lte"],
+            "from": ["exact", "gte", "lte"],
+            "to": ["exact", "gte", "lte"],
+        }
 
 
 class EffectEvidenceSynthesis_Certainty(filters.FilterSet):
@@ -1690,7 +1890,9 @@ class Encounter_Participant(filters.FilterSet):
 class Encounter_Diagnosis(filters.FilterSet):
     class Meta:
         model = models.Encounter_Diagnosis
-        fields = []
+        fields = {
+            "rank": ["exact", "gte", "lte"],
+        }
 
 
 class Encounter_Hospitalization(filters.FilterSet):
@@ -1718,7 +1920,9 @@ class Endpoint(filters.FilterSet):
 class EnrollmentRequest(filters.FilterSet):
     class Meta:
         model = models.EnrollmentRequest
-        fields = []
+        fields = {
+            "created": ["exact", "gte", "lte"],
+        }
 
 
 class EnrollmentResponse(filters.FilterSet):
@@ -1726,6 +1930,7 @@ class EnrollmentResponse(filters.FilterSet):
         model = models.EnrollmentResponse
         fields = {
             "outcome": ["exact", "in"],
+            "created": ["exact", "gte", "lte"],
         }
 
 
@@ -1748,7 +1953,9 @@ class EpisodeOfCare_StatusHistory(filters.FilterSet):
 class EpisodeOfCare_Diagnosis(filters.FilterSet):
     class Meta:
         model = models.EpisodeOfCare_Diagnosis
-        fields = []
+        fields = {
+            "rank": ["exact", "gte", "lte"],
+        }
 
 
 class EventDefinition(filters.FilterSet):
@@ -1756,6 +1963,9 @@ class EventDefinition(filters.FilterSet):
         model = models.EventDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -1764,6 +1974,9 @@ class Evidence(filters.FilterSet):
         model = models.Evidence
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -1772,6 +1985,9 @@ class EvidenceVariable(filters.FilterSet):
         model = models.EvidenceVariable
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
             "type": ["exact", "in"],
         }
 
@@ -1789,6 +2005,7 @@ class ExampleScenario(filters.FilterSet):
         model = models.ExampleScenario
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -1847,6 +2064,8 @@ class ExplanationOfBenefit(filters.FilterSet):
         model = models.ExplanationOfBenefit
         fields = {
             "status": ["exact", "in"],
+            "created": ["exact", "gte", "lte"],
+            "precedence": ["exact", "gte", "lte"],
         }
 
 
@@ -1865,25 +2084,34 @@ class ExplanationOfBenefit_Payee(filters.FilterSet):
 class ExplanationOfBenefit_CareTeam(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_CareTeam
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_SupportingInfo(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_SupportingInfo
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Diagnosis(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Diagnosis
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Procedure(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Procedure
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Insurance(filters.FilterSet):
@@ -1895,49 +2123,68 @@ class ExplanationOfBenefit_Insurance(filters.FilterSet):
 class ExplanationOfBenefit_Accident(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Accident
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Item(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Item
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Adjudication(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Adjudication
-        fields = []
+        fields = {
+            "value": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Detail(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Detail
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_SubDetail(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_SubDetail
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_AddItem(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_AddItem
-        fields = []
+        fields = {
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Detail1(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Detail1
-        fields = []
+        fields = {
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_SubDetail1(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_SubDetail1
-        fields = []
+        fields = {
+            "factor": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_Total(filters.FilterSet):
@@ -1949,13 +2196,16 @@ class ExplanationOfBenefit_Total(filters.FilterSet):
 class ExplanationOfBenefit_Payment(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_Payment
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class ExplanationOfBenefit_ProcessNote(filters.FilterSet):
     class Meta:
         model = models.ExplanationOfBenefit_ProcessNote
         fields = {
+            "number": ["exact", "gte", "lte"],
             "type": ["exact", "in"],
         }
 
@@ -1980,6 +2230,7 @@ class FamilyMemberHistory(filters.FilterSet):
         model = models.FamilyMemberHistory
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -2002,6 +2253,7 @@ class Goal(filters.FilterSet):
         model = models.Goal
         fields = {
             "lifecycleStatus": ["exact", "in"],
+            "statusDate": ["exact", "gte", "lte"],
         }
 
 
@@ -2018,13 +2270,16 @@ class GraphDefinition(filters.FilterSet):
         model = models.GraphDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
 class GraphDefinition_Link(filters.FilterSet):
     class Meta:
         model = models.GraphDefinition_Link
-        fields = []
+        fields = {
+            "min": ["exact", "gte", "lte"],
+        }
 
 
 class GraphDefinition_Target(filters.FilterSet):
@@ -2047,6 +2302,7 @@ class Group(filters.FilterSet):
         model = models.Group
         fields = {
             "type": ["exact", "in"],
+            "quantity": ["exact", "gte", "lte"],
         }
 
 
@@ -2067,6 +2323,7 @@ class GuidanceResponse(filters.FilterSet):
         model = models.GuidanceResponse
         fields = {
             "status": ["exact", "in"],
+            "occurrenceDateTime": ["exact", "gte", "lte"],
         }
 
 
@@ -2099,13 +2356,20 @@ class ImagingStudy(filters.FilterSet):
         model = models.ImagingStudy
         fields = {
             "status": ["exact", "in"],
+            "started": ["exact", "gte", "lte"],
+            "numberOfSeries": ["exact", "gte", "lte"],
+            "numberOfInstances": ["exact", "gte", "lte"],
         }
 
 
 class ImagingStudy_Series(filters.FilterSet):
     class Meta:
         model = models.ImagingStudy_Series
-        fields = []
+        fields = {
+            "number": ["exact", "gte", "lte"],
+            "numberOfInstances": ["exact", "gte", "lte"],
+            "started": ["exact", "gte", "lte"],
+        }
 
 
 class ImagingStudy_Performer(filters.FilterSet):
@@ -2117,13 +2381,18 @@ class ImagingStudy_Performer(filters.FilterSet):
 class ImagingStudy_Instance(filters.FilterSet):
     class Meta:
         model = models.ImagingStudy_Instance
-        fields = []
+        fields = {
+            "number": ["exact", "gte", "lte"],
+        }
 
 
 class Immunization(filters.FilterSet):
     class Meta:
         model = models.Immunization
-        fields = []
+        fields = {
+            "recorded": ["exact", "gte", "lte"],
+            "expirationDate": ["exact", "gte", "lte"],
+        }
 
 
 class Immunization_Performer(filters.FilterSet):
@@ -2135,13 +2404,18 @@ class Immunization_Performer(filters.FilterSet):
 class Immunization_Education(filters.FilterSet):
     class Meta:
         model = models.Immunization_Education
-        fields = []
+        fields = {
+            "publicationDate": ["exact", "gte", "lte"],
+            "presentationDate": ["exact", "gte", "lte"],
+        }
 
 
 class Immunization_Reaction(filters.FilterSet):
     class Meta:
         model = models.Immunization_Reaction
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class Immunization_ProtocolApplied(filters.FilterSet):
@@ -2157,6 +2431,7 @@ class ImmunizationEvaluation(filters.FilterSet):
     class Meta:
         model = models.ImmunizationEvaluation
         fields = {
+            "date": ["exact", "gte", "lte"],
             "doseNumberPositiveInt": ["exact", "gte", "lte"],
             "seriesDosesPositiveInt": ["exact", "gte", "lte"],
         }
@@ -2165,7 +2440,9 @@ class ImmunizationEvaluation(filters.FilterSet):
 class ImmunizationRecommendation(filters.FilterSet):
     class Meta:
         model = models.ImmunizationRecommendation
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class ImmunizationRecommendation_Recommendation(filters.FilterSet):
@@ -2180,7 +2457,9 @@ class ImmunizationRecommendation_Recommendation(filters.FilterSet):
 class ImmunizationRecommendation_DateCriterion(filters.FilterSet):
     class Meta:
         model = models.ImmunizationRecommendation_DateCriterion
-        fields = []
+        fields = {
+            "value": ["exact", "gte", "lte"],
+        }
 
 
 class ImplementationGuide(filters.FilterSet):
@@ -2188,6 +2467,7 @@ class ImplementationGuide(filters.FilterSet):
         model = models.ImplementationGuide
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "license": ["exact", "in"],
         }
 
@@ -2303,7 +2583,9 @@ class InsurancePlan_Plan(filters.FilterSet):
 class InsurancePlan_GeneralCost(filters.FilterSet):
     class Meta:
         model = models.InsurancePlan_GeneralCost
-        fields = []
+        fields = {
+            "groupSize": ["exact", "gte", "lte"],
+        }
 
 
 class InsurancePlan_SpecificCost(filters.FilterSet):
@@ -2329,6 +2611,7 @@ class Invoice(filters.FilterSet):
         model = models.Invoice
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -2341,7 +2624,9 @@ class Invoice_Participant(filters.FilterSet):
 class Invoice_LineItem(filters.FilterSet):
     class Meta:
         model = models.Invoice_LineItem
-        fields = []
+        fields = {
+            "sequence": ["exact", "gte", "lte"],
+        }
 
 
 class Invoice_PriceComponent(filters.FilterSet):
@@ -2349,6 +2634,7 @@ class Invoice_PriceComponent(filters.FilterSet):
         model = models.Invoice_PriceComponent
         fields = {
             "type": ["exact", "in"],
+            "factor": ["exact", "gte", "lte"],
         }
 
 
@@ -2357,6 +2643,9 @@ class Library(filters.FilterSet):
         model = models.Library
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -2380,13 +2669,16 @@ class List(filters.FilterSet):
         fields = {
             "status": ["exact", "in"],
             "mode": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
 class List_Entry(filters.FilterSet):
     class Meta:
         model = models.List_Entry
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class Location(filters.FilterSet):
@@ -2401,7 +2693,11 @@ class Location(filters.FilterSet):
 class Location_Position(filters.FilterSet):
     class Meta:
         model = models.Location_Position
-        fields = []
+        fields = {
+            "longitude": ["exact", "gte", "lte"],
+            "latitude": ["exact", "gte", "lte"],
+            "altitude": ["exact", "gte", "lte"],
+        }
 
 
 class Location_HoursOfOperation(filters.FilterSet):
@@ -2415,6 +2711,9 @@ class Measure(filters.FilterSet):
         model = models.Measure
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -2454,6 +2753,7 @@ class MeasureReport(filters.FilterSet):
         fields = {
             "status": ["exact", "in"],
             "type": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -2466,7 +2766,9 @@ class MeasureReport_Group(filters.FilterSet):
 class MeasureReport_Population(filters.FilterSet):
     class Meta:
         model = models.MeasureReport_Population
-        fields = []
+        fields = {
+            "count": ["exact", "gte", "lte"],
+        }
 
 
 class MeasureReport_Stratifier(filters.FilterSet):
@@ -2490,13 +2792,21 @@ class MeasureReport_Component(filters.FilterSet):
 class MeasureReport_Population1(filters.FilterSet):
     class Meta:
         model = models.MeasureReport_Population1
-        fields = []
+        fields = {
+            "count": ["exact", "gte", "lte"],
+        }
 
 
 class Media(filters.FilterSet):
     class Meta:
         model = models.Media
-        fields = []
+        fields = {
+            "issued": ["exact", "gte", "lte"],
+            "height": ["exact", "gte", "lte"],
+            "width": ["exact", "gte", "lte"],
+            "frames": ["exact", "gte", "lte"],
+            "duration": ["exact", "gte", "lte"],
+        }
 
 
 class Medication(filters.FilterSet):
@@ -2514,7 +2824,9 @@ class Medication_Ingredient(filters.FilterSet):
 class Medication_Batch(filters.FilterSet):
     class Meta:
         model = models.Medication_Batch
-        fields = []
+        fields = {
+            "expirationDate": ["exact", "gte", "lte"],
+        }
 
 
 class MedicationAdministration(filters.FilterSet):
@@ -2538,7 +2850,10 @@ class MedicationAdministration_Dosage(filters.FilterSet):
 class MedicationDispense(filters.FilterSet):
     class Meta:
         model = models.MedicationDispense
-        fields = []
+        fields = {
+            "whenPrepared": ["exact", "gte", "lte"],
+            "whenHandedOver": ["exact", "gte", "lte"],
+        }
 
 
 class MedicationDispense_Performer(filters.FilterSet):
@@ -2658,13 +2973,17 @@ class MedicationKnowledge_Kinetics(filters.FilterSet):
 class MedicationRequest(filters.FilterSet):
     class Meta:
         model = models.MedicationRequest
-        fields = []
+        fields = {
+            "authoredOn": ["exact", "gte", "lte"],
+        }
 
 
 class MedicationRequest_DispenseRequest(filters.FilterSet):
     class Meta:
         model = models.MedicationRequest_DispenseRequest
-        fields = []
+        fields = {
+            "numberOfRepeatsAllowed": ["exact", "gte", "lte"],
+        }
 
 
 class MedicationRequest_InitialFill(filters.FilterSet):
@@ -2682,7 +3001,9 @@ class MedicationRequest_Substitution(filters.FilterSet):
 class MedicationStatement(filters.FilterSet):
     class Meta:
         model = models.MedicationStatement
-        fields = []
+        fields = {
+            "dateAsserted": ["exact", "gte", "lte"],
+        }
 
 
 class MedicinalProduct(filters.FilterSet):
@@ -2712,19 +3033,28 @@ class MedicinalProduct_CountryLanguage(filters.FilterSet):
 class MedicinalProduct_ManufacturingBusinessOperation(filters.FilterSet):
     class Meta:
         model = models.MedicinalProduct_ManufacturingBusinessOperation
-        fields = []
+        fields = {
+            "effectiveDate": ["exact", "gte", "lte"],
+        }
 
 
 class MedicinalProduct_SpecialDesignation(filters.FilterSet):
     class Meta:
         model = models.MedicinalProduct_SpecialDesignation
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class MedicinalProductAuthorization(filters.FilterSet):
     class Meta:
         model = models.MedicinalProductAuthorization
-        fields = []
+        fields = {
+            "statusDate": ["exact", "gte", "lte"],
+            "restoreDate": ["exact", "gte", "lte"],
+            "dateOfFirstAuthorization": ["exact", "gte", "lte"],
+            "internationalBirthDate": ["exact", "gte", "lte"],
+        }
 
 
 class MedicinalProductAuthorization_JurisdictionalAuthorization(filters.FilterSet):
@@ -2870,6 +3200,7 @@ class MessageDefinition(filters.FilterSet):
         model = models.MessageDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "category": ["exact", "in"],
             "responseRequired": ["exact", "in"],
         }
@@ -2878,7 +3209,9 @@ class MessageDefinition(filters.FilterSet):
 class MessageDefinition_Focus(filters.FilterSet):
     class Meta:
         model = models.MessageDefinition_Focus
-        fields = []
+        fields = {
+            "min": ["exact", "gte", "lte"],
+        }
 
 
 class MessageDefinition_AllowedResponse(filters.FilterSet):
@@ -2918,6 +3251,8 @@ class MolecularSequence(filters.FilterSet):
         model = models.MolecularSequence
         fields = {
             "type": ["exact", "in"],
+            "coordinateSystem": ["exact", "gte", "lte"],
+            "readCoverage": ["exact", "gte", "lte"],
         }
 
 
@@ -2927,13 +3262,18 @@ class MolecularSequence_ReferenceSeq(filters.FilterSet):
         fields = {
             "orientation": ["exact", "in"],
             "strand": ["exact", "in"],
+            "windowStart": ["exact", "gte", "lte"],
+            "windowEnd": ["exact", "gte", "lte"],
         }
 
 
 class MolecularSequence_Variant(filters.FilterSet):
     class Meta:
         model = models.MolecularSequence_Variant
-        fields = []
+        fields = {
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
+        }
 
 
 class MolecularSequence_Quality(filters.FilterSet):
@@ -2941,6 +3281,16 @@ class MolecularSequence_Quality(filters.FilterSet):
         model = models.MolecularSequence_Quality
         fields = {
             "type": ["exact", "in"],
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
+            "truthTP": ["exact", "gte", "lte"],
+            "queryTP": ["exact", "gte", "lte"],
+            "truthFN": ["exact", "gte", "lte"],
+            "queryFP": ["exact", "gte", "lte"],
+            "gtFP": ["exact", "gte", "lte"],
+            "precision": ["exact", "gte", "lte"],
+            "recall": ["exact", "gte", "lte"],
+            "fScore": ["exact", "gte", "lte"],
         }
 
 
@@ -2961,19 +3311,27 @@ class MolecularSequence_Repository(filters.FilterSet):
 class MolecularSequence_StructureVariant(filters.FilterSet):
     class Meta:
         model = models.MolecularSequence_StructureVariant
-        fields = []
+        fields = {
+            "length": ["exact", "gte", "lte"],
+        }
 
 
 class MolecularSequence_Outer(filters.FilterSet):
     class Meta:
         model = models.MolecularSequence_Outer
-        fields = []
+        fields = {
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
+        }
 
 
 class MolecularSequence_Inner(filters.FilterSet):
     class Meta:
         model = models.MolecularSequence_Inner
-        fields = []
+        fields = {
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
+        }
 
 
 class NamingSystem(filters.FilterSet):
@@ -2982,6 +3340,7 @@ class NamingSystem(filters.FilterSet):
         fields = {
             "status": ["exact", "in"],
             "kind": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -2996,7 +3355,9 @@ class NamingSystem_UniqueId(filters.FilterSet):
 class NutritionOrder(filters.FilterSet):
     class Meta:
         model = models.NutritionOrder
-        fields = []
+        fields = {
+            "dateTime": ["exact", "gte", "lte"],
+        }
 
 
 class NutritionOrder_OralDiet(filters.FilterSet):
@@ -3040,6 +3401,7 @@ class Observation(filters.FilterSet):
         model = models.Observation
         fields = {
             "status": ["exact", "in"],
+            "issued": ["exact", "gte", "lte"],
             "valueInteger": ["exact", "gte", "lte"],
         }
 
@@ -3067,7 +3429,10 @@ class ObservationDefinition(filters.FilterSet):
 class ObservationDefinition_QuantitativeDetails(filters.FilterSet):
     class Meta:
         model = models.ObservationDefinition_QuantitativeDetails
-        fields = []
+        fields = {
+            "conversionFactor": ["exact", "gte", "lte"],
+            "decimalPrecision": ["exact", "gte", "lte"],
+        }
 
 
 class ObservationDefinition_QualifiedInterval(filters.FilterSet):
@@ -3085,6 +3450,7 @@ class OperationDefinition(filters.FilterSet):
         fields = {
             "status": ["exact", "in"],
             "kind": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -3093,6 +3459,7 @@ class OperationDefinition_Parameter(filters.FilterSet):
         model = models.OperationDefinition_Parameter
         fields = {
             "use": ["exact", "in"],
+            "min": ["exact", "gte", "lte"],
             "searchType": ["exact", "in"],
         }
 
@@ -3172,6 +3539,7 @@ class Patient(filters.FilterSet):
         model = models.Patient
         fields = {
             "gender": ["exact", "in"],
+            "birthDate": ["exact", "gte", "lte"],
             "multipleBirthInteger": ["exact", "gte", "lte"],
         }
 
@@ -3201,21 +3569,28 @@ class Patient_Link(filters.FilterSet):
 class PaymentNotice(filters.FilterSet):
     class Meta:
         model = models.PaymentNotice
-        fields = []
+        fields = {
+            "created": ["exact", "gte", "lte"],
+            "paymentDate": ["exact", "gte", "lte"],
+        }
 
 
 class PaymentReconciliation(filters.FilterSet):
     class Meta:
         model = models.PaymentReconciliation
         fields = {
+            "created": ["exact", "gte", "lte"],
             "outcome": ["exact", "in"],
+            "paymentDate": ["exact", "gte", "lte"],
         }
 
 
 class PaymentReconciliation_Detail(filters.FilterSet):
     class Meta:
         model = models.PaymentReconciliation_Detail
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class PaymentReconciliation_ProcessNote(filters.FilterSet):
@@ -3231,6 +3606,7 @@ class Person(filters.FilterSet):
         model = models.Person
         fields = {
             "gender": ["exact", "in"],
+            "birthDate": ["exact", "gte", "lte"],
         }
 
 
@@ -3247,6 +3623,9 @@ class PlanDefinition(filters.FilterSet):
         model = models.PlanDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -3309,6 +3688,7 @@ class Practitioner(filters.FilterSet):
         model = models.Practitioner
         fields = {
             "gender": ["exact", "in"],
+            "birthDate": ["exact", "gte", "lte"],
         }
 
 
@@ -3357,7 +3737,9 @@ class Procedure_FocalDevice(filters.FilterSet):
 class Provenance(filters.FilterSet):
     class Meta:
         model = models.Provenance
-        fields = []
+        fields = {
+            "recorded": ["exact", "gte", "lte"],
+        }
 
 
 class Provenance_Agent(filters.FilterSet):
@@ -3379,6 +3761,9 @@ class Questionnaire(filters.FilterSet):
         model = models.Questionnaire
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -3388,6 +3773,7 @@ class Questionnaire_Item(filters.FilterSet):
         fields = {
             "type": ["exact", "in"],
             "enableBehavior": ["exact", "in"],
+            "maxLength": ["exact", "gte", "lte"],
         }
 
 
@@ -3423,6 +3809,7 @@ class QuestionnaireResponse(filters.FilterSet):
         model = models.QuestionnaireResponse
         fields = {
             "status": ["exact", "in"],
+            "authored": ["exact", "gte", "lte"],
         }
 
 
@@ -3446,6 +3833,7 @@ class RelatedPerson(filters.FilterSet):
         model = models.RelatedPerson
         fields = {
             "gender": ["exact", "in"],
+            "birthDate": ["exact", "gte", "lte"],
         }
 
 
@@ -3458,7 +3846,9 @@ class RelatedPerson_Communication(filters.FilterSet):
 class RequestGroup(filters.FilterSet):
     class Meta:
         model = models.RequestGroup
-        fields = []
+        fields = {
+            "authoredOn": ["exact", "gte", "lte"],
+        }
 
 
 class RequestGroup_Action(filters.FilterSet):
@@ -3484,6 +3874,9 @@ class ResearchDefinition(filters.FilterSet):
         model = models.ResearchDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
@@ -3492,6 +3885,9 @@ class ResearchElementDefinition(filters.FilterSet):
         model = models.ResearchElementDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
             "type": ["exact", "in"],
             "variableType": ["exact", "in"],
         }
@@ -3545,6 +3941,7 @@ class RiskAssessment_Prediction(filters.FilterSet):
         model = models.RiskAssessment_Prediction
         fields = {
             "probabilityDecimal": ["exact", "gte", "lte"],
+            "relativeRisk": ["exact", "gte", "lte"],
         }
 
 
@@ -3553,25 +3950,39 @@ class RiskEvidenceSynthesis(filters.FilterSet):
         model = models.RiskEvidenceSynthesis
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
+            "approvalDate": ["exact", "gte", "lte"],
+            "lastReviewDate": ["exact", "gte", "lte"],
         }
 
 
 class RiskEvidenceSynthesis_SampleSize(filters.FilterSet):
     class Meta:
         model = models.RiskEvidenceSynthesis_SampleSize
-        fields = []
+        fields = {
+            "numberOfStudies": ["exact", "gte", "lte"],
+            "numberOfParticipants": ["exact", "gte", "lte"],
+        }
 
 
 class RiskEvidenceSynthesis_RiskEstimate(filters.FilterSet):
     class Meta:
         model = models.RiskEvidenceSynthesis_RiskEstimate
-        fields = []
+        fields = {
+            "value": ["exact", "gte", "lte"],
+            "denominatorCount": ["exact", "gte", "lte"],
+            "numeratorCount": ["exact", "gte", "lte"],
+        }
 
 
 class RiskEvidenceSynthesis_PrecisionEstimate(filters.FilterSet):
     class Meta:
         model = models.RiskEvidenceSynthesis_PrecisionEstimate
-        fields = []
+        fields = {
+            "level": ["exact", "gte", "lte"],
+            "from": ["exact", "gte", "lte"],
+            "to": ["exact", "gte", "lte"],
+        }
 
 
 class RiskEvidenceSynthesis_Certainty(filters.FilterSet):
@@ -3597,6 +4008,7 @@ class SearchParameter(filters.FilterSet):
         model = models.SearchParameter
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "type": ["exact", "in"],
             "xpathUsage": ["exact", "in"],
         }
@@ -3611,7 +4023,9 @@ class SearchParameter_Component(filters.FilterSet):
 class ServiceRequest(filters.FilterSet):
     class Meta:
         model = models.ServiceRequest
-        fields = []
+        fields = {
+            "authoredOn": ["exact", "gte", "lte"],
+        }
 
 
 class Slot(filters.FilterSet):
@@ -3619,6 +4033,8 @@ class Slot(filters.FilterSet):
         model = models.Slot
         fields = {
             "status": ["exact", "in"],
+            "start": ["exact", "gte", "lte"],
+            "end": ["exact", "gte", "lte"],
         }
 
 
@@ -3627,6 +4043,7 @@ class Specimen(filters.FilterSet):
         model = models.Specimen
         fields = {
             "status": ["exact", "in"],
+            "receivedTime": ["exact", "gte", "lte"],
         }
 
 
@@ -3685,6 +4102,7 @@ class StructureDefinition(filters.FilterSet):
         model = models.StructureDefinition
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "fhirVersion": ["exact", "in"],
             "kind": ["exact", "in"],
             "derivation": ["exact", "in"],
@@ -3722,6 +4140,7 @@ class StructureMap(filters.FilterSet):
         model = models.StructureMap
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
@@ -3759,6 +4178,7 @@ class StructureMap_Source(filters.FilterSet):
     class Meta:
         model = models.StructureMap_Source
         fields = {
+            "min": ["exact", "gte", "lte"],
             "defaultValueDecimal": ["exact", "gte", "lte"],
             "defaultValueInteger": ["exact", "gte", "lte"],
             "defaultValuePositiveInt": ["exact", "gte", "lte"],
@@ -3796,6 +4216,7 @@ class Subscription(filters.FilterSet):
         model = models.Subscription
         fields = {
             "status": ["exact", "in"],
+            "end": ["exact", "gte", "lte"],
         }
 
 
@@ -3818,7 +4239,9 @@ class Substance(filters.FilterSet):
 class Substance_Instance(filters.FilterSet):
     class Meta:
         model = models.Substance_Instance
-        fields = []
+        fields = {
+            "expiry": ["exact", "gte", "lte"],
+        }
 
 
 class Substance_Ingredient(filters.FilterSet):
@@ -3830,13 +4253,18 @@ class Substance_Ingredient(filters.FilterSet):
 class SubstanceNucleicAcid(filters.FilterSet):
     class Meta:
         model = models.SubstanceNucleicAcid
-        fields = []
+        fields = {
+            "numberOfSubunits": ["exact", "gte", "lte"],
+        }
 
 
 class SubstanceNucleicAcid_Subunit(filters.FilterSet):
     class Meta:
         model = models.SubstanceNucleicAcid_Subunit
-        fields = []
+        fields = {
+            "subunit": ["exact", "gte", "lte"],
+            "length": ["exact", "gte", "lte"],
+        }
 
 
 class SubstanceNucleicAcid_Linkage(filters.FilterSet):
@@ -3872,7 +4300,9 @@ class SubstancePolymer_StartingMaterial(filters.FilterSet):
 class SubstancePolymer_Repeat(filters.FilterSet):
     class Meta:
         model = models.SubstancePolymer_Repeat
-        fields = []
+        fields = {
+            "numberOfUnits": ["exact", "gte", "lte"],
+        }
 
 
 class SubstancePolymer_RepeatUnit(filters.FilterSet):
@@ -3896,13 +4326,18 @@ class SubstancePolymer_StructuralRepresentation(filters.FilterSet):
 class SubstanceProtein(filters.FilterSet):
     class Meta:
         model = models.SubstanceProtein
-        fields = []
+        fields = {
+            "numberOfSubunits": ["exact", "gte", "lte"],
+        }
 
 
 class SubstanceProtein_Subunit(filters.FilterSet):
     class Meta:
         model = models.SubstanceProtein_Subunit
-        fields = []
+        fields = {
+            "subunit": ["exact", "gte", "lte"],
+            "length": ["exact", "gte", "lte"],
+        }
 
 
 class SubstanceReferenceInformation(filters.FilterSet):
@@ -4022,7 +4457,9 @@ class SubstanceSpecification_Representation(filters.FilterSet):
 class SubstanceSpecification_Code(filters.FilterSet):
     class Meta:
         model = models.SubstanceSpecification_Code
-        fields = []
+        fields = {
+            "statusDate": ["exact", "gte", "lte"],
+        }
 
 
 class SubstanceSpecification_Name(filters.FilterSet):
@@ -4034,7 +4471,9 @@ class SubstanceSpecification_Name(filters.FilterSet):
 class SubstanceSpecification_Official(filters.FilterSet):
     class Meta:
         model = models.SubstanceSpecification_Official
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class SubstanceSpecification_Relationship(filters.FilterSet):
@@ -4062,6 +4501,7 @@ class SupplyRequest(filters.FilterSet):
         model = models.SupplyRequest
         fields = {
             "status": ["exact", "in"],
+            "authoredOn": ["exact", "gte", "lte"],
         }
 
 
@@ -4077,13 +4517,17 @@ class Task(filters.FilterSet):
         fields = {
             "status": ["exact", "in"],
             "intent": ["exact", "in"],
+            "authoredOn": ["exact", "gte", "lte"],
+            "lastModified": ["exact", "gte", "lte"],
         }
 
 
 class Task_Restriction(filters.FilterSet):
     class Meta:
         model = models.Task_Restriction
-        fields = []
+        fields = {
+            "repetitions": ["exact", "gte", "lte"],
+        }
 
 
 class Task_Input(filters.FilterSet):
@@ -4113,6 +4557,7 @@ class TerminologyCapabilities(filters.FilterSet):
         model = models.TerminologyCapabilities
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
             "codeSearch": ["exact", "in"],
         }
 
@@ -4183,6 +4628,8 @@ class TestReport(filters.FilterSet):
         fields = {
             "status": ["exact", "in"],
             "result": ["exact", "in"],
+            "score": ["exact", "gte", "lte"],
+            "issued": ["exact", "gte", "lte"],
         }
 
 
@@ -4251,19 +4698,24 @@ class TestScript(filters.FilterSet):
         model = models.TestScript
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
 class TestScript_Origin(filters.FilterSet):
     class Meta:
         model = models.TestScript_Origin
-        fields = []
+        fields = {
+            "index": ["exact", "gte", "lte"],
+        }
 
 
 class TestScript_Destination(filters.FilterSet):
     class Meta:
         model = models.TestScript_Destination
-        fields = []
+        fields = {
+            "index": ["exact", "gte", "lte"],
+        }
 
 
 class TestScript_Metadata(filters.FilterSet):
@@ -4281,7 +4733,9 @@ class TestScript_Link(filters.FilterSet):
 class TestScript_Capability(filters.FilterSet):
     class Meta:
         model = models.TestScript_Capability
-        fields = []
+        fields = {
+            "destination": ["exact", "gte", "lte"],
+        }
 
 
 class TestScript_Fixture(filters.FilterSet):
@@ -4312,7 +4766,9 @@ class TestScript_Operation(filters.FilterSet):
     class Meta:
         model = models.TestScript_Operation
         fields = {
+            "destination": ["exact", "gte", "lte"],
             "method": ["exact", "in"],
+            "origin": ["exact", "gte", "lte"],
         }
 
 
@@ -4362,13 +4818,16 @@ class ValueSet(filters.FilterSet):
         model = models.ValueSet
         fields = {
             "status": ["exact", "in"],
+            "date": ["exact", "gte", "lte"],
         }
 
 
 class ValueSet_Compose(filters.FilterSet):
     class Meta:
         model = models.ValueSet_Compose
-        fields = []
+        fields = {
+            "lockedDate": ["exact", "gte", "lte"],
+        }
 
 
 class ValueSet_Include(filters.FilterSet):
@@ -4400,7 +4859,11 @@ class ValueSet_Filter(filters.FilterSet):
 class ValueSet_Expansion(filters.FilterSet):
     class Meta:
         model = models.ValueSet_Expansion
-        fields = []
+        fields = {
+            "timestamp": ["exact", "gte", "lte"],
+            "total": ["exact", "gte", "lte"],
+            "offset": ["exact", "gte", "lte"],
+        }
 
 
 class ValueSet_Parameter(filters.FilterSet):
@@ -4421,19 +4884,27 @@ class ValueSet_Contains(filters.FilterSet):
 class VerificationResult(filters.FilterSet):
     class Meta:
         model = models.VerificationResult
-        fields = []
+        fields = {
+            "statusDate": ["exact", "gte", "lte"],
+            "lastPerformed": ["exact", "gte", "lte"],
+            "nextScheduled": ["exact", "gte", "lte"],
+        }
 
 
 class VerificationResult_PrimarySource(filters.FilterSet):
     class Meta:
         model = models.VerificationResult_PrimarySource
-        fields = []
+        fields = {
+            "validationDate": ["exact", "gte", "lte"],
+        }
 
 
 class VerificationResult_Attestation(filters.FilterSet):
     class Meta:
         model = models.VerificationResult_Attestation
-        fields = []
+        fields = {
+            "date": ["exact", "gte", "lte"],
+        }
 
 
 class VerificationResult_Validator(filters.FilterSet):
@@ -4445,7 +4916,10 @@ class VerificationResult_Validator(filters.FilterSet):
 class VisionPrescription(filters.FilterSet):
     class Meta:
         model = models.VisionPrescription
-        fields = []
+        fields = {
+            "created": ["exact", "gte", "lte"],
+            "dateWritten": ["exact", "gte", "lte"],
+        }
 
 
 class VisionPrescription_LensSpecification(filters.FilterSet):
@@ -4453,6 +4927,13 @@ class VisionPrescription_LensSpecification(filters.FilterSet):
         model = models.VisionPrescription_LensSpecification
         fields = {
             "eye": ["exact", "in"],
+            "sphere": ["exact", "gte", "lte"],
+            "cylinder": ["exact", "gte", "lte"],
+            "axis": ["exact", "gte", "lte"],
+            "add": ["exact", "gte", "lte"],
+            "power": ["exact", "gte", "lte"],
+            "backCurve": ["exact", "gte", "lte"],
+            "diameter": ["exact", "gte", "lte"],
         }
 
 
@@ -4460,5 +4941,6 @@ class VisionPrescription_Prism(filters.FilterSet):
     class Meta:
         model = models.VisionPrescription_Prism
         fields = {
+            "amount": ["exact", "gte", "lte"],
             "base": ["exact", "in"],
         }

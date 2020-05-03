@@ -86,7 +86,7 @@ format_failures = [
 @pytest.mark.parametrize("name", format_failures)
 def test_build_field_fail_not_implemented(name):
     schema = single_fields["properties"][name]
-    with pytest.raises(NotImplementedError):
+    with pytest.warns(Warning):
         assert build_field(name, schema, single_fields.get("required", []))
 
 
