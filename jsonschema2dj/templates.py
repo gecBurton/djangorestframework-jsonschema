@@ -55,12 +55,13 @@ except ImportError:
 
 class {{model.name}}(models.Model):
 
+{% if model.field_str|length %}
 {% for field in model.field_str %}
     {{field}}
 {% endfor %}
-{% for name, (type, model, options) in model.relations_str.items() %}
-    {{name}} = models.{{type}}("{{model}}",{% for k, v in options.items() %}{{k}}={{v}},{% endfor %})
-{% endfor %}
+{% else %}
+    id = models.UUIDField(default=uuid.uuid4)
+{% endif %}
 {% endfor %}
 """
 

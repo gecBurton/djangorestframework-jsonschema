@@ -75,13 +75,16 @@ class Relationship(Field):
     @property
     def jinja(self):
         _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
+        options = dict(self.options)
         if keyword.iskeyword(self.name):
-            self.options.update(verbose_name=f'"{self.name}"')
+            options.update(verbose_name=f'"{self.name}"')
 
-        if self.type == "ManyToManyField":
-            return _name, (self.type, self.to, self.options)
-        else:
-            return _name, (self.type, self.to, dict(on_delete="models.CASCADE", **self.options))
+        if self.type != "ManyToManyField":
+            options.update(on_delete="models.CASCADE")
+
+        options = ", ".join([f'"{self.to}"'] + [f"{k}={v}" for k, v in options.items()])
+
+        return f'{_name} = models.{self.type}({options})'
 
 
 class JSONField(Field):

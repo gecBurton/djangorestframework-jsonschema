@@ -89,18 +89,9 @@ class Model:
         A helper method of jinja model template
         """
 
-        result = [field.jinja for field in self.fields]
+        return [field.jinja for field in self.fields] + sorted({field.jinja for field in self.relations})
 
-        if not result and not self.relations:
-            return ["id = models.UUIDField(default=uuid.uuid4, primary_key=False)"]
-        return result
 
-    @property
-    def relations_str(self) -> Dict[str, Any]:
-        """lists jinja friendly relationship-fields.
-        A helper method of jinja filter template
-        """
-        return dict(field.jinja for field in self.relations)
 
     @property
     def filter_fields(self) -> Dict[str, List[str]]:

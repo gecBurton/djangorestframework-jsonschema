@@ -10,30 +10,30 @@ except ImportError:
 
 class F(models.Model):
 
-    id = models.UUIDField(default=uuid.uuid4, primary_key=False)
+    id = models.UUIDField(default=uuid.uuid4)
 
 
 class E(models.Model):
 
-    f = models.ForeignKey("F",on_delete=models.CASCADE,)
+    f = models.ForeignKey("F", on_delete=models.CASCADE)
 
 
 class D(models.Model):
 
-    id = models.UUIDField(default=uuid.uuid4, primary_key=False)
+    id = models.UUIDField(default=uuid.uuid4)
 
 
 class C(models.Model):
 
-    d = models.ForeignKey("D",on_delete=models.CASCADE,)
+    d = models.ForeignKey("D", on_delete=models.CASCADE)
 
 
 class B(models.Model):
 
-    c = models.ForeignKey("C",on_delete=models.CASCADE,)
-    e = models.ForeignKey("E",on_delete=models.CASCADE,)
+    c = models.ForeignKey("C", on_delete=models.CASCADE)
+    e = models.ForeignKey("E", on_delete=models.CASCADE)
 
 
 class A(models.Model):
 
-    b = models.ForeignKey("B",on_delete=models.CASCADE,)
+    b = models.ForeignKey("B", on_delete=models.CASCADE)
