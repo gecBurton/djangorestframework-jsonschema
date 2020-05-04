@@ -9,11 +9,7 @@ def stringify(key, value):
     if key in ("RegexValidator",) and value is not None:
         return f'"{value}"'
     if key == "validators":
-        return (
-            "["
-            + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items())
-            + "]"
-        )
+        return "[" + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items()) + "]"
     return value
 
 
@@ -192,12 +188,7 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
     if sch.get("type"):
         _type = sch.get("type")
         if isinstance(_type, list):
-            if (
-                len(sch["type"]) == 0
-                or len(_type) > 2
-                or len(_type) == 2
-                and "null" not in _type
-            ):
+            if len(sch["type"]) == 0 or len(_type) > 2 or len(_type) == 2 and "null" not in _type:
                 raise ValueError(
                     "if type is a list it should either contain 1 element, or 2 where one is null"
                 )

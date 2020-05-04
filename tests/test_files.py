@@ -45,4 +45,3 @@ def test_django_files(model, asset_name, asset_function):
         model_file = f.read()
 
     assert asset_function(models=Model.factory(schema)) == model_file
-

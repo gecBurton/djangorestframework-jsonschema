@@ -66,7 +66,7 @@ results = {
 def test_build_field_pass(name, result):
     schema = single_fields["properties"][name]
     field = build_field(name, schema, single_fields.get("required", []))
-    assert  {"type": field.type, **field.options}== result
+    assert {"type": field.type, **field.options} == result
 
 
 format_failures = [

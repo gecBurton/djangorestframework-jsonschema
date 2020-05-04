@@ -1,11 +1,10 @@
 import os
-from json import load, dump
+from json import load
 
 import pytest
 
-from jsonschema2dj.fields import Relationship
+from jsonschema2dj.fields import Relationship, Field
 from jsonschema2dj.models import Model
-from jsonschema2dj.relationships import Field
 
 json_schema_dir = "tests/json-schemas/"
 django_schema_dir = "tests/django-schemas/"

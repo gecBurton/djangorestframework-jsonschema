@@ -2,15 +2,15 @@
 """
 from __future__ import annotations
 from json import load
-from typing import List, Dict, Any
+from typing import List, Dict
 
 from jsonschema import validate  # type: ignore
 
-from .fields import build_field, stringify
+from .fields import build_field, Relationship
 
 from pkg_resources import resource_filename
 
-from .relationships import build_models, extract_relationships, Field
+from .relationships import build_models, extract_relationships
 
 with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
@@ -35,18 +35,18 @@ class Model:
     def factory(cls, schema) -> List[Model]:
         "factory for parsing json schema of many models"
         definitions = schema["definitions"]
-        # validate(dict(definitions=definitions), META_SCHEMA)
+        validate(dict(definitions=definitions), META_SCHEMA)
         ret = []
         for model_name, fields in build_models(extract_relationships(schema)).items():
             ret.append(Model(model_name, definitions, *fields))
         return ret
 
-    def __init__(self, __name, schema, *relations: Field):
+    def __init__(self, __name, schema, *relations: Relationship):
         """build the django-like model from jsonschema"""
         self.name = __name
         properties = schema[self.name].get("properties", {})
         required = schema[self.name].get("required", [])
-        self.fields: List[Field] = [
+        self.fields = [
             build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
             if not self.is_relation(self.name, field_name, schema)

@@ -3,7 +3,7 @@
 from collections import defaultdict
 from typing import Dict, Tuple, List
 
-from jsonschema2dj.fields import Field, Relationship
+from jsonschema2dj.fields import Relationship
 
 
 def extract_relationships(
@@ -62,7 +62,7 @@ def extract_relationships(
     return relationships
 
 
-def build_models(relationships: Dict) -> Dict[str, List[Field]]:
+def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
     """converts the result of `extract_relationships` into a dictionary
     of objects where the keys are model names and the values are dict
     representation of django model relationships
@@ -99,7 +99,7 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
     >>>     "Prescription": {},
     >>> }
     """
-    models: Dict[str, List[Field]] = defaultdict(list)
+    models = defaultdict(list)
 
     for model, (singles, manys) in relationships.items():
         models[model] = []
@@ -128,4 +128,4 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
                     Relationship("ManyToManyField", many_name, many, null,)
                 )
 
-    return models
+    return dict(models)
