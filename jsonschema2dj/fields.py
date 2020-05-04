@@ -40,7 +40,7 @@ class Field:
         self.name = name
         self.options = {}
         for key, value in kwargs.items():
-            if key in ("default", "label") and value is None:
+            if key in ("default", "help_text") and value is None:
                 pass
             elif key in ("null", "primary_key") and not value:
                 pass
@@ -130,7 +130,7 @@ def build_string_field(
 ) -> Field:
     "the string case is complex enough to have its own function"
     options = dict(
-        null=null, primary_key=primary_key, default=default, label=description
+        null=null, primary_key=primary_key, default=default, help_text=description
     )
     validators = {}
 
@@ -175,7 +175,7 @@ def build_string_field(
             null=options.get("null", False),
             primary_key=primary_key,
             default=default,
-            label=description,
+            help_text=description,
         )
 
     return Field("CharField", name, **options)
@@ -252,7 +252,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             name,
             default=default or "uuid.uuid4",
             primary_key=primary_key,
-            label=description,
+            help_text=description,
         )
 
     if field_type == "string":
@@ -267,7 +267,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             validators=validators,
             primary_key=primary_key,
             default=default,
-            label=description,
+            help_text=description,
         )
 
     if field_type == "number":
@@ -281,7 +281,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             decimal_places=5,
             primary_key=primary_key,
             default=default,
-            label=description,
+            help_text=description,
         )
 
     if field_type == "boolean":
@@ -291,7 +291,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             null=null,
             primary_key=primary_key,
             default=default,
-            label=description,
+            help_text=description,
         )
 
-    return JSONField(name, schema=schema, default=default, label=description,)
+    return JSONField(name, schema=schema, default=default, help_text=description,)

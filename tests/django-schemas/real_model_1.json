@@ -11,7 +11,7 @@
       },
       "well": {
         "type": "CharField",
-        "label": "\"\"\"physical location of the well on the plate\"\"\"",
+        "help_text": "\"\"\"physical location of the well on the plate\"\"\"",
         "max_length": 255,
         "validators": {
           "RegexValidator": "^[A-H](0[1-9]|1[1-2])$"
