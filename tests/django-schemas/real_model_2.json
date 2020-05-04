@@ -1,19 +1,22 @@
 [
   {
-    "name": "Book",
+    "name": "Author",
     "fields": {
-      "title": {
+      "name": {
         "type": "CharField",
         "null": true,
         "max_length": 255
       },
-      "pages": {
-        "type": "IntegerField",
-        "null": true,
-        "validators": {
-          "MinValueValidator": 0
-        }
-      },
+      "date_of_birth": {
+        "type": "DateField",
+        "null": true
+      }
+    },
+    "relations": {}
+  },
+  {
+    "name": "Book",
+    "fields": {
       "genre": {
         "type": "CharField",
         "null": true,
@@ -32,6 +35,18 @@
             "other"
           ]
         ]
+      },
+      "pages": {
+        "type": "IntegerField",
+        "null": true,
+        "validators": {
+          "MinValueValidator": 0
+        }
+      },
+      "title": {
+        "type": "CharField",
+        "null": true,
+        "max_length": 255
       }
     },
     "relations": {
@@ -41,20 +56,5 @@
         "null": true
       }
     }
-  },
-  {
-    "name": "Author",
-    "fields": {
-      "name": {
-        "type": "CharField",
-        "null": true,
-        "max_length": 255
-      },
-      "date_of_birth": {
-        "type": "DateField",
-        "null": true
-      }
-    },
-    "relations": {}
   }
 ]

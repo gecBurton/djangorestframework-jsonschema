@@ -20,32 +20,34 @@ class Model:
     @classmethod
     def is_relation(cls, model_name, field_name, schema) -> bool:
         """helper method to determine whether a field is pointing to another model"""
-        sch = schema[model_name]["properties"][field_name]
+        sch = schema["properties"][model_name]["properties"][field_name]
         if "$ref" in sch:
-            if "properties" in schema[sch["$ref"].split("/")[-1]]:
+            ref = sch["$ref"].split("/")[-1]
+            if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
                 return True
         if sch.get("items"):
             if sch.get("type") == "array" and "$ref" in sch.get("items"):
-                ref = sch["items"]["$ref"]
-                if "properties" in schema[ref.split("/")[-1]]:
+                ref = sch["items"]["$ref"].split("/")[-1]
+                if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
                     return True
         return False
 
     @classmethod
     def factory(cls, schema) -> List[Model]:
         "factory for parsing json schema of many models"
-        definitions = schema["definitions"]
-        validate(dict(definitions=definitions), META_SCHEMA)
+        #validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
         ret = []
         for model_name, fields in build_models(extract_relationships(schema)).items():
-            ret.append(Model(model_name, definitions, *fields))
+            ret.append(Model(model_name, schema, *fields))
         return ret
 
     def __init__(self, __name, schema, *relations: Relationship):
         """build the django-like model from jsonschema"""
         self.name = __name
-        properties = schema[self.name].get("properties", {})
-        required = schema[self.name].get("required", [])
+        _schema = schema["properties"][self.name]
+        _schema.update(schema.get("definitions", {}).get(self.name, {}))
+        properties = _schema.get("properties", {})
+        required = _schema.get("required", [])
         self.fields = [
             build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()

@@ -20,7 +20,9 @@
           "$ref": "#/definitions/Author"
         }
       }
-    },
+    }
+  },
+  "properties":{
     "Author": {
       "properties": {
         "name": {
@@ -31,6 +33,7 @@
           "format": "date"
         }
       }
-    }
+    },
+    "Book": {"$ref":  "#/definitions/Book"}
   }
 }

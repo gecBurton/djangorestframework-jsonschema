@@ -39,7 +39,9 @@ def extract_relationships(
     """
     relationships = {}
 
-    for model_name, model in schema["definitions"].items():
+    for model_name, model in schema.get("properties", {}).items():
+        model.update(schema.get("definitions", {}).get(model_name, {}))
+
         required = model.get("required", [])
         if "properties" in model:
             single, many = {}, {}
@@ -48,13 +50,13 @@ def extract_relationships(
                 null = "null" in _property.get("type", []) or name not in required
                 if _property.get("$ref"):
                     ref = _property.get("$ref").split("/")[-1]
-                    if "properties" in schema["definitions"][ref]:
+                    if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
                         single[ref] = name, null
 
                 elif _property.get("items"):
                     if _property.get("items").get("$ref"):
                         ref = _property.get("items").get("$ref").split("/")[-1]
-                        if "properties" in schema["definitions"][ref]:
+                        if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
                             many[ref] = name, null
 
             relationships[model_name] = single, many

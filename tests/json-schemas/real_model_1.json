@@ -177,11 +177,17 @@
     }
   },
   "properties": {
-    "redcap": {
+    "Manifest": {
+      "$ref": "#/definitions/Manifest"
+    },
+    "Redcap": {
       "$ref": "#/definitions/Redcap"
     },
-    "manifest": {
-      "$ref": "#/definitions/Manifest"
+    "ResponsibleClinician": {
+      "$ref": "#/definitions/ResponsibleClinician"
+    },
+    "Plate": {
+      "$ref": "#/definitions/Plate"
     }
   }
 }

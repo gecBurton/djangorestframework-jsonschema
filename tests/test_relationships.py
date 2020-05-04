@@ -4,9 +4,14 @@ from tests.test_schema import tuple_to_list
 
 def test_extract_relationships():
     schema = {
+        "properties" :{
+            "Address":{"$ref":"#definitions/Address"},
+            "Doctor":{"properties": {}},
+            "Prescription":{"$ref":"#definitions/Prescription"},
+            "Patient":{"$ref":"#definitions/Patient"},
+        },
         "definitions": {
             "Address": {"properties": {}},
-            "Doctor": {"properties": {}},
             "Prescription": {"properties": {}},
             "Patient": {
                 "properties": {
@@ -62,3 +67,5 @@ def test_build_models():
               'Prescription': []}
 
     assert tuple_to_list(build_models(relationships)) == result
+
+

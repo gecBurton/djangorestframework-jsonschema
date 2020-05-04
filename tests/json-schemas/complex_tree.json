@@ -39,5 +39,16 @@
         }
       }
     }
+  },
+  "properties": {
+    "Hospital": {
+      "$ref": "#/definitions/Hospital"
+    },
+    "Doctor": {
+      "$ref": "#/definitions/Doctor"
+    },
+    "Patient": {
+      "$ref": "#/definitions/Patient"
+    }
   }
 }

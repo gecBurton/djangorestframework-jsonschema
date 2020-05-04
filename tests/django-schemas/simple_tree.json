@@ -1,33 +1,12 @@
 [
   {
-    "name": "F",
-    "fields": {},
-    "relations": {}
-  },
-  {
-    "name": "E",
+    "name": "A",
     "fields": {},
     "relations": {
-      "f": {
+      "b": {
         "null": true,
         "type": "ForeignKey",
-        "to": "F"
-      }
-    }
-  },
-  {
-    "name": "D",
-    "fields": {},
-    "relations": {}
-  },
-  {
-    "name": "C",
-    "fields": {},
-    "relations": {
-      "d": {
-        "null": true,
-        "type": "ForeignKey",
-        "to": "D"
+        "to": "B"
       }
     }
   },
@@ -48,14 +27,35 @@
     }
   },
   {
-    "name": "A",
+    "name": "C",
     "fields": {},
     "relations": {
-      "b": {
+      "d": {
         "null": true,
         "type": "ForeignKey",
-        "to": "B"
+        "to": "D"
       }
     }
+  },
+  {
+    "name": "D",
+    "fields": {},
+    "relations": {}
+  },
+  {
+    "name": "E",
+    "fields": {},
+    "relations": {
+      "f": {
+        "null": true,
+        "type": "ForeignKey",
+        "to": "F"
+      }
+    }
+  },
+  {
+    "name": "F",
+    "fields": {},
+    "relations": {}
   }
 ]

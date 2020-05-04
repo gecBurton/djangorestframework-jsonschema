@@ -2,17 +2,19 @@
   "definitions": {
     "field": {
       "type": "boolean"
-    },
-    "model": {
-      "properties": {
-        "field_1": {
-          "$ref": "#/definitions/field"
-        },
-        "field_2": {
-          "type": "integer"
-        }
-      }
     }
   },
-  "something-else": {}
+  "something-else": {},
+  "properties": {
+    "model": {
+    "properties": {
+      "field_1": {
+        "$ref": "#/definitions/field"
+      },
+      "field_2": {
+        "type": "integer"
+      }
+    }
+  }
+  }
 }

@@ -38,5 +38,12 @@
       "properties": {
       }
     }
+  },
+  "properties": {
+    "A":  {"$ref": "#/definitions/A"},
+    "B":  {"$ref": "#/definitions/B"},
+    "C":  {"$ref": "#/definitions/C"},
+    "D":  {"$ref": "#/definitions/D"},
+    "E":  {"$ref": "#/definitions/E"}
   }
 }

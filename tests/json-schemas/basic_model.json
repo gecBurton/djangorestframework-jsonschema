@@ -1,5 +1,5 @@
 {
-  "definitions": {
+  "properties": {
     "person": {
       "required": [
         "id",
@@ -26,11 +26,6 @@
           ]
         }
       }
-    }
-  },
-  "properties": {
-    "person": {
-      "$ref": "#/definitions/person"
     }
   }
 }
