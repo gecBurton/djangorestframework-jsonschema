@@ -6,6 +6,9 @@ try:
     from django.contrib.postgres.fields import JSONField
 except ImportError:
     pass
+from json import load
+with open("schema.json") as f:
+    DEFINITIONS = load(f).get("definitions", {})
 
 
 class person(models.Model):

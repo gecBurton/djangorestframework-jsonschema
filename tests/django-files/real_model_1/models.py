@@ -6,6 +6,9 @@ try:
     from django.contrib.postgres.fields import JSONField
 except ImportError:
     pass
+from json import load
+with open("schema.json") as f:
+    DEFINITIONS = load(f).get("definitions", {})
 
 
 class Manifest(models.Model):
@@ -37,7 +40,7 @@ class ResponsibleClinician(models.Model):
 
     name = models.CharField(null=True, max_length=255)
     email = models.EmailField(null=True)
-    address = JSONField(validators=[JSONSchemaValidator({'type': 'object', 'properties': {'lines': {'type': 'array', 'items': {'type': 'string'}}, 'postcode': {'type': 'string', 'pattern': '^[A-Z]{2}\\d \\d[A-Z]{2}$'}}})])
+    address = JSONField(validators=[JSONSchemaValidator({'$ref': '#/definitions/address'}, DEFINITIONS)])
 
 
 class Plate(models.Model):

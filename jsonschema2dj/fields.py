@@ -91,7 +91,7 @@ class JSONField(Field):
     def jinja(self):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
-        return f'{name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]})])'
+        return f'{name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]}, DEFINITIONS)])'
 
 
 def build_value_validators(sch: Dict) -> Dict:

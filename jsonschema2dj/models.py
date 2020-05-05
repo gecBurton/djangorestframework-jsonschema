@@ -23,12 +23,12 @@ class Model:
         sch = schema["properties"][model_name]["properties"][field_name]
         if "$ref" in sch:
             ref = sch["$ref"].split("/")[-1]
-            if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
+            if ref in schema["properties"]:
                 return True
         if sch.get("items"):
             if sch.get("type") == "array" and "$ref" in sch.get("items"):
                 ref = sch["items"]["$ref"].split("/")[-1]
-                if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
+                if ref in schema["properties"]:
                     return True
         return False
 

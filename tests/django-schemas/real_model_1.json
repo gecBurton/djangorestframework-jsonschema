@@ -229,21 +229,7 @@
       },
       "address": {
         "type": "JSONField",
-        "schema": {
-          "type": "object",
-          "properties": {
-            "lines": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "postcode": {
-              "type": "string",
-              "pattern": "^[A-Z]{2}\\d \\d[A-Z]{2}$"
-            }
-          }
-        }
+        "schema": {"$ref": "#/definitions/address"}
       }
     },
     "relations": {}

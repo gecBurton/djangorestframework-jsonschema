@@ -50,13 +50,13 @@ def extract_relationships(
                 null = "null" in _property.get("type", []) or name not in required
                 if _property.get("$ref"):
                     ref = _property.get("$ref").split("/")[-1]
-                    if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
+                    if ref in schema["properties"]:
                         single[ref] = name, null
 
                 elif _property.get("items"):
                     if _property.get("items").get("$ref"):
                         ref = _property.get("items").get("$ref").split("/")[-1]
-                        if "properties" in schema["properties"].get(ref, []) or "properties" in schema["definitions"].get(ref, []):
+                        if ref in schema["properties"]:
                             many[ref] = name, null
 
             relationships[model_name] = single, many

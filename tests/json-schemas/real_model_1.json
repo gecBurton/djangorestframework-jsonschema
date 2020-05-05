@@ -131,6 +131,29 @@
         }
       }
     },
+    "address": {
+      "type": "object",
+      "properties": {
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "postcode": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}\\d \\d[A-Z]{2}$"
+        }
+      }
+    }
+  },
+  "properties": {
+    "Manifest": {
+      "$ref": "#/definitions/Manifest"
+    },
+    "Redcap": {
+      "$ref": "#/definitions/Redcap"
+    },
     "ResponsibleClinician": {
       "properties": {
         "name": {
@@ -140,21 +163,7 @@
           "type": "string",
           "format": "email"
         },
-        "address": {
-          "type": "object",
-          "properties": {
-            "lines": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "postcode": {
-              "type": "string",
-              "pattern": "^[A-Z]{2}\\d \\d[A-Z]{2}$"
-            }
-          }
-        }
+        "address": {"$ref": "#/definitions/address"}
       }
     },
     "Plate": {
@@ -174,20 +183,6 @@
           ]
         }
       }
-    }
-  },
-  "properties": {
-    "Manifest": {
-      "$ref": "#/definitions/Manifest"
-    },
-    "Redcap": {
-      "$ref": "#/definitions/Redcap"
-    },
-    "ResponsibleClinician": {
-      "$ref": "#/definitions/ResponsibleClinician"
-    },
-    "Plate": {
-      "$ref": "#/definitions/Plate"
     }
   }
 }

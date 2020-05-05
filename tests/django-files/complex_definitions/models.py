@@ -6,9 +6,12 @@ try:
     from django.contrib.postgres.fields import JSONField
 except ImportError:
     pass
+from json import load
+with open("schema.json") as f:
+    DEFINITIONS = load(f).get("definitions", {})
 
 
 class model(models.Model):
 
-    field_1 = JSONField(validators=[JSONSchemaValidator({'$ref': '#/definitions/field'})])
+    field_1 = JSONField(validators=[JSONSchemaValidator({'$ref': '#/definitions/field'}, DEFINITIONS)])
     field_2 = models.IntegerField(null=True, validators=[])
