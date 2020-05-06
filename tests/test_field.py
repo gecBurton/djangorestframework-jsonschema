@@ -46,7 +46,7 @@ results = {
     },
     "boolean-null": {"type": "BooleanField", "null": True},
     "format-uuid": {"type": "UUIDField", "default": "uuid.uuid4"},
-    "id": {"type": "UUIDField", "default": "uuid.uuid4"},
+    "id": {"type": "UUIDField", "default": "uuid.uuid4", "primary_key": True},
     "json-schema": {
         "type": "JSONField",
         "schema": {

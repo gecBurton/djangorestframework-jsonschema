@@ -126,7 +126,7 @@ def build_string_field(
 ) -> Field:
     "the string case is complex enough to have its own function"
     options = dict(
-        null=null, primary_key=primary_key, default=default, help_text=description
+        null=null, primary_key=primary_key, default=default, help_text=description,
     )
     validators = {}
 
@@ -164,6 +164,16 @@ def build_string_field(
         }
         if sch["format"] not in formats:
             warnings.warn(f"no code written to handle format: {sch.get('format')}")
+            return Field(
+                formats.get(sch["format"], "CharField"),
+                name,
+                null=options.get("null", False),
+                primary_key=primary_key,
+                default=default,
+                help_text=description,
+                max_length=255,
+            )
+
 
         return Field(
             formats.get(sch["format"], "CharField"),
@@ -215,11 +225,14 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
             )
         return _type, sch, null, default, description
 
-    if "$ref" in sch or "const" in sch:
+    if "$ref" in sch or "const" in sch or "properties" in sch:
         return "object", sch, null, default, description
 
+    if "items" in sch:
+        return "items", sch, null, default, description
+
     raise ValueError(
-        "either the type must be specified or it must be an enum or a $ref or a const",
+        "either the type must be specified or it must be an enum or a $ref, const, items, or properties",
         sch,
     )
 
@@ -242,7 +255,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             "UUIDField",
             name,
             default=default or "uuid.uuid4",
-            primary_key=primary_key,
+            primary_key=True,
             help_text=description,
         )
 
