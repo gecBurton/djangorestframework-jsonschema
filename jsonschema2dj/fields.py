@@ -14,7 +14,7 @@ def stringify(key, value):
 
 
 class Field:
-    """A dict that doesnt store certain django specific keys
+    """A glorified dict that doesnt store certain django specific keys
     and values that have default values.
 
     This is not strictly necessary but produces slightly nicer
@@ -139,6 +139,7 @@ def build_string_field(
         validators["MinLengthValidator"] = min_length
 
     if (min_length and max_length <= min_length) or max_length > 255:
+        # if max_length is unknown or too large then this cant be a CharField
         return Field("TextField", name, type="TextField", **options)
 
     if sch.get("enum"):
@@ -164,14 +165,14 @@ def build_string_field(
         }
         if sch["format"] not in formats:
             warnings.warn(f"no code written to handle format: {sch.get('format')}")
+            # if max_length is unknown or too large then this cant be a CharField
             return Field(
-                formats.get(sch["format"], "CharField"),
+                formats.get(sch["format"], "TextField"),
                 name,
                 null=options.get("null", False),
                 primary_key=primary_key,
                 default=default,
                 help_text=description,
-                max_length=255,
             )
 
         return Field(

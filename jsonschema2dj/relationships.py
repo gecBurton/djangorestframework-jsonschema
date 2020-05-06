@@ -3,7 +3,7 @@
 from collections import defaultdict
 from typing import Dict, Tuple, List
 
-from jsonschema2dj.fields import Relationship
+from jsonschema2dj.fields import Relationship, Field
 
 
 def extract_relationships(
@@ -13,6 +13,9 @@ def extract_relationships(
     where each model (object in the #/definitions) is a key wholes value
     is a tuple of dictionaries of singularly and multiply related models
     and whether they are nullable or not.
+
+    singular means one-to-one or one-to-many, we dont know yet
+    multiple means many-to-one or many-to-many, we dont know yet
 
     example argument:
     >>> {
@@ -51,13 +54,25 @@ def extract_relationships(
             single, many = {}, {}
 
             for name, _property in model.get("properties", {}).items():
+                # loop through all fields
+
+                # is this field nullable?
+                # if null is one of the types then yes
+                # or if null is not required then also yes
                 null = "null" in _property.get("type", []) or name not in required
+
+                # is this field a direct reference to another object?
                 if _property.get("$ref"):
+                    # ok what is the name of the related object
                     ref = _property.get("$ref").split("/")[-1]
+                    # is this related object in the root properties?
                     if ref in schema["properties"]:
+                        # if so then its a model, lets record that
                         single[ref] = name, null
 
+                # could this field an array of references to another object?
                 elif _property.get("items"):
+                    # etc...
                     if _property.get("items").get("$ref"):
                         ref = _property.get("items").get("$ref").split("/")[-1]
                         if ref in schema["properties"]:
@@ -70,7 +85,7 @@ def extract_relationships(
 
 def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
     """converts the result of `extract_relationships` into a dictionary
-    of objects where the keys are model names and the values are dict
+    of objects where the keys are model names and the values are dict-like
     representation of django model relationships
 
     example argument:
@@ -88,30 +103,39 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
     >>> {
     >>>     "Address": [],
     >>>     "Doctor": [],
-    >>>     "Patient": "Field<{address, doctor, prescription}>",
+    >>>     "Patient": ["Field<address>", "Field<doctor>", "Field<prescription>"],
     >>>     "Prescription": [],
     >>> }
     """
-    models = defaultdict(list)
 
-    for model, (singles, manys) in relationships.items():
-        models[model] = []
-        for single, (single_name, null) in singles.items():
+    models = defaultdict(list)  # we are going to return this
+
+    # we loop through all models, extracting singlular and multiple relationships
+    for model, (singular, multiples) in relationships.items():
+        # we assign an empty list of fields
+        models[model]: List[Field]  = []
+        # for al singular relations...
+        for single, (single_name, null) in singular.items():
+            # we fetch the other side of the relationship
             related_single, related_many = relationships[single]
+            # the other side is also singular?
             if model in related_single:
+                # ten this is one-to-one
                 models[model].append(
                     Relationship("OneToOneField", single_name, single, null,)
                 )
-
+            # no? then its one-to-many
             else:
                 models[model].append(
                     Relationship("ForeignKey", single_name, single, null,)
                 )
 
-        for many, (many_name, null) in manys.items():
+        # as above but....
+        for many, (many_name, null) in multiples.items():
             related_single, related_many = relationships[many]
             if model in related_single:
                 single_name, _ = related_single[model]
+                # notice that the order is swapped here
                 models[many].append(
                     Relationship("ForeignKey", single_name, model, null,)
                 )

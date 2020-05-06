@@ -57,20 +57,6 @@ class Model:
         self.relations = relations
 
     @property
-    def dict_repr(self) -> Dict:
-        "only used for testing a half way stage"
-        return dict(
-            name=self.name,
-            fields={
-                field.name: dict(type=field.type, **field.options)
-                for field in self.fields
-            },
-            relations={
-                v.name: dict(type=v.type, to=v.to, **v.options) for v in self.relations
-            },
-        )
-
-    @property
     def enum_fields(self) -> List[str]:
         """lists enum fields.
         A helper method of jinja admin template
