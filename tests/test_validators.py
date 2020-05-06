@@ -8,7 +8,7 @@ VALID_SCHEMAS = [
         {"$ref": "#/definitions/abc"},
         {
             "abc": {
-                "additionalPropertes": False,
+                "additionalProperties": False,
                 "properties": {
                     "a": {
                         "type": "integer"
