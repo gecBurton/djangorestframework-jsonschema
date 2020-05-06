@@ -50,9 +50,9 @@ try:
     from django.contrib.postgres.fields import JSONField
 except ImportError:
     pass
-from json import load
-with open("schema.json") as f:
-    DEFINITIONS = load(f).get("definitions", {})
+import pathlib
+
+DEFINITIONS = str(pathlib.Path(__file__).parent.absolute() / "schema.json")
 {% for model in models %}
 
 

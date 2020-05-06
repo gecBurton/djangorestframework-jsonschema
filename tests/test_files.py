@@ -41,14 +41,14 @@ def test_django_files(model, asset_name, asset_function):
 
     try:
         with open(
-                    path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
+            path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
         ) as f:
             model_file = f.read()
 
         assert asset_function(models=Model.factory(schema)) == model_file
     except FileNotFoundError:
         with open(
-                path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py"), "w"
+            path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py"), "w"
         ) as f:
             f.write(asset_function(models=Model.factory(schema)) )
 
