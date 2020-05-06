@@ -1,59 +1,77 @@
 [
   {
-    "fields": {
-      "genre": {
-        "choices": [
-          [
-            "celebrity_autobiographies",
-            "celebrity autobiographies"
-          ],
-          [
-            "military-history",
-            "military-history"
-          ],
-          [
-            "other",
-            "other"
-          ]
-        ],
-        "max_length": 25,
-        "null": true,
-        "type": "CharField"
-      },
-      "other": {
-        "schema": {
-          "$ref": "#/definitions/identifiers"
-        },
-        "type": "JSONField"
-      },
-      "title": {
-        "max_length": 255,
-        "null": true,
-        "type": "CharField"
-      }
-    },
     "name": "Book",
-    "relations": {
-      "author": {
-        "null": true,
-        "to": "Author",
-        "type": "ForeignKey"
+    "fields": [
+      {
+        "name": "title",
+        "type": "CharField",
+        "options": {
+          "null": true,
+          "max_length": 255
+        }
+      },
+      {
+        "name": "other",
+        "type": "JSONField",
+        "options": {
+          "schema": {
+            "$ref": "#/definitions/identifiers"
+          }
+        }
+      },
+      {
+        "name": "genre",
+        "type": "CharField",
+        "options": {
+          "null": true,
+          "max_length": 25,
+          "choices": [
+            [
+              "celebrity_autobiographies",
+              "celebrity autobiographies"
+            ],
+            [
+              "military-history",
+              "military-history"
+            ],
+            [
+              "other",
+              "other"
+            ]
+          ]
+        }
       }
-    }
+    ],
+    "relations": [
+      {
+        "name": "author",
+        "type": "ForeignKey",
+        "to": "Author",
+        "options": {
+          "null": true
+        }
+      }
+    ]
   },
   {
-    "fields": {
-      "date_of_birth": {
-        "null": true,
-        "type": "DateField"
-      },
-      "name": {
-        "max_length": 255,
-        "null": true,
-        "type": "CharField"
-      }
-    },
     "name": "Author",
-    "relations": {}
+    "fields": [
+      {
+        "name": "name",
+        "type": "CharField",
+        "options": {
+          "null": true,
+          "max_length": 255
+        }
+      },
+      {
+        "name": "date_of_birth",
+        "type": "DateField",
+        "options": {
+          "null": true
+        }
+      }
+    ],
+    "relations": []
   }
 ]

@@ -1,19 +1,25 @@
 [
   {
     "name": "model",
-    "fields": {
-      "field_1": {
+    "fields": [
+      {
+        "name": "field_1",
         "type": "JSONField",
-        "schema": {
-          "$ref": "#/definitions/field"
+        "options": {
+          "schema": {
+            "$ref": "#/definitions/field"
+          }
         }
       },
-      "field_2": {
+      {
+        "name": "field_2",
         "type": "IntegerField",
-        "null": true,
-        "validators": {}
+        "options": {
+          "null": true,
+          "validators": {}
+        }
       }
-    },
-    "relations": {}
+    ],
+    "relations": []
   }
 ]

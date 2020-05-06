@@ -1,38 +1,50 @@
 [
   {
     "name": "person",
-    "fields": {
-      "id": {
+    "fields": [
+      {
+        "name": "id",
         "type": "UUIDField",
-        "default": "uuid.uuid4",
-        "primary_key": true
-      },
-      "name": {
-        "type": "CharField",
-        "max_length": 255
-      },
-      "age": {
-        "type": "IntegerField",
-        "validators": {
-          "MinValueValidator": 0
+        "options": {
+          "default": "uuid.uuid4",
+          "primary_key": true
         }
       },
-      "sex": {
+      {
+        "name": "name",
         "type": "CharField",
-        "null": true,
-        "max_length": 6,
-        "choices": [
-          [
-            "male",
-            "male"
-          ],
-          [
-            "female",
-            "female"
+        "options": {
+          "max_length": 255
+        }
+      },
+      {
+        "name": "age",
+        "type": "IntegerField",
+        "options": {
+          "validators": {
+            "MinValueValidator": 0
+          }
+        }
+      },
+      {
+        "name": "sex",
+        "type": "CharField",
+        "options": {
+          "null": true,
+          "max_length": 6,
+          "choices": [
+            [
+              "male",
+              "male"
+            ],
+            [
+              "female",
+              "female"
+            ]
           ]
-        ]
+        }
       }
-    },
-    "relations": {}
+    ],
+    "relations": []
   }
 ]

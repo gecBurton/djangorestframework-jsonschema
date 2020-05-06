@@ -1,61 +1,76 @@
 [
   {
     "name": "A",
-    "fields": {},
-    "relations": {
-      "b": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "b",
         "type": "ForeignKey",
-        "to": "B"
+        "to": "B",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "B",
-    "fields": {},
-    "relations": {
-      "c": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "c",
         "type": "ForeignKey",
-        "to": "C"
+        "to": "C",
+        "options": {
+          "null": true
+        }
       },
-      "e": {
-        "null": true,
+      {
+        "name": "e",
         "type": "ForeignKey",
-        "to": "E"
+        "to": "E",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "C",
-    "fields": {},
-    "relations": {
-      "d": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "d",
         "type": "ForeignKey",
-        "to": "D"
+        "to": "D",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "D",
-    "fields": {},
-    "relations": {}
+    "fields": [],
+    "relations": []
   },
   {
     "name": "E",
-    "fields": {},
-    "relations": {
-      "f": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "f",
         "type": "ForeignKey",
-        "to": "F"
+        "to": "F",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "F",
-    "fields": {},
-    "relations": {}
+    "fields": [],
+    "relations": []
   }
 ]

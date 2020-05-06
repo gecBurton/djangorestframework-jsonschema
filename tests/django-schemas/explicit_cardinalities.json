@@ -1,62 +1,96 @@
 [
   {
     "name": "A",
-    "fields": {},
-    "relations": {
-      "b": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "b",
         "type": "OneToOneField",
-        "to": "B"
+        "to": "B",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "B",
-    "fields": {},
-    "relations": {
-      "a": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "a",
         "type": "OneToOneField",
-        "to": "A"
+        "to": "A",
+        "options": {
+          "null": true
+        }
       },
-      "c": {
-        "null": true,
+      {
+        "name": "c",
         "type": "ForeignKey",
-        "to": "C"
+        "to": "C",
+        "options": {
+          "null": true
+        }
+      },
+      {
+        "name": "c",
+        "type": "ForeignKey",
+        "to": "C",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "C",
-    "fields": {},
-    "relations": {
-      "d": {        "null": true,
-
+    "fields": [],
+    "relations": [
+      {
+        "name": "d",
         "type": "ForeignKey",
-        "to": "D"
+        "to": "D",
+        "options": {
+          "null": true
+        }
+      },
+      {
+        "name": "d",
+        "type": "ForeignKey",
+        "to": "D",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "D",
-    "fields": {},
-    "relations": {
-      "e": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "e",
         "type": "ManyToManyField",
-        "to": "E"
+        "to": "E",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   },
   {
     "name": "E",
-    "fields": {},
-    "relations": {
-      "d": {
-        "null": true,
+    "fields": [],
+    "relations": [
+      {
+        "name": "d",
         "type": "ManyToManyField",
-        "to": "D"
+        "to": "D",
+        "options": {
+          "null": true
+        }
       }
-    }
+    ]
   }
 ]
