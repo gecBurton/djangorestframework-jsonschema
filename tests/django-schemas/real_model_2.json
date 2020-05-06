@@ -1,26 +1,7 @@
 [
   {
-    "name": "Author",
-    "fields": {
-      "name": {
-        "type": "CharField",
-        "null": true,
-        "max_length": 255
-      },
-      "date_of_birth": {
-        "type": "DateField",
-        "null": true
-      }
-    },
-    "relations": {}
-  },
-  {
-    "name": "Book",
     "fields": {
       "genre": {
-        "type": "CharField",
-        "null": true,
-        "max_length": 25,
         "choices": [
           [
             "celebrity_autobiographies",
@@ -34,27 +15,45 @@
             "other",
             "other"
           ]
-        ]
-      },
-      "pages": {
-        "type": "IntegerField",
+        ],
+        "max_length": 25,
         "null": true,
-        "validators": {
-          "MinValueValidator": 0
-        }
+        "type": "CharField"
+      },
+      "other": {
+        "schema": {
+          "$ref": "#/definitions/identifiers"
+        },
+        "type": "JSONField"
       },
       "title": {
-        "type": "CharField",
+        "max_length": 255,
         "null": true,
-        "max_length": 255
+        "type": "CharField"
       }
     },
+    "name": "Book",
     "relations": {
       "author": {
-        "type": "ForeignKey",
+        "null": true,
         "to": "Author",
-        "null": true
+        "type": "ForeignKey"
       }
     }
+  },
+  {
+    "fields": {
+      "date_of_birth": {
+        "null": true,
+        "type": "DateField"
+      },
+      "name": {
+        "max_length": 255,
+        "null": true,
+        "type": "CharField"
+      }
+    },
+    "name": "Author",
+    "relations": {}
   }
 ]

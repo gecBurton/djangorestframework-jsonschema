@@ -38,9 +38,13 @@ def extract_relationships(
     >>>}
     """
     relationships = {}
+    definitions = schema.get("definitions", {})
+    properties = schema.get("properties", {})
 
-    for model_name, model in schema.get("properties", {}).items():
-        model.update(schema.get("definitions", {}).get(model_name, {}))
+    for model_name, model in properties.items():
+        if "$ref" in model:
+            ref = model.pop("$ref").split('/')[-1]
+            model.update(definitions.get(ref, {}))
 
         required = model.get("required", [])
         if "properties" in model:

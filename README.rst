@@ -20,27 +20,39 @@ of ``example_app``
 
     {
       "definitions": {
+        "identifiers": {
+          "properties": {
+            "ISBN": {
+              "type": "string",
+              "pattern": "[0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*"
+            },
+            "Dewey Decimal Classification": {
+              "type": "string",
+              "pattern": "\\d{3}|\\d{3}\\.\\d+|[12456]--\\d+|3[ABC]?--\\d+"
+            }
+          }
+        },
         "Book": {
           "properties": {
             "title": {
               "type": "string"
             },
-            "pages": {
-              "type": "integer",
-              "minimum": 0
-            },
-            "genre": {
-              "enum": [
-                "celebrity nonsense",
-                "military tat",
-                "other"
-              ]
-            },
+            "other": {"$ref": "#/definitions/identifiers"},
+          "genre": {
+            "enum": [
+              "celebrity-nonsense",
+              "military-tat",
+              "other"
+            ]
+          },
             "author": {
               "$ref": "#/definitions/Author"
             }
           }
-        },
+        }
+      },
+      "properties":{
+        "Book": {"$ref":  "#/definitions/Book"},
         "Author": {
           "properties": {
             "name": {
@@ -77,23 +89,20 @@ e.g. models is:
 
     class Book(models.Model):
 
-        title = models.CharField(max_length=255,)
-        pages = models.IntegerField(validators=[validators.MinValueValidator(0)],)
-        genre = models.CharField(
-            max_length=25,
-            choices=[
-                ("celebrity nonsense", "celebrity nonsense"),
-                ("military tat", "military tat"),
-                ("other", "other"),
-            ],
-        )
-        author = models.ForeignKey("Author", on_delete=models.CASCADE,)
+        title = models.CharField(null=True, max_length=255)
+        other = JSONField(validators=[JSONSchemaValidator({'$ref': '#/definitions/identifiers'}, DEFINITIONS)])
+        genre = models.CharField(null=True, max_length=25, choices=[
+            ('celebrity_nonsense', 'celebrity nonsense'),
+            ('military-tat', 'military-tat'),
+            ('other', 'other')
+        ])
+        author = models.ForeignKey("Author", null=True, on_delete=models.CASCADE)
 
 
     class Author(models.Model):
 
-        name = models.CharField(max_length=255,)
-        date_of_birth = models.DateField()
+        name = models.CharField(null=True, max_length=255)
+        date_of_birth = models.DateField(null=True)
 
 
 This is intended to be:

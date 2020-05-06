@@ -1,21 +1,30 @@
 {
   "definitions": {
+    "identifiers": {
+      "properties": {
+        "ISBN": {
+          "type": "string",
+          "pattern": "[0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*[-| ][0-9]*"
+        },
+        "Dewey Decimal Classification": {
+          "type": "string",
+          "pattern": "\\d{3}|\\d{3}\\.\\d+|[12456]--\\d+|3[ABC]?--\\d+"
+        }
+      }
+    },
     "Book": {
       "properties": {
         "title": {
           "type": "string"
         },
-        "pages": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "genre": {
-          "enum": [
-            "celebrity autobiographies",
-            "military-history",
-            "other"
-          ]
-        },
+        "other": {"$ref": "#/definitions/identifiers"},
+      "genre": {
+        "enum": [
+          "celebrity autobiographies",
+          "military-history",
+          "other"
+        ]
+      },
         "author": {
           "$ref": "#/definitions/Author"
         }
@@ -23,6 +32,7 @@
     }
   },
   "properties":{
+    "Book": {"$ref":  "#/definitions/Book"},
     "Author": {
       "properties": {
         "name": {
@@ -33,7 +43,6 @@
           "format": "date"
         }
       }
-    },
-    "Book": {"$ref":  "#/definitions/Book"}
+    }
   }
 }
