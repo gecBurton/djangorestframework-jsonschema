@@ -1,4 +1,7 @@
-"""This
+"""This is where the Model are defined.
+
+The __init__ of the core Model object has the objects values injected into it
+The Model's properties are used by jinja to populate the .py templates
 """
 from __future__ import annotations
 from json import load
