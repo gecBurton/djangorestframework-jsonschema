@@ -35,6 +35,8 @@ class Model:
     @classmethod
     def factory(cls, schema) -> List[Model]:
         "factory for parsing json schema of many models"
+
+        #  this needs to come back but has got out of date!
         #  validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
         ret = []
         for model_name, fields in build_models(extract_relationships(schema)).items():

@@ -38,13 +38,13 @@ of ``example_app``
               "type": "string"
             },
             "other": {"$ref": "#/definitions/identifiers"},
-          "genre": {
-            "enum": [
-              "celebrity-nonsense",
-              "military-tat",
-              "other"
-            ]
-          },
+            "genre": {
+              "enum": [
+                "celebrity-nonsense",
+                "military-tat",
+                "other"
+              ]
+            },
             "author": {
               "$ref": "#/definitions/Author"
             }
@@ -170,14 +170,15 @@ Documentation
 -------------
 
 
-Models are objects at the top level of the ``definitions`` of the
+Models are objects at the root level of the ``properties`` of the
 ``schema.json``.
 
-A model's fields are its top level ``properties``, the django field
+A model's fields are its root level ``properties``, the django field
 types and validation are inferred from the jsonschema property.
 
-Nullability is inferred by the usef of ``"type": ["null", ".."]``.
-
+Any further objects maybe defined in the root ``definitions`` but will
+not be used unless they are referenced from the models defined in the
+properties.
 
 Simple-Fields
 #############
