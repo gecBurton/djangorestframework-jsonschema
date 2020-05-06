@@ -20,43 +20,32 @@ with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
 
 
 class Model:
-    @classmethod
-    def is_relation(cls, model_name, field_name, schema) -> bool:
-        """helper method to determine whether a field is pointing to another model"""
-        sch = schema["properties"][model_name]["properties"][field_name]
-        if "$ref" in sch:
-            ref = sch["$ref"].split("/")[-1]
-            if ref in schema["properties"]:
-                return True
-        if sch.get("items"):
-            if sch.get("type") == "array" and "$ref" in sch.get("items"):
-                ref = sch["items"]["$ref"].split("/")[-1]
-                if ref in schema["properties"]:
-                    return True
-        return False
 
     @classmethod
-    def factory(cls, schema) -> List[Model]:
+    def factory(cls, schema: Dict) -> List[Model]:
         "factory for parsing json schema of many models"
 
         #  this needs to come back but has got out of date!
         #  validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
-        ret = []
-        for model_name, fields in build_models(extract_relationships(schema)).items():
-            ret.append(Model(model_name, schema, *fields))
-        return ret
+        return [
+            Model(model_name, schema, *fields)
+            for model_name, fields in
+            build_models(extract_relationships(schema)).items()
+        ]
 
-    def __init__(self, __name, schema, *relations: Relationship):
+    def __init__(self, __name: str, schema: Dict, *relations: Relationship):
         """build the django-like model from jsonschema"""
         self.name = __name
         _schema = schema["properties"][self.name]
         _schema.update(schema.get("definitions", {}).get(self.name, {}))
         properties = _schema.get("properties", {})
         required = _schema.get("required", [])
+
+        relation_names = [relation.name for relation in relations]
         self.fields = [
             build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
-            if not self.is_relation(self.name, field_name, schema)
+            if field_name not in relation_names
         ]
 
         self.relations = relations

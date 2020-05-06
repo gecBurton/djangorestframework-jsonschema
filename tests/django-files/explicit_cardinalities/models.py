@@ -24,11 +24,13 @@ class B(models.Model):
 
 class C(models.Model):
 
+    b = JSONField(validators=[JSONSchemaValidator({'type': 'array', 'items': {'$ref': '#/definitions/B'}}, DEFINITIONS)])
     d = models.ForeignKey("D", null=True, on_delete=models.CASCADE)
 
 
 class D(models.Model):
 
+    c = JSONField(validators=[JSONSchemaValidator({'type': 'array', 'items': {'$ref': '#/definitions/C'}}, DEFINITIONS)])
     e = models.ManyToManyField("E", null=True)
 
 
