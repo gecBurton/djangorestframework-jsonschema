@@ -86,23 +86,10 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
 
     example result
     >>> {
-    >>>     "Address": {},
-    >>>     "Doctor": {},
-    >>>     "Patient": {
-    >>>         "address": {
-    >>>             "on_delete": "models.CASCADE",
-    >>>             "to": "Address",
-    >>>             "type": "ForeignKey",
-    >>>         },
-    >>>         "doctor": {
-    >>>             "null": True,
-    >>>             "on_delete": "models.CASCADE",
-    >>>             "to": "Doctor",
-    >>>             "type": "ForeignKey",
-    >>>         },
-    >>>         "prescription": {"to": "Prescription", "type": "ManyToManyField"},
-    >>>     },
-    >>>     "Prescription": {},
+    >>>     "Address": [],
+    >>>     "Doctor": [],
+    >>>     "Patient": "Field<{address, doctor, prescription}>",
+    >>>     "Prescription": [],
     >>> }
     """
     models = defaultdict(list)
