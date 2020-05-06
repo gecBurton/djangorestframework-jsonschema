@@ -48,7 +48,7 @@ def test_django_files(model, asset_name, asset_function):
         assert asset_function(models=Model.factory(schema)) == model_file
     except FileNotFoundError:
         with open(
-            path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py"), "w"
+            path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py"),
+            "w",
         ) as f:
-            f.write(asset_function(models=Model.factory(schema)) )
-
+            f.write(asset_function(models=Model.factory(schema)))

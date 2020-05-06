@@ -4,7 +4,7 @@ from __future__ import annotations
 from json import load
 from typing import List, Dict
 
-from jsonschema import validate  # type: ignore
+# from jsonschema import validate  # type: ignore
 
 from .fields import build_field, Relationship
 
@@ -35,7 +35,7 @@ class Model:
     @classmethod
     def factory(cls, schema) -> List[Model]:
         "factory for parsing json schema of many models"
-        #validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
+        #  validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
         ret = []
         for model_name, fields in build_models(extract_relationships(schema)).items():
             ret.append(Model(model_name, schema, *fields))

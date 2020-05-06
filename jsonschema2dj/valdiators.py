@@ -15,7 +15,7 @@ class JSONSchemaValidator(validators.BaseValidator):
     """Bespoke jsonschema validator to be used with the JSONField
     """
 
-    def __init__(self, schema: Dict, definitions: Union[str, Dict] = None):
+    def __init__(self, schema: Dict, definitions: Union[str, Dict]=None):
         self.definitions = definitions
         self.schema = schema
 
@@ -29,7 +29,6 @@ class JSONSchemaValidator(validators.BaseValidator):
                 definitions = self.definitions
             return Draft7Validator(dict(definitions=definitions, **self.schema))
         return Draft7Validator(self.schema)
-
 
     def __call__(self, payload):
         errors = list(self.validator.iter_errors(payload))

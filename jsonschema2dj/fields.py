@@ -174,7 +174,6 @@ def build_string_field(
                 max_length=255,
             )
 
-
         return Field(
             formats.get(sch["format"], "CharField"),
             name,
