@@ -14,7 +14,7 @@ DEFINITIONS = str(pathlib.Path(__file__).parent.absolute() / "schema.json")
 class Book(models.Model):
 
     title = models.CharField(null=True, max_length=255)
-    other = JSONField(validators=[JSONSchemaValidator({'$ref': '#/definitions/identifiers'}, DEFINITIONS)])
+    other = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/identifiers'}, DEFINITIONS)])
     genre = models.CharField(null=True, max_length=25, choices=[('celebrity_autobiographies', 'celebrity autobiographies'), ('military-history', 'military-history'), ('other', 'other')])
     author = models.ForeignKey("Author", null=True, on_delete=models.CASCADE)
 

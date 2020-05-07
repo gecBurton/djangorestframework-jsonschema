@@ -40,7 +40,7 @@ class ResponsibleClinician(models.Model):
 
     name = models.CharField(null=True, max_length=255)
     email = models.EmailField(null=True)
-    address = JSONField(validators=[JSONSchemaValidator({'$ref': '#/definitions/address'}, DEFINITIONS)])
+    address = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/address'}, DEFINITIONS)])
 
 
 class Plate(models.Model):

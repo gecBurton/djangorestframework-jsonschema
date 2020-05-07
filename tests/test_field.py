@@ -48,7 +48,7 @@ results = {
     "format-uuid": {"type": "UUIDField", "default": "uuid.uuid4"},
     "id": {"type": "UUIDField", "default": "uuid.uuid4", "primary_key": True},
     "json-schema": {
-        "type": "JSONField",
+        "null": True,
         "schema": {
             "properties": {
                 "a": {"type": "boolean"},
@@ -58,6 +58,7 @@ results = {
             "required": ["a", "b"],
             "type": "object",
         },
+        "type":"JSONField"
     },
 }
 

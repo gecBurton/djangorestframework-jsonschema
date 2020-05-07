@@ -91,7 +91,15 @@ class JSONField(Field):
     def jinja(self):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
-        return f'{name} = JSONField({verbose_name}validators=[JSONSchemaValidator({self.options["schema"]}, DEFINITIONS)])'
+
+        options = dict(default = "list" if self.options["schema"].get("type") == "array" else self.options.get("default", "dict"))
+        if self.options.get("null", False):
+            options["null"] = True
+            #options["blank"] = True
+
+        options = ", ".join(f"{k} = {v}" for k, v in options.items())
+
+        return f'{name} = JSONField({verbose_name}{options}, validators=[JSONSchemaValidator({self.options["schema"]}, DEFINITIONS)])'
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -294,4 +302,4 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             help_text=description,
         )
 
-    return JSONField(name, schema=schema, default=default, help_text=description,)
+    return JSONField(name, null=null, schema=schema, default=default, help_text=description,)

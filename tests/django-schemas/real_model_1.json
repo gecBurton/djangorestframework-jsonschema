@@ -282,6 +282,7 @@
         "name": "address",
         "type": "JSONField",
         "options": {
+          "null": true,
           "schema": {
             "$ref": "#/definitions/address"
           }

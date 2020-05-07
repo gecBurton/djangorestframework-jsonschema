@@ -6,6 +6,7 @@
         "name": "field_1",
         "type": "JSONField",
         "options": {
+          "null": true,
           "schema": {
             "$ref": "#/definitions/field"
           }
