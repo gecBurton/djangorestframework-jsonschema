@@ -67,7 +67,7 @@ of ``example_app``
       }
     }
 
-and the running is run
+then run
 
 .. code:: bash
 
