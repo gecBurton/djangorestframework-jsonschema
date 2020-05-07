@@ -13,7 +13,7 @@ example
 #######
 
 
-If the following schema is saved as ``schema.json`` and placed in the root
+Save the following schema as ``schema.json`` and place in the root
 of ``example_app``
 
 .. code:: json
@@ -74,7 +74,7 @@ then run
     $ python manage.py jsonschema2dj example_app
 
 
-it will produce:
+and the following are produced:
 
 - models.py
 - views.py
