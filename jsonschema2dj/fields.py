@@ -247,10 +247,6 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
     null = null or name not in required
 
     if name == "id":
-        if schema.get("type") != "string" and schema.get("format") != "uuid":
-            return JSONField(
-                name, schema=schema
-            )  # "field with name id must be a UUID", sch)
         return Field(
             "UUIDField",
             name,
