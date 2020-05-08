@@ -138,6 +138,9 @@ def build_string_field(
     )
     validators = {}
 
+
+
+
     max_length = sch.get("maxLength", 255)
     min_length = sch.get("minLength")
 
@@ -182,6 +185,9 @@ def build_string_field(
                 default=default,
                 help_text=description,
             )
+
+        if sch["format"] == "uuid":
+            default = default or "uuid.uuid4"
 
         return Field(
             formats.get(sch["format"], "CharField"),
@@ -252,7 +258,6 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
     if name.upper() == "ID":
         primary_key = True
         null = False
-        default = default or "uuid.uuid4"
 
     if field_type == "string":
         return build_string_field(name, schema, null, primary_key, default, description)
