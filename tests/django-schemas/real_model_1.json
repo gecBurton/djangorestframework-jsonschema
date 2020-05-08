@@ -16,7 +16,7 @@
         "name": "well",
         "type": "CharField",
         "options": {
-          "help_text": "\"\"\"physical location of the well on the plate\"\"\"",
+          "help_text": "'physical\\n location of the\\n well on the plate'",
           "max_length": 255,
           "validators": {
             "RegexValidator": "^[A-H](0[1-9]|1[1-2])$"
@@ -190,7 +190,6 @@
         "name": "GenOMICC",
         "type": "CharField",
         "options": {
-          "primary_key": true,
           "max_length": 255,
           "validators": {
             "RegexValidator": "^.{4,32}$"
@@ -298,7 +297,6 @@
         "name": "barcode",
         "type": "CharField",
         "options": {
-          "primary_key": true,
           "max_length": 255,
           "validators": {
             "RegexValidator": "^LP\\d{7}-DNA$"

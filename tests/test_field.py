@@ -9,7 +9,7 @@ with open("tests/single_fields.json") as f:
 
 
 results = {
-    "basic": {"type": "CharField", "max_length": 255, "primary_key": True},
+    "basic": {"type": "CharField", "max_length": 255},
     "length": {
         "type": "CharField",
         "max_length": 3,

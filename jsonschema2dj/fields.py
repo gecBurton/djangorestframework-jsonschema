@@ -195,15 +195,11 @@ def build_string_field(
     return Field("CharField", name, **options)
 
 
-def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
+def rationalize_type(sch: Dict) -> Tuple[str, bool]:
     """the type is problematic especially with regards to enums and null"""
     null = False
-    default = sch.get("default")
-    description = sch.get("description")
-    if description:
-        description = f'"""{description}"""'
 
-    if sch.get("type"):
+    if "type" in sch:
         _type = sch.get("type")
         if isinstance(_type, list):
             if len(sch["type"]) == 0 or len(_type) > 2 or len(_type) == 2 and "null" not in _type:
@@ -215,7 +211,7 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
             else:
                 null = True
                 _type = next(x for x in _type if x != "null")
-        return _type, sch, null, default, description
+        return _type, null
 
     if sch.get("enum"):
         enums = sch.get("enum", [])
@@ -231,37 +227,34 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
             raise ValueError(
                 "all values in an enum must be either all strings or all integers"
             )
-        return _type, sch, null, default, description
-
-    if "$ref" in sch or "const" in sch or "properties" in sch:
-        return "object", sch, null, default, description
+        return _type, null
 
     if "items" in sch:
-        return "items", sch, null, default, description
+        return "items", null
 
-    raise ValueError(
-        "either the type must be specified or it must be an enum or a $ref, const, items, or properties",
-        sch,
-    )
+
+    return "object", null
 
 
 def build_field(name: str, schema: Dict, required: List) -> Field:
     """this is the entry point for the module"""
 
-    primary_key = (name == required[0]) if required else False
+    primary_key = False
 
-    field_type, schema, null, default, description = rationalize_type(schema)
+    field_type, null = rationalize_type(schema)
+
+    default = schema.get("default")
+
+    description = schema.get("description")
+    if description:
+        description = repr(description).replace('\n', '\\n')
 
     null = null or name not in required
 
-    if name == "id":
-        return Field(
-            "UUIDField",
-            name,
-            default=default or "uuid.uuid4",
-            primary_key=True,
-            help_text=description,
-        )
+    if name.upper() == "ID":
+        primary_key = True
+        null = False
+        default = default or "uuid.uuid4"
 
     if field_type == "string":
         return build_string_field(name, schema, null, primary_key, default, description)
