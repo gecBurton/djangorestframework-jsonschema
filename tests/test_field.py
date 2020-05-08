@@ -58,7 +58,7 @@ results = {
             "required": ["a", "b"],
             "type": "object",
         },
-        "type":"JSONField"
+        "type": "JSONField"
     },
 }
 

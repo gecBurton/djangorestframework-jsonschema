@@ -113,7 +113,7 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
     # we loop through all models, extracting singlular and multiple relationships
     for model, (singular, multiples) in relationships.items():
         # we assign an empty list of fields
-        models[model]: List[Field]  = []
+        models[model]: List[Field] = []
         # for al singular relations...
         for single, (single_name, null) in singular.items():
             # we fetch the other side of the relationship

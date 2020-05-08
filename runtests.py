@@ -15,7 +15,7 @@ PYTEST_ARGS = {
 FLAKE8_ARGS = [
     "jsonschema2dj",
     "tests",
-    "--ignore=E501",
+    "--ignore=E501,E701",  # E701 conflicts with type annotation
     "--exclude=tests/django-files/*",
 ]
 

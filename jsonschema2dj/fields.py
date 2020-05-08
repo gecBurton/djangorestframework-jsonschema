@@ -92,10 +92,9 @@ class JSONField(Field):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 
-        options = dict(default = "list" if self.options["schema"].get("type") == "array" else self.options.get("default", "dict"))
+        options = dict(default="list" if self.options["schema"].get("type") == "array" else self.options.get("default", "dict"))
         if self.options.get("null", False):
             options["null"] = True
-            #options["blank"] = True
 
         options = ", ".join(f"{k} = {v}" for k, v in options.items())
 
@@ -137,9 +136,6 @@ def build_string_field(
         null=null, primary_key=primary_key, default=default, help_text=description,
     )
     validators = {}
-
-
-
 
     max_length = sch.get("maxLength", 255)
     min_length = sch.get("minLength")
@@ -237,7 +233,6 @@ def rationalize_type(name: str, sch: Dict, required: List[str]) -> Tuple[str, bo
 
     if "items" in sch:
         return "items", null
-
 
     return "object", null
 
