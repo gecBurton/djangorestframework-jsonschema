@@ -42,13 +42,21 @@ class Model:
         required = _schema.get("required", [])
 
         relation_names = [relation.name for relation in relations]
+
+        self.read_only_fields = {}
+        for name, field_schema in properties.items():
+            if "const" in field_schema:
+                const = field_schema["const"]
+                self.read_only_fields[name] = repr(const) if isinstance(const, str) else const
+
         self.fields = [
             build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
-            if field_name not in relation_names
+            if field_name not in relation_names and field_name not in self.read_only_fields
         ]
 
         self.relations = relations
+
 
     @property
     def enum_fields(self) -> List[str]:

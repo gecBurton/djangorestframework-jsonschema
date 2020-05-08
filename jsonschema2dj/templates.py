@@ -31,11 +31,14 @@ class {{model.name}}(viewsets.ModelViewSet):
 """
 
 SERIALIZER_TEMPLATE = """from . import models
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, ReadOnlyField
 {% for model in models %}
 
 
 class {{model.name}}(ModelSerializer):
+{% for name, value in model.read_only_fields.items() %}
+    {{name}} = ReadOnlyField(default={{value}})
+{% endfor %}
     class Meta:
         model = models.{{model.name}}
         fields = "__all__"
