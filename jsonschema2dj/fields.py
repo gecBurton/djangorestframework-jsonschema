@@ -6,8 +6,8 @@ import warnings
 
 
 def stringify(key, value):
-    if key in ("RegexValidator",) and value is not None:
-        return f'"{value}"'
+    if key == "RegexValidator" and value is not None:
+        return f"'{value}'"
     if key == "validators":
         return "[" + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items()) + "]"
     return value
@@ -177,7 +177,7 @@ def build_string_field(
             return Field(
                 formats.get(sch["format"], "TextField"),
                 name,
-                null=options.get("null", False),
+                null=null,
                 primary_key=primary_key,
                 default=default,
                 help_text=description,
@@ -195,9 +195,9 @@ def build_string_field(
     return Field("CharField", name, **options)
 
 
-def rationalize_type(sch: Dict) -> Tuple[str, bool]:
+def rationalize_type(name: str, sch: Dict, required: List[str]) -> Tuple[str, bool]:
     """the type is problematic especially with regards to enums and null"""
-    null = False
+    null = name not in required
 
     if "type" in sch:
         _type = sch.get("type")
@@ -241,15 +241,13 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
 
     primary_key = False
 
-    field_type, null = rationalize_type(schema)
+    field_type, null = rationalize_type(name, schema, required)
 
     default = schema.get("default")
 
     description = schema.get("description")
     if description:
         description = repr(description).replace('\n', '\\n')
-
-    null = null or name not in required
 
     if name.upper() == "ID":
         primary_key = True
