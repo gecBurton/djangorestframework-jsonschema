@@ -111,23 +111,6 @@ def build_value_validators(sch: Dict) -> Dict:
     return validators
 
 
-def build_choices(name: str, enums) -> Field:
-    "helper function for enums to choices"
-    if all(isinstance(enum, str) for enum in enums):
-        names = [value.lower().replace(" ", "_") for value in enums]
-        return Field(
-            "CharField",
-            name,
-            max_length=max(map(len, enums)),
-            choices=list(zip(names, enums)),
-        )
-
-    if all(isinstance(enum, int) for enum in enums):
-        return Field("IntegerField", name, choices=list(zip(map(str, enums), enums)))
-
-    raise NotImplementedError("only integer or string enums are supported")
-
-
 def build_string_field(
     name: str, sch: Dict, null: bool, primary_key: bool, default: str, description: str
 ) -> Field:
@@ -149,8 +132,13 @@ def build_string_field(
         # if max_length is unknown or too large then this cant be a CharField
         return Field("TextField", name, type="TextField", **options)
 
-    if sch.get("enum"):
-        options.update(build_choices(name, sch.get("enum")).options)
+    if "enum" in sch:
+        enums = sch["enum"]
+        names = [value.lower().replace(" ", "_") for value in enums]
+        options.update(
+            max_length=max(map(len, enums)),
+            choices=list(zip(names, enums))
+        )
 
     if sch.get("pattern"):
         validators["RegexValidator"] = f"{sch.get('pattern')}"
@@ -259,6 +247,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
 
     if field_type == "integer":
         validators = build_value_validators(schema)
+
         return Field(
             "IntegerField",
             name,
