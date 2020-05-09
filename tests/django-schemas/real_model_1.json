@@ -5,6 +5,7 @@
       {
         "name": "sample_id",
         "type": "IntegerField",
+        "to": null,
         "options": {
           "validators": {
             "MinValueValidator": 1000000000,
@@ -15,6 +16,7 @@
       {
         "name": "well",
         "type": "CharField",
+        "to": null,
         "options": {
           "help_text": "'physical\\n location of the\\n well on the plate'",
           "max_length": 255,
@@ -26,6 +28,7 @@
       {
         "name": "volume_ul",
         "type": "IntegerField",
+        "to": null,
         "options": {
           "validators": {
             "MinValueValidator": 10,
@@ -36,6 +39,7 @@
       {
         "name": "concentration_ng_ul",
         "type": "DecimalField",
+        "to": null,
         "options": {
           "validators": {
             "MinValueValidator": 0,
@@ -48,6 +52,7 @@
       {
         "name": "od_260_280",
         "type": "DecimalField",
+        "to": null,
         "options": {
           "validators": {
             "MinValueValidator": 0,
@@ -60,6 +65,7 @@
       {
         "name": "cancer_sample_y_n",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 3,
           "choices": [
@@ -77,6 +83,7 @@
       {
         "name": "sample_type",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 44,
           "choices": [
@@ -166,9 +173,7 @@
             ]
           ]
         }
-      }
-    ],
-    "relations": [
+      },
       {
         "name": "plate",
         "type": "ForeignKey",
@@ -189,6 +194,7 @@
       {
         "name": "GenOMICC",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 255,
           "validators": {
@@ -199,6 +205,7 @@
       {
         "name": "sex",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 1,
           "choices": [
@@ -220,6 +227,7 @@
       {
         "name": "nhs_number",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 255,
           "validators": {
@@ -230,16 +238,19 @@
       {
         "name": "date_of_birth",
         "type": "DateField",
+        "to": null,
         "options": {}
       },
       {
         "name": "consent_taken_assertion",
         "type": "BooleanField",
+        "to": null,
         "options": {}
       },
       {
         "name": "hospital_trust",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 255
         }
@@ -247,10 +258,9 @@
       {
         "name": "date_of_identifying_eligibility_for_the_study",
         "type": "DateField",
+        "to": null,
         "options": {}
-      }
-    ],
-    "relations": [
+      },
       {
         "name": "responsible_clinician",
         "type": "ForeignKey",
@@ -265,6 +275,7 @@
       {
         "name": "name",
         "type": "CharField",
+        "to": null,
         "options": {
           "null": true,
           "max_length": 255
@@ -273,6 +284,7 @@
       {
         "name": "email",
         "type": "EmailField",
+        "to": null,
         "options": {
           "null": true
         }
@@ -280,6 +292,7 @@
       {
         "name": "address",
         "type": "JSONField",
+        "to": null,
         "options": {
           "null": true,
           "schema": {
@@ -287,8 +300,7 @@
           }
         }
       }
-    ],
-    "relations": []
+    ]
   },
   {
     "name": "Plate",
@@ -296,6 +308,7 @@
       {
         "name": "barcode",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 255,
           "validators": {
@@ -306,6 +319,7 @@
       {
         "name": "priority",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 7,
           "choices": [
@@ -320,7 +334,6 @@
           ]
         }
       }
-    ],
-    "relations": []
+    ]
   }
 ]

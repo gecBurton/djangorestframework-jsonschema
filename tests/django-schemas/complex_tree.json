@@ -5,6 +5,7 @@
       {
         "name": "postcode",
         "type": "CharField",
+        "to": null,
         "options": {
           "null": true,
           "max_length": 255,
@@ -16,6 +17,7 @@
       {
         "name": "type",
         "type": "CharField",
+        "to": null,
         "options": {
           "null": true,
           "max_length": 7,
@@ -35,8 +37,7 @@
           ]
         }
       }
-    ],
-    "relations": []
+    ]
   },
   {
     "name": "Doctor",
@@ -44,13 +45,12 @@
       {
         "name": "name",
         "type": "CharField",
+        "to": null,
         "options": {
           "null": true,
           "max_length": 255
         }
-      }
-    ],
-    "relations": [
+      },
       {
         "name": "hospital",
         "type": "ForeignKey",
@@ -75,6 +75,7 @@
       {
         "name": "nhs_number",
         "type": "CharField",
+        "to": null,
         "options": {
           "null": true,
           "max_length": 255,
@@ -83,7 +84,6 @@
           }
         }
       }
-    ],
-    "relations": []
+    ]
   }
 ]

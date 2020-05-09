@@ -5,6 +5,7 @@
       {
         "name": "field_1",
         "type": "JSONField",
+        "to": null,
         "options": {
           "null": true,
           "schema": {
@@ -15,12 +16,12 @@
       {
         "name": "field_2",
         "type": "IntegerField",
+        "to": null,
         "options": {
           "null": true,
           "validators": {}
         }
       }
-    ],
-    "relations": []
+    ]
   }
 ]

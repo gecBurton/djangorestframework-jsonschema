@@ -150,7 +150,7 @@ def build_string_field(
         options.update(
             primary_key=True,
             null=False,
-            default = default or "uuid.uuid4"
+            default=default or "uuid.uuid4"
         )
 
     if sch.get("format"):

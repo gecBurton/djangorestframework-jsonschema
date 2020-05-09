@@ -53,10 +53,7 @@ class Model:
             build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
             if field_name not in relation_names and field_name not in self.read_only_fields
-        ]
-
-        self.relations = relations
-
+        ] + list(relations)
 
     @property
     def enum_fields(self) -> List[str]:
@@ -79,9 +76,7 @@ class Model:
         A helper method of jinja model template
         """
 
-        return [field.jinja for field in self.fields] + sorted(
-            {field.jinja for field in self.relations}
-        )
+        return [field.jinja for field in self.fields]
 
     @property
     def filter_fields(self) -> Dict[str, List[str]]:

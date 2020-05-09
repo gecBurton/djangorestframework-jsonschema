@@ -5,14 +5,16 @@
       {
         "name": "id",
         "type": "UUIDField",
+        "to": null,
         "options": {
-          "default": "uuid.uuid4",
-          "primary_key": true
+          "primary_key": true,
+          "default": "uuid.uuid4"
         }
       },
       {
         "name": "name",
         "type": "CharField",
+        "to": null,
         "options": {
           "max_length": 255
         }
@@ -20,6 +22,7 @@
       {
         "name": "age",
         "type": "IntegerField",
+        "to": null,
         "options": {
           "validators": {
             "MinValueValidator": 0
@@ -29,6 +32,7 @@
       {
         "name": "sex",
         "type": "CharField",
+        "to": null,
         "options": {
           "null": true,
           "max_length": 6,
@@ -44,7 +48,6 @@
           ]
         }
       }
-    ],
-    "relations": []
+    ]
   }
 ]

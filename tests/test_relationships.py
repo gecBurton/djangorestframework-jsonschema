@@ -49,10 +49,7 @@ SCHEMAS = [
         {"A": {"b": {"$ref": "#/definitions/B"}}, "B": {"a": {"items": {"$ref": "#/definitions/A"}}}},
         {'A': ({'B': ('b', True)}, {}), 'B': ({}, {'A': ('a', True)})},
         {
-            'A': [
-                {'null': True, 'to': 'B', 'type': 'ForeignKey'},
-                {'null': True, 'to': 'B', 'type': 'ForeignKey'}
-            ],
+            'A': [{'null': True, 'to': 'B', 'type': 'ForeignKey'}],
             'B': []
         }
     ),
@@ -62,10 +59,7 @@ SCHEMAS = [
         {'A': ({}, {'B': ('b', True)}), 'B': ({'A': ('a', True)}, {})},
         {
             'A': [],
-            'B':[
-                {'null': True, 'to': 'A', 'type': 'ForeignKey'},
-                {'null': True, 'to': 'A', 'type': 'ForeignKey'}
-            ]
+            'B':[{'null': True, 'to': 'A', 'type': 'ForeignKey'}]
         }
     ),
     (
@@ -79,10 +73,20 @@ SCHEMAS = [
     ),
 ]
 
-@pytest.mark.parametrize("name, schema, result, q", SCHEMAS)
-def test_relationships(name, schema, result, q):
-    full_schema = {"properties": {model: {"properties":fields} for model, fields in schema.items()}}
-    relationships = extract_relationships(full_schema)
-    assert extract_relationships(full_schema) == result
-    assert tuple_to_list(build_models(relationships)) == q
 
+@pytest.mark.parametrize("name, reduced_schema, expected_relationships, expected_models", SCHEMAS)
+def test_relationships(name, reduced_schema, expected_relationships, expected_models):
+    schema = {
+        "properties": {
+            model: {
+                "properties": fields
+            }
+            for model, fields in reduced_schema.items()
+        }
+    }
+
+    relationships = extract_relationships(schema)
+
+    assert extract_relationships(schema) == expected_relationships
+
+    assert tuple_to_list(build_models(relationships)) == expected_models

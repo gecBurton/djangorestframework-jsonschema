@@ -130,16 +130,11 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
         # as above but....
         for many, (many_name, null) in multiples.items():
             related_single, related_many = relationships[many]
-            if model in related_single:
-                single_name, _ = related_single[model]
-                # notice that the order is swapped here
-                models[many].append(
-                    Relationship("ForeignKey", single_name, model, null,)
-                )
-
-            else:
+            if model not in related_single:
                 models[model].append(
                     Relationship("ManyToManyField", many_name, many, null,)
                 )
+            # ... no opposite case, if its already as a single field then this
+            # many-to-one relationship wil get picked up anyway
 
     return models

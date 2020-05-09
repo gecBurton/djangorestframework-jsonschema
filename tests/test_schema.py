@@ -41,17 +41,10 @@ def test_django_schema(json_file, django_file):
                 dict(
                     name=field.name,
                     type=field.type,
+                    to=getattr(field, "to", None),
                     options=tuple_to_list(field.options)
                 ) for field in model.fields
-            ],
-            relations = [
-                dict(
-                    name=field.name,
-                    type=field.type,
-                    options=tuple_to_list(field.options),
-                    to=field.to
-                ) for field in model.relations
-            ],
+            ]
         )
         expected.append(expected_model)
 

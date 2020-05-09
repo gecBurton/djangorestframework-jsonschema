@@ -1,8 +1,7 @@
 [
   {
     "name": "A",
-    "fields": [],
-    "relations": [
+    "fields": [
       {
         "name": "b",
         "type": "OneToOneField",
@@ -15,8 +14,7 @@
   },
   {
     "name": "B",
-    "fields": [],
-    "relations": [
+    "fields": [
       {
         "name": "a",
         "type": "OneToOneField",
@@ -37,8 +35,7 @@
   },
   {
     "name": "C",
-    "fields": [],
-    "relations": [
+    "fields": [
       {
         "name": "d",
         "type": "ForeignKey",
@@ -51,8 +48,7 @@
   },
   {
     "name": "D",
-    "fields": [],
-    "relations": [
+    "fields": [
       {
         "name": "e",
         "type": "ManyToManyField",
@@ -65,7 +61,6 @@
   },
   {
     "name": "E",
-    "fields": [],
-    "relations": []
+    "fields": []
   }
 ]
