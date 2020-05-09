@@ -1,70 +1,88 @@
+import pytest
+
 from jsonschema2dj.relationships import extract_relationships, build_models
 from tests.test_schema import tuple_to_list
 
 
-def test_extract_relationships():
-    schema = {
-        "properties": {
-            "Address": {"$ref": "#definitions/Address"},
-            "Doctor": {"properties": {}},
-            "Prescription": {"$ref": "#definitions/Prescription"},
-            "Patient": {"$ref": "#definitions/Patient"},
-        },
-        "definitions": {
-            "Address": {"properties": {}},
-            "Prescription": {"properties": {}},
-            "Patient": {
-                "properties": {
-                    "doctor": {
-                        "type": ["object", "null"],
-                        "$ref": "#/definitions/Doctor",
-                    },
-                    "address": {"type": "object", "$ref": "#/definitions/Address"},
-                    "prescription": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "$ref": "#/definitions/Prescription",
-                        },
-                    },
-                }
-            },
-        },
-    }
+SCHEMAS = [
+    (
+        "None-to-None",
+        {"A": {}, "B": {}},
+        {'A': ({}, {}), 'B': ({}, {})},
+        {'A': [], 'B': []}
+    ),
+    (
+        "None-to-One",
+        {"A": {}, "B": {"a": {"$ref": "#/definitions/A"}}},
+        {'A': ({}, {}), 'B': ({'A': ('a', True)}, {})},
+        {'A': [], 'B': [{'null': True, 'to': 'A', 'type': 'ForeignKey'}]}
+    ),
+    (
+        "One-to-None",
+        {"A": {"b": {"$ref": "#/definitions/B"}}, "B": {}},
+        {'A': ({'B': ('b', True)}, {}), 'B': ({}, {})},
+        {'A': [{'null': True, 'to': 'B', 'type': 'ForeignKey'}], 'B': []}
+    ),
+    (
+        "None-to-Many",
+        {"A": {}, "B": {"a": {"items": {"$ref": "#/definitions/A"}}}},
+        {'A': ({}, {}), 'B': ({}, {'A': ('a', True)})},
+        {'A': [], 'B': [{'null': True, 'to': 'A', 'type': 'ManyToManyField'}]}
+    ),
+    (
+        "Many-to-None",
+        {"A": {"b": {"items": {"$ref": "#/definitions/B"}}}, "B": {}},
+        {'A': ({}, {'B': ('b', True)}), 'B': ({}, {})},
+        {'A': [{'null': True, 'to': 'B', 'type': 'ManyToManyField'}], 'B': []}
+    ),
+    (
+        "One-to-One",
+        {"A": {"b": {"$ref": "#/definitions/B"}}, "B": {"a": {"$ref": "#/definitions/A"}}},
+        {'A': ({'B': ('b', True)}, {}), 'B': ({'A': ('a', True)}, {})},
+        {
+            'A': [{'null': True, 'to': 'B', 'type': 'OneToOneField'}],
+            'B': [{'null': True, 'to': 'A', 'type': 'OneToOneField'}]
+        }
+    ),
+    (
+        "One-to-Many",
+        {"A": {"b": {"$ref": "#/definitions/B"}}, "B": {"a": {"items": {"$ref": "#/definitions/A"}}}},
+        {'A': ({'B': ('b', True)}, {}), 'B': ({}, {'A': ('a', True)})},
+        {
+            'A': [
+                {'null': True, 'to': 'B', 'type': 'ForeignKey'},
+                {'null': True, 'to': 'B', 'type': 'ForeignKey'}
+            ],
+            'B': []
+        }
+    ),
+    (
+        "Many-to-One",
+        {"A": {"b": {"items": {"$ref": "#/definitions/B"}}}, "B": {"a": {"$ref": "#/definitions/A"}}},
+        {'A': ({}, {'B': ('b', True)}), 'B': ({'A': ('a', True)}, {})},
+        {
+            'A': [],
+            'B':[
+                {'null': True, 'to': 'A', 'type': 'ForeignKey'},
+                {'null': True, 'to': 'A', 'type': 'ForeignKey'}
+            ]
+        }
+    ),
+    (
+        "Many-to-Many",
+        {"A": {"b": {"items": {"$ref": "#/definitions/B"}}}, "B": {"a": {"items": {"$ref": "#/definitions/A"}}}},
+        {'A': ({}, {'B': ('b', True)}), 'B': ({}, {'A': ('a', True)})},
+        {
+            'A': [{'null': True, 'to': 'B', 'type': 'ManyToManyField'}],
+            'B': [{'null': True, 'to': 'A', 'type': 'ManyToManyField'}]
+        }
+    ),
+]
 
-    result = {
-        "Address": ({}, {}),
-        "Doctor": ({}, {}),
-        "Patient": (
-            {"Address": ("address", True), "Doctor": ("doctor", True)},
-            {"Prescription": ("prescription", True)},
-        ),
-        "Prescription": ({}, {}),
-    }
+@pytest.mark.parametrize("name, schema, result, q", SCHEMAS)
+def test_relationships(name, schema, result, q):
+    full_schema = {"properties": {model: {"properties":fields} for model, fields in schema.items()}}
+    relationships = extract_relationships(full_schema)
+    assert extract_relationships(full_schema) == result
+    assert tuple_to_list(build_models(relationships)) == q
 
-    assert extract_relationships(schema) == result
-
-
-def test_build_models():
-    relationships = {
-        "Patient": (
-            {"Address": ("address", False), "Doctor": ("doctor", True)},
-            {"Prescription": ("prescription", False)},
-        ),
-        "Address": ({}, {}),
-        "Doctor": ({}, {}),
-        "Prescription": ({}, {}),
-    }
-
-    result = {
-        "Address": [],
-        "Doctor": [],
-        "Patient": [
-            {"to": "Address", "type": "ForeignKey"},
-            {"null": True, "to": "Doctor", "type": "ForeignKey"},
-            {"to": "Prescription", "type": "ManyToManyField"},
-        ],
-        "Prescription": [],
-    }
-
-    assert tuple_to_list(build_models(relationships)) == result
