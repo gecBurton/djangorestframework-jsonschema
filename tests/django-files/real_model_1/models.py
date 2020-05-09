@@ -14,7 +14,7 @@ DEFINITIONS = str(pathlib.Path(__file__).parent.absolute() / "schema.json")
 class Manifest(models.Model):
 
     sample_id = models.IntegerField(validators=[validators.MinValueValidator(1000000000), validators.MaxValueValidator(2147483647)])
-    well = models.CharField(help_text="""physical location of the well on the plate""", max_length=255, validators=[validators.RegexValidator("^[A-H](0[1-9]|1[1-2])$")])
+    well = models.CharField(help_text='physical\n location of the\n well on the plate', max_length=255, validators=[validators.RegexValidator('^[A-H](0[1-9]|1[1-2])$')])
     volume_ul = models.IntegerField(validators=[validators.MinValueValidator(10), validators.MaxValueValidator(700)])
     concentration_ng_ul = models.DecimalField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(9999.99)], max_digits=10, decimal_places=5)
     od_260_280 = models.DecimalField(validators=[validators.MinValueValidator(0), validators.MaxValueValidator(10)], max_digits=10, decimal_places=5)
@@ -26,9 +26,9 @@ class Manifest(models.Model):
 
 class Redcap(models.Model):
 
-    GenOMICC = models.CharField(primary_key=True, max_length=255, validators=[validators.RegexValidator("^.{4,32}$")])
+    GenOMICC = models.CharField(max_length=255, validators=[validators.RegexValidator('^.{4,32}$')])
     sex = models.CharField(max_length=1, choices=[('m', 'm'), ('f', 'f'), ('u', 'u')])
-    nhs_number = models.CharField(max_length=255, validators=[validators.RegexValidator("^\d{3} \d{3} \d{4}$")])
+    nhs_number = models.CharField(max_length=255, validators=[validators.RegexValidator('^\d{3} \d{3} \d{4}$')])
     date_of_birth = models.DateField()
     consent_taken_assertion = models.BooleanField()
     hospital_trust = models.CharField(max_length=255)
@@ -45,5 +45,5 @@ class ResponsibleClinician(models.Model):
 
 class Plate(models.Model):
 
-    barcode = models.CharField(primary_key=True, max_length=255, validators=[validators.RegexValidator("^LP\d{7}-DNA$")])
+    barcode = models.CharField(max_length=255, validators=[validators.RegexValidator('^LP\d{7}-DNA$')])
     priority = models.CharField(max_length=7, choices=[('routine', 'routine'), ('urgent', 'urgent')])

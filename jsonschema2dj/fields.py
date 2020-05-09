@@ -6,8 +6,8 @@ import warnings
 
 
 def stringify(key, value):
-    if key in ("RegexValidator",) and value is not None:
-        return f'"{value}"'
+    if key == "RegexValidator" and value is not None:
+        return f"'{value}'"
     if key == "validators":
         return "[" + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items()) + "]"
     return value
@@ -92,10 +92,9 @@ class JSONField(Field):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 
-        options = dict(default = "list" if self.options["schema"].get("type") == "array" else self.options.get("default", "dict"))
+        options = dict(default="list" if self.options["schema"].get("type") == "array" else self.options.get("default", "dict"))
         if self.options.get("null", False):
             options["null"] = True
-            #options["blank"] = True
 
         options = ", ".join(f"{k} = {v}" for k, v in options.items())
 
@@ -110,23 +109,6 @@ def build_value_validators(sch: Dict) -> Dict:
     if "maximum" in sch:
         validators["MaxValueValidator"] = sch["maximum"]
     return validators
-
-
-def build_choices(name: str, enums) -> Field:
-    "helper function for enums to choices"
-    if all(isinstance(enum, str) for enum in enums):
-        names = [value.lower().replace(" ", "_") for value in enums]
-        return Field(
-            "CharField",
-            name,
-            max_length=max(map(len, enums)),
-            choices=list(zip(names, enums)),
-        )
-
-    if all(isinstance(enum, int) for enum in enums):
-        return Field("IntegerField", name, choices=list(zip(map(str, enums), enums)))
-
-    raise NotImplementedError("only integer or string enums are supported")
 
 
 def build_string_field(
@@ -150,14 +132,26 @@ def build_string_field(
         # if max_length is unknown or too large then this cant be a CharField
         return Field("TextField", name, type="TextField", **options)
 
-    if sch.get("enum"):
-        options.update(build_choices(name, sch.get("enum")).options)
+    if "enum" in sch:
+        enums = sch["enum"]
+        names = [value.lower().replace(" ", "_") for value in enums]
+        options.update(
+            max_length=max(map(len, enums)),
+            choices=list(zip(names, enums))
+        )
 
     if sch.get("pattern"):
         validators["RegexValidator"] = f"{sch.get('pattern')}"
 
     if validators:
         options.update(validators=validators)
+
+    if name.upper() == "ID":
+        options.update(
+            primary_key=True,
+            null=False,
+            default = default or "uuid.uuid4"
+        )
 
     if sch.get("format"):
 
@@ -177,33 +171,25 @@ def build_string_field(
             return Field(
                 formats.get(sch["format"], "TextField"),
                 name,
-                null=options.get("null", False),
-                primary_key=primary_key,
-                default=default,
-                help_text=description,
+                **options
             )
+
+        options.pop("max_length")
 
         return Field(
             formats.get(sch["format"], "CharField"),
             name,
-            null=options.get("null", False),
-            primary_key=primary_key,
-            default=default,
-            help_text=description,
+            **options
         )
 
     return Field("CharField", name, **options)
 
 
-def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
+def rationalize_type(name: str, sch: Dict, required: List[str]) -> Tuple[str, bool]:
     """the type is problematic especially with regards to enums and null"""
-    null = False
-    default = sch.get("default")
-    description = sch.get("description")
-    if description:
-        description = f'"""{description}"""'
+    null = name not in required
 
-    if sch.get("type"):
+    if "type" in sch:
         _type = sch.get("type")
         if isinstance(_type, list):
             if len(sch["type"]) == 0 or len(_type) > 2 or len(_type) == 2 and "null" not in _type:
@@ -215,7 +201,7 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
             else:
                 null = True
                 _type = next(x for x in _type if x != "null")
-        return _type, sch, null, default, description
+        return _type, null
 
     if sch.get("enum"):
         enums = sch.get("enum", [])
@@ -231,43 +217,37 @@ def rationalize_type(sch: Dict) -> Tuple[str, Dict, bool, Any, str]:
             raise ValueError(
                 "all values in an enum must be either all strings or all integers"
             )
-        return _type, sch, null, default, description
-
-    if "$ref" in sch or "const" in sch or "properties" in sch:
-        return "object", sch, null, default, description
+        return _type, null
 
     if "items" in sch:
-        return "items", sch, null, default, description
+        return "items", null
 
-    raise ValueError(
-        "either the type must be specified or it must be an enum or a $ref, const, items, or properties",
-        sch,
-    )
+    return "object", null
 
 
 def build_field(name: str, schema: Dict, required: List) -> Field:
     """this is the entry point for the module"""
 
-    primary_key = (name == required[0]) if required else False
+    primary_key = False
 
-    field_type, schema, null, default, description = rationalize_type(schema)
+    field_type, null = rationalize_type(name, schema, required)
 
-    null = null or name not in required
+    default = schema.get("default")
 
-    if name == "id":
-        return Field(
-            "UUIDField",
-            name,
-            default=default or "uuid.uuid4",
-            primary_key=True,
-            help_text=description,
-        )
+    description = schema.get("description")
+    if description:
+        description = repr(description).replace('\n', '\\n')
+
+    if name.upper() == "ID":
+        primary_key = True
+        null = False
 
     if field_type == "string":
         return build_string_field(name, schema, null, primary_key, default, description)
 
     if field_type == "integer":
         validators = build_value_validators(schema)
+
         return Field(
             "IntegerField",
             name,
