@@ -61,9 +61,9 @@ DEFINITIONS = str(pathlib.Path(__file__).parent.absolute() / "schema.json")
 
 class {{model.name}}(models.Model):
 
-{% if model.field_str|length %}
-{% for field in model.field_str %}
-    {{field}}
+{% if model.fields|length %}
+{% for field in model.fields %}
+    {{field.jinja}}
 {% endfor %}
 {% else %}
     id = models.UUIDField(default=uuid.uuid4)

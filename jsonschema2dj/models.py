@@ -71,14 +71,6 @@ class Model:
         return [field.name for field in self.fields if field.is_text_search]
 
     @property
-    def field_str(self):
-        """lists jinja friendly fields.
-        A helper method of jinja model template
-        """
-
-        return [field.jinja for field in self.fields]
-
-    @property
     def filter_fields(self) -> Dict[str, List[str]]:
         """lists filterable fields.
         A helper method of jinja view template
