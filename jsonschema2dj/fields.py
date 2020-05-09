@@ -146,6 +146,13 @@ def build_string_field(
     if validators:
         options.update(validators=validators)
 
+    if name.upper() == "ID":
+        options.update(
+            primary_key=True,
+            null=False,
+            default = default or "uuid.uuid4"
+        )
+
     if sch.get("format"):
 
         formats = {
@@ -164,22 +171,15 @@ def build_string_field(
             return Field(
                 formats.get(sch["format"], "TextField"),
                 name,
-                null=null,
-                primary_key=primary_key,
-                default=default,
-                help_text=description,
+                **options
             )
 
-        if sch["format"] == "uuid":
-            default = default or "uuid.uuid4"
+        options.pop("max_length")
 
         return Field(
             formats.get(sch["format"], "CharField"),
             name,
-            null=options.get("null", False),
-            primary_key=primary_key,
-            default=default,
-            help_text=description,
+            **options
         )
 
     return Field("CharField", name, **options)

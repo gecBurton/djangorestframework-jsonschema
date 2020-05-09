@@ -1,6 +1,5 @@
 """core functions for converting jsonschema to djnago model relationships
 """
-from collections import defaultdict
 from typing import Dict, Tuple, List
 
 from jsonschema2dj.fields import Relationship, Field
@@ -108,13 +107,11 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
     >>> }
     """
 
-    models = defaultdict(list)  # we are going to return this
+    models: Dict[str, List[Field]] = {model: [] for model in relationships}  # we are going to return this
 
     # we loop through all models, extracting singlular and multiple relationships
     for model, (singular, multiples) in relationships.items():
-        # we assign an empty list of fields
-        models[model]: List[Field] = []
-        # for al singular relations...
+        # for all singular relations...
         for single, (single_name, null) in singular.items():
             # we fetch the other side of the relationship
             related_single, related_many = relationships[single]
@@ -145,4 +142,4 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
                     Relationship("ManyToManyField", many_name, many, null,)
                 )
 
-    return dict(models)
+    return models
