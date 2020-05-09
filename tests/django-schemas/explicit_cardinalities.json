@@ -1,95 +1,123 @@
 [
   {
-    "name": "A",
     "fields": [],
+    "name": "A",
     "relations": [
       {
         "name": "b",
-        "type": "OneToOneField",
-        "to": "B",
         "options": {
           "null": true
-        }
+        },
+        "to": "B",
+        "type": "OneToOneField"
       }
     ]
   },
   {
-    "name": "B",
     "fields": [],
+    "name": "B",
     "relations": [
       {
         "name": "a",
-        "type": "OneToOneField",
+        "options": {
+          "null": true
+        },
         "to": "A",
-        "options": {
-          "null": true
-        }
+        "type": "OneToOneField"
       },
       {
         "name": "c",
-        "type": "ForeignKey",
-        "to": "C",
         "options": {
           "null": true
-        }
+        },
+        "to": "C",
+        "type": "ForeignKey"
       },
       {
         "name": "c",
-        "type": "ForeignKey",
-        "to": "C",
         "options": {
           "null": true
-        }
+        },
+        "to": "C",
+        "type": "ForeignKey"
       }
     ]
   },
   {
+    "fields": [
+      {
+        "name": "b",
+        "options": {
+          "null": true,
+          "schema": {
+            "items": {
+              "$ref": "#/definitions/B"
+            },
+            "type": "array"
+          }
+        },
+        "type": "JSONField"
+      }
+    ],
     "name": "C",
-    "fields": [],
     "relations": [
       {
         "name": "d",
-        "type": "ForeignKey",
-        "to": "D",
         "options": {
           "null": true
-        }
+        },
+        "to": "D",
+        "type": "ForeignKey"
       },
       {
         "name": "d",
-        "type": "ForeignKey",
-        "to": "D",
         "options": {
           "null": true
-        }
+        },
+        "to": "D",
+        "type": "ForeignKey"
       }
     ]
   },
   {
+    "fields": [
+      {
+        "name": "c",
+        "options": {
+          "null": true,
+          "schema": {
+            "items": {
+              "$ref": "#/definitions/C"
+            },
+            "type": "array"
+          }
+        },
+        "type": "JSONField"
+      }
+    ],
     "name": "D",
-    "fields": [],
     "relations": [
       {
         "name": "e",
-        "type": "ManyToManyField",
-        "to": "E",
         "options": {
           "null": true
-        }
+        },
+        "to": "E",
+        "type": "ManyToManyField"
       }
     ]
   },
   {
-    "name": "E",
     "fields": [],
+    "name": "E",
     "relations": [
       {
         "name": "d",
-        "type": "ManyToManyField",
-        "to": "D",
         "options": {
           "null": true
-        }
+        },
+        "to": "D",
+        "type": "ManyToManyField"
       }
     ]
   }

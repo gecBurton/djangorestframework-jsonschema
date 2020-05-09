@@ -33,16 +33,26 @@ def test_django_schema(json_file, django_file):
     with open(django_schema_dir + django_file) as f:
         django_schema = load(f)
 
-    for model, result in zip(Model.factory(json_schema), django_schema):
-        assert model.name == result["name"]
+    expected = []
+    for model in Model.factory(json_schema):
+        expected_model = dict(
+            name=model.name,
+            fields=[
+                dict(
+                    name=field.name,
+                    type=field.type,
+                    options=tuple_to_list(field.options)
+                ) for field in model.fields
+            ],
+            relations = [
+                dict(
+                    name=field.name,
+                    type=field.type,
+                    options=tuple_to_list(field.options),
+                    to=field.to
+                ) for field in model.relations
+            ],
+        )
+        expected.append(expected_model)
 
-        for field, result_field in zip(model.fields, result["fields"]):
-            assert field.name == result_field["name"]
-            assert field.type == result_field["type"]
-            assert tuple_to_list(field.options) == result_field["options"]
-
-        for field, result_field in zip(model.relations, result["relations"]):
-            assert field.name == result_field["name"]
-            assert field.type == result_field["type"]
-            assert field.to == result_field["to"]
-            assert tuple_to_list(field.options) == result_field["options"]
+    assert expected == django_schema
