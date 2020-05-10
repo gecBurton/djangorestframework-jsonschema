@@ -9,7 +9,7 @@ from typing import List, Dict
 
 # from jsonschema import validate  # type: ignore
 
-from .fields import build_field, Relationship
+from .fields import build_field, Relationship, JSONField
 
 from pkg_resources import resource_filename
 
@@ -27,13 +27,22 @@ class Model:
 
         #  this needs to come back but has got out of date!
         #  validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
+        models = build_models(extract_relationships(schema))
+
+        x = {model: [] for model in models}
+        for model, fields in models.items():
+            for field in fields:
+                if field.type == "ForeignKey":
+                    x[field.to].append(model)
+        print(x)
+
         return [
-            Model(model_name, schema, *fields)
+            Model(model_name, schema, x[model_name], *fields)
             for model_name, fields in
-            build_models(extract_relationships(schema)).items()
+            models.items()
         ]
 
-    def __init__(self, __name: str, schema: Dict, *relations: Relationship):
+    def __init__(self, __name: str, schema: Dict, abc: List[str], *relations: Relationship):
         """build the django-like model from jsonschema"""
         self.name = __name
         _schema = schema["properties"][self.name]
@@ -49,11 +58,20 @@ class Model:
                 const = field_schema["const"]
                 self.read_only_fields[name] = repr(const) if isinstance(const, str) else const
 
-        self.fields = [
+        _fields = [
             build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
             if field_name not in relation_names and field_name not in self.read_only_fields
         ] + list(relations)
+
+        self.fields = []
+        for field in _fields:
+            if isinstance(field, JSONField) and field.to in abc:
+                    pass
+            else:
+                self.fields.append(field)
+
+
 
     @property
     def enum_fields(self) -> List[str]:

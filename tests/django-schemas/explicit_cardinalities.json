@@ -37,20 +37,6 @@
     "name": "C",
     "fields": [
       {
-        "name": "b",
-        "type": "JSONField",
-        "to": null,
-        "options": {
-          "null": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/B"
-            }
-          }
-        }
-      },
-      {
         "name": "d",
         "type": "ForeignKey",
         "to": "D",
@@ -63,20 +49,6 @@
   {
     "name": "D",
     "fields": [
-      {
-        "name": "c",
-        "type": "JSONField",
-        "to": null,
-        "options": {
-          "null": true,
-          "schema": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/C"
-            }
-          }
-        }
-      },
       {
         "name": "e",
         "type": "ManyToManyField",

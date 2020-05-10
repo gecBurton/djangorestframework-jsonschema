@@ -85,6 +85,13 @@ class Relationship(Field):
 
 class JSONField(Field):
     def __init__(self, *args, **kwargs):
+        self.schema = kwargs["schema"]
+        if "items" in self.schema:
+            self.to = self.schema["items"].get("$ref", "").split('/')[-1] or None
+            self.default = "list"
+        else:
+            self.to = self.schema.get("$ref", "").split('/')[-1] or None
+            self.default = "dict"
         super().__init__("JSONField", *args, **kwargs)
 
     @property
@@ -92,13 +99,13 @@ class JSONField(Field):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 
-        options = dict(default="list" if self.options["schema"].get("type") == "array" else self.options.get("default", "dict"))
+        options = dict(default=self.default )
         if self.options.get("null", False):
             options["null"] = True
 
         options = ", ".join(f"{k} = {v}" for k, v in options.items())
 
-        return f'{name} = JSONField({verbose_name}{options}, validators=[JSONSchemaValidator({self.options["schema"]}, DEFINITIONS)])'
+        return f'{name} = JSONField({verbose_name}{options}, validators=[JSONSchemaValidator({self.schema}, DEFINITIONS)])'
 
 
 def build_value_validators(sch: Dict) -> Dict:

@@ -5,7 +5,7 @@
       {
         "name": "field_1",
         "type": "JSONField",
-        "to": null,
+        "to": "field",
         "options": {
           "null": true,
           "schema": {

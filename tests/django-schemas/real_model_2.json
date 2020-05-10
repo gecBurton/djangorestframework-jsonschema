@@ -14,7 +14,7 @@
       {
         "name": "other",
         "type": "JSONField",
-        "to": null,
+        "to": "identifiers",
         "options": {
           "null": true,
           "schema": {

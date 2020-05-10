@@ -292,7 +292,7 @@
       {
         "name": "address",
         "type": "JSONField",
-        "to": null,
+        "to": "address",
         "options": {
           "null": true,
           "schema": {

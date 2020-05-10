@@ -40,19 +40,6 @@
         },
         "to": null,
         "type": "DateField"
-      },
-      {
-        "name": "contact",
-        "options": {
-          "null": true,
-          "schema": {
-            "items": {
-              "$ref": "#/definitions/PatientContact"
-            }
-          }
-        },
-        "to": null,
-        "type": "JSONField"
       }
     ],
     "name": "Patient"

@@ -20,4 +20,3 @@ class PatientContact(models.Model):
 class Patient(models.Model):
 
     birthDate = models.DateField(null=True)
-    contact = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'items': {'$ref': '#/definitions/PatientContact'}}, DEFINITIONS)])
