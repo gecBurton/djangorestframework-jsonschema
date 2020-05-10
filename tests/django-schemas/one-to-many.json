@@ -1,0 +1,60 @@
+[
+  {
+    "fields": [
+      {
+        "name": "gender",
+        "options": {
+          "choices": [
+            [
+              "male",
+              "male"
+            ],
+            [
+              "female",
+              "female"
+            ]
+          ],
+          "max_length": 6,
+          "null": true
+        },
+        "to": null,
+        "type": "CharField"
+      },
+      {
+        "name": "patient",
+        "options": {
+          "null": true
+        },
+        "to": "Patient",
+        "type": "ForeignKey"
+      }
+    ],
+    "name": "PatientContact"
+  },
+  {
+    "fields": [
+      {
+        "name": "birthDate",
+        "options": {
+          "null": true
+        },
+        "to": null,
+        "type": "DateField"
+      },
+      {
+        "name": "contact",
+        "options": {
+          "null": true,
+          "schema": {
+            "items": {
+              "$ref": "#/definitions/PatientContact"
+            }
+          }
+        },
+        "to": null,
+        "type": "JSONField"
+      }
+    ],
+    "name": "Patient"
+  }
+]
