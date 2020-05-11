@@ -15,13 +15,13 @@ SCHEMAS = [
         "None-to-One",
         {"A": {}, "B": {"a": {"$ref": "#/definitions/A"}}},
         {'A': ({}, {}), 'B': ({'A': ('a', True)}, {})},
-        {'A': [], 'B': [{'null': True, 'to': 'A', 'type': 'ForeignKey'}]}
+        {'A': [{'null': True, 'to': 'B', 'type': 'ReverseForeignKey'}], 'B': [{'null': True, 'to': 'A', 'type': 'ForeignKey'}]}
     ),
     (
         "One-to-None",
         {"A": {"b": {"$ref": "#/definitions/B"}}, "B": {}},
         {'A': ({'B': ('b', True)}, {}), 'B': ({}, {})},
-        {'A': [{'null': True, 'to': 'B', 'type': 'ForeignKey'}], 'B': []}
+        {'A': [{'null': True, 'to': 'B', 'type': 'ForeignKey'}], 'B': [{'null': True, 'to': 'A', 'type': 'ReverseForeignKey'}]}
     ),
     (
         "None-to-Many",
@@ -50,7 +50,7 @@ SCHEMAS = [
         {'A': ({'B': ('b', True)}, {}), 'B': ({}, {'A': ('a', True)})},
         {
             'A': [{'null': True, 'to': 'B', 'type': 'ForeignKey'}],
-            'B': []
+            'B': [{'null': True, 'to': 'A', 'type': 'ReverseForeignKey'}]
         }
     ),
     (
@@ -58,8 +58,8 @@ SCHEMAS = [
         {"A": {"b": {"items": {"$ref": "#/definitions/B"}}}, "B": {"a": {"$ref": "#/definitions/A"}}},
         {'A': ({}, {'B': ('b', True)}), 'B': ({'A': ('a', True)}, {})},
         {
-            'A': [],
-            'B':[{'null': True, 'to': 'A', 'type': 'ForeignKey'}]
+            'A': [{'null': True, 'to': 'B', 'type': 'ReverseForeignKey'}],
+            'B': [{'null': True, 'to': 'A', 'type': 'ForeignKey'}]
         }
     ),
     (

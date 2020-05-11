@@ -29,20 +29,13 @@ class Model:
         #  validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
         models = build_models(extract_relationships(schema))
 
-        x = {model: [] for model in models}
-        for model, fields in models.items():
-            for field in fields:
-                if field.type == "ForeignKey":
-                    x[field.to].append(model)
-        print(x)
-
         return [
-            Model(model_name, schema, x[model_name], *fields)
+            Model(model_name, schema, *fields)
             for model_name, fields in
             models.items()
         ]
 
-    def __init__(self, __name: str, schema: Dict, abc: List[str], *relations: Relationship):
+    def __init__(self, __name: str, schema: Dict, *relations: Relationship):
         """build the django-like model from jsonschema"""
         self.name = __name
         _schema = schema["properties"][self.name]
@@ -62,12 +55,12 @@ class Model:
             build_field(field_name, field_sch, required)
             for field_name, field_sch in properties.items()
             if field_name not in relation_names and field_name not in self.read_only_fields
-        ] + list(relations)
+        ] + [x for x in relations if x.type != "ReverseForeignKey"]
 
         self.fields = []
         for field in _fields:
-            if isinstance(field, JSONField) and field.to in abc:
-                    pass
+            if getattr(field, "to", None) in [x.to for x in relations if x.type == "ReverseForeignKey"]:
+                pass
             else:
                 self.fields.append(field)
 
