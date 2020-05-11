@@ -43,7 +43,6 @@ class Model:
         properties = _schema.get("properties", {})
         required = _schema.get("required", [])
 
-        relation_names = [relation.name for relation in relations]
 
         self.read_only_fields = {}
         for name, field_schema in properties.items():
@@ -51,18 +50,17 @@ class Model:
                 const = field_schema["const"]
                 self.read_only_fields[name] = repr(const) if isinstance(const, str) else const
 
-        _fields = [
-            build_field(field_name, field_sch, required)
-            for field_name, field_sch in properties.items()
-            if field_name not in relation_names and field_name not in self.read_only_fields
-        ] + [x for x in relations if x.type != "ReverseForeignKey"]
 
         self.fields = []
-        for field in _fields:
-            if getattr(field, "to", None) in [x.to for x in relations if x.type == "ReverseForeignKey"]:
-                pass
-            else:
-                self.fields.append(field)
+        for field_name, field_sch in properties.items():
+            if field_name not in [relation.name for relation in relations] and field_name not in self.read_only_fields:
+                field = build_field(field_name, field_sch, required)
+                if getattr(field, "to", None) not in [x.to for x in relations if x.type == "ReverseForeignKey"]:
+                    self.fields.append(field)
+
+        for x in relations:
+            if x.type != "ReverseForeignKey":
+                self.fields.append(x)
 
 
 
