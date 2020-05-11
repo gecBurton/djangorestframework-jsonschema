@@ -43,7 +43,6 @@ class Model:
         properties = _schema.get("properties", {})
         required = _schema.get("required", [])
 
-
         self.read_only_fields = {}
         for name, field_schema in properties.items():
             if "const" in field_schema:
