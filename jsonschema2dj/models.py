@@ -9,11 +9,11 @@ from typing import List, Dict
 
 # from jsonschema import validate  # type: ignore
 
-from .fields import build_field, Relationship, JSONField
+from jsonschema2dj.fields import build_field, Relationship, JSONField
 
 from pkg_resources import resource_filename
 
-from .relationships import build_models, extract_relationships
+from jsonschema2dj.relationships import build_models, extract_relationships
 
 with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
@@ -53,9 +53,15 @@ class Model:
         self.fields = []
         for field_name, field_sch in properties.items():
             if field_name not in [relation.name for relation in relations] and field_name not in self.read_only_fields:
-                field = build_field(field_name, field_sch, required)
-                if getattr(field, "to", None) not in [x.to for x in relations if x.type == "ReverseForeignKey"]:
+                if "items" in field_sch:
+                    ref = field_sch["items"]["$ref"].split('/')[-1]
+                    if ref not in [x.to for x in relations if x.type == "ReverseForeignKey"]:
+                        field = build_field(field_name, field_sch, required)
+                        self.fields.append(field)
+                else:
+                    field = build_field(field_name, field_sch, required)
                     self.fields.append(field)
+
 
         for x in relations:
             if x.type != "ReverseForeignKey":

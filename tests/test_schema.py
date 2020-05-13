@@ -43,7 +43,7 @@ def test_django_schema(file_name):
                     type=field.type,
                     to=getattr(field, "to", None),
                     options=tuple_to_list(field.options)
-                ) for field in model.fields
+                ) for field in model.fields if field
             ]
         )
         expected.append(expected_model)

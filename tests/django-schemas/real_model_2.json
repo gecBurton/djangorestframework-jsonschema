@@ -12,17 +12,6 @@
         }
       },
       {
-        "name": "other",
-        "type": "JSONField",
-        "to": "identifiers",
-        "options": {
-          "null": true,
-          "schema": {
-            "$ref": "#/definitions/identifiers"
-          }
-        }
-      },
-      {
         "name": "genre",
         "type": "CharField",
         "to": null,
@@ -51,6 +40,17 @@
         "to": "Author",
         "options": {
           "null": true
+        }
+      },
+      {
+        "name": "other",
+        "type": "JSONField",
+        "to": "identifiers",
+        "options": {
+          "null": true,
+          "schema": {
+            "$ref": "#/definitions/identifiers"
+          }
         }
       }
     ]

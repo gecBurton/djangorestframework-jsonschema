@@ -289,4 +289,5 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             help_text=description,
         )
 
-    return JSONField(name, null=null, schema=schema, default=default, help_text=description,)
+    raise Exception(name)
+    #return JSONField(name, null=null, schema=schema, default=default, help_text=description,)

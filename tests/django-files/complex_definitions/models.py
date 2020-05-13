@@ -13,5 +13,5 @@ DEFINITIONS = str(pathlib.Path(__file__).parent.absolute() / "schema.json")
 
 class model(models.Model):
 
-    field_1 = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/field'}, DEFINITIONS)])
     field_2 = models.IntegerField(null=True, validators=[])
+    field_1 = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/field'}, DEFINITIONS)])

@@ -2,7 +2,7 @@
 """
 from typing import Dict, Tuple, List
 
-from jsonschema2dj.fields import Relationship, Field
+from jsonschema2dj.fields import Relationship, Field, JSONField
 
 
 def extract_relationships(
@@ -49,8 +49,8 @@ def extract_relationships(
             model.update(definitions.get(ref, {}))
 
         required = model.get("required", [])
-        if "properties" in model:
-            single, many = {}, {}
+        if "properties" in model:  # then this is some kind of object
+            single, many, json = {}, {}, {}
 
             for name, _property in model.get("properties", {}).items():
                 # loop through all fields
@@ -68,6 +68,8 @@ def extract_relationships(
                     if ref in schema["properties"]:
                         # if so then its a model, lets record that
                         single[ref] = name, null
+                    else:
+                        json[ref] = name, null, _property
 
                 # could this field an array of references to another object?
                 elif _property.get("items"):
@@ -76,8 +78,10 @@ def extract_relationships(
                         ref = _property.get("items").get("$ref").split("/")[-1]
                         if ref in schema["properties"]:
                             many[ref] = name, null
+                        else:
+                            json[ref] = name, null, _property
 
-            relationships[model_name] = single, many
+        relationships[model_name] = single, many, json
 
     return relationships
 
@@ -110,11 +114,11 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
     models: Dict[str, List[Field]] = {model: [] for model in relationships}  # we are going to return this
 
     # we loop through all models, extracting singlular and multiple relationships
-    for model, (singular, multiples) in relationships.items():
+    for model, (singular, multiples, json) in relationships.items():
         # for all singular relations...
         for single, (single_name, null) in singular.items():
             # we fetch the other side of the relationship
-            related_single, related_many = relationships[single]
+            related_single = relationships[single][0]
             # the other side is also singular?
             if model in related_single:
                 # ten this is one-to-one
@@ -132,12 +136,17 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
 
         # as above but....
         for many, (many_name, null) in multiples.items():
-            related_single, related_many = relationships[many]
+            related_single = relationships[many][0]
             if model not in related_single:
                 models[model].append(
                     Relationship("ManyToManyField", many_name, many, null,)
                 )
             # ... no opposite case, if its already as a single field then this
             # many-to-one relationship wil get picked up anyway
+
+        for _, (name, null, schema) in json.items():
+            models[model].append(
+                JSONField(name, null=null, schema=schema)
+            )
 
     return models

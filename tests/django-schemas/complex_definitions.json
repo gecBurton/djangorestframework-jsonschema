@@ -3,6 +3,15 @@
     "name": "model",
     "fields": [
       {
+        "name": "field_2",
+        "type": "IntegerField",
+        "to": null,
+        "options": {
+          "null": true,
+          "validators": {}
+        }
+      },
+      {
         "name": "field_1",
         "type": "JSONField",
         "to": "field",
@@ -11,15 +20,6 @@
           "schema": {
             "$ref": "#/definitions/field"
           }
-        }
-      },
-      {
-        "name": "field_2",
-        "type": "IntegerField",
-        "to": null,
-        "options": {
-          "null": true,
-          "validators": {}
         }
       }
     ]
