@@ -99,7 +99,7 @@ class JSONField(Field):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 
-        options = dict(default=self.default )
+        options = dict(default=self.default)
         if self.options.get("null", False):
             options["null"] = True
 
@@ -289,5 +289,4 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             help_text=description,
         )
 
-    raise Exception(name)
-    #return JSONField(name, null=null, schema=schema, default=default, help_text=description,)
+    raise ValueError(f"field-type: {field_type} is not supported")

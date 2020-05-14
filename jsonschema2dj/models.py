@@ -9,7 +9,7 @@ from typing import List, Dict
 
 # from jsonschema import validate  # type: ignore
 
-from jsonschema2dj.fields import build_field, Relationship, JSONField
+from jsonschema2dj.fields import build_field, Relationship
 
 from pkg_resources import resource_filename
 
@@ -57,8 +57,6 @@ class Model:
                     self.fields.append(field)
 
         self.fields.extend(relations)
-
-
 
     @property
     def enum_fields(self) -> List[str]:
