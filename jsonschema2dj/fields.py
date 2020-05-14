@@ -225,10 +225,7 @@ def rationalize_type(name: str, sch: Dict, required: List[str]) -> Tuple[str, bo
             )
         return _type, null
 
-    if "items" in sch:
-        return "items", null
-
-    return "object", null
+    raise ValueError("not possible to determine simple-field type")
 
 
 def build_field(name: str, schema: Dict, required: List) -> Field:
@@ -254,6 +251,10 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
     if field_type == "integer":
         validators = build_value_validators(schema)
 
+        options = {}
+        if "enum" in schema:
+            options["choices"] = [(e, e) for e in schema["enum"]]
+
         return Field(
             "IntegerField",
             name,
@@ -262,6 +263,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             primary_key=primary_key,
             default=default,
             help_text=description,
+            **options
         )
 
     if field_type == "number":

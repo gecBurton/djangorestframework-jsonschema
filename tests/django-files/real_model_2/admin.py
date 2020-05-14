@@ -6,6 +6,7 @@ from . import models
 class BookAdmin(admin.ModelAdmin):
     list_filter = (
         "genre",
+        "min_reading_age",
     )
 
 

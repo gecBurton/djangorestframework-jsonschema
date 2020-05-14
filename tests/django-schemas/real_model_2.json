@@ -34,6 +34,13 @@
           ]
         }
       },
+      {"name": "min_reading_age",
+        "options": {"choices": [[4, 4], [10, 10], [18, 18]],
+          "null": true,
+          "validators": {}},
+        "to": null,
+        "type": "IntegerField"
+      },
       {
         "name": "author",
         "type": "ForeignKey",

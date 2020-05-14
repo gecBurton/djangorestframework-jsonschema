@@ -171,6 +171,7 @@
     "id": {
       "type": "string",
       "format": "uuid"
-    }
+    },
+    "min-reading-age": {"enum":  [4, 10, 18]}
   }
 }

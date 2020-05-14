@@ -47,6 +47,11 @@ results = {
     "boolean-null": {"type": "BooleanField", "null": True},
     "format-uuid": {"type": "UUIDField", "default": "uuid.uuid4"},
     "id": {"type": "UUIDField", "default": "uuid.uuid4", "primary_key": True},
+    "min-reading-age": {'choices': [(4, 4), (10, 10), (18, 18)],
+                        'null': True,
+                        'type': 'IntegerField',
+                        'validators': {}
+                        }
 }
 
 
