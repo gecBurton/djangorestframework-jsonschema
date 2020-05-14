@@ -100,7 +100,14 @@ def extract_relationships(
     return relationships
 
 
-def build_models(relationships: Dict) -> Dict[str, List[Field]]:
+def build_models(relationships: Dict[
+    str,
+    Tuple[
+        Dict[str, Tuple[str, bool]],
+        Dict[str, Tuple[str, bool]],
+        List[Tuple[str, bool, Dict]],
+    ],
+]) -> Dict[str, List[Field]]:
     """converts the result of `extract_relationships` into a dictionary
     of objects where the keys are model names and the values are dict-like
     representation of django model relationships
