@@ -7,7 +7,14 @@ from jsonschema2dj.fields import Relationship, Field, JSONField
 
 def extract_relationships(
     schema: Dict,
-) -> Dict[str, Tuple[Dict[str, Tuple[str, bool]], Dict[str, Tuple[str, bool]], Dict[str, Tuple[str, bool, Dict]]]]:
+) -> Dict[
+    str,
+    Tuple[
+        Dict[str, Tuple[str, bool]],
+        Dict[str, Tuple[str, bool]],
+        Dict[str, Tuple[str, bool, Dict]],
+    ],
+]:
     """this function takes jsonschema and returns a dictionary of it
     where each model (object in the #/definitions) is a key wholes value
     is a tuple of dictionaries of singularly and multiply related models
@@ -45,7 +52,7 @@ def extract_relationships(
 
     for model_name, model in properties.items():
         if "$ref" in model:
-            ref = model.pop("$ref").split('/')[-1]
+            ref = model.pop("$ref").split("/")[-1]
             model.update(definitions.get(ref, {}))
 
         required = model.get("required", [])
@@ -111,7 +118,9 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
     >>> }
     """
 
-    models: Dict[str, List[Field]] = {model: [] for model in relationships}  # we are going to return this
+    models: Dict[str, List[Field]] = {
+        model: [] for model in relationships
+    }  # we are going to return this
 
     # we loop through all models, extracting singlular and multiple relationships
     for model, (singular, multiples, json) in relationships.items():
@@ -123,12 +132,12 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
             if model in related_single:
                 # ten this is one-to-one
                 models[model].append(
-                    Relationship("OneToOneField", single_name, single, null,)
+                    Relationship("OneToOneField", single_name, single, null)
                 )
             # no? then its one-to-many
             else:
                 models[model].append(
-                    Relationship("ForeignKey", single_name, single, null,)
+                    Relationship("ForeignKey", single_name, single, null)
                 )
 
         # as above but....
@@ -136,14 +145,12 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
             related_single = relationships[many][0]
             if model not in related_single:
                 models[model].append(
-                    Relationship("ManyToManyField", many_name, many, null,)
+                    Relationship("ManyToManyField", many_name, many, null)
                 )
             # ... no opposite case, if its already as a single field then this
             # many-to-one relationship wil get picked up anyway
 
         for _, (name, null, schema) in json.items():
-            models[model].append(
-                JSONField(name, null=null, schema=schema)
-            )
+            models[model].append(JSONField(name, null=null, schema=schema))
 
     return models

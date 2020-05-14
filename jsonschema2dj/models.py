@@ -20,7 +20,6 @@ with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
 
 
 class Model:
-
     @classmethod
     def factory(cls, schema: Dict) -> List[Model]:
         "factory for parsing json schema of many models"
@@ -30,9 +29,7 @@ class Model:
         models = build_models(extract_relationships(schema))
 
         return [
-            Model(model_name, schema, *fields)
-            for model_name, fields in
-            models.items()
+            Model(model_name, schema, *fields) for model_name, fields in models.items()
         ]
 
     def __init__(self, __name: str, schema: Dict, *relations: Field):
@@ -47,7 +44,9 @@ class Model:
         for name, field_schema in properties.items():
             if "const" in field_schema:
                 const = field_schema["const"]
-                self.read_only_fields[name] = repr(const) if isinstance(const, str) else const
+                self.read_only_fields[name] = (
+                    repr(const) if isinstance(const, str) else const
+                )
 
         self.fields = []
         for field_name, field_sch in properties.items():

@@ -56,7 +56,7 @@ class Field:
 
     @property
     def filter_type(self):
-        if self.type in ("IntegerField", "DecimalField", "DateField", "DateTimeField",):
+        if self.type in ("IntegerField", "DecimalField", "DateField", "DateTimeField"):
             return ["exact", "gte", "lte"]
         elif self.is_enum:
             return ["exact", "in"]
@@ -87,10 +87,10 @@ class JSONField(Field):
     def __init__(self, *args, **kwargs):
         self.schema = kwargs["schema"]
         if "items" in self.schema:
-            self.to = self.schema["items"].get("$ref", "").split('/')[-1] or None
+            self.to = self.schema["items"].get("$ref", "").split("/")[-1] or None
             self.default = "list"
         else:
-            self.to = self.schema.get("$ref", "").split('/')[-1] or None
+            self.to = self.schema.get("$ref", "").split("/")[-1] or None
             self.default = "dict"
         super().__init__("JSONField", *args, **kwargs)
 
@@ -104,7 +104,7 @@ class JSONField(Field):
 
         options = ", ".join(f"{k} = {v}" for k, v in options.items())
 
-        return f'{name} = JSONField({verbose_name}{options}, validators=[JSONSchemaValidator({self.schema}, DEFINITIONS)])'
+        return f"{name} = JSONField({verbose_name}{options}, validators=[JSONSchemaValidator({self.schema}, DEFINITIONS)])"
 
 
 def build_value_validators(sch: Dict) -> Dict:
@@ -122,7 +122,7 @@ def build_string_field(
 ) -> Field:
     "the string case is complex enough to have its own function"
     options = dict(
-        null=null, primary_key=primary_key, default=default, help_text=description,
+        null=null, primary_key=primary_key, default=default, help_text=description
     )
     validators = {}
 
@@ -141,10 +141,7 @@ def build_string_field(
     if "enum" in sch:
         enums = sch["enum"]
         names = [value.lower().replace(" ", "_") for value in enums]
-        options.update(
-            max_length=max(map(len, enums)),
-            choices=list(zip(names, enums))
-        )
+        options.update(max_length=max(map(len, enums)), choices=list(zip(names, enums)))
 
     if sch.get("pattern"):
         validators["RegexValidator"] = f"{sch.get('pattern')}"
@@ -153,11 +150,7 @@ def build_string_field(
         options.update(validators=validators)
 
     if name.upper() == "ID":
-        options.update(
-            primary_key=True,
-            null=False,
-            default=default or "uuid.uuid4"
-        )
+        options.update(primary_key=True, null=False, default=default or "uuid.uuid4")
 
     if sch.get("format"):
 
@@ -174,19 +167,11 @@ def build_string_field(
         if sch["format"] not in formats:
             warnings.warn(f"no code written to handle format: {sch.get('format')}")
             # if max_length is unknown or too large then this cant be a CharField
-            return Field(
-                formats.get(sch["format"], "TextField"),
-                name,
-                **options
-            )
+            return Field(formats.get(sch["format"], "TextField"), name, **options)
 
         options.pop("max_length")
 
-        return Field(
-            formats.get(sch["format"], "CharField"),
-            name,
-            **options
-        )
+        return Field(formats.get(sch["format"], "CharField"), name, **options)
 
     return Field("CharField", name, **options)
 
@@ -239,7 +224,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
 
     description = schema.get("description")
     if description:
-        description = repr(description).replace('\n', '\\n')
+        description = repr(description).replace("\n", "\\n")
 
     if name.upper() == "ID":
         primary_key = True
@@ -263,7 +248,7 @@ def build_field(name: str, schema: Dict, required: List) -> Field:
             primary_key=primary_key,
             default=default,
             help_text=description,
-            **options
+            **options,
         )
 
     if field_type == "number":
