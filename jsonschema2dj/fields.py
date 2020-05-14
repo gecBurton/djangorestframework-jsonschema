@@ -21,8 +21,7 @@ class Field:
     looking code.
     """
 
-    @property
-    def jinja(self):
+    def __repr__(self):
         _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 
@@ -68,8 +67,7 @@ class Relationship(Field):
         self.null = null
         super().__init__(type, name, null=null)
 
-    @property
-    def jinja(self):
+    def __repr__(self):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         options = dict(self.options)
         if keyword.iskeyword(self.name):
@@ -94,8 +92,7 @@ class JSONField(Field):
             self.default = "dict"
         super().__init__("JSONField", *args, **kwargs)
 
-    @property
-    def jinja(self):
+    def __repr__(self):
         name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 
