@@ -12,7 +12,7 @@ def extract_relationships(
     Tuple[
         Dict[str, Tuple[str, bool]],
         Dict[str, Tuple[str, bool]],
-        Dict[str, Tuple[str, bool, Dict]],
+        List[Tuple[str, bool, Dict]],
     ],
 ]:
     """this function takes jsonschema and returns a dictionary of it
@@ -25,26 +25,33 @@ def extract_relationships(
 
     example argument:
     >>> {
-    >>>     "definitions": {
+    >>>     "properties": {
     >>>         "Patient": {
     >>>             "properties": {
-    >>>                 "doctor": {"type": ["object", "null"], "$ref": "#/definitions/Doctor"},
-    >>>                 "address": {"type": "object", "$ref": "#/definitions/Address"},
-    >>>                 "prescription": {
-    >>>                     "items": {"type": "object", "$ref": "#/definitions/Prescription"}
-    >>>                 }
+    >>>                 "doctor": {"$ref": "#/definitions/Doctor"},
+    >>>                 "address": {"items": {"$ref": "#/definitions/Address"}},
     >>>             }
-    >>>         }
+    >>>         },
+    >>>         "Doctor": {"properties": {}},
+    >>>         "Address": {"properties": {"patient": {"$ref": "#/definitions/Patient"}}},
     >>>     }
     >>> }
 
+
     example result
     >>> {
-    >>>    "Patient": (  # model name
-    >>>        {"Doctor": ("doctor", True), "Address": ("address", False)}, # singular
-    >>>        {"Prescription": ("prescription": False)}  # multiple
-    >>>        )
-    >>>}
+    >>>     'Patient': (
+    >>>         {'Doctor': ('doctor', True)},
+    >>>         {'Address': ('address', True)},
+    >>>         []
+    >>>     ),
+    >>>     'Doctor': ({}, {}, []),
+    >>>     'Address': (
+    >>>         {'Patient': ('patient', True)},
+    >>>         {},
+    >>>         []
+    >>>     )
+    >>> }
     """
     relationships = {}
     definitions = schema.get("definitions", {})
@@ -59,34 +66,34 @@ def extract_relationships(
         if "properties" in model:  # then this is some kind of object
             single, many, json = {}, {}, []
 
-            for name, _property in model.get("properties", {}).items():
+            for name, properties in model.get("properties", {}).items():
                 # loop through all fields
 
                 # is this field nullable?
                 # if null is one of the types then yes
                 # or if null is not required then also yes
-                null = "null" in _property.get("type", []) or name not in required
+                null = "null" in properties.get("type", []) or name not in required
 
                 # is this field a direct reference to another object?
-                if _property.get("$ref"):
+                if properties.get("$ref"):
                     # ok what is the name of the related object
-                    ref = _property.get("$ref").split("/")[-1]
+                    ref = properties.get("$ref").split("/")[-1]
                     # is this related object in the root properties?
                     if ref in schema["properties"]:
                         # if so then its a model, lets record that
                         single[ref] = name, null
                     else:
-                        json.append((name, null, _property))
+                        json.append((name, null, properties))
 
                 # could this field an array of references to another object?
-                elif _property.get("items"):
+                elif properties.get("items"):
                     # etc...
-                    if _property.get("items").get("$ref"):
-                        ref = _property.get("items").get("$ref").split("/")[-1]
+                    if properties.get("items").get("$ref"):
+                        ref = properties.get("items").get("$ref").split("/")[-1]
                         if ref in schema["properties"]:
                             many[ref] = name, null
                         else:
-                            json.append((name, null, _property))
+                            json.append((name, null, properties))
 
         relationships[model_name] = single, many, json
 
@@ -100,21 +107,24 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
 
     example argument:
     >>> {
-    >>>     "Patient": (
-    >>>         {"Address": ("address", False), "Doctor": ("doctor", True)},
-    >>>         {"Prescription": ("prescription", False)},
+    >>>     'Patient': (
+    >>>         {'Doctor': ('doctor', True)},
+    >>>         {'Address': ('address', True)},
+    >>>         []
     >>>     ),
-    >>>     "Address": ({}, {}),
-    >>>     "Doctor": ({}, {}),
-    >>>     "Prescription": ({}, {})
+    >>>     'Doctor': ({}, {}, []),
+    >>>     'Address': (
+    >>>         {'Patient': ('patient', True)},
+    >>>         {},
+    >>>         []
+    >>>     )
     >>> }
 
     example result
     >>> {
-    >>>     "Address": [],
-    >>>     "Doctor": [],
-    >>>     "Patient": ["Field<address>", "Field<doctor>", "Field<prescription>"],
-    >>>     "Prescription": [],
+    >>>     'Patient': ["<doctor = models.ForeignKey("Doctor", null=True, on_delete=models.CASCADE)>"],
+    >>>     'Doctor': [],
+    >>>     'Address': ["<patient = models.ForeignKey("Patient", null=True, on_delete=models.CASCADE)>"]
     >>> }
     """
 
