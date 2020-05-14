@@ -49,23 +49,14 @@ class Model:
                 const = field_schema["const"]
                 self.read_only_fields[name] = repr(const) if isinstance(const, str) else const
 
-
         self.fields = []
         for field_name, field_sch in properties.items():
             if field_name not in [relation.name for relation in relations] and field_name not in self.read_only_fields:
-                if "items" in field_sch:
-                    ref = field_sch["items"]["$ref"].split('/')[-1]
-                    if ref not in [x.to for x in relations if x.type == "ReverseForeignKey"]:
-                        field = build_field(field_name, field_sch, required)
-                        self.fields.append(field)
-                else:
+                if "items" not in field_sch:  # not quite right, should really check that this isnt an rfk
                     field = build_field(field_name, field_sch, required)
                     self.fields.append(field)
 
-
-        for x in relations:
-            if x.type != "ReverseForeignKey":
-                self.fields.append(x)
+        self.fields.extend(relations)
 
 
 

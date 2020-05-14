@@ -130,9 +130,6 @@ def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
                 models[model].append(
                     Relationship("ForeignKey", single_name, single, null,)
                 )
-                models[single].append(
-                    Relationship("ReverseForeignKey", single_name, model, null,)
-                )
 
         # as above but....
         for many, (many_name, null) in multiples.items():
