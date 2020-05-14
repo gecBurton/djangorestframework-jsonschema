@@ -119,7 +119,7 @@ def build_value_validators(sch: Dict) -> Dict:
 
 
 def build_string_field(
-    name: str, sch: Dict, null: bool, primary_key: bool, default: str, description: str
+    name: str, sch: Dict, null: bool, primary_key: bool, default=None, description=None
 ) -> Field:
     "the string case is complex enough to have its own function"
     options = dict(

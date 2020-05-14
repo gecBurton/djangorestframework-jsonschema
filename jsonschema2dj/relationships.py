@@ -1,13 +1,13 @@
 """core functions for converting jsonschema to djnago model relationships
 """
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple, List, Union
 
 from jsonschema2dj.fields import Relationship, Field, JSONField
 
 
 def extract_relationships(
     schema: Dict,
-) -> Dict[str, Tuple[Dict[str, Tuple[str, bool]], Dict[str, Tuple[str, bool]]]]:
+) -> Dict[str, Tuple[Dict[str, Tuple[str, bool]], Dict[str, Tuple[str, bool]], Dict[str, Tuple[str, bool, Dict]]]]:
     """this function takes jsonschema and returns a dictionary of it
     where each model (object in the #/definitions) is a key wholes value
     is a tuple of dictionaries of singularly and multiply related models
@@ -86,7 +86,7 @@ def extract_relationships(
     return relationships
 
 
-def build_models(relationships: Dict) -> Dict[str, List[Relationship]]:
+def build_models(relationships: Dict) -> Dict[str, List[Field]]:
     """converts the result of `extract_relationships` into a dictionary
     of objects where the keys are model names and the values are dict-like
     representation of django model relationships

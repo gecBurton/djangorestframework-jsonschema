@@ -9,7 +9,7 @@ from typing import List, Dict
 
 # from jsonschema import validate  # type: ignore
 
-from jsonschema2dj.fields import build_field, Relationship
+from jsonschema2dj.fields import build_field, Relationship, Field
 
 from pkg_resources import resource_filename
 
@@ -35,7 +35,7 @@ class Model:
             models.items()
         ]
 
-    def __init__(self, __name: str, schema: Dict, *relations: Relationship):
+    def __init__(self, __name: str, schema: Dict, *relations: Field):
         """build the django-like model from jsonschema"""
         self.name = __name
         _schema = schema["properties"][self.name]
