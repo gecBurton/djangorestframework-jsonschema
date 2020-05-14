@@ -21,6 +21,7 @@ class ResponsibleClinician(ModelSerializer):
 
 
 class Plate(ModelSerializer):
+    type = ReadOnlyField(default='SAMPLE_PLATE')
     class Meta:
         model = models.Plate
         fields = "__all__"

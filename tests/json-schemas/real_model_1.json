@@ -172,6 +172,7 @@
         "priority"
       ],
       "properties": {
+        "type": {"const": "SAMPLE_PLATE"},
         "barcode": {
           "type": "string",
           "pattern": "^LP\\d{7}-DNA$"

@@ -1,6 +1,6 @@
 """core functions for converting jsonschema to djnago model relationships
 """
-from typing import Dict, Tuple, List, Union
+from typing import Dict, Tuple, List
 
 from jsonschema2dj.fields import Relationship, Field, JSONField
 

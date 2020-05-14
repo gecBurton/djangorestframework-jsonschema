@@ -22,6 +22,8 @@ class Field:
     """
 
     def __repr__(self):
+        """this is critical for use in the jinja template
+        """
         _name = f"_{self.name}" if keyword.iskeyword(self.name) else self.name
         verbose_name = f'"{self.name}", ' if keyword.iskeyword(self.name) else ""
 

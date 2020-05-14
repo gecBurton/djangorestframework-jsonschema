@@ -9,7 +9,7 @@ from typing import List, Dict
 
 # from jsonschema import validate  # type: ignore
 
-from jsonschema2dj.fields import build_field, Relationship, Field
+from jsonschema2dj.fields import build_field, Field
 
 from pkg_resources import resource_filename
 
