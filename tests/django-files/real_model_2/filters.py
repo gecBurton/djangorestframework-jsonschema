@@ -7,6 +7,7 @@ class Book(filters.FilterSet):
         model = models.Book
         fields = {
             "genre": ["exact", "in"],
+            "min_reading_age": ["exact", "gte", "lte"],
         }
 
 

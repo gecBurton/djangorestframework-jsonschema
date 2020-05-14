@@ -11,7 +11,7 @@ import pathlib
 DEFINITIONS = str(pathlib.Path(__file__).parent.absolute() / "schema.json")
 
 
-class model(models.Model):
+class Patient(models.Model):
 
-    field_2 = models.IntegerField(null=True, validators=[])
-    field_1 = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/field'}, DEFINITIONS)])
+    _birthDate = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/Element'}, DEFINITIONS)])
+    _deceasedDateTime = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/Element'}, DEFINITIONS)])

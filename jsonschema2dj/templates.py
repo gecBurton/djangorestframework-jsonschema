@@ -63,7 +63,7 @@ class {{model.name}}(models.Model):
 
 {% if model.fields|length %}
 {% for field in model.fields %}
-    {{field.jinja}}
+    {{field}}
 {% endfor %}
 {% else %}
     id = models.UUIDField(default=uuid.uuid4)

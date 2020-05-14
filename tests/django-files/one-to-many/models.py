@@ -11,7 +11,12 @@ import pathlib
 DEFINITIONS = str(pathlib.Path(__file__).parent.absolute() / "schema.json")
 
 
-class model(models.Model):
+class PatientContact(models.Model):
 
-    field_2 = models.IntegerField(null=True, validators=[])
-    field_1 = JSONField(default = dict, null = True, validators=[JSONSchemaValidator({'$ref': '#/definitions/field'}, DEFINITIONS)])
+    gender = models.CharField(null=True, max_length=6, choices=[('male', 'male'), ('female', 'female')])
+    patient = models.ForeignKey("Patient", null=True, on_delete=models.CASCADE)
+
+
+class Patient(models.Model):
+
+    birthDate = models.DateField(null=True)

@@ -15,7 +15,7 @@
         "plate"
       ],
       "properties": {
-        "plate": {
+        "class": {
           "$ref": "#/definitions/Plate"
         },
         "redcap": {
@@ -40,7 +40,7 @@
           "maximum": 700
         },
         "concentration_ng_ul": {
-          "type": "number",
+          "type": ["number"],
           "multipleOf": 0.01,
           "minimum": 0,
           "maximum": 9999.99
@@ -172,6 +172,7 @@
         "priority"
       ],
       "properties": {
+        "type": {"const": "SAMPLE_PLATE"},
         "barcode": {
           "type": "string",
           "pattern": "^LP\\d{7}-DNA$"

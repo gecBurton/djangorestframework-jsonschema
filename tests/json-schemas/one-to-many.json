@@ -1,0 +1,38 @@
+{
+  "definitions": {
+    "PatientContact": {
+      "properties": {
+        "patient": {
+          "$ref": "#/definitions/Patient"
+        },
+        "gender": {
+          "enum": [
+            "male",
+            "female"
+          ]
+        }
+      }
+    },
+    "Patient": {
+      "properties": {
+        "birthDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "contact": {
+          "items": {
+            "$ref": "#/definitions/PatientContact"
+          }
+        }
+      }
+    }
+  },
+  "properties": {
+    "PatientContact": {
+      "$ref": "#/definitions/PatientContact"
+    },
+    "Patient": {
+      "$ref": "#/definitions/Patient"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+[{"fields": [{"name": "_birthDate",
+  "options": {"null": true,
+    "schema": {"$ref": "#/definitions/Element"}},
+  "to": "Element",
+  "type": "JSONField"},
+  {"name": "_deceasedDateTime",
+    "options": {"null": true,
+      "schema": {"$ref": "#/definitions/Element"}},
+    "to": "Element",
+    "type": "JSONField"}],
+  "name": "Patient"}]

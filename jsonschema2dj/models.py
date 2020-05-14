@@ -9,31 +9,30 @@ from typing import List, Dict
 
 # from jsonschema import validate  # type: ignore
 
-from .fields import build_field, Relationship
+from jsonschema2dj.fields import build_field, Field
 
 from pkg_resources import resource_filename
 
-from .relationships import build_models, extract_relationships
+from jsonschema2dj.relationships import build_models, extract_relationships
 
 with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
 
 
 class Model:
-
     @classmethod
     def factory(cls, schema: Dict) -> List[Model]:
         "factory for parsing json schema of many models"
 
         #  this needs to come back but has got out of date!
         #  validate(dict(definitions=schema.get("definitions", [])), META_SCHEMA)
+        models = build_models(extract_relationships(schema))
+
         return [
-            Model(model_name, schema, *fields)
-            for model_name, fields in
-            build_models(extract_relationships(schema)).items()
+            Model(model_name, schema, *fields) for model_name, fields in models.items()
         ]
 
-    def __init__(self, __name: str, schema: Dict, *relations: Relationship):
+    def __init__(self, __name: str, schema: Dict, *relations: Field):
         """build the django-like model from jsonschema"""
         self.name = __name
         _schema = schema["properties"][self.name]
@@ -41,19 +40,22 @@ class Model:
         properties = _schema.get("properties", {})
         required = _schema.get("required", [])
 
-        relation_names = [relation.name for relation in relations]
-
         self.read_only_fields = {}
         for name, field_schema in properties.items():
             if "const" in field_schema:
                 const = field_schema["const"]
-                self.read_only_fields[name] = repr(const) if isinstance(const, str) else const
+                self.read_only_fields[name] = (
+                    repr(const) if isinstance(const, str) else const
+                )
 
-        self.fields = [
-            build_field(field_name, field_sch, required)
-            for field_name, field_sch in properties.items()
-            if field_name not in relation_names and field_name not in self.read_only_fields
-        ] + list(relations)
+        self.fields = []
+        for field_name, field_sch in properties.items():
+            if field_name not in [relation.name for relation in relations] and field_name not in self.read_only_fields:
+                if "items" not in field_sch:  # not quite right, should really check that this isnt an rfk
+                    field = build_field(field_name, field_sch, required)
+                    self.fields.append(field)
+
+        self.fields.extend(relations)
 
     @property
     def enum_fields(self) -> List[str]:

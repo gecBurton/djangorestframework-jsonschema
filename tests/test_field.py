@@ -47,19 +47,11 @@ results = {
     "boolean-null": {"type": "BooleanField", "null": True},
     "format-uuid": {"type": "UUIDField", "default": "uuid.uuid4"},
     "id": {"type": "UUIDField", "default": "uuid.uuid4", "primary_key": True},
-    "json-schema": {
-        "null": True,
-        "schema": {
-            "properties": {
-                "a": {"type": "boolean"},
-                "b": {"type": "integer"},
-                "c": {"type": "boolean"},
-            },
-            "required": ["a", "b"],
-            "type": "object",
-        },
-        "type": "JSONField"
-    },
+    "min-reading-age": {'choices': [(4, 4), (10, 10), (18, 18)],
+                        'null': True,
+                        'type': 'IntegerField',
+                        'validators': {}
+                        }
 }
 
 

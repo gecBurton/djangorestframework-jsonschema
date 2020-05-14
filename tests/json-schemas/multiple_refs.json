@@ -1,0 +1,17 @@
+{
+  "definitions": {
+    "Element": {"type": "boolean"}
+  },
+  "properties": {
+    "Patient": {
+      "properties": {
+        "_birthDate": {
+          "$ref": "#/definitions/Element"
+        },
+        "_deceasedDateTime": {
+          "$ref": "#/definitions/Element"
+        }
+      }
+    }
+  }
+}

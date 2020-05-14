@@ -25,6 +25,7 @@
           "other"
         ]
       },
+        "min_reading_age": {"enum":  [4, 10, 18]},
         "author": {
           "$ref": "#/definitions/Author"
         }

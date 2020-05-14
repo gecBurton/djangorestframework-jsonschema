@@ -12,17 +12,6 @@
         }
       },
       {
-        "name": "other",
-        "type": "JSONField",
-        "to": null,
-        "options": {
-          "null": true,
-          "schema": {
-            "$ref": "#/definitions/identifiers"
-          }
-        }
-      },
-      {
         "name": "genre",
         "type": "CharField",
         "to": null,
@@ -45,12 +34,30 @@
           ]
         }
       },
+      {"name": "min_reading_age",
+        "options": {"choices": [[4, 4], [10, 10], [18, 18]],
+          "null": true,
+          "validators": {}},
+        "to": null,
+        "type": "IntegerField"
+      },
       {
         "name": "author",
         "type": "ForeignKey",
         "to": "Author",
         "options": {
           "null": true
+        }
+      },
+      {
+        "name": "other",
+        "type": "JSONField",
+        "to": "identifiers",
+        "options": {
+          "null": true,
+          "schema": {
+            "$ref": "#/definitions/identifiers"
+          }
         }
       }
     ]

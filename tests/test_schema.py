@@ -10,7 +10,7 @@ json_schema_dir = "tests/json-schemas/"
 django_schema_dir = "tests/django-schemas/"
 
 
-schemas = zip(os.listdir(json_schema_dir), os.listdir(django_schema_dir))
+file_names = os.listdir(json_schema_dir)
 
 
 def tuple_to_list(obj):
@@ -25,12 +25,12 @@ def tuple_to_list(obj):
     return obj
 
 
-@pytest.mark.parametrize("json_file, django_file", schemas)
-def test_django_schema(json_file, django_file):
-    with open(json_schema_dir + json_file) as f:
+@pytest.mark.parametrize("file_name", file_names)
+def test_django_schema(file_name):
+    with open(json_schema_dir + file_name) as f:
         json_schema = load(f)
 
-    with open(django_schema_dir + django_file) as f:
+    with open(django_schema_dir + file_name) as f:
         django_schema = load(f)
 
     expected = []
@@ -43,7 +43,7 @@ def test_django_schema(json_file, django_file):
                     type=field.type,
                     to=getattr(field, "to", None),
                     options=tuple_to_list(field.options)
-                ) for field in model.fields
+                ) for field in model.fields if field
             ]
         )
         expected.append(expected_model)
