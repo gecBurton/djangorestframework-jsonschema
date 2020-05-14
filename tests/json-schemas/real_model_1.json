@@ -15,7 +15,7 @@
         "plate"
       ],
       "properties": {
-        "plate": {
+        "class": {
           "$ref": "#/definitions/Plate"
         },
         "redcap": {

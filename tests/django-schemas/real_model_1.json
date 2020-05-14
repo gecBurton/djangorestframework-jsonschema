@@ -175,10 +175,10 @@
         }
       },
       {
-        "name": "plate",
+        "name": "class",
         "type": "ForeignKey",
         "to": "Plate",
-        "options": {}
+        "options": {"null": true}
       },
       {
         "name": "redcap",
