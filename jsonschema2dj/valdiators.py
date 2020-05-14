@@ -1,7 +1,7 @@
 """additional jsonschema validators
 """
 from json import load
-from typing import Dict, Union
+from typing import Dict, Union, Optional
 
 from django.utils.deconstruct import deconstructible  # type: ignore
 from jsonschema import Draft7Validator  # type: ignore
@@ -15,7 +15,7 @@ class JSONSchemaValidator(validators.BaseValidator):
     """Bespoke jsonschema validator to be used with the JSONField
     """
 
-    def __init__(self, schema: Dict, definitions: Union[str, Dict]=None):
+    def __init__(self, schema: Dict, definitions: Optional[Union[str, Dict]]=None):
         self.definitions = definitions
         self.schema = schema
 
