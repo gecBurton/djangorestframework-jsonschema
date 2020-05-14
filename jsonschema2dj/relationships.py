@@ -57,7 +57,7 @@ def extract_relationships(
 
         required = model.get("required", [])
         if "properties" in model:  # then this is some kind of object
-            single, many, json = {}, {}, {}
+            single, many, json = {}, {}, []
 
             for name, _property in model.get("properties", {}).items():
                 # loop through all fields
@@ -76,7 +76,7 @@ def extract_relationships(
                         # if so then its a model, lets record that
                         single[ref] = name, null
                     else:
-                        json[ref] = name, null, _property
+                        json.append((name, null, _property))
 
                 # could this field an array of references to another object?
                 elif _property.get("items"):
@@ -86,7 +86,7 @@ def extract_relationships(
                         if ref in schema["properties"]:
                             many[ref] = name, null
                         else:
-                            json[ref] = name, null, _property
+                            json.append((name, null, _property))
 
         relationships[model_name] = single, many, json
 
@@ -150,7 +150,7 @@ def build_models(relationships: Dict) -> Dict[str, List[Field]]:
             # ... no opposite case, if its already as a single field then this
             # many-to-one relationship wil get picked up anyway
 
-        for _, (name, null, schema) in json.items():
+        for name, null, schema in json:
             models[model].append(JSONField(name, null=null, schema=schema))
 
     return models
