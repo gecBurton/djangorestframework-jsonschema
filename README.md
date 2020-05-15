@@ -21,7 +21,7 @@ Django-REST-Framework solution from a JSONSchema specification.
 
 ## Requirements
 
-* Python (3.8+)
+* Python (3.6+)
 * Django (3.0+)
 * Django-Rest-Framework (3.11)
 * JSONSchema (3.2)

@@ -64,7 +64,7 @@ def extract_relationships(
 
         required = model.get("required", [])
         single, many, json = {}, {}, []
-        
+
         if "properties" in model:  # then this is some kind of object
 
             for name, properties in model.get("properties", {}).items():
