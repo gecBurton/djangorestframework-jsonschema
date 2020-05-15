@@ -63,8 +63,9 @@ def extract_relationships(
             model.update(definitions.get(ref, {}))
 
         required = model.get("required", [])
+        single, many, json = {}, {}, []
+        
         if "properties" in model:  # then this is some kind of object
-            single, many, json = {}, {}, []
 
             for name, properties in model.get("properties", {}).items():
                 # loop through all fields

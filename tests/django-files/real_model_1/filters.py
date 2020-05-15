@@ -2,38 +2,35 @@ from django_filters import rest_framework as filters
 from . import models
 
 
-class Manifest(filters.FilterSet):
+class Sample(filters.FilterSet):
     class Meta:
-        model = models.Manifest
+        model = models.Sample
         fields = {
             "sample_id": ["exact", "gte", "lte"],
-            "volume_ul": ["exact", "gte", "lte"],
-            "concentration_ng_ul": ["exact", "gte", "lte"],
-            "od_260_280": ["exact", "gte", "lte"],
-            "cancer_sample_y_n": ["exact", "in"],
-            "sample_type": ["exact", "in"],
+            "percentage": ["exact", "gte", "lte"],
+            "hazaradous": ["exact", "in"],
+            "type": ["exact", "in"],
         }
 
 
-class Redcap(filters.FilterSet):
+class Patient(filters.FilterSet):
     class Meta:
-        model = models.Redcap
+        model = models.Patient
         fields = {
             "sex": ["exact", "in"],
-            "date_of_birth": ["exact", "gte", "lte"],
-            "date_of_identifying_eligibility_for_the_study": ["exact", "gte", "lte"],
+            "DOB": ["exact", "gte", "lte"],
         }
 
 
-class ResponsibleClinician(filters.FilterSet):
+class Doctor(filters.FilterSet):
     class Meta:
-        model = models.ResponsibleClinician
+        model = models.Doctor
         fields = []
 
 
-class Plate(filters.FilterSet):
+class Rack(filters.FilterSet):
     class Meta:
-        model = models.Plate
+        model = models.Rack
         fields = {
-            "priority": ["exact", "in"],
+            "delivery_type": ["exact", "in"],
         }

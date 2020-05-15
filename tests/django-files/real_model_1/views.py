@@ -5,47 +5,46 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 from . import serializers, models, filters
 
 
-class Manifest(viewsets.ModelViewSet):
-    queryset = models.Manifest.objects.all()
-    serializer_class = serializers.Manifest
+class Sample(viewsets.ModelViewSet):
+    queryset = models.Sample.objects.all()
+    serializer_class = serializers.Sample
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
-    filterset_class = filters.Manifest
+    filterset_class = filters.Sample
     ordering_fields = "__all__"
     search_fields = [
         "$well",
     ]
 
 
-class Redcap(viewsets.ModelViewSet):
-    queryset = models.Redcap.objects.all()
-    serializer_class = serializers.Redcap
+class Patient(viewsets.ModelViewSet):
+    queryset = models.Patient.objects.all()
+    serializer_class = serializers.Patient
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
-    filterset_class = filters.Redcap
+    filterset_class = filters.Patient
     ordering_fields = "__all__"
     search_fields = [
-        "$GenOMICC",
         "$nhs_number",
-        "$hospital_trust",
+        "$clinic",
     ]
 
 
-class ResponsibleClinician(viewsets.ModelViewSet):
-    queryset = models.ResponsibleClinician.objects.all()
-    serializer_class = serializers.ResponsibleClinician
+class Doctor(viewsets.ModelViewSet):
+    queryset = models.Doctor.objects.all()
+    serializer_class = serializers.Doctor
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
-    filterset_class = filters.ResponsibleClinician
+    filterset_class = filters.Doctor
     ordering_fields = "__all__"
     search_fields = [
         "$name",
     ]
 
 
-class Plate(viewsets.ModelViewSet):
-    queryset = models.Plate.objects.all()
-    serializer_class = serializers.Plate
+class Rack(viewsets.ModelViewSet):
+    queryset = models.Rack.objects.all()
+    serializer_class = serializers.Rack
     filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
-    filterset_class = filters.Plate
+    filterset_class = filters.Rack
     ordering_fields = "__all__"
     search_fields = [
-        "$barcode",
+        "$id",
     ]

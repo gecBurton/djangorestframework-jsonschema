@@ -2,26 +2,26 @@ from . import models
 from rest_framework.serializers import ModelSerializer, ReadOnlyField
 
 
-class Manifest(ModelSerializer):
+class Sample(ModelSerializer):
     class Meta:
-        model = models.Manifest
+        model = models.Sample
         fields = "__all__"
 
 
-class Redcap(ModelSerializer):
+class Patient(ModelSerializer):
     class Meta:
-        model = models.Redcap
+        model = models.Patient
         fields = "__all__"
 
 
-class ResponsibleClinician(ModelSerializer):
+class Doctor(ModelSerializer):
     class Meta:
-        model = models.ResponsibleClinician
+        model = models.Doctor
         fields = "__all__"
 
 
-class Plate(ModelSerializer):
-    type = ReadOnlyField(default='SAMPLE_PLATE')
+class Rack(ModelSerializer):
+    type = ReadOnlyField(default='SAMPLE_RACK')
     class Meta:
-        model = models.Plate
+        model = models.Rack
         fields = "__all__"

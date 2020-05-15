@@ -210,7 +210,7 @@ def rationalize_type(name: str, sch: Dict, required: List[str]) -> Tuple[str, bo
             )
         return _type, null
 
-    raise ValueError("not possible to determine simple-field type")
+    raise ValueError(f"not possible to determine simple-field type for {name}")
 
 
 def build_field(name: str, schema: Dict, required: List) -> Field:

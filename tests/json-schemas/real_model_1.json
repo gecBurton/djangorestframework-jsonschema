@@ -1,138 +1,83 @@
 {
   "definitions": {
-    "Manifest": {
-      "type": "object",
+    "Sample": {
       "required": [
-        "redcap",
         "sample_id",
         "well",
-        "volume_ul",
-        "concentration_ng_ul",
-        "od_260_280",
-        "cancer_sample_y_n",
-        "sample_type",
-        "priority",
         "plate"
       ],
       "properties": {
         "class": {
-          "$ref": "#/definitions/Plate"
+          "$ref": "#/definitions/Rack"
         },
-        "redcap": {
+        "patient": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Redcap"
+            "$ref": "#/definitions/Patient"
           }
         },
         "sample_id": {
-          "type": "integer",
-          "minimum": 1000000000,
-          "maximum": 2147483647
+          "type": "integer"
         },
         "well": {
-          "description": "physical\n location of the\n well on the plate",
           "type": "string",
-          "pattern": "^[A-H](0[1-9]|1[1-2])$"
+          "pattern": "^[1-9][A-C]$"
         },
-        "volume_ul": {
-          "type": "integer",
-          "minimum": 10,
-          "maximum": 700
-        },
-        "concentration_ng_ul": {
+        "percentage": {
           "type": ["number"],
-          "multipleOf": 0.01,
-          "minimum": 0,
-          "maximum": 9999.99
+          "multipleOf": 0.05,
+          "minimum": -10,
+          "maximum": 100.0
         },
-        "od_260_280": {
-          "type": "number",
-          "multipleOf": 0.01,
-          "minimum": 0,
-          "maximum": 10
-        },
-        "cancer_sample_y_n": {
+        "hazaradous": {
           "enum": [
             "yes",
             "no"
           ]
         },
-        "sample_type": {
+        "type": {
           "enum": [
-            "dna_blood_germline",
-            "dna_saliva",
-            "dna_fibroblast",
-            "dna_ff_germline",
-            "dna_ffpe_tumour",
-            "dna_ff_tumour",
-            "dna_blood_tumour",
-            "dna_bone_marrow_aspirate_tumour_sorted_cells",
-            "dna_bone_marrow_aspirate_tumour_cells",
-            "tumour_tissue_ffpe",
-            "lysate_ffpe",
-            "lysate_ff",
-            "lysed_tumour_cells",
-            "streck_plasma",
-            "edta_plasma",
-            "lihep_plasma",
-            "serum",
-            "rna_blood",
-            "tumour_tissue_ff",
-            "bone_marrow_rna_gtc",
-            "blood_rna_gtc"
+            "blood",
+            "saliva",
+            "tumour"
           ]
         }
       }
     },
-    "Redcap": {
-      "type": "object",
+    "Patient": {
       "required": [
-        "GenOMICC",
         "sex",
         "nhs_number",
-        "date_of_birth",
-        "consent_taken_assertion",
-        "hospital_trust",
-        "date_of_identifying_eligibility_for_the_study",
-        "responsible_clinician"
+        "doctor"
       ],
       "properties": {
-        "GenOMICC": {
+        "id": {
           "type": "string",
-          "pattern": "^.{4,32}$"
+          "format": "uuid"
         },
         "sex": {
           "enum": [
-            "m",
-            "f",
-            "u"
+            "XX",
+            "XY"
           ]
         },
         "nhs_number": {
           "type": "string",
-          "pattern": "^\\d{3} \\d{3} \\d{4}$"
+          "pattern": "^\\d{3}-\\d{3}-\\d{4}$"
         },
-        "date_of_birth": {
+        "DOB": {
           "type": "string",
           "format": "date"
         },
-        "consent_taken_assertion": {
-          "type": "boolean"
-        },
-        "hospital_trust": {
+        "clinic": {
           "type": "string"
         },
-        "date_of_identifying_eligibility_for_the_study": {
-          "type": "string",
-          "format": "date"
-        },
-        "responsible_clinician": {
-          "$ref": "#/definitions/ResponsibleClinician"
+        "doctor": {
+          "$ref": "#/definitions/Doctor"
         }
       }
     },
-    "address": {
-      "type": "object",
+    "Address": {
       "properties": {
         "lines": {
           "type": "array",
@@ -148,13 +93,13 @@
     }
   },
   "properties": {
-    "Manifest": {
-      "$ref": "#/definitions/Manifest"
+    "Sample": {
+      "$ref": "#/definitions/Sample"
     },
-    "Redcap": {
-      "$ref": "#/definitions/Redcap"
+    "Patient": {
+      "$ref": "#/definitions/Patient"
     },
-    "ResponsibleClinician": {
+    "Doctor": {
       "properties": {
         "name": {
           "type": "string"
@@ -166,21 +111,17 @@
         "address": {"$ref": "#/definitions/address"}
       }
     },
-    "Plate": {
-      "required": [
-        "barcode",
-        "priority"
-      ],
+    "Rack": {
       "properties": {
-        "type": {"const": "SAMPLE_PLATE"},
-        "barcode": {
+        "type": {"const": "SAMPLE_RACK"},
+        "id": {
           "type": "string",
-          "pattern": "^LP\\d{7}-DNA$"
+          "pattern": "^[A-D][0-9]{4}-[0-9]{5}$"
         },
-        "priority": {
+        "delivery_type": {
           "enum": [
-            "routine",
-            "urgent"
+            "courier",
+            "manual"
           ]
         }
       }

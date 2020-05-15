@@ -1,73 +1,42 @@
 [
   {
-    "name": "Manifest",
     "fields": [
       {
         "name": "sample_id",
-        "type": "IntegerField",
-        "to": null,
         "options": {
-          "validators": {
-            "MinValueValidator": 1000000000,
-            "MaxValueValidator": 2147483647
-          }
-        }
+          "validators": {}
+        },
+        "to": null,
+        "type": "IntegerField"
       },
       {
         "name": "well",
-        "type": "CharField",
-        "to": null,
         "options": {
-          "help_text": "'physical\\n location of the\\n well on the plate'",
           "max_length": 255,
           "validators": {
-            "RegexValidator": "^[A-H](0[1-9]|1[1-2])$"
+            "RegexValidator": "^[1-9][A-C]$"
           }
-        }
+        },
+        "to": null,
+        "type": "CharField"
       },
       {
-        "name": "volume_ul",
-        "type": "IntegerField",
-        "to": null,
+        "name": "percentage",
         "options": {
+          "decimal_places": 5,
+          "max_digits": 10,
+          "null": true,
           "validators": {
-            "MinValueValidator": 10,
-            "MaxValueValidator": 700
+            "MaxValueValidator": 100.0,
+            "MinValueValidator": -10
           }
-        }
+        },
+        "to": null,
+        "type": "DecimalField"
       },
       {
-        "name": "concentration_ng_ul",
-        "type": "DecimalField",
-        "to": null,
+        "name": "hazaradous",
         "options": {
-          "validators": {
-            "MinValueValidator": 0,
-            "MaxValueValidator": 9999.99
-          },
-          "max_digits": 10,
-          "decimal_places": 5
-        }
-      },
-      {
-        "name": "od_260_280",
-        "type": "DecimalField",
-        "to": null,
-        "options": {
-          "validators": {
-            "MinValueValidator": 0,
-            "MaxValueValidator": 10
-          },
-          "max_digits": 10,
-          "decimal_places": 5
-        }
-      },
-      {
-        "name": "cancer_sample_y_n",
-        "type": "CharField",
-        "to": null,
-        "options": {
-          "max_length": 3,
           "choices": [
             [
               "yes",
@@ -77,263 +46,189 @@
               "no",
               "no"
             ]
-          ]
-        }
+          ],
+          "max_length": 3,
+          "null": true
+        },
+        "to": null,
+        "type": "CharField"
       },
       {
-        "name": "sample_type",
-        "type": "CharField",
-        "to": null,
+        "name": "type",
         "options": {
-          "max_length": 44,
           "choices": [
             [
-              "dna_blood_germline",
-              "dna_blood_germline"
+              "blood",
+              "blood"
             ],
             [
-              "dna_saliva",
-              "dna_saliva"
+              "saliva",
+              "saliva"
             ],
             [
-              "dna_fibroblast",
-              "dna_fibroblast"
-            ],
-            [
-              "dna_ff_germline",
-              "dna_ff_germline"
-            ],
-            [
-              "dna_ffpe_tumour",
-              "dna_ffpe_tumour"
-            ],
-            [
-              "dna_ff_tumour",
-              "dna_ff_tumour"
-            ],
-            [
-              "dna_blood_tumour",
-              "dna_blood_tumour"
-            ],
-            [
-              "dna_bone_marrow_aspirate_tumour_sorted_cells",
-              "dna_bone_marrow_aspirate_tumour_sorted_cells"
-            ],
-            [
-              "dna_bone_marrow_aspirate_tumour_cells",
-              "dna_bone_marrow_aspirate_tumour_cells"
-            ],
-            [
-              "tumour_tissue_ffpe",
-              "tumour_tissue_ffpe"
-            ],
-            [
-              "lysate_ffpe",
-              "lysate_ffpe"
-            ],
-            [
-              "lysate_ff",
-              "lysate_ff"
-            ],
-            [
-              "lysed_tumour_cells",
-              "lysed_tumour_cells"
-            ],
-            [
-              "streck_plasma",
-              "streck_plasma"
-            ],
-            [
-              "edta_plasma",
-              "edta_plasma"
-            ],
-            [
-              "lihep_plasma",
-              "lihep_plasma"
-            ],
-            [
-              "serum",
-              "serum"
-            ],
-            [
-              "rna_blood",
-              "rna_blood"
-            ],
-            [
-              "tumour_tissue_ff",
-              "tumour_tissue_ff"
-            ],
-            [
-              "bone_marrow_rna_gtc",
-              "bone_marrow_rna_gtc"
-            ],
-            [
-              "blood_rna_gtc",
-              "blood_rna_gtc"
+              "tumour",
+              "tumour"
             ]
-          ]
-        }
+          ],
+          "max_length": 6,
+          "null": true
+        },
+        "to": null,
+        "type": "CharField"
       },
       {
         "name": "class",
-        "type": "ForeignKey",
-        "to": "Plate",
-        "options": {"null": true}
+        "options": {
+          "null": true
+        },
+        "to": "Rack",
+        "type": "ForeignKey"
       },
       {
-        "name": "redcap",
-        "type": "ManyToManyField",
-        "to": "Redcap",
-        "options": {}
+        "name": "patient",
+        "options": {
+          "null": true
+        },
+        "to": "Patient",
+        "type": "ManyToManyField"
       }
-    ]
+    ],
+    "name": "Sample"
   },
   {
-    "name": "Redcap",
     "fields": [
       {
-        "name": "GenOMICC",
-        "type": "CharField",
-        "to": null,
+        "name": "id",
         "options": {
-          "max_length": 255,
-          "validators": {
-            "RegexValidator": "^.{4,32}$"
-          }
-        }
+          "default": "uuid.uuid4",
+          "primary_key": true
+        },
+        "to": null,
+        "type": "UUIDField"
       },
       {
         "name": "sex",
-        "type": "CharField",
-        "to": null,
         "options": {
-          "max_length": 1,
           "choices": [
             [
-              "m",
-              "m"
+              "xx",
+              "XX"
             ],
             [
-              "f",
-              "f"
-            ],
-            [
-              "u",
-              "u"
+              "xy",
+              "XY"
             ]
-          ]
-        }
+          ],
+          "max_length": 2
+        },
+        "to": null,
+        "type": "CharField"
       },
       {
         "name": "nhs_number",
-        "type": "CharField",
-        "to": null,
         "options": {
           "max_length": 255,
           "validators": {
-            "RegexValidator": "^\\d{3} \\d{3} \\d{4}$"
+            "RegexValidator": "^\\d{3}-\\d{3}-\\d{4}$"
           }
-        }
+        },
+        "to": null,
+        "type": "CharField"
       },
       {
-        "name": "date_of_birth",
-        "type": "DateField",
-        "to": null,
-        "options": {}
-      },
-      {
-        "name": "consent_taken_assertion",
-        "type": "BooleanField",
-        "to": null,
-        "options": {}
-      },
-      {
-        "name": "hospital_trust",
-        "type": "CharField",
-        "to": null,
+        "name": "DOB",
         "options": {
-          "max_length": 255
-        }
-      },
-      {
-        "name": "date_of_identifying_eligibility_for_the_study",
-        "type": "DateField",
+          "null": true
+        },
         "to": null,
-        "options": {}
+        "type": "DateField"
       },
       {
-        "name": "responsible_clinician",
-        "type": "ForeignKey",
-        "to": "ResponsibleClinician",
-        "options": {}
+        "name": "clinic",
+        "options": {
+          "max_length": 255,
+          "null": true
+        },
+        "to": null,
+        "type": "CharField"
+      },
+      {
+        "name": "doctor",
+        "options": {},
+        "to": "Doctor",
+        "type": "ForeignKey"
       }
-    ]
+    ],
+    "name": "Patient"
   },
   {
-    "name": "ResponsibleClinician",
     "fields": [
       {
         "name": "name",
-        "type": "CharField",
-        "to": null,
         "options": {
-          "null": true,
-          "max_length": 255
-        }
+          "max_length": 255,
+          "null": true
+        },
+        "to": null,
+        "type": "CharField"
       },
       {
         "name": "email",
-        "type": "EmailField",
-        "to": null,
         "options": {
           "null": true
-        }
+        },
+        "to": null,
+        "type": "EmailField"
       },
       {
         "name": "address",
-        "type": "JSONField",
-        "to": "address",
         "options": {
           "null": true,
           "schema": {
             "$ref": "#/definitions/address"
           }
-        }
+        },
+        "to": "address",
+        "type": "JSONField"
       }
-    ]
+    ],
+    "name": "Doctor"
   },
   {
-    "name": "Plate",
     "fields": [
       {
-        "name": "barcode",
-        "type": "CharField",
-        "to": null,
+        "name": "id",
         "options": {
+          "default": "uuid.uuid4",
           "max_length": 255,
+          "primary_key": true,
           "validators": {
-            "RegexValidator": "^LP\\d{7}-DNA$"
+            "RegexValidator": "^[A-D][0-9]{4}-[0-9]{5}$"
           }
-        }
+        },
+        "to": null,
+        "type": "CharField"
       },
       {
-        "name": "priority",
-        "type": "CharField",
-        "to": null,
+        "name": "delivery_type",
         "options": {
-          "max_length": 7,
           "choices": [
             [
-              "routine",
-              "routine"
+              "courier",
+              "courier"
             ],
             [
-              "urgent",
-              "urgent"
+              "manual",
+              "manual"
             ]
-          ]
-        }
+          ],
+          "max_length": 7,
+          "null": true
+        },
+        "to": null,
+        "type": "CharField"
       }
-    ]
+    ],
+    "name": "Rack"
   }
 ]

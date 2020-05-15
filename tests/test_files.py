@@ -27,30 +27,19 @@ assets = [
     ("views", build_views),
 ]
 
-stuff = [
+
+@pytest.mark.parametrize("model,asset_name,asset_function", [
     (model, asset_name, asset_function)
     for asset_name, asset_function in assets
     for model in listdir(json_schema_dir)
-]
-
-
-@pytest.mark.parametrize("model,asset_name,asset_function", stuff)
+])
 def test_django_files(model, asset_name, asset_function):
     with open(path.join(json_schema_dir, model)) as f:
         schema = load(f)
 
-    try:
-        with open(
-            path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
-        ) as f:
-            model_file = f.read()
+    with open(
+        path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py")
+    ) as f:
+        model_file = f.read()
 
-        assert asset_function(models=Model.factory(schema)) == model_file
-    except FileNotFoundError:
-        with open(
-                path.join(django_files_dir, model.replace(".json", ""), asset_name + ".py"), "w"
-        ) as f:
-            m = asset_function(models=Model.factory(schema))
-
-            f.write(m)
-
+    assert asset_function(models=Model.factory(schema)) == model_file
