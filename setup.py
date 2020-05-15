@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import pathlib
 import re
 import os
 import sys
@@ -8,11 +9,17 @@ from setuptools import setup
 
 name = "djangorestframework-jsonschema"
 package = "jsonschema2dj"
-description = "builds models and serializers from jsonschema"
-url = "https://github.com/gecBurton/django-rest-framework-jsonschema"
+description = "build Django REST Framework API from jsonschema"
+url = "https://github.com/gecBurton/djangorestframework-jsonschema"
 author = "George Burton"
 author_email = "g.e.c.burton@gmail.com"
 license = "BSD"
+
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
+
+# The text of the README file
+README = (HERE / "README.md").read_text()
 
 
 def get_version(package):
@@ -74,6 +81,8 @@ setup(
     url=url,
     license=license,
     description=description,
+    long_description=README,
+    long_description_content_type="text/markdown",
     author=author,
     author_email=author_email,
     packages=get_packages(package),
@@ -87,13 +96,8 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Natural Language :: English",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
         "Topic :: Internet :: WWW/HTTP",
     ],
     include_package_data=True,
-    #    data_files=[("jsonschema2dj", ["meta-schema.json"])]
 )
