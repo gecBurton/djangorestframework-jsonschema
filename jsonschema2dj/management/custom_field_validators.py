@@ -1,5 +1,3 @@
-from symbol import factor
-
 from django.core.exceptions import ValidationError
 from django.core import validators
 
@@ -14,12 +12,11 @@ class MultipleOfValidator(validators.BaseValidator):
             self.message = message
 
     def __call__(self, value):
-
-        if isinstance(factor, float):
-            quotient = value / factor
+        if isinstance(self.factor, float):
+            quotient = value / self.factor
             failed = int(quotient) != quotient
         else:
-            failed = value % factor
+            failed = value % self.factor
         if failed:
-            params = {'value': value, 'factor': factor}
+            params = {'value': value, 'factor': self.factor}
             raise ValidationError(self.message, code=self.code, params=params)
