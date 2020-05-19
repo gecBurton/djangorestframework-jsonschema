@@ -43,3 +43,18 @@ class JSONSchemaValidator(validators.BaseValidator):
                     for error in errors
                 ]
             )
+
+
+class MultipleOfValidator(validators.BaseValidator):
+    message = _('%(value)s is not a multiple of %(factor)')
+    code = 'factor'
+
+    def __init__(self, factor, message=None):
+        self.factor = factor
+        if message:
+            self.message = message
+
+    def __call__(self, value):
+        if value % self.factor == 0:
+            params = {'value': value, 'factor': self.factor}
+            raise ValidationError(self.message, code=self.code, params=params)
