@@ -1,7 +1,10 @@
 import pytest
 from django.core.exceptions import ValidationError
 
-from jsonschema2dj.valdiators import JSONSchemaValidator
+from jsonschema2dj.valdiators import (
+    JSONSchemaValidator,
+    MultipleOfValidator,
+)
 
 VALID_SCHEMAS = [
     (
@@ -63,6 +66,24 @@ INVALID_SCHEMAS = [
 ]
 
 
+VALID_SCHEMAS_FOR_MULTIPLE_OF = [
+    (
+        {"$ref": "#/definitions/abc"},
+        {
+            "abc": {
+                "additionalProperties": False,
+                "properties": {
+                    "a": {"type": "integer",
+                          "mutipleOf": 10},
+
+                },
+            }
+        },
+        {"a": 100},
+    ),
+]
+
+
 @pytest.mark.parametrize("schema,definitions,payload", VALID_SCHEMAS)
 def test_doesnt_raises_error(schema, definitions, payload):
     validator = JSONSchemaValidator(schema, definitions)
@@ -77,3 +98,10 @@ def test_raises_error(schema, definitions, payload, error_messages):
         validator(payload)
 
     assert error.value.messages == error_messages
+
+
+# @pytest.mark.parametrize("schema,definitions,payload", VALID_SCHEMAS_FOR_MULTIPLE_OF)
+# def test_doesnt_raises_error(schema, definitions, payload):
+#     validator = MultipleOfValidator(schema, definitions)
+#     validator(payload)
+#     assert True
