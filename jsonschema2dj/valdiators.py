@@ -45,6 +45,7 @@ class JSONSchemaValidator(validators.BaseValidator):
             )
 
 
+@deconstructible
 class MultipleOfValidator(validators.BaseValidator):
     message = _('%(value)s is not a multiple of %(factor)')
     code = 'factor'
