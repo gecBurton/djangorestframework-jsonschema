@@ -114,6 +114,9 @@ def build_value_validators(sch: Dict) -> Dict:
         validators["MinValueValidator"] = sch["minimum"]
     if "maximum" in sch:
         validators["MaxValueValidator"] = sch["maximum"]
+    if "multipleOf" in sch:
+        validators["MultipleOfValidator"] = sch["multipleOf"]
+
     return validators
 
 
