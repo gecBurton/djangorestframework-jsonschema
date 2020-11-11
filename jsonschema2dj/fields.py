@@ -1,15 +1,19 @@
 """helper methods for field level schema to django field like object
 """
-from typing import List, Dict, Any, Tuple
 import keyword
 import warnings
+from typing import Any, Dict, List, Tuple
 
 
 def stringify(key, value):
     if key == "RegexValidator" and value is not None:
         return f"'{value}'"
     if key == "validators":
-        return "[" + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items()) + "]"
+        return (
+            "["
+            + ", ".join(f"validators.{a}({stringify(a, b)})" for a, b in value.items())
+            + "]"
+        )
     return value
 
 
@@ -183,7 +187,12 @@ def rationalize_type(name: str, sch: Dict, required: List[str]) -> Tuple[str, bo
     if "type" in sch:
         _type = sch.get("type")
         if isinstance(_type, list):
-            if len(sch["type"]) == 0 or len(_type) > 2 or len(_type) == 2 and "null" not in _type:
+            if (
+                len(sch["type"]) == 0
+                or len(_type) > 2
+                or len(_type) == 2
+                and "null" not in _type
+            ):
                 raise ValueError(
                     "if type is a list it should either contain 1 element, or 2 where one is null"
                 )

@@ -4,16 +4,17 @@ The __init__ of the core Model object has the objects values injected into it
 The Model's properties are used by jinja to populate the .py templates
 """
 from __future__ import annotations
+
 from json import load
-from typing import List, Dict
-
-# from jsonschema import validate  # type: ignore
-
-from jsonschema2dj.fields import build_field, Field
+from typing import Dict, List
 
 from pkg_resources import resource_filename
 
+from jsonschema2dj.fields import Field, build_field
 from jsonschema2dj.relationships import build_models, extract_relationships
+
+# from jsonschema import validate  # type: ignore
+
 
 with open(resource_filename("jsonschema2dj", "meta-schema.json")) as f:
     META_SCHEMA = load(f)
@@ -50,8 +51,13 @@ class Model:
 
         self.fields = []
         for field_name, field_sch in properties.items():
-            if field_name not in [relation.name for relation in relations] and field_name not in self.read_only_fields:
-                if "items" not in field_sch:  # not quite right, should really check that this isnt an rfk
+            if (
+                field_name not in [relation.name for relation in relations]
+                and field_name not in self.read_only_fields
+            ):
+                if (
+                    "items" not in field_sch
+                ):  # not quite right, should really check that this isnt an rfk
                     field = build_field(field_name, field_sch, required)
                     self.fields.append(field)
 

@@ -1,0 +1,64 @@
+repos:
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        stages: [commit]
+        language: system
+        entry: pipenv run isort
+        types: [python]
+
+      - id: black
+        name: black
+        stages: [commit]
+        language: system
+        entry: pipenv run black jsonschema2dj
+        types: [python]
+
+      - id: flake8
+        name: flake8
+        stages: [commit]
+        language: system
+        entry: pipenv run flake8 jsonschema2dj
+        types: [python]
+        exclude: setup.py
+
+      - id: pytest
+        name: pytest
+        stages: [commit]
+        language: system
+        entry: pipenv run pytest --cov=jsonschema2dj --cov-fail-under=88 --cov-report=term-missing
+        types: [python]
+        pass_filenames: false
+
+#      - id: doctest
+#        name: doctest
+#        stages: [commit]
+#        language: system
+#        entry: pipenv run pytest --doctest-modules jsonschema2dj
+#        types: [python]
+#        pass_filenames: false
+
+      - id: mypy
+        name: mypy
+        stages: [commit]
+        language: system
+        entry: pipenv run mypy jsonschema2dj tests
+        types: [python]
+        pass_filenames: false
+
+#      - id: sphinx
+#        name: sphinx
+#        stages: [commit]
+#        language: system
+#        entry: pipenv run make html -C docs
+#        types: [python]
+#        pass_filenames: false
+
+      - id: safety
+        name: safety
+        stages: [commit]
+        language: system
+        entry: pipenv run safety check
+        types: [python]
+        pass_filenames: false
