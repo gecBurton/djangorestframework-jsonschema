@@ -1,17 +1,22 @@
 # Minimum Django and REST framework version
 Django>=1.6
 djangorestframework>=2.4.3
-django-filter==0.15.3
+django-filter>=2.4.0
 jinja2>2.0
 jsonschema>3.0
 # Test requirements
-pytest-django==3.8.0
-pytest==5.4.1
-pytest-cov==2.8.1
-flake8==2.2.2
-
+pytest-django==4.1.0
+pytest==6.1.2
+pytest-cov==2.10.1
+flake8==3.8.4
+isort==5.6.4
+mypy==0.790
+black==19.10b0
+safety==1.9.0
+pre-commit==2.6.0
+pipenv==2020.6.2
 # wheel for PyPI installs
-wheel==0.24.0
+wheel==0.35.1
 
 # MkDocs for documentation previews/deploys
-mkdocs==0.11.1
+mkdocs==1.1.2
