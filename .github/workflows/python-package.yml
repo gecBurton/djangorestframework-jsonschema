@@ -37,7 +37,7 @@ jobs:
           black jsonschema2dj
       - name: Lint with flake8
         run: |
-          flake8 jsonschema_tools
+          flake8 jsonschema2dj
       - name: Test with pytest
         run: |
           pytest --cov=jsonschema2dj --cov-report=term-missing -cov-fail-under=88
